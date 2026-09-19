@@ -93,3 +93,74 @@
 .sensor-node:hover {
   transform: scale(1.15);
 }
+
+/* ==========================================================================
+   Hierarchy Drill-Down Navigation Strip (Phase 6)
+   ========================================================================== */
+.hierarchy-strip-card {
+  padding: var(--space-4);
+  background-color: var(--color-surface-soft);
+  border: 1px solid var(--color-border);
+}
+
+.hierarchy-level-row {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.hierarchy-group {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
+.hierarchy-label {
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+  min-width: 140px;
+}
+
+.hierarchy-pills {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.pill-btn {
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-full);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  color: var(--color-text-primary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.pill-btn:hover {
+  border-color: var(--color-primary-400);
+  background-color: var(--color-surface-soft);
+}
+
+.pill-btn.active {
+  background-color: var(--color-primary-600);
+  color: var(--color-text-inverse);
+  border-color: var(--color-primary-600);
+  font-weight: 700;
+}
+
+.pill-btn.pill-stress {
+  border-color: var(--color-warning);
+}
+
+.pill-btn.pill-stress.active {
+  background-color: var(--color-warning);
+  border-color: var(--color-warning);
+}
+
