@@ -164,3 +164,376 @@
   border-color: var(--color-warning);
 }
 
+/* ==========================================================================
+   Phase 7: Field Details Tab Panes Styling
+   ========================================================================== */
+
+/* Crop Stage Progress Stepper */
+.crop-growth-stepper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  margin: var(--space-4) 0 var(--space-2);
+  padding: 0 var(--space-2);
+}
+
+.crop-growth-stepper::before {
+  content: '';
+  position: absolute;
+  top: 14px;
+  left: 30px;
+  right: 30px;
+  height: 3px;
+  background-color: var(--color-border);
+  z-index: 1;
+}
+
+.step-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+  text-align: center;
+}
+
+.step-node {
+  width: 30px;
+  height: 30px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-surface);
+  border: 2px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  color: var(--color-text-secondary);
+  transition: all var(--transition-normal);
+}
+
+.step-item.completed .step-node {
+  background-color: var(--color-primary-600);
+  border-color: var(--color-primary-600);
+  color: var(--color-text-inverse);
+}
+
+.step-item.current .step-node {
+  background-color: var(--color-primary-100);
+  border-color: var(--color-primary-600);
+  color: var(--color-primary-800);
+  box-shadow: 0 0 0 4px rgba(22, 163, 74, 0.2);
+}
+
+.step-label {
+  font-size: 11px;
+  font-weight: 600;
+  margin-top: var(--space-1);
+  color: var(--color-text-primary);
+}
+
+.step-subtext {
+  font-size: 10px;
+  color: var(--color-text-muted);
+}
+
+/* Zone Cards Grid */
+.zone-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--space-4);
+}
+
+.zone-card {
+  background-color: var(--color-card-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  transition: all var(--transition-fast);
+}
+
+.zone-card:hover {
+  border-color: var(--color-primary-300);
+  box-shadow: var(--shadow-md);
+}
+
+.zone-card.zone-stress {
+  border-left: 4px solid var(--color-danger);
+  background-color: #FEF2F2;
+}
+
+[data-theme="dark"] .zone-card.zone-stress {
+  background-color: rgba(220, 38, 38, 0.08);
+}
+
+.zone-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.zone-title {
+  font-size: var(--font-size-base);
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.zone-acreage {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+}
+
+.zone-telemetry-preview {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-2);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-2) var(--space-3);
+}
+
+.metric-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.metric-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.metric-val {
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+/* Moisture Progress Bar */
+.moisture-bar-wrap {
+  margin-top: var(--space-1);
+}
+
+.moisture-bar-track {
+  height: 8px;
+  background-color: var(--color-border);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.moisture-bar-fill {
+  height: 100%;
+  border-radius: var(--radius-full);
+  transition: width 0.4s ease;
+}
+
+.fill-optimal { background-color: var(--color-success); }
+.fill-warning { background-color: var(--color-warning); }
+.fill-stress  { background-color: var(--color-danger); }
+
+/* Valve Control Strip */
+.valve-control-strip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: var(--space-2);
+  border-top: 1px solid var(--color-border);
+}
+
+.valve-info {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+}
+
+/* Virtual IoT Telemetry Grid (Tab 3) */
+.sensor-metric-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: var(--space-3);
+}
+
+.sensor-box {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.sensor-box-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sensor-reading {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.sensor-target {
+  font-size: 11px;
+  color: var(--color-text-muted);
+}
+
+/* Weather Tab Grid (Tab 4) */
+.weather-hero-card {
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  gap: var(--space-4);
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .weather-hero-card {
+    grid-template-columns: 1fr;
+  }
+}
+
+.weather-hero-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: var(--space-3);
+}
+
+/* Drone NDVI Tab (Tab 5) */
+.drone-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: var(--space-4);
+}
+
+@media (max-width: 900px) {
+  .drone-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.ndvi-scale-bar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  margin-top: var(--space-3);
+}
+
+.ndvi-gradient {
+  height: 12px;
+  border-radius: var(--radius-full);
+  background: linear-gradient(to right, #DC2626 0%, #F59E0B 40%, #84CC16 70%, #16A34A 100%);
+}
+
+.ndvi-legend-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  color: var(--color-text-muted);
+}
+
+/* Risk Matrix List (Tab 6) */
+.risk-matrix-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.risk-matrix-item {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+  display: flex;
+  gap: var(--space-3);
+  align-items: flex-start;
+}
+
+.risk-matrix-item.risk-high {
+  border-left: 5px solid var(--color-danger);
+}
+
+.risk-matrix-item.risk-medium {
+  border-left: 5px solid var(--color-warning);
+}
+
+.risk-matrix-item.risk-low {
+  border-left: 5px solid var(--color-info);
+}
+
+/* Action Plans List (Tab 7) */
+.action-plans-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.action-plan-card {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.action-plan-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+/* History Timeline (Tab 8) */
+.timeline-stream {
+  position: relative;
+  padding-left: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.timeline-stream::before {
+  content: '';
+  position: absolute;
+  top: 6px;
+  bottom: 6px;
+  left: 11px;
+  width: 2px;
+  background-color: var(--color-border);
+}
+
+.timeline-entry {
+  position: relative;
+}
+
+.timeline-dot {
+  position: absolute;
+  left: -28px;
+  top: 4px;
+  width: 14px;
+  height: 14px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-primary-600);
+  border: 2px solid var(--color-surface);
+}
+
+.timeline-entry-content {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-3) var(--space-4);
+}
+
+

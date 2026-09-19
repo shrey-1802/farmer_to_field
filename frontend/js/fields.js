@@ -170,6 +170,7 @@ class HierarchyManager {
     this.parseUrlParams();
     this.renderHierarchyBreadcrumbs();
     this.renderHierarchySelectorStrip();
+    this.initTabs();
     this.bindEvents();
   }
 
@@ -342,9 +343,86 @@ class HierarchyManager {
     appShell.showToast(`Drilled into ${zone.name}`, 'info', 2000);
   }
 
+  /**
+   * Initialize 8-Tab Field Inspection System (Phase 7)
+   */
+  initTabs() {
+    const tabBtns = document.querySelectorAll('.tab-btn[data-tab]');
+    if (!tabBtns.length) return;
+
+    tabBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const tabId = btn.getAttribute('data-tab');
+        this.switchTab(tabId);
+      });
+    });
+
+    // Check URL query param or hash for pre-selected tab
+    const urlParams = new URLSearchParams(window.location.search);
+    const hashTab = window.location.hash.replace('#', '');
+    const initialTab = urlParams.get('tab') || hashTab || 'overview';
+    this.switchTab(initialTab, false);
+  }
+
+  /**
+   * Switch Active Tab Pane
+   */
+  switchTab(tabId, updateUrl = true) {
+    const targetPane = document.getElementById(`tab-pane-${tabId}`);
+    const targetBtn = document.querySelector(`.tab-btn[data-tab="${tabId}"]`);
+
+    if (!targetPane || !targetBtn) return;
+
+    // Deactivate current tabs
+    document.querySelectorAll('.tab-btn[data-tab]').forEach(btn => {
+      btn.classList.remove('active');
+      btn.setAttribute('aria-selected', 'false');
+    });
+
+    document.querySelectorAll('.tab-pane').forEach(pane => {
+      pane.classList.remove('active');
+    });
+
+    // Activate target
+    targetBtn.classList.add('active');
+    targetBtn.setAttribute('aria-selected', 'true');
+    targetPane.classList.add('active');
+
+    if (updateUrl) {
+      const url = new URL(window.location);
+      url.searchParams.set('tab', tabId);
+      window.history.replaceState(null, '', url);
+    }
+
+    // Scroll tab button into view smoothly on mobile devices
+    targetBtn.scrollIntoView({ behavior: 'smooth', inline: 'nearest', block: 'nearest' });
+
+    window.dispatchEvent(new CustomEvent('tabchange', { detail: { tab: tabId } }));
+  }
+
   bindEvents() {
     window.addEventListener('farmchange', (e) => {
       this.setHierarchy(e.detail.farmId, null, null);
+    });
+
+    // Interactive Map Overlay controls
+    document.querySelectorAll('.map-controls button').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.map-controls button').forEach(b => b.classList.remove('active-filter'));
+        btn.classList.add('active-filter');
+        const isNdvi = btn.textContent.includes('NDVI');
+        appShell.showToast(`Switched map layer to ${isNdvi ? 'NDVI Canopy Overlay' : 'Soil Moisture Heatmap'}`, 'info', 2000);
+      });
+    });
+
+    // Sensor node clicks
+    document.querySelectorAll('.sensor-node').forEach((node, idx) => {
+      node.addEventListener('click', () => {
+        const zoneIds = ['zone-1', 'zone-2', 'zone-3', 'zone-4'];
+        if (zoneIds[idx]) {
+          this.setHierarchy(null, null, zoneIds[idx]);
+        }
+      });
     });
   }
 }

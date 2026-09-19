@@ -579,3 +579,89 @@
   }
 }
 
+/* ==========================================================================
+   Tab Navigation & Panes (Phase 7+)
+   ========================================================================== */
+.tabs-nav-container {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin-bottom: var(--space-4);
+  border-bottom: 2px solid var(--color-border);
+}
+
+.tabs-nav {
+  display: flex;
+  gap: var(--space-2);
+  min-width: max-content;
+  padding-bottom: 2px;
+}
+
+.tab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-4);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  background: transparent;
+  border: none;
+  border-bottom: 3px solid transparent;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+}
+
+.tab-btn:hover {
+  color: var(--color-primary-600);
+  background-color: var(--color-surface-soft);
+}
+
+.tab-btn.active {
+  color: var(--color-primary-600);
+  border-bottom-color: var(--color-primary-600);
+  background-color: var(--color-surface);
+  font-weight: 700;
+}
+
+.tab-btn .tab-badge {
+  font-size: 11px;
+  padding: 1px 6px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-surface-soft);
+  color: var(--color-text-secondary);
+}
+
+.tab-btn.active .tab-badge {
+  background-color: var(--color-primary-100);
+  color: var(--color-primary-800);
+}
+
+.tab-btn.tab-badge-stress .tab-badge {
+  background-color: #FEE2E2;
+  color: #DC2626;
+  font-weight: 700;
+}
+
+.tab-pane {
+  display: none;
+  animation: tabFadeIn 0.2s ease-in-out;
+}
+
+.tab-pane.active {
+  display: block;
+}
+
+@keyframes tabFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+

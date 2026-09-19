@@ -100,171 +100,782 @@
             <span><strong>Location:</strong> Rajkot, Gujarat</span> •
             <span><strong>Total Area:</strong> 12.0 Acres</span> •
             <span><strong>Primary Crop:</strong> BT Cotton (Bt-2)</span> •
-            <span><strong>Sowing Date:</strong> June 18, 2026 (Day 93)</span>
+            <span><strong>Sowing Date:</strong> June 18, 2026 (Day 93)</span> •
+            <span><strong>Stage:</strong> Boll Formation</span>
           </p>
         </div>
         <div class="field-header-actions">
           <a href="./simulation.html" class="btn btn-outline">
-            <span>Simulate Conditions</span>
+            <span>🧪 Simulate Conditions</span>
           </a>
           <a href="./action-plans.html" class="btn btn-primary">
-            <span>View Advisory Plans</span>
+            <span>📋 View Action Plans</span>
           </a>
         </div>
       </section>
 
-      <!-- Agronomic Property Strip -->
-      <section class="properties-strip" aria-label="Agronomic Attributes">
-        <div class="property-pill">
-          <span class="prop-label">Soil Classification</span>
-          <span class="prop-value">Deep Black Cotton Soil</span>
+      <!-- 8 Tab Navigation Strip (Section 13) -->
+      <div class="tabs-nav-container" aria-label="Field Inspection Tabs">
+        <div class="tabs-nav" role="tablist">
+          <button type="button" class="tab-btn active" role="tab" aria-selected="true" data-tab="overview" id="tab-btn-overview">
+            <span>🗺️ Overview</span>
+          </button>
+          <button type="button" class="tab-btn" role="tab" aria-selected="false" data-tab="zones" id="tab-btn-zones">
+            <span>📍 Zones</span>
+            <span class="tab-badge">4 Zones</span>
+          </button>
+          <button type="button" class="tab-btn" role="tab" aria-selected="false" data-tab="sensors" id="tab-btn-sensors">
+            <span>📡 Sensors</span>
+            <span class="tab-badge">Virtual IoT</span>
+          </button>
+          <button type="button" class="tab-btn" role="tab" aria-selected="false" data-tab="weather" id="tab-btn-weather">
+            <span>☀️ Weather</span>
+            <span class="tab-badge">Live</span>
+          </button>
+          <button type="button" class="tab-btn" role="tab" aria-selected="false" data-tab="drone" id="tab-btn-drone">
+            <span>🛸 Drone & Aerial</span>
+            <span class="tab-badge">NDVI 0.72</span>
+          </button>
+          <button type="button" class="tab-btn tab-badge-stress" role="tab" aria-selected="false" data-tab="risks" id="tab-btn-risks">
+            <span>⚠️ Risks</span>
+            <span class="tab-badge">1 High</span>
+          </button>
+          <button type="button" class="tab-btn" role="tab" aria-selected="false" data-tab="actions" id="tab-btn-actions">
+            <span>⚡ Actions</span>
+            <span class="tab-badge">2 Pending</span>
+          </button>
+          <button type="button" class="tab-btn" role="tab" aria-selected="false" data-tab="history" id="tab-btn-history">
+            <span>⏳ History & Yield</span>
+          </button>
         </div>
-        <div class="property-pill">
-          <span class="prop-label">Field Capacity</span>
-          <span class="prop-value">38.5% Volumetric</span>
-        </div>
-        <div class="property-pill">
-          <span class="prop-label">Permanent Wilting Point</span>
-          <span class="prop-value">18.0% Volumetric</span>
-        </div>
-        <div class="property-pill">
-          <span class="prop-label">Irrigation Architecture</span>
-          <span class="prop-value">Automated Drip (4 Valves)</span>
-        </div>
-      </section>
+      </div>
 
-      <!-- Map & Spatial Zone Visualizer -->
-      <section class="card field-map-card">
-        <div class="card-header">
-          <div>
-            <h2 class="card-title">Interactive Field Map & Virtual IoT Sensors</h2>
-            <p class="card-subtitle">Boundary polygons, management zones, and sensor positions</p>
+      <!-- =====================================================================
+           TAB 1: OVERVIEW PANE
+           ===================================================================== -->
+      <div id="tab-pane-overview" class="tab-pane active" role="tabpanel" aria-labelledby="tab-btn-overview">
+        <!-- Agronomic Properties Strip -->
+        <section class="properties-strip" aria-label="Agronomic Attributes">
+          <div class="property-pill">
+            <span class="prop-label">Soil Classification</span>
+            <span class="prop-value">Deep Black Cotton Soil</span>
           </div>
-          <div class="map-controls">
+          <div class="property-pill">
+            <span class="prop-label">Field Capacity</span>
+            <span class="prop-value">38.5% Volumetric</span>
+          </div>
+          <div class="property-pill">
+            <span class="prop-label">Permanent Wilting Point</span>
+            <span class="prop-value">18.0% Volumetric</span>
+          </div>
+          <div class="property-pill">
+            <span class="prop-label">Irrigation Architecture</span>
+            <span class="prop-value">Automated Drip (4 Valves)</span>
+          </div>
+        </section>
+
+        <!-- Crop Stage Progress Stepper -->
+        <section class="card">
+          <div class="card-header">
+            <div>
+              <h2 class="card-title">Crop Phenology & Growth Stage Timeline</h2>
+              <p class="card-subtitle">BT Cotton (Bt-2) — Day 93 of 150-day duration</p>
+            </div>
+            <span class="source-tag source-model">MODEL</span>
+          </div>
+          <div class="crop-growth-stepper">
+            <div class="step-item completed">
+              <div class="step-node">✓</div>
+              <span class="step-label">Sowing</span>
+              <span class="step-subtext">Day 1</span>
+            </div>
+            <div class="step-item completed">
+              <div class="step-node">✓</div>
+              <span class="step-label">Vegetative</span>
+              <span class="step-subtext">Day 35</span>
+            </div>
+            <div class="step-item completed">
+              <div class="step-node">✓</div>
+              <span class="step-label">Square / Flowering</span>
+              <span class="step-subtext">Day 70</span>
+            </div>
+            <div class="step-item current">
+              <div class="step-node">93</div>
+              <span class="step-label">Boll Formation</span>
+              <span class="step-subtext">CURRENT (Critical Water)</span>
+            </div>
+            <div class="step-item">
+              <div class="step-node">○</div>
+              <span class="step-label">Boll Opening</span>
+              <span class="step-subtext">Day 125</span>
+            </div>
+            <div class="step-item">
+              <div class="step-node">○</div>
+              <span class="step-label">Harvest</span>
+              <span class="step-subtext">Day 150</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Interactive Map & Spatial Zone Visualizer -->
+        <section class="card field-map-card">
+          <div class="card-header">
+            <div>
+              <h2 class="card-title">Interactive Field Map & Virtual IoT Sensors</h2>
+              <p class="card-subtitle">Boundary polygons, management zones, and sensor positions</p>
+            </div>
+            <div class="map-controls">
+              <span class="source-tag source-simulated">SIMULATED — Virtual IoT</span>
+              <button type="button" class="btn btn-sm btn-outline active-filter">NDVI Overlay</button>
+              <button type="button" class="btn btn-sm btn-outline">Moisture Heatmap</button>
+            </div>
+          </div>
+
+          <div class="map-container" id="field-map-container" style="min-height: 380px; position: relative;">
+            <svg width="100%" height="100%" viewBox="0 0 800 380" class="field-svg-map" style="background-color: var(--color-surface-soft); border-radius: 8px;">
+              <defs>
+                <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+                  <path d="M 40 0 L 0 0 0 40" fill="none" stroke="var(--color-border)" stroke-width="0.5"/>
+                </pattern>
+              </defs>
+              <rect width="100%" height="100%" fill="url(#grid)" />
+              
+              <!-- Field Outer Boundary Polygon -->
+              <polygon points="60,40 740,30 710,340 90,350" fill="none" stroke="var(--color-primary-600)" stroke-width="3" stroke-dasharray="6,3"/>
+              
+              <!-- Zone 1 Polygon -->
+              <polygon points="65,45 390,40 380,180 80,190" fill="rgba(34, 197, 94, 0.15)" stroke="var(--color-primary-500)" stroke-width="1.5"/>
+              <text x="180" y="110" font-size="14" font-weight="bold" fill="var(--color-text-primary)">Zone 1: North (3.5 Ac)</text>
+              <text x="180" y="130" font-size="12" fill="var(--color-primary-700)">Moisture: 41% (Optimal)</text>
+
+              <!-- Zone 2 Polygon (Under Stress) -->
+              <polygon points="390,40 735,35 715,175 380,180" fill="rgba(217, 119, 6, 0.2)" stroke="var(--color-warning)" stroke-width="2"/>
+              <text x="500" y="110" font-size="14" font-weight="bold" fill="var(--color-warning)">Zone 2: East (2.8 Ac)</text>
+              <text x="500" y="130" font-size="12" fill="var(--color-danger)">Moisture: 24% (Water Stress)</text>
+
+              <!-- Zone 3 Polygon -->
+              <polygon points="80,190 380,180 370,335 95,345" fill="rgba(34, 197, 94, 0.15)" stroke="var(--color-primary-500)" stroke-width="1.5"/>
+              <text x="180" y="260" font-size="14" font-weight="bold" fill="var(--color-text-primary)">Zone 3: Central (3.2 Ac)</text>
+              <text x="180" y="280" font-size="12" fill="var(--color-primary-700)">Moisture: 38% (Good)</text>
+
+              <!-- Zone 4 Polygon -->
+              <polygon points="380,180 715,175 700,335 370,335" fill="rgba(34, 197, 94, 0.15)" stroke="var(--color-primary-500)" stroke-width="1.5"/>
+              <text x="500" y="260" font-size="14" font-weight="bold" fill="var(--color-text-primary)">Zone 4: South (2.5 Ac)</text>
+              <text x="500" y="280" font-size="12" fill="var(--color-primary-700)">Moisture: 36% (Normal)</text>
+
+              <!-- Virtual IoT Sensor Nodes -->
+              <g class="sensor-node" transform="translate(220, 150)">
+                <circle r="9" fill="#16A34A" stroke="#FFFFFF" stroke-width="2"/>
+                <text x="14" y="5" font-size="11" font-weight="bold" fill="var(--color-text-primary)">Node-01</text>
+              </g>
+              <g class="sensor-node" transform="translate(540, 140)">
+                <circle r="9" fill="#DC2626" stroke="#FFFFFF" stroke-width="2"/>
+                <text x="14" y="5" font-size="11" font-weight="bold" fill="var(--color-danger)">Node-02 (Alert)</text>
+              </g>
+              <g class="sensor-node" transform="translate(210, 300)">
+                <circle r="9" fill="#16A34A" stroke="#FFFFFF" stroke-width="2"/>
+                <text x="14" y="5" font-size="11" font-weight="bold" fill="var(--color-text-primary)">Node-03</text>
+              </g>
+              <g class="sensor-node" transform="translate(530, 290)">
+                <circle r="9" fill="#16A34A" stroke="#FFFFFF" stroke-width="2"/>
+                <text x="14" y="5" font-size="11" font-weight="bold" fill="var(--color-text-primary)">Node-04</text>
+              </g>
+            </svg>
+          </div>
+        </section>
+
+        <!-- Soil Health & Nutrient Benchmarks -->
+        <section class="card">
+          <div class="card-header">
+            <div>
+              <h2 class="card-title">Soil Health & Chemical Profile</h2>
+              <p class="card-subtitle">Laboratory benchmark & virtual sensor calibrated indicators</p>
+            </div>
+            <span class="source-tag source-user">LAB TEST + SENSORS</span>
+          </div>
+          <div class="sensor-metric-grid">
+            <div class="sensor-box">
+              <div class="sensor-box-header">
+                <span class="metric-label">Soil pH Level</span>
+                <span class="badge badge-success">Slightly Alkaline</span>
+              </div>
+              <div class="sensor-reading">7.8 pH</div>
+              <div class="sensor-target">Target Range: 6.5 – 8.2 pH</div>
+            </div>
+            <div class="sensor-box">
+              <div class="sensor-box-header">
+                <span class="metric-label">Electrical Cond. (EC)</span>
+                <span class="badge badge-success">Non-Saline</span>
+              </div>
+              <div class="sensor-reading">0.85 dS/m</div>
+              <div class="sensor-target">Threshold: &lt; 2.0 dS/m</div>
+            </div>
+            <div class="sensor-box">
+              <div class="sensor-box-header">
+                <span class="metric-label">Organic Carbon (OC)</span>
+                <span class="badge badge-warning">Medium</span>
+              </div>
+              <div class="sensor-reading">0.65 %</div>
+              <div class="sensor-target">Target: &gt; 0.75 %</div>
+            </div>
+            <div class="sensor-box">
+              <div class="sensor-box-header">
+                <span class="metric-label">Available Nitrogen (N)</span>
+                <span class="badge badge-success">Adequate</span>
+              </div>
+              <div class="sensor-reading">140 kg/ha</div>
+              <div class="sensor-target">Benchmark: 120 – 160 kg/ha</div>
+            </div>
+            <div class="sensor-box">
+              <div class="sensor-box-header">
+                <span class="metric-label">Phosphorus (P₂O₅)</span>
+                <span class="badge badge-success">Optimal</span>
+              </div>
+              <div class="sensor-reading">35 kg/ha</div>
+              <div class="sensor-target">Benchmark: 28 – 45 kg/ha</div>
+            </div>
+            <div class="sensor-box">
+              <div class="sensor-box-header">
+                <span class="metric-label">Potassium (K₂O)</span>
+                <span class="badge badge-success">High</span>
+              </div>
+              <div class="sensor-reading">180 kg/ha</div>
+              <div class="sensor-target">Benchmark: &gt; 150 kg/ha</div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- =====================================================================
+           TAB 2: ZONES PANE
+           ===================================================================== -->
+      <div id="tab-pane-zones" class="tab-pane" role="tabpanel" aria-labelledby="tab-btn-zones">
+        <section class="card">
+          <div class="card-header">
+            <div>
+              <h2 class="card-title">Management Zones & Drip Valves</h2>
+              <p class="card-subtitle">Zone-by-zone soil moisture status and automated irrigation solenoid controls</p>
+            </div>
             <span class="source-tag source-simulated">SIMULATED — Virtual IoT</span>
-            <button type="button" class="btn btn-sm btn-outline active-filter">NDVI Overlay</button>
-            <button type="button" class="btn btn-sm btn-outline">Moisture Heatmap</button>
           </div>
-        </div>
 
-        <div class="map-container" id="field-map-container" style="min-height: 380px; position: relative;">
-          <!-- Interactive SVG/Canvas Farm Map Mockup -->
-          <svg width="100%" height="100%" viewBox="0 0 800 380" class="field-svg-map" style="background-color: var(--color-surface-soft); border-radius: 8px;">
-            <defs>
-              <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-                <path d="M 40 0 L 0 0 0 40" fill="none" stroke="var(--color-border)" stroke-width="0.5"/>
-              </pattern>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#grid)" />
-            
-            <!-- Field Outer Boundary Polygon -->
-            <polygon points="60,40 740,30 710,340 90,350" fill="none" stroke="var(--color-primary-600)" stroke-width="3" stroke-dasharray="6,3"/>
-            
-            <!-- Zone 1 Polygon -->
-            <polygon points="65,45 390,40 380,180 80,190" fill="rgba(34, 197, 94, 0.15)" stroke="var(--color-primary-500)" stroke-width="1.5"/>
-            <text x="180" y="110" font-size="14" font-weight="bold" fill="var(--color-text-primary)">Zone 1: North (3.5 Ac)</text>
-            <text x="180" y="130" font-size="12" fill="var(--color-primary-700)">Moisture: 41% (Optimal)</text>
+          <div class="zone-cards-grid">
+            <!-- Zone 1 -->
+            <div class="zone-card">
+              <div class="zone-card-header">
+                <div>
+                  <h3 class="zone-title">Zone 1: North Acre</h3>
+                  <span class="zone-acreage">3.5 Acres • Deep Black Soil</span>
+                </div>
+                <span class="badge badge-success">Optimal</span>
+              </div>
+              <div class="zone-telemetry-preview">
+                <div class="metric-item">
+                  <span class="metric-label">Moisture (15cm)</span>
+                  <span class="metric-val">41.2%</span>
+                </div>
+                <div class="metric-item">
+                  <span class="metric-label">Soil Temp</span>
+                  <span class="metric-val">27.4°C</span>
+                </div>
+              </div>
+              <div class="moisture-bar-wrap">
+                <div class="moisture-bar-track">
+                  <div class="moisture-bar-fill fill-optimal" style="width: 75%;"></div>
+                </div>
+              </div>
+              <div class="valve-control-strip">
+                <div class="valve-info">
+                  <span>🚰 <strong>Valve A</strong></span>
+                  <span class="badge badge-outline">CLOSED</span>
+                </div>
+                <button type="button" class="btn btn-sm btn-outline">Manual Open</button>
+              </div>
+            </div>
 
-            <!-- Zone 2 Polygon (Under Stress) -->
-            <polygon points="390,40 735,35 715,175 380,180" fill="rgba(217, 119, 6, 0.2)" stroke="var(--color-warning)" stroke-width="2"/>
-            <text x="500" y="110" font-size="14" font-weight="bold" fill="var(--color-warning)">Zone 2: East (2.8 Ac)</text>
-            <text x="500" y="130" font-size="12" fill="var(--color-danger)">Moisture: 24% (Water Stress)</text>
+            <!-- Zone 2 (Stress) -->
+            <div class="zone-card zone-stress">
+              <div class="zone-card-header">
+                <div>
+                  <h3 class="zone-title">Zone 2: East Sloped</h3>
+                  <span class="zone-acreage">2.8 Acres • High Runoff Slope</span>
+                </div>
+                <span class="badge badge-danger">Water Stress</span>
+              </div>
+              <div class="zone-telemetry-preview">
+                <div class="metric-item">
+                  <span class="metric-label">Moisture (15cm)</span>
+                  <span class="metric-val" style="color: var(--color-danger);">24.1%</span>
+                </div>
+                <div class="metric-item">
+                  <span class="metric-label">Soil Temp</span>
+                  <span class="metric-val">30.1°C</span>
+                </div>
+              </div>
+              <div class="moisture-bar-wrap">
+                <div class="moisture-bar-track">
+                  <div class="moisture-bar-fill fill-stress" style="width: 35%;"></div>
+                </div>
+              </div>
+              <div class="valve-control-strip">
+                <div class="valve-info">
+                  <span>🚰 <strong>Valve B</strong></span>
+                  <span class="badge badge-warning">SCHEDULED</span>
+                </div>
+                <a href="./action-plans.html" class="btn btn-sm btn-primary">Start Irrigation</a>
+              </div>
+            </div>
 
-            <!-- Zone 3 Polygon -->
-            <polygon points="80,190 380,180 370,335 95,345" fill="rgba(34, 197, 94, 0.15)" stroke="var(--color-primary-500)" stroke-width="1.5"/>
-            <text x="180" y="260" font-size="14" font-weight="bold" fill="var(--color-text-primary)">Zone 3: Central (3.2 Ac)</text>
-            <text x="180" y="280" font-size="12" fill="var(--color-primary-700)">Moisture: 38% (Good)</text>
+            <!-- Zone 3 -->
+            <div class="zone-card">
+              <div class="zone-card-header">
+                <div>
+                  <h3 class="zone-title">Zone 3: Central Loam</h3>
+                  <span class="zone-acreage">2.5 Acres • High Organic Carbon</span>
+                </div>
+                <span class="badge badge-success">Optimal</span>
+              </div>
+              <div class="zone-telemetry-preview">
+                <div class="metric-item">
+                  <span class="metric-label">Moisture (15cm)</span>
+                  <span class="metric-val">38.5%</span>
+                </div>
+                <div class="metric-item">
+                  <span class="metric-label">Soil Temp</span>
+                  <span class="metric-val">28.0°C</span>
+                </div>
+              </div>
+              <div class="moisture-bar-wrap">
+                <div class="moisture-bar-track">
+                  <div class="moisture-bar-fill fill-optimal" style="width: 70%;"></div>
+                </div>
+              </div>
+              <div class="valve-control-strip">
+                <div class="valve-info">
+                  <span>🚰 <strong>Valve C</strong></span>
+                  <span class="badge badge-outline">CLOSED</span>
+                </div>
+                <button type="button" class="btn btn-sm btn-outline">Manual Open</button>
+              </div>
+            </div>
 
-            <!-- Zone 4 Polygon -->
-            <polygon points="380,180 715,175 700,335 370,335" fill="rgba(34, 197, 94, 0.15)" stroke="var(--color-primary-500)" stroke-width="1.5"/>
-            <text x="500" y="260" font-size="14" font-weight="bold" fill="var(--color-text-primary)">Zone 4: South (2.5 Ac)</text>
-            <text x="500" y="280" font-size="12" fill="var(--color-primary-700)">Moisture: 36% (Normal)</text>
-
-            <!-- Virtual IoT Sensor Nodes -->
-            <g class="sensor-node" transform="translate(220, 150)">
-              <circle r="9" fill="#16A34A" stroke="#FFFFFF" stroke-width="2"/>
-              <text x="14" y="5" font-size="11" font-weight="bold" fill="var(--color-text-primary)">Node-01</text>
-            </g>
-            <g class="sensor-node" transform="translate(540, 140)">
-              <circle r="9" fill="#DC2626" stroke="#FFFFFF" stroke-width="2"/>
-              <text x="14" y="5" font-size="11" font-weight="bold" fill="var(--color-danger)">Node-02 (Alert)</text>
-            </g>
-            <g class="sensor-node" transform="translate(210, 300)">
-              <circle r="9" fill="#16A34A" stroke="#FFFFFF" stroke-width="2"/>
-              <text x="14" y="5" font-size="11" font-weight="bold" fill="var(--color-text-primary)">Node-03</text>
-            </g>
-            <g class="sensor-node" transform="translate(530, 290)">
-              <circle r="9" fill="#16A34A" stroke="#FFFFFF" stroke-width="2"/>
-              <text x="14" y="5" font-size="11" font-weight="bold" fill="var(--color-text-primary)">Node-04</text>
-            </g>
-          </svg>
-        </div>
-      </section>
-
-      <!-- Detailed Zone Sensor Telemetry Breakdown -->
-      <section class="card">
-        <div class="card-header">
-          <div>
-            <h2 class="card-title">Virtual IoT Sensor Readings by Management Zone</h2>
-            <p class="card-subtitle">Live synthetic data stream from virtual sensor layer</p>
+            <!-- Zone 4 -->
+            <div class="zone-card">
+              <div class="zone-card-header">
+                <div>
+                  <h3 class="zone-title">Zone 4: South Border</h3>
+                  <span class="zone-acreage">3.2 Acres • Medium Loam</span>
+                </div>
+                <span class="badge badge-success">Optimal</span>
+              </div>
+              <div class="zone-telemetry-preview">
+                <div class="metric-item">
+                  <span class="metric-label">Moisture (15cm)</span>
+                  <span class="metric-val">36.3%</span>
+                </div>
+                <div class="metric-item">
+                  <span class="metric-label">Soil Temp</span>
+                  <span class="metric-val">28.5°C</span>
+                </div>
+              </div>
+              <div class="moisture-bar-wrap">
+                <div class="moisture-bar-track">
+                  <div class="moisture-bar-fill fill-optimal" style="width: 65%;"></div>
+                </div>
+              </div>
+              <div class="valve-control-strip">
+                <div class="valve-info">
+                  <span>🚰 <strong>Valve D</strong></span>
+                  <span class="badge badge-outline">CLOSED</span>
+                </div>
+                <button type="button" class="btn btn-sm btn-outline">Manual Open</button>
+              </div>
+            </div>
           </div>
-          <span class="source-tag source-simulated">SIMULATED — Virtual IoT</span>
-        </div>
+        </section>
+      </div>
 
-        <div class="table-responsive">
-          <table class="data-table">
-            <thead>
-              <tr>
-                <th>Zone / Node</th>
-                <th>Soil Moisture (15cm)</th>
-                <th>Soil Temp</th>
-                <th>Leaf Wetness</th>
-                <th>Solar Irradiance</th>
-                <th>Health Status</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><strong>Zone 1</strong> (Node-01)</td>
-                <td><span class="val-badge success">41%</span></td>
-                <td>27.4°C</td>
-                <td>0% (Dry)</td>
-                <td>820 W/m²</td>
-                <td><span class="badge badge-success">Optimal</span></td>
-                <td><button class="btn btn-sm btn-outline">History</button></td>
-              </tr>
-              <tr class="row-warning">
-                <td><strong>Zone 2</strong> (Node-02)</td>
-                <td><span class="val-badge danger">24%</span></td>
-                <td>30.1°C</td>
-                <td>0% (Dry)</td>
-                <td>860 W/m²</td>
-                <td><span class="badge badge-danger">Water Stress</span></td>
-                <td><a href="./action-plans.html" class="btn btn-sm btn-primary">Irrigate</a></td>
-              </tr>
-              <tr>
-                <td><strong>Zone 3</strong> (Node-03)</td>
-                <td><span class="val-badge success">38%</span></td>
-                <td>28.0°C</td>
-                <td>0% (Dry)</td>
-                <td>815 W/m²</td>
-                <td><span class="badge badge-success">Optimal</span></td>
-                <td><button class="btn btn-sm btn-outline">History</button></td>
-              </tr>
-              <tr>
-                <td><strong>Zone 4</strong> (Node-04)</td>
-                <td><span class="val-badge success">36%</span></td>
-                <td>28.5°C</td>
-                <td>0% (Dry)</td>
-                <td>830 W/m²</td>
-                <td><span class="badge badge-success">Optimal</span></td>
-                <td><button class="btn btn-sm btn-outline">History</button></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </section>
+      <!-- =====================================================================
+           TAB 3: SENSORS PANE
+           ===================================================================== -->
+      <div id="tab-pane-sensors" class="tab-pane" role="tabpanel" aria-labelledby="tab-btn-sensors">
+        <section class="card">
+          <div class="card-header">
+            <div>
+              <h2 class="card-title">Virtual IoT Sensor Telemetry Stream</h2>
+              <p class="card-subtitle">Real-time parameters simulated from digital twin virtual telemetry nodes</p>
+            </div>
+            <span class="source-tag source-simulated">SIMULATED — Virtual IoT</span>
+          </div>
+
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Node ID</th>
+                  <th>Zone</th>
+                  <th>Soil Moisture</th>
+                  <th>Soil Temp</th>
+                  <th>Leaf Wetness</th>
+                  <th>Solar Irradiance</th>
+                  <th>Node Health</th>
+                  <th>Last Ping</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Node-01</strong></td>
+                  <td>Zone 1: North</td>
+                  <td><span class="val-badge success">41.2%</span></td>
+                  <td>27.4°C</td>
+                  <td>0% (Dry)</td>
+                  <td>820 W/m²</td>
+                  <td><span class="badge badge-success">Online (98% Batt)</span></td>
+                  <td>2s ago</td>
+                </tr>
+                <tr class="row-warning">
+                  <td><strong>Node-02</strong></td>
+                  <td>Zone 2: East</td>
+                  <td><span class="val-badge danger">24.1%</span></td>
+                  <td>30.1°C</td>
+                  <td>0% (Dry)</td>
+                  <td>860 W/m²</td>
+                  <td><span class="badge badge-danger">Alert: Low Moisture</span></td>
+                  <td>1s ago</td>
+                </tr>
+                <tr>
+                  <td><strong>Node-03</strong></td>
+                  <td>Zone 3: Central</td>
+                  <td><span class="val-badge success">38.5%</span></td>
+                  <td>28.0°C</td>
+                  <td>0% (Dry)</td>
+                  <td>815 W/m²</td>
+                  <td><span class="badge badge-success">Online (95% Batt)</span></td>
+                  <td>4s ago</td>
+                </tr>
+                <tr>
+                  <td><strong>Node-04</strong></td>
+                  <td>Zone 4: South</td>
+                  <td><span class="val-badge success">36.3%</span></td>
+                  <td>28.5°C</td>
+                  <td>0% (Dry)</td>
+                  <td>830 W/m²</td>
+                  <td><span class="badge badge-success">Online (99% Batt)</span></td>
+                  <td>3s ago</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div style="margin-top: var(--space-4); display: flex; justify-content: flex-end;">
+            <a href="./simulation.html" class="btn btn-outline">
+              <span>Inject Telemetry Anomaly in Simulation Center →</span>
+            </a>
+          </div>
+        </section>
+      </div>
+
+      <!-- =====================================================================
+           TAB 4: WEATHER PANE
+           ===================================================================== -->
+      <div id="tab-pane-weather" class="tab-pane" role="tabpanel" aria-labelledby="tab-btn-weather">
+        <section class="card">
+          <div class="card-header">
+            <div>
+              <h2 class="card-title">Live Field Microclimate & Atmospheric Conditions</h2>
+              <p class="card-subtitle">GPS Lat: 22.3039° N, Lon: 70.8022° E (Rajkot Agro-Station)</p>
+            </div>
+            <span class="source-tag source-live">LIVE — Open-Meteo</span>
+          </div>
+
+          <div class="weather-hero-card">
+            <div style="display: flex; align-items: center; gap: var(--space-4);">
+              <span style="font-size: 3.5rem;">☀️</span>
+              <div>
+                <div style="font-size: 2.5rem; font-weight: 800; color: var(--color-text-primary);">31.4°C</div>
+                <div style="font-size: var(--font-size-sm); color: var(--color-text-secondary);">Clear Sky • Feels like 33°C</div>
+              </div>
+            </div>
+            <div class="weather-hero-stats">
+              <div class="property-pill">
+                <span class="prop-label">Relative Humidity</span>
+                <span class="prop-value">54%</span>
+              </div>
+              <div class="property-pill">
+                <span class="prop-label">Wind Velocity</span>
+                <span class="prop-value">14 km/h NW</span>
+              </div>
+              <div class="property-pill">
+                <span class="prop-label">Solar Radiation</span>
+                <span class="prop-value">840 W/m²</span>
+              </div>
+              <div class="property-pill">
+                <span class="prop-label">Reference ET0</span>
+                <span class="prop-value">5.8 mm/day</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card" style="margin-top: var(--space-4); background-color: var(--color-surface-soft);">
+            <div class="card-header" style="padding-bottom: 0;">
+              <h3 class="card-title" style="font-size: var(--font-size-sm);">Agricultural Spraying & Irrigation Windows</h3>
+              <span class="badge badge-success">Optimal Window Tomorrow</span>
+            </div>
+            <p style="font-size: var(--font-size-sm); color: var(--color-text-secondary); margin-top: var(--space-2);">
+              Tomorrow morning between <strong>06:00 AM – 09:30 AM</strong> presents low drift risk (wind &lt; 9 km/h) and 0% rain probability for foliar spray applications.
+            </p>
+          </div>
+        </section>
+      </div>
+
+      <!-- =====================================================================
+           TAB 5: DRONE & AERIAL PANE
+           ===================================================================== -->
+      <div id="tab-pane-drone" class="tab-pane" role="tabpanel" aria-labelledby="tab-btn-drone">
+        <section class="card">
+          <div class="card-header">
+            <div>
+              <h2 class="card-title">Drone Multispectral & Aerial Crop Stress Analysis</h2>
+              <p class="card-subtitle">Flight Survey #D-88 completed Sept 17, 2026 (Altitude: 45m AGL)</p>
+            </div>
+            <span class="source-tag source-model">MODEL</span>
+          </div>
+
+          <div class="drone-grid">
+            <div>
+              <div class="property-pill" style="margin-bottom: var(--space-3);">
+                <span class="prop-label">Average Field NDVI Index</span>
+                <span class="prop-value" style="font-size: 1.6rem; color: var(--color-primary-600);">0.72 <span style="font-size: var(--font-size-xs); font-weight: normal; color: var(--color-text-secondary);">(Healthy Canopy)</span></span>
+              </div>
+
+              <div class="ndvi-scale-bar">
+                <span class="prop-label">NDVI Biomass Health Scale</span>
+                <div class="ndvi-gradient"></div>
+                <div class="ndvi-legend-labels">
+                  <span>0.0 (Bare Soil)</span>
+                  <span>0.4 (Stressed)</span>
+                  <span>0.7 (Good)</span>
+                  <span>1.0 (Dense)</span>
+                </div>
+              </div>
+
+              <div style="margin-top: var(--space-4); font-size: var(--font-size-sm); color: var(--color-text-secondary);">
+                <p><strong>Hotspot Anomaly:</strong> Zone 2 East Sloped shows localized NDVI drop to <strong>0.48</strong> with elevated canopy temperature (+2.1°C), confirming moisture deficit stomatal closure.</p>
+              </div>
+            </div>
+
+            <div style="background-color: var(--color-surface-soft); border-radius: var(--radius-md); padding: var(--space-3); border: 1px solid var(--color-border); display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
+              <span style="font-size: 3rem;">🛰️</span>
+              <span style="font-weight: 700; margin-top: var(--space-2);">Multispectral Orthomosaic (5-Band)</span>
+              <span style="font-size: var(--font-size-xs); color: var(--color-text-muted);">Resolution: 2.1 cm/pixel • 100% Field Coverage</span>
+              <button type="button" class="btn btn-sm btn-outline" style="margin-top: var(--space-3);">Inspect High-Res Orthomosaic</button>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- =====================================================================
+           TAB 6: RISKS PANE
+           ===================================================================== -->
+      <div id="tab-pane-risks" class="tab-pane" role="tabpanel" aria-labelledby="tab-btn-risks">
+        <section class="card">
+          <div class="card-header">
+            <div>
+              <h2 class="card-title">Real-Time Agronomic Risk Detection Matrix</h2>
+              <p class="card-subtitle">Synthesized continuously by AI Agronomist & Sensor fusion</p>
+            </div>
+            <span class="source-tag source-ai">AI GENERATED</span>
+          </div>
+
+          <div class="risk-matrix-list">
+            <div class="risk-matrix-item risk-high">
+              <span style="font-size: 1.5rem;">🚨</span>
+              <div style="flex: 1;">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                  <h3 style="font-size: var(--font-size-base); font-weight: 700; color: var(--color-danger);">High: Localized Root-Zone Moisture Stress</h3>
+                  <span class="badge badge-danger">Confidence: 94%</span>
+                </div>
+                <p style="font-size: var(--font-size-sm); color: var(--color-text-secondary); margin-top: var(--space-1);">
+                  Zone 2 East Sloped moisture (24.1%) has dipped below the 28% Management Allowed Depletion (MAD) threshold during critical boll formation.
+                </p>
+                <div style="margin-top: var(--space-2); display: flex; gap: var(--space-3); align-items: center;">
+                  <span style="font-size: var(--font-size-xs); font-weight: 600;">Affected Zone: Zone 2</span>
+                  <a href="./action-plans.html" class="btn btn-sm btn-primary">Review Irrigation Plan →</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="risk-matrix-item risk-medium">
+              <span style="font-size: 1.5rem;">⚠️</span>
+              <div style="flex: 1;">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                  <h3 style="font-size: var(--font-size-base); font-weight: 700; color: var(--color-warning);">Medium: Sucking Pest / Whitefly Early Vector Risk</h3>
+                  <span class="badge badge-warning">Confidence: 82%</span>
+                </div>
+                <p style="font-size: var(--font-size-sm); color: var(--color-text-secondary); margin-top: var(--space-1);">
+                  Microclimate heat and humidity index is within optimal reproductive band for Whitefly (Bemisia tabaci). Prophylactic bio-spray recommended.
+                </p>
+                <div style="margin-top: var(--space-2);">
+                  <span style="font-size: var(--font-size-xs); font-weight: 600;">Affected Zones: Zone 1, Zone 3</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="risk-matrix-item risk-low">
+              <span style="font-size: 1.5rem;">ℹ️</span>
+              <div style="flex: 1;">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                  <h3 style="font-size: var(--font-size-base); font-weight: 700; color: var(--color-info);">Low: Fungal Foliar Blight Risk</h3>
+                  <span class="badge badge-success">Confidence: 89%</span>
+                </div>
+                <p style="font-size: var(--font-size-sm); color: var(--color-text-secondary); margin-top: var(--space-1);">
+                  Leaf wetness duration is currently 0 hours (dry canopy). Microclimate fungal germination index remains below 15%.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- =====================================================================
+           TAB 7: ACTIONS PANE
+           ===================================================================== -->
+      <div id="tab-pane-actions" class="tab-pane" role="tabpanel" aria-labelledby="tab-btn-actions">
+        <section class="card">
+          <div class="card-header">
+            <div>
+              <h2 class="card-title">Autonomous Action Plans & Farmer Approvals</h2>
+              <p class="card-subtitle">AI-generated executable interventions requiring farmer verification</p>
+            </div>
+            <span class="source-tag source-ai">AI GENERATED</span>
+          </div>
+
+          <div class="action-plans-list">
+            <div class="action-plan-card" style="border-left: 5px solid var(--color-primary-600);">
+              <div class="action-plan-header">
+                <div>
+                  <h3 style="font-size: var(--font-size-base); font-weight: 700;">Plan #AP-2026-092: Zone 2 Micro-Drip Irrigation Cycle</h3>
+                  <span style="font-size: var(--font-size-xs); color: var(--color-text-secondary);">Target: Zone 2 East Sloped • Solenoid Valve B</span>
+                </div>
+                <span class="badge badge-warning">Pending Approval</span>
+              </div>
+              <p style="font-size: var(--font-size-sm); color: var(--color-text-secondary);">
+                Actuate Valve B for <strong>45 minutes</strong> at 1.8 bar pressure. Estimated delivery: <strong>14,200 Litres</strong>. Restores root zone moisture from 24% to 38.5%.
+              </p>
+              <div style="display: flex; gap: var(--space-2); flex-wrap: wrap;">
+                <button type="button" class="btn btn-sm btn-primary">✓ Approve & Schedule</button>
+                <button type="button" class="btn btn-sm btn-outline">⚙️ Modify Parameters</button>
+                <button type="button" class="btn btn-sm btn-danger">✕ Reject</button>
+              </div>
+            </div>
+
+            <div class="action-plan-card">
+              <div class="action-plan-header">
+                <div>
+                  <h3 style="font-size: var(--font-size-base); font-weight: 700;">Plan #AP-2026-093: Bio-Pesticide Neem Foliar Application</h3>
+                  <span style="font-size: var(--font-size-xs); color: var(--color-text-secondary);">Target: Zone 1 & Zone 3 • 6.0 Acres</span>
+                </div>
+                <span class="badge badge-outline">Recommended for Sept 21</span>
+              </div>
+              <p style="font-size: var(--font-size-sm); color: var(--color-text-secondary);">
+                Foliar spray of 1500 ppm Azadirachtin (Neem oil 5ml/L) during morning low-drift window (06:30 AM). Prevents early whitefly colonization.
+              </p>
+              <div style="display: flex; gap: var(--space-2);">
+                <button type="button" class="btn btn-sm btn-outline">Approve For Calendar</button>
+                <button type="button" class="btn btn-sm btn-link">Dismiss</button>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- =====================================================================
+           TAB 8: HISTORY PANE
+           ===================================================================== -->
+      <div id="tab-pane-history" class="tab-pane" role="tabpanel" aria-labelledby="tab-btn-history">
+        <section class="card">
+          <div class="card-header">
+            <div>
+              <h2 class="card-title">Historical Yield & Agronomic Audit Log</h2>
+              <p class="card-subtitle">Verified historical yield data and seasonal management trace</p>
+            </div>
+            <span class="source-tag source-user">HISTORICAL BENCHMARKS</span>
+          </div>
+
+          <div class="table-responsive" style="margin-bottom: var(--space-6);">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Season</th>
+                  <th>Crop Variety</th>
+                  <th>Total Yield</th>
+                  <th>Yield / Acre</th>
+                  <th>Water Efficiency</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Kharif 2025</strong></td>
+                  <td>BT Cotton (Bt-2)</td>
+                  <td>234 Quintals</td>
+                  <td><span class="val-badge success">19.5 Q/Ac</span></td>
+                  <td>3,820 L/Q</td>
+                  <td><span class="badge badge-success">High Yield</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Kharif 2024</strong></td>
+                  <td>BT Cotton (Bt-2)</td>
+                  <td>218 Quintals</td>
+                  <td><span class="val-badge success">18.2 Q/Ac</span></td>
+                  <td>4,100 L/Q</td>
+                  <td><span class="badge badge-success">Normal</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Kharif 2023</strong></td>
+                  <td>BT Cotton (Bt-1)</td>
+                  <td>168 Quintals</td>
+                  <td><span class="val-badge warning">14.0 Q/Ac</span></td>
+                  <td>4,900 L/Q</td>
+                  <td><span class="badge badge-warning">Deficit Monsoon</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3 style="font-size: var(--font-size-base); font-weight: 700; margin-bottom: var(--space-3);">Chronological Event Log</h3>
+          <div class="timeline-stream">
+            <div class="timeline-entry">
+              <div class="timeline-dot"></div>
+              <div class="timeline-entry-content">
+                <strong>Virtual IoT Telemetry Sync & Node Calibration</strong>
+                <p style="font-size: var(--font-size-xs); color: var(--color-text-secondary); margin-top: 2px;">Sept 18, 2026 • 07:00 AM — All 4 virtual nodes synchronized with 100% packet integrity.</p>
+              </div>
+            </div>
+            <div class="timeline-entry">
+              <div class="timeline-dot"></div>
+              <div class="timeline-entry-content">
+                <strong>Multispectral Drone Survey #D-88</strong>
+                <p style="font-size: var(--font-size-xs); color: var(--color-text-secondary); margin-top: 2px;">Sept 17, 2026 • 09:30 AM — Full orthomosaic computed; average NDVI: 0.72.</p>
+              </div>
+            </div>
+            <div class="timeline-entry">
+              <div class="timeline-dot"></div>
+              <div class="timeline-entry-content">
+                <strong>Zone 1 & Zone 3 Drip Fertigation Run</strong>
+                <p style="font-size: var(--font-size-xs); color: var(--color-text-secondary); margin-top: 2px;">Sept 14, 2026 • 06:15 PM — Water-soluble NPK 19:19:19 (25 kg) injected via venturi system.</p>
+              </div>
+            </div>
+            <div class="timeline-entry">
+              <div class="timeline-dot"></div>
+              <div class="timeline-entry-content">
+                <strong>Scheduled Irrigation Run (All Zones)</strong>
+                <p style="font-size: var(--font-size-xs); color: var(--color-text-secondary); margin-top: 2px;">Sept 11, 2026 • 05:00 AM — 40,000 Litres delivered across Zones 1–4.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
     </main>
   </div>
 
