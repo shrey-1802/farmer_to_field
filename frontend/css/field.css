@@ -1831,6 +1831,244 @@
   color: var(--color-text-primary);
 }
 
+/* ==========================================================================
+   Phase 16: Agronomic Risk Center (Section 22)
+   ========================================================================== */
+.risk-main-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
+.risk-header-badges {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.risk-kpi-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-3);
+  margin-bottom: var(--space-6);
+}
+
+.risk-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+  margin-bottom: var(--space-6);
+  padding: var(--space-3) var(--space-4);
+  background-color: var(--color-surface-soft);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+}
+
+.badge-danger-count {
+  background-color: #FEE2E2 !important;
+  color: #991B1B !important;
+}
+
+.risks-cards-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.risk-card {
+  background-color: var(--color-card-bg);
+  border: 1px solid var(--color-border);
+  border-left: 5px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-fast);
+}
+
+.risk-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-1px);
+}
+
+.risk-card.sev-critical,
+.risk-card.severity-critical {
+  border-left-color: #EF4444;
+  background: linear-gradient(135deg, var(--color-card-bg) 0%, rgba(239, 68, 68, 0.04) 100%);
+}
+
+.risk-card.sev-high,
+.risk-card.severity-high {
+  border-left-color: #F59E0B;
+  background: linear-gradient(135deg, var(--color-card-bg) 0%, rgba(245, 158, 11, 0.04) 100%);
+}
+
+.risk-card.sev-medium,
+.risk-card.severity-medium {
+  border-left-color: #3B82F6;
+}
+
+.risk-card.sev-low,
+.risk-card.severity-low {
+  border-left-color: #10B981;
+}
+
+.risk-card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
+.risk-title-group {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+}
+
+.risk-type-icon {
+  font-size: 1.8rem;
+  line-height: 1;
+}
+
+.risk-type-name-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.risk-type-title {
+  font-size: var(--font-size-base);
+  font-weight: 800;
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.risk-score-badge {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-surface-soft);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-secondary);
+}
+
+.risk-hierarchy-row {
+  font-size: 11px;
+  color: var(--color-text-muted);
+  margin-top: 3px;
+}
+
+.risk-confidence-col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+}
+
+.confidence-val {
+  font-size: var(--font-size-sm);
+  font-weight: 800;
+  color: var(--color-primary-600);
+}
+
+.risk-evidence-box {
+  background-color: var(--color-surface-soft);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-3);
+}
+
+.evidence-tag {
+  display: block;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-text-muted);
+  margin-bottom: 2px;
+}
+
+.evidence-body {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.risk-response-box {
+  background: linear-gradient(135deg, var(--color-surface-soft) 0%, rgba(16, 185, 129, 0.06) 100%);
+  border: 1px solid var(--color-primary-200);
+  border-radius: var(--radius-md);
+  padding: var(--space-3) var(--space-4);
+}
+
+[data-theme="dark"] .risk-response-box {
+  border-color: rgba(16, 185, 129, 0.25);
+}
+
+.response-header {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 2px;
+}
+
+.response-icon {
+  font-size: 12px;
+}
+
+.response-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-primary-700);
+}
+
+[data-theme="dark"] .response-label {
+  color: var(--color-primary-400);
+}
+
+.response-body {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-primary);
+  font-weight: 500;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.risk-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: var(--space-2);
+  border-top: 1px solid var(--color-border);
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
+.risk-timing {
+  font-size: 11px;
+  color: var(--color-text-muted);
+}
+
+.risk-cta-group {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+
 
 
 
