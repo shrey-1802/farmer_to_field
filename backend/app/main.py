@@ -5,13 +5,29 @@ from fastapi import FastAPI, Request, Response, status
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
+from contextlib import asynccontextmanager
+
 from app.api.router import api_router
 from app.core.config import get_settings
 from app.core.exceptions import register_exception_handlers
 from app.core.logging import logger, request_id_ctx
 from app.db.database import check_db_connection
+from app.db.init_db import init_db
 
 settings = get_settings()
+
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    # Startup: ensure tables exist and demo seed data is present
+    try:
+        init_db(seed=True)
+    except Exception as exc:
+        logger.error(f"Error during database initialization on startup: {exc}")
+    yield
+    # Shutdown
+    logger.info("Application shutdown.")
+
 
 app = FastAPI(
     title=settings.APP_NAME,
@@ -20,6 +36,7 @@ app = FastAPI(
     docs_url="/docs",
     redoc_url="/redoc",
     openapi_url="/openapi.json",
+    lifespan=lifespan,
 )
 
 # 1. CORS Middleware
