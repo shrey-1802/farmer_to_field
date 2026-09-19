@@ -169,6 +169,49 @@
 
     <!-- Main Dashboard Content -->
     <main class="app-main" id="main-content">
+      <!-- Farmer Greeting Banner & Quick Actions (Section 71.1) -->
+      <section class="dashboard-greeting-banner">
+        <div>
+          <h1 class="page-title" id="farmer-greeting-text">Welcome to Your Farm</h1>
+          <p class="page-subtitle">Here's what is happening across your 12 acres today.</p>
+        </div>
+        <div class="quick-action-strip">
+          <button type="button" class="btn btn-sm btn-outline" data-quick-action="check-weather">Check Weather</button>
+          <button type="button" class="btn btn-sm btn-outline" data-quick-action="view-sensors">View Sensors</button>
+          <button type="button" class="btn btn-sm btn-outline" data-quick-action="run-simulation">Run Simulation</button>
+          <a href="./action-plans.html" class="btn btn-sm btn-primary">Review Actions (1)</a>
+        </div>
+      </section>
+
+      <!-- Priority Alert Card (Section 71.3) -->
+      <article class="card priority-alert-card">
+        <div class="priority-alert-header">
+          <div class="alert-icon-title">
+            <span class="alert-icon">⚠️</span>
+            <div>
+              <div class="alert-tag">ATTENTION NEEDED</div>
+              <h2 class="alert-headline">Water stress detected in Zone 2 (East Cotton Acre)</h2>
+            </div>
+          </div>
+          <span class="source-tag source-ai">AI DETECTED</span>
+        </div>
+        <div class="priority-alert-body">
+          <div class="alert-specs">
+            <span><strong>Severity:</strong> <span class="text-danger font-bold">HIGH</span></span>
+            <span><strong>Confidence:</strong> 91%</span>
+            <span><strong>Detected:</strong> 10 minutes ago</span>
+            <span><strong>Root Moisture:</strong> 24.1% (Critical Deficit)</span>
+          </div>
+          <p class="alert-advice">
+            The Irrigation Advisory Agent proposes Action Plan #AP-1082 (15mm drip cycle). Authorize to avert vegetative stress.
+          </p>
+        </div>
+        <div class="priority-alert-footer">
+          <a href="./field-details.html" class="btn btn-sm btn-outline">View Sensor Readings</a>
+          <a href="./action-plans.html" class="btn btn-sm btn-primary">Review & Approve Action</a>
+        </div>
+      </article>
+
       <!-- Autonomous Operational Loop Bar (Section 1) -->
       <section class="orchestration-loop-card" aria-label="Operational Loop Status">
         <div class="loop-header">
@@ -418,13 +461,6 @@
     </a>
   </nav>
 
-  <script type="module">
-    // Load session info into UI
-    const session = JSON.parse(localStorage.getItem('krishi_farmer_session') || '{}');
-    if (session.farmerName) {
-      const nameEl = document.getElementById('user-display-name');
-      if (nameEl) nameEl.textContent = session.farmerName;
-    }
-  </script>
+  <script type="module" src="../js/dashboard.js"></script>
 </body>
 </html>
