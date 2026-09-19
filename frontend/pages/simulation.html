@@ -77,72 +77,179 @@
       <div class="page-title-banner">
         <div>
           <h1 class="page-title">Virtual IoT & Scenario Simulation Center</h1>
-          <p class="page-subtitle">Test autonomous AI agent reactions against extreme agronomic conditions</p>
+          <p class="page-subtitle">Test autonomous AI agent reactions against extreme agronomic stress conditions</p>
         </div>
         <span class="source-tag source-simulated">SIMULATED — Virtual IoT Engine</span>
       </div>
 
-      <!-- Active Simulation Banner -->
+      <!-- Section 30: Prominent DEMO / SIMULATION MODE Banner -->
       <section class="card simulation-status-banner">
         <div class="sim-banner-left">
-          <span class="badge badge-simulated">SIMULATION MODE ACTIVE</span>
-          <p class="sim-banner-desc">Virtual IoT sensor generator is feeding live synthetic telemetry to the FastAPI backend and AI agents.</p>
+          <span class="demo-mode-badge" id="sim-banner-badge">DEMO / SIMULATION MODE</span>
+          <p class="sim-banner-desc" id="sim-banner-desc">Virtual IoT sensor generator is feeding live synthetic telemetry to the FastAPI backend and AI agents.</p>
         </div>
-        <button type="button" class="btn btn-outline btn-sm" id="reset-sim-btn">Reset to Normal Baseline</button>
+        <button type="button" class="btn btn-outline btn-sm" id="reset-sim-btn">Reset Simulation to Baseline</button>
       </section>
 
-      <!-- Pre-configured Agronomic Scenarios -->
+      <!-- Section 30: Real-Time Simulation Status Dashboard Card -->
+      <section class="card sim-status-dashboard">
+        <div class="card-header">
+          <div>
+            <h2 class="card-title">Real-Time Simulation Status (Section 30)</h2>
+            <p class="card-subtitle">Live telemetry distortion, affected infrastructure, and multi-agent autonomous response</p>
+          </div>
+          <span class="badge badge-simulated">VIRTUAL TELEMETRY</span>
+        </div>
+
+        <!-- Overview Meta Grid -->
+        <div class="sim-overview-grid">
+          <div class="sim-meta-box">
+            <span class="sim-meta-label">Simulation Mode</span>
+            <div class="sim-meta-val">
+              <span class="status-pill-val badge-success" id="sim-status-mode">IDLE (BASELINE)</span>
+            </div>
+          </div>
+
+          <div class="sim-meta-box">
+            <span class="sim-meta-label">Started At</span>
+            <div class="sim-meta-val" id="sim-started-at">Baseline Nominal</div>
+          </div>
+
+          <div class="sim-meta-box">
+            <span class="sim-meta-label">Elapsed Runtime</span>
+            <div class="sim-meta-val">
+              <span class="sim-timer-val" id="sim-elapsed-timer">00:00:00</span>
+            </div>
+          </div>
+
+          <div class="sim-meta-box">
+            <span class="sim-meta-label">Backend Telemetry Channel</span>
+            <div class="sim-meta-val">
+              <span class="status-pill-val badge-success">POST /api/simulation/...</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Active Scenario Banner -->
+        <div class="sim-active-scenario-banner">
+          <div class="sim-scenario-header">
+            <div class="sim-scenario-title" id="sim-active-scenario-name">
+              <span class="sim-scenario-icon">🌱</span> Normal Baseline Conditions
+            </div>
+          </div>
+          <p class="sim-gen-desc" id="sim-scenario-desc-text">All virtual IoT sensors report optimal agronomic parameters. Crop physiology within healthy benchmark thresholds.</p>
+          <div class="sim-affected-callout">
+            <strong>Affected Fields:</strong> <span id="sim-affected-fields">None — All 12 Monitored Acres in Optimal State</span>
+          </div>
+        </div>
+
+        <!-- Affected Sensors Matrix -->
+        <div>
+          <h3 class="card-title" style="font-size: var(--font-size-sm); margin-bottom: var(--space-3);">Affected Virtual Sensors (Telemetry Deviations)</h3>
+          <div class="sim-sensors-grid" id="sim-affected-sensors-list">
+            <!-- Rendered dynamically by simulation.js -->
+          </div>
+        </div>
+
+        <!-- Agent Status -->
+        <div>
+          <h3 class="card-title" style="font-size: var(--font-size-sm); margin-bottom: var(--space-3);">Agent Real-Time Status</h3>
+          <div class="sim-agents-list" id="sim-agent-status-list">
+            <!-- Rendered dynamically by simulation.js -->
+          </div>
+        </div>
+
+        <!-- Generated Risks & Actions Grid -->
+        <div class="sim-overview-grid">
+          <div>
+            <h3 class="card-title" style="font-size: var(--font-size-sm); margin-bottom: var(--space-3);">Generated Agronomic Risks</h3>
+            <div class="sim-generated-grid" id="sim-generated-risks-list">
+              <!-- Rendered dynamically by simulation.js -->
+            </div>
+          </div>
+          <div>
+            <h3 class="card-title" style="font-size: var(--font-size-sm); margin-bottom: var(--space-3);">Generated Action Plans</h3>
+            <div class="sim-generated-grid" id="sim-generated-actions-list">
+              <!-- Rendered dynamically by simulation.js -->
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 29: One-Click Agronomic Scenario Injection (6 Scenarios + Reset) -->
       <section class="card">
         <div class="card-header">
           <div>
-            <h2 class="card-title">One-Click Agronomic Scenario Injection</h2>
-            <p class="card-subtitle">Trigger complex environmental events and observe end-to-end multi-agent orchestration</p>
+            <h2 class="card-title">One-Click Agronomic Stress Injection (Section 29)</h2>
+            <p class="card-subtitle">Inject environmental stress vectors into the backend virtual sensor engine</p>
           </div>
         </div>
 
         <div class="scenarios-grid">
-          <!-- Scenario 1: Severe Drought -->
-          <article class="scenario-card">
+          <!-- Scenario 1: Water Stress -->
+          <article class="scenario-card" id="card-water-stress">
             <div class="scenario-icon">🏜️</div>
-            <h3 class="scenario-title">1. Severe Water Deficit</h3>
-            <p class="scenario-desc">Simulates prolonged lack of rainfall. Drops Zone 2 soil moisture to 18%, raises ET0 to 6.2 mm/day.</p>
+            <h3 class="scenario-title">1. Simulate Water Stress</h3>
+            <p class="scenario-desc">Drops Zone 2 soil moisture to 18% and raises vapor pressure deficit. Triggers severe wilting threshold alert.</p>
             <div class="scenario-effect">
-              <strong>Agent Trigger:</strong> Irrigation Agent triggers urgent 22mm watering plan.
+              <strong>Agent Trigger:</strong> Irrigation Agent dispatches emergency 24mm drip irrigation plan.
             </div>
-            <button type="button" class="btn btn-primary btn-sm btn-block" data-scenario="drought">Inject Drought Scenario</button>
+            <button type="button" class="btn btn-primary btn-sm btn-block" data-scenario="water-stress">Simulate Water Stress</button>
           </article>
 
-          <!-- Scenario 2: Torrential Downpour -->
-          <article class="scenario-card">
-            <div class="scenario-icon">⛈️</div>
-            <h3 class="scenario-title">2. Flash Heavy Downpour</h3>
-            <p class="scenario-desc">Simulates 55mm sudden deluge. Spikes soil moisture to 54%, rain probability to 100%.</p>
-            <div class="scenario-effect">
-              <strong>Agent Trigger:</strong> Cancels scheduled irrigation; triggers waterlogging drainage alerts.
-            </div>
-            <button type="button" class="btn btn-outline btn-sm btn-block" data-scenario="downpour">Inject Heavy Rain Scenario</button>
-          </article>
-
-          <!-- Scenario 3: Fungal Pathogen Spore Risk -->
-          <article class="scenario-card">
+          <!-- Scenario 2: Disease Risk -->
+          <article class="scenario-card" id="card-disease">
             <div class="scenario-icon">🍄</div>
-            <h3 class="scenario-title">3. Fungal Blight Risk</h3>
-            <p class="scenario-desc">Simulates 94% canopy humidity and 9 hours continuous leaf wetness at 26°C.</p>
+            <h3 class="scenario-title">2. Simulate Disease Risk</h3>
+            <p class="scenario-desc">Simulates 94% canopy humidity and 9.5 hours continuous leaf wetness at 26°C favorable for Tikka Cercospora.</p>
             <div class="scenario-effect">
-              <strong>Agent Trigger:</strong> Disease Agent generates preventive bio-fungicide recommendation.
+              <strong>Agent Trigger:</strong> Pest/Disease Agent generates prophylactic bio-fungicide recommendation.
             </div>
-            <button type="button" class="btn btn-outline btn-sm btn-block" data-scenario="disease">Inject Blight Risk</button>
+            <button type="button" class="btn btn-outline btn-sm btn-block" data-scenario="disease">Simulate Disease Risk</button>
           </article>
 
-          <!-- Scenario 4: Extreme Heatwave -->
-          <article class="scenario-card">
-            <div class="scenario-icon">🔥</div>
-            <h3 class="scenario-title">4. Severe 42°C Heatwave</h3>
-            <p class="scenario-desc">Simulates scorching temperatures and high vapor pressure deficit (VPD).</p>
+          <!-- Scenario 3: Nutrient Deficiency -->
+          <article class="scenario-card" id="card-nutrient">
+            <div class="scenario-icon">🧪</div>
+            <h3 class="scenario-title">3. Simulate Nutrient Deficiency</h3>
+            <p class="scenario-desc">Depletes available nitrogen to 54 mg/kg and potassium to 88 mg/kg, inducing lower-canopy leaf chlorosis.</p>
             <div class="scenario-effect">
-              <strong>Agent Trigger:</strong> Weather Agent locks midday irrigation; schedules twilight misting.
+              <strong>Agent Trigger:</strong> Nutrient Agent computes urea top-dress and coordinates drip fertigation.
             </div>
-            <button type="button" class="btn btn-outline btn-sm btn-block" data-scenario="heatwave">Inject Heatwave</button>
+            <button type="button" class="btn btn-outline btn-sm btn-block" data-scenario="nutrient">Simulate Nutrient Deficiency</button>
+          </article>
+
+          <!-- Scenario 4: Heavy Rain -->
+          <article class="scenario-card" id="card-heavy-rain">
+            <div class="scenario-icon">⛈️</div>
+            <h3 class="scenario-title">4. Simulate Heavy Rain</h3>
+            <p class="scenario-desc">Simulates torrential 58mm sudden deluge in 90 mins. Spikes soil moisture to 58%, threatening root anoxia.</p>
+            <div class="scenario-effect">
+              <strong>Agent Trigger:</strong> Weather Agent locks pumps; activates emergency gravitational drainage gates.
+            </div>
+            <button type="button" class="btn btn-outline btn-sm btn-block" data-scenario="heavy-rain">Simulate Heavy Rain</button>
+          </article>
+
+          <!-- Scenario 5: Heat Wave -->
+          <article class="scenario-card" id="card-heat-wave">
+            <div class="scenario-icon">🔥</div>
+            <h3 class="scenario-title">5. Simulate Heat Wave</h3>
+            <p class="scenario-desc">Ambient temperature surges to 43.6°C with 15% desiccating humidity and 4.3 kPa vapor pressure deficit.</p>
+            <div class="scenario-effect">
+              <strong>Agent Trigger:</strong> Locks midday irrigation to avoid root scalding; schedules twilight misting.
+            </div>
+            <button type="button" class="btn btn-outline btn-sm btn-block" data-scenario="heat-wave">Simulate Heat Wave</button>
+          </article>
+
+          <!-- Scenario 6: Sensor Failure -->
+          <article class="scenario-card" id="card-sensor-failure">
+            <div class="scenario-icon">⚠️</div>
+            <h3 class="scenario-title">6. Simulate Sensor Failure</h3>
+            <p class="scenario-desc">Simulates sudden LoRa gateway brownout and corrupted checksums, dropping Field Node #2 offline.</p>
+            <div class="scenario-effect">
+              <strong>Agent Trigger:</strong> System Agent activates satellite NDVI/ET0 surrogate failsafe model.
+            </div>
+            <button type="button" class="btn btn-outline btn-sm btn-block" data-scenario="sensor-failure">Simulate Sensor Failure</button>
           </article>
         </div>
       </section>
@@ -160,25 +267,25 @@
           <div class="slider-group">
             <div class="slider-header">
               <label for="slider-moisture" class="slider-label">Soil Moisture (15cm)</label>
-              <span class="slider-val" id="val-disp-moisture">24%</span>
+              <span class="slider-val" id="val-disp-moisture">38%</span>
             </div>
-            <input type="range" id="slider-moisture" min="10" max="60" value="24" class="range-slider">
+            <input type="range" id="slider-moisture" min="10" max="60" value="38" class="range-slider">
           </div>
 
           <div class="slider-group">
             <div class="slider-header">
               <label for="slider-temp" class="slider-label">Soil Temperature</label>
-              <span class="slider-val" id="val-disp-temp">30.1°C</span>
+              <span class="slider-val" id="val-disp-temp">28.2°C</span>
             </div>
-            <input type="range" id="slider-temp" min="15" max="45" value="30.1" step="0.5" class="range-slider">
+            <input type="range" id="slider-temp" min="15" max="48" value="28.2" step="0.5" class="range-slider">
           </div>
 
           <div class="slider-group">
             <div class="slider-header">
               <label for="slider-humidity" class="slider-label">Ambient Relative Humidity</label>
-              <span class="slider-val" id="val-disp-humidity">42%</span>
+              <span class="slider-val" id="val-disp-humidity">54%</span>
             </div>
-            <input type="range" id="slider-humidity" min="15" max="99" value="42" class="range-slider">
+            <input type="range" id="slider-humidity" min="10" max="99" value="54" class="range-slider">
           </div>
 
           <div class="slider-group">
@@ -186,7 +293,7 @@
               <label for="slider-radiation" class="slider-label">Solar Irradiance</label>
               <span class="slider-val" id="val-disp-radiation">860 W/m²</span>
             </div>
-            <input type="range" id="slider-radiation" min="100" max="1100" value="860" step="10" class="range-slider">
+            <input type="range" id="slider-radiation" min="100" max="1200" value="860" step="10" class="range-slider">
           </div>
         </div>
       </section>
@@ -201,23 +308,6 @@
     <a href="./settings.html" class="mobile-nav-item"><span class="mobile-nav-icon">⚙️</span><span class="mobile-nav-label">Settings</span></a>
   </nav>
 
-  <script type="module">
-    // Wire slider displays
-    const sliders = [
-      { id: 'slider-moisture', disp: 'val-disp-moisture', unit: '%' },
-      { id: 'slider-temp', disp: 'val-disp-temp', unit: '°C' },
-      { id: 'slider-humidity', disp: 'val-disp-humidity', unit: '%' },
-      { id: 'slider-radiation', disp: 'val-disp-radiation', unit: ' W/m²' }
-    ];
-    sliders.forEach(s => {
-      const el = document.getElementById(s.id);
-      const disp = document.getElementById(s.disp);
-      if (el && disp) {
-        el.addEventListener('input', () => {
-          disp.textContent = el.value + s.unit;
-        });
-      }
-    });
-  </script>
+  <script type="module" src="../js/simulation.js"></script>
 </body>
 </html>
