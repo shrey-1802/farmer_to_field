@@ -1,6 +1,6 @@
 import uuid
 from datetime import datetime, timezone
-from sqlalchemy import Column, String, Float, DateTime, ForeignKey, JSON, Text
+from sqlalchemy import Column, String, Float, DateTime, Date, ForeignKey, JSON, Text
 from sqlalchemy.orm import relationship
 
 from app.db.database import Base
@@ -49,6 +49,7 @@ class Field(Base):
     area = Column(Float, nullable=False, default=5.0)
     crop_id = Column(String(36), ForeignKey("crops.id", ondelete="SET NULL"), nullable=True)
     crop_cycle_id = Column(String(36), nullable=True)
+    sowing_date = Column(Date, nullable=True, doc="Date crop was sown, used for growth stage detection")
     boundary = Column(JSON, nullable=True, doc="GeoJSON polygon")
     status = Column(String(50), default="ACTIVE", nullable=False)
     created_at = Column(DateTime(timezone=True), default=utc_now, nullable=False)

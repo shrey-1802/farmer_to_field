@@ -1,6 +1,6 @@
 from typing import Optional, List, Any
 from pydantic import BaseModel, Field
-from datetime import datetime
+from datetime import datetime, date
 
 
 # ========================
@@ -56,6 +56,7 @@ class FieldCreate(BaseModel):
     name: str = Field(..., min_length=2, max_length=255)
     area: float = Field(..., gt=0)
     crop_id: Optional[str] = None
+    sowing_date: Optional[date] = None
     boundary: Optional[Any] = None
 
 
@@ -66,6 +67,7 @@ class FieldResponse(BaseModel):
     area: float
     crop_id: Optional[str] = None
     crop_name: Optional[str] = None
+    sowing_date: Optional[date] = None
     boundary: Optional[Any] = None
     status: str
     created_at: datetime

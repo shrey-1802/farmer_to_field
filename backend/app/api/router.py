@@ -7,6 +7,9 @@ from app.api.routes.zones import router as zones_router
 from app.api.routes.sensors import router as sensors_router
 from app.api.routes.sensor_lookup import zones_sensor_router, fields_sensor_router
 from app.api.routes.simulation import router as simulation_router
+from app.api.routes.weather import router as weather_router
+from app.api.routes.crops import router as crops_router
+from app.api.routes.context import router as context_router
 
 api_router = APIRouter()
 
@@ -29,3 +32,7 @@ api_router.include_router(sensors_router)
 api_router.include_router(zones_sensor_router)
 api_router.include_router(fields_sensor_router)
 api_router.include_router(simulation_router)
+api_router.include_router(weather_router)
+api_router.include_router(crops_router)
+api_router.include_router(context_router)
+
