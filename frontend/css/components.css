@@ -665,3 +665,175 @@
 }
 
 
+/* ==========================================================================
+   Skeleton Loaders (Section 39 — Loading States)
+   ========================================================================== */
+
+@keyframes shimmer {
+  0%   { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
+}
+
+.skeleton {
+  display: block;
+  background: linear-gradient(
+    90deg,
+    var(--color-surface-soft) 25%,
+    var(--color-border) 50%,
+    var(--color-surface-soft) 75%
+  );
+  background-size: 400px 100%;
+  animation: shimmer 1.4s infinite ease-in-out;
+  border-radius: var(--radius-sm);
+}
+
+.skeleton-text {
+  height: 14px;
+  width: 80%;
+  margin-bottom: var(--space-2);
+}
+
+.skeleton-text:last-child { width: 55%; }
+
+.skeleton-title {
+  height: 20px;
+  width: 50%;
+  margin-bottom: var(--space-3);
+}
+
+.skeleton-card {
+  background-color: var(--color-surface-soft);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  margin-bottom: var(--space-3);
+}
+
+.skeleton-row td {
+  padding: var(--space-3) var(--space-4);
+}
+
+/* ==========================================================================
+   Empty State (Section 39 — Empty States)
+   ========================================================================== */
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  padding: var(--space-10) var(--space-6);
+  text-align: center;
+}
+
+.empty-state-icon {
+  font-size: 3rem;
+  line-height: 1;
+}
+
+.empty-state-title {
+  font-size: var(--font-size-base);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.empty-state-desc {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  max-width: 380px;
+  margin: 0;
+}
+
+/* ==========================================================================
+   Error State (Section 39 — Error / Retry States)
+   ========================================================================== */
+
+.error-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-8) var(--space-6);
+  text-align: center;
+}
+
+.error-state-icon {
+  font-size: 2.5rem;
+}
+
+.error-state-msg {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  max-width: 420px;
+  margin: 0;
+}
+
+/* ==========================================================================
+   Loading Overlay / Spinner
+   ========================================================================== */
+
+.spinner {
+  width: 36px;
+  height: 36px;
+  border: 3px solid var(--color-border);
+  border-top-color: var(--color-primary-600);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ==========================================================================
+   Render Wake-Up Banner (Section 38 — Backend Cold-Start)
+   ========================================================================== */
+
+#render-wakeup-banner {
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  background-color: #FFFBEB;
+  border: 1px solid #F59E0B;
+  border-radius: var(--radius-md);
+  padding: var(--space-3) var(--space-4);
+  margin: var(--space-3) var(--space-4);
+  font-size: var(--font-size-sm);
+  flex-wrap: wrap;
+}
+
+[data-theme="dark"] #render-wakeup-banner {
+  background-color: rgba(245,158,11,0.12);
+  border-color: #D97706;
+}
+
+.wakeup-banner-text {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: #92400E;
+  font-weight: 500;
+}
+
+[data-theme="dark"] .wakeup-banner-text {
+  color: #FDE68A;
+}
+
+.wakeup-banner-icon {
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.wakeup-spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid #F59E0B;
+  border-top-color: #92400E;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  flex-shrink: 0;
+}
+
