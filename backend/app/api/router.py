@@ -10,6 +10,7 @@ from app.api.routes.simulation import router as simulation_router
 from app.api.routes.weather import router as weather_router
 from app.api.routes.crops import router as crops_router
 from app.api.routes.context import router as context_router
+from app.api.routes.agents import router as agents_router
 
 api_router = APIRouter()
 
@@ -35,4 +36,6 @@ api_router.include_router(simulation_router)
 api_router.include_router(weather_router)
 api_router.include_router(crops_router)
 api_router.include_router(context_router)
+api_router.include_router(agents_router)
+
 
