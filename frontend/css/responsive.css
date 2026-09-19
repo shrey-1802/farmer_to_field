@@ -1,0 +1,38 @@
+/* ==========================================================================
+   KrishiNirnay AI - Global Responsive & Accessibility Utilities
+   ========================================================================== */
+
+/* Accessibility: Respect Reduced Motion Preferences */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Touch Target Minimum (44px x 44px) for Mobile */
+@media (pointer: coarse) {
+  .btn, .icon-button, .nav-link, .mobile-nav-item, .header-select {
+    min-height: var(--touch-target-min);
+  }
+}
+
+/* Print Optimization */
+@media print {
+  .app-sidebar, .app-header, .mobile-bottom-nav, .icon-button, .export-actions {
+    display: none !important;
+  }
+
+  .app-main {
+    max-width: 100% !important;
+    padding: 0 !important;
+  }
+
+  .card {
+    box-shadow: none !important;
+    border: 1px solid #CCC !important;
+    page-break-inside: avoid;
+  }
+}

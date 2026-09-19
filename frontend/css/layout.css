@@ -1,0 +1,461 @@
+/* ==========================================================================
+   KrishiNirnay AI - Layout & Application Shell (Section 9 & 70)
+   ========================================================================== */
+
+@import './themes.css';
+@import './responsive.css';
+
+/* Main Application Body */
+.app-body {
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  font-family: var(--font-family-base);
+  overflow-x: hidden;
+}
+
+/* ==========================================================================
+   Top Header Component
+   ========================================================================== */
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-header);
+  height: var(--header-height);
+  background-color: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--space-6);
+  box-shadow: var(--shadow-sm);
+  transition: background-color var(--transition-normal), border-color var(--transition-normal);
+}
+
+.header-left, .header-right {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+/* Brand Identity */
+.brand-badge {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.brand-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-md);
+  background-color: var(--color-primary-100);
+  color: var(--color-primary-600);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.brand-title {
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  letter-spacing: -0.02em;
+}
+
+/* Farm & Field Header Selector */
+.farm-selector-wrapper {
+  margin-left: var(--space-2);
+}
+
+.header-select {
+  background-color: var(--color-surface-soft);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-text-primary);
+  outline: none;
+  cursor: pointer;
+  transition: border-color var(--transition-fast);
+}
+
+.header-select:focus {
+  border-color: var(--color-border-focus);
+}
+
+/* Weather Quick Pill */
+.weather-pill {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  background-color: var(--color-surface-soft);
+  border: 1px solid var(--color-border);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+}
+
+.weather-icon {
+  font-size: 1.1rem;
+}
+
+.weather-temp {
+  color: var(--color-text-primary);
+}
+
+.weather-desc {
+  color: var(--color-text-secondary);
+}
+
+/* Farmer Profile Pill */
+.farmer-pill {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-full);
+  background-color: var(--color-surface-soft);
+  border: 1px solid var(--color-border);
+}
+
+.farmer-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: var(--color-primary-600);
+  color: var(--color-text-inverse);
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.farmer-info {
+  display: flex;
+  flex-direction: column;
+  padding-right: var(--space-2);
+}
+
+.farmer-name {
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  line-height: 1.2;
+}
+
+.farmer-role {
+  font-size: 10px;
+  color: var(--color-text-secondary);
+}
+
+/* Notification Bell with Dot */
+.notification-bell {
+  position: relative;
+}
+
+.notification-dot {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 8px;
+  height: 8px;
+  background-color: var(--color-danger);
+  border-radius: 50%;
+  border: 2px solid var(--color-surface);
+}
+
+/* ==========================================================================
+   Main Shell Layout (Sidebar + Main View)
+   ========================================================================== */
+.app-layout {
+  display: flex;
+  flex: 1;
+  width: 100%;
+  position: relative;
+}
+
+/* Sidebar Navigation */
+.app-sidebar {
+  width: var(--sidebar-width);
+  background-color: var(--color-surface);
+  border-right: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-shrink: 0;
+  position: sticky;
+  top: var(--header-height);
+  height: calc(100vh - var(--header-height));
+  padding: var(--space-4);
+  overflow-y: auto;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-normal), background-color var(--transition-normal);
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.nav-section-title {
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-muted);
+  padding: 0 var(--space-3);
+  margin-bottom: var(--space-1);
+}
+
+.nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.nav-item {
+  width: 100%;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-md);
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  transition: all var(--transition-fast);
+  min-height: var(--touch-target-min);
+}
+
+.nav-link:hover {
+  background-color: var(--color-surface-soft);
+  color: var(--color-primary-700);
+}
+
+.nav-link.active {
+  background-color: var(--color-primary-100);
+  color: var(--color-primary-800);
+  font-weight: 700;
+}
+
+.nav-icon {
+  font-size: 1.15rem;
+  width: 24px;
+  text-align: center;
+}
+
+.nav-text {
+  flex: 1;
+}
+
+/* Sidebar Status Footer Card */
+.sidebar-status-card {
+  background-color: var(--color-surface-soft);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-3);
+  margin-top: var(--space-4);
+}
+
+.status-indicator {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.status-online {
+  background-color: var(--color-success);
+  box-shadow: 0 0 0 2px rgba(22, 163, 74, 0.2);
+}
+
+.status-text {
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.status-meta {
+  font-size: 11px;
+  color: var(--color-text-muted);
+  margin-top: 4px;
+}
+
+/* ==========================================================================
+   Main Content Container
+   ========================================================================== */
+.app-main {
+  flex: 1;
+  max-width: var(--max-content-width);
+  margin: 0 auto;
+  width: 100%;
+  padding: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  min-height: calc(100vh - var(--header-height));
+}
+
+/* Page Title Banner */
+.page-title-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+}
+
+.page-title {
+  font-size: var(--font-size-2xl);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  letter-spacing: -0.02em;
+}
+
+.page-subtitle {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  margin-top: var(--space-1);
+}
+
+/* Breadcrumbs */
+.breadcrumb-nav {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
+
+.breadcrumb-nav a {
+  color: var(--color-text-secondary);
+  font-weight: 600;
+}
+
+.breadcrumb-nav a:hover {
+  color: var(--color-primary-600);
+}
+
+.breadcrumb-separator {
+  color: var(--color-border-strong);
+}
+
+.breadcrumb-current {
+  color: var(--color-text-primary);
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   Mobile Bottom Navigation Bar (Screens < 768px)
+   ========================================================================== */
+.mobile-bottom-nav {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: var(--mobile-nav-height);
+  background-color: var(--color-surface);
+  border-top: 1px solid var(--color-border);
+  z-index: var(--z-mobile-nav);
+  justify-content: space-around;
+  align-items: center;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.mobile-nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  height: 100%;
+  color: var(--color-text-secondary);
+  font-size: 11px;
+  font-weight: 600;
+  text-decoration: none;
+  gap: 2px;
+  min-width: var(--touch-target-min);
+}
+
+.mobile-nav-item.active {
+  color: var(--color-primary-600);
+  font-weight: 700;
+}
+
+.mobile-nav-icon {
+  font-size: 1.25rem;
+}
+
+.mobile-only {
+  display: none;
+}
+
+/* ==========================================================================
+   Responsive Breakpoints
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .weather-desc {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .mobile-only {
+    display: flex;
+  }
+
+  .app-sidebar {
+    position: fixed;
+    left: -100%;
+    top: 0;
+    bottom: 0;
+    height: 100vh;
+    z-index: var(--z-sidebar);
+    transition: left var(--transition-normal);
+  }
+
+  .app-sidebar.open {
+    left: 0;
+  }
+
+  .weather-pill {
+    display: none;
+  }
+
+  .farmer-info {
+    display: none;
+  }
+
+  .app-main {
+    padding: var(--space-4);
+    padding-bottom: calc(var(--mobile-nav-height) + var(--space-6));
+  }
+
+  .mobile-bottom-nav {
+    display: flex;
+  }
+
+  .page-title {
+    font-size: var(--font-size-xl);
+  }
+}

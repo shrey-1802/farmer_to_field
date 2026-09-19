@@ -1,10 +1,10 @@
 /* ==========================================================================
-   KrishiNirnay AI - Design Tokens & Variables (Section 67 & 68)
+   KrishiNirnay AI - Complete Design Tokens & System Variables (Section 67, 68 & 79)
    Brand Identity: Green & White (Fresh, Agricultural, Trustworthy, Modern)
    ========================================================================== */
 
 :root {
-  /* Brand Green Palette */
+  /* Brand Green Palette (Section 67.1) */
   --color-primary-50: #F0FDF4;
   --color-primary-100: #DCFCE7;
   --color-primary-200: #BBF7D0;
@@ -16,11 +16,12 @@
   --color-primary-800: #166534;
   --color-primary-900: #14532D;
 
-  /* Surfaces & Backgrounds (Light Theme) */
+  /* Surfaces & Backgrounds (Light Theme Default) */
   --color-background: #F7FBF8;
   --color-surface: #FFFFFF;
   --color-surface-soft: #F0FDF4;
   --color-surface-muted: #F1F5F2;
+  --color-card-bg: #FFFFFF;
 
   /* High Contrast Typography */
   --color-text-primary: #163020;
@@ -31,36 +32,72 @@
   /* Subtle Borders */
   --color-border: #DCE9DF;
   --color-border-strong: #C5D8C9;
+  --color-border-focus: #16A34A;
 
   /* Semantic Category Colors */
   --color-success: #16A34A;      /* Crop healthy, task done */
-  --color-warning: #D97706;      /* Amber: risks, action needed */
-  --color-danger: #DC2626;       /* Red: critical water stress, pest alert */
-  --color-info: #2563EB;         /* Blue: weather, irrigation, sensors */
+  --color-warning: #D97706;      /* Amber: risks, water stress, action needed */
+  --color-danger: #DC2626;       /* Red: critical water stress, pathogen alert */
+  --color-info: #2563EB;         /* Blue: weather, irrigation telemetry */
   --color-ai: #7C3AED;           /* Purple: autonomous AI agents */
   --color-execution: #0D9488;    /* Teal: active machinery / valve open */
 
-  /* Overlays & Shadows */
+  /* Overlays & Shadows (Section 79) */
   --color-overlay: rgba(20, 83, 45, 0.45);
-  --shadow-sm: 0 1px 2px 0 rgba(22, 48, 32, 0.05);
-  --shadow-md: 0 4px 6px -1px rgba(22, 48, 32, 0.07), 0 2px 4px -2px rgba(22, 48, 32, 0.05);
-  --shadow-lg: 0 10px 15px -3px rgba(22, 48, 32, 0.08), 0 4px 6px -4px rgba(22, 48, 32, 0.04);
+  --shadow-sm: 0 1px 3px rgba(20, 83, 45, 0.08);
+  --shadow-md: 0 4px 12px rgba(20, 83, 45, 0.09);
+  --shadow-lg: 0 8px 24px rgba(20, 83, 45, 0.12);
 
-  /* Radius */
-  --radius-sm: 6px;
-  --radius-md: 10px;
+  /* Spacing Scale (Section 79) */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+
+  /* Radii Scale (Section 79) */
+  --radius-sm: 8px;
+  --radius-md: 12px;
   --radius-lg: 16px;
+  --radius-xl: 20px;
   --radius-full: 9999px;
 
-  /* Layout */
+  /* Typography Scale */
+  --font-family-base: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-size-xs: 0.75rem;    /* 12px */
+  --font-size-sm: 0.875rem;   /* 14px */
+  --font-size-base: 1rem;     /* 16px */
+  --font-size-lg: 1.125rem;   /* 18px */
+  --font-size-xl: 1.25rem;    /* 20px */
+  --font-size-2xl: 1.5rem;    /* 24px */
+  --font-size-3xl: 1.875rem;  /* 30px */
+
+  /* Layout Dimensions */
   --sidebar-width: 260px;
-  --header-height: 64px;
+  --sidebar-collapsed-width: 72px;
+  --header-height: 68px;
   --mobile-nav-height: 64px;
   --max-content-width: 1440px;
+  --touch-target-min: 44px;
+
+  /* Z-Index Hierarchy */
+  --z-base: 1;
+  --z-dropdown: 100;
+  --z-sticky: 500;
+  --z-header: 800;
+  --z-sidebar: 900;
+  --z-mobile-nav: 950;
+  --z-modal: 1000;
+  --z-toast: 1100;
 
   /* Transitions */
   --transition-fast: 150ms ease;
-  --transition-normal: 250ms ease;
+  --transition-normal: 220ms ease;
+  --transition-slow: 350ms ease;
 }
 
 /* Dark Theme Tokens (Authoritative Section 68.3) */
@@ -69,6 +106,7 @@
   --color-surface: #0D1B12;
   --color-surface-soft: #102619;
   --color-surface-muted: #152E20;
+  --color-card-bg: #0D1B12;
 
   --color-text-primary: #EDF7F0;
   --color-text-secondary: #9FBFAB;
@@ -77,9 +115,10 @@
 
   --color-border: #1B3525;
   --color-border-strong: #264A35;
+  --color-border-focus: #22C55E;
 
   --color-overlay: rgba(0, 0, 0, 0.75);
-  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.35);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.45);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.55);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.35);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.55);
 }

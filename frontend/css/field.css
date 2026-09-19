@@ -1,0 +1,95 @@
+/* ==========================================================================
+   KrishiNirnay AI - Field Details & Map Visualization (Phase 7 & 8)
+   ========================================================================== */
+
+.field-header-card {
+  background-color: var(--color-card-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+}
+
+.field-title-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
+.field-meta-row {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  margin-top: var(--space-2);
+}
+
+.field-header-actions {
+  display: flex;
+  gap: var(--space-3);
+}
+
+/* Agronomic Properties Strip */
+.properties-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--space-3);
+}
+
+.property-pill {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-3) var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.prop-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.prop-value {
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+/* Map Card */
+.field-map-card {
+  overflow: hidden;
+}
+
+.map-controls {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.map-container {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+}
+
+.field-svg-map text {
+  font-family: var(--font-family-base);
+  user-select: none;
+}
+
+.sensor-node {
+  cursor: pointer;
+  transition: transform var(--transition-fast);
+}
+
+.sensor-node:hover {
+  transform: scale(1.15);
+}

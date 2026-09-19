@@ -1,0 +1,251 @@
+/* ==========================================================================
+   KrishiNirnay AI - Field Operations Dashboard (Phase 5)
+   ========================================================================== */
+
+/* Operational Loop Bar (Section 1: Farm-to-Field Loop) */
+.orchestration-loop-card {
+  background-color: var(--color-card-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4) var(--space-6);
+  box-shadow: var(--shadow-sm);
+}
+
+.loop-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-4);
+}
+
+.loop-title {
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-secondary);
+}
+
+.loop-steps {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  overflow-x: auto;
+  padding-bottom: var(--space-2);
+  -webkit-overflow-scrolling: touch;
+}
+
+.loop-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1);
+  min-width: 60px;
+}
+
+.step-circle {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-size-xs);
+  font-weight: 800;
+  background-color: var(--color-surface-soft);
+  color: var(--color-text-muted);
+  border: 2px solid var(--color-border);
+  transition: all var(--transition-fast);
+}
+
+.loop-step.completed .step-circle {
+  background-color: var(--color-primary-100);
+  border-color: var(--color-primary-600);
+  color: var(--color-primary-800);
+}
+
+.loop-step.active .step-circle {
+  background-color: var(--color-primary-600);
+  border-color: var(--color-primary-600);
+  color: var(--color-text-inverse);
+  box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.25);
+  animation: pulse-active 2s infinite;
+}
+
+@keyframes pulse-active {
+  0% { box-shadow: 0 0 0 0 rgba(22, 163, 74, 0.4); }
+  70% { box-shadow: 0 0 0 6px rgba(22, 163, 74, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(22, 163, 74, 0); }
+}
+
+.step-name {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+}
+
+.loop-step.active .step-name {
+  color: var(--color-primary-700);
+  font-weight: 800;
+}
+
+.loop-arrow {
+  color: var(--color-border-strong);
+  font-weight: 700;
+  margin: 0 var(--space-2);
+  user-select: none;
+}
+
+/* Split Dashboard Grid */
+.dashboard-split-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: var(--space-6);
+}
+
+@media (max-width: 1024px) {
+  .dashboard-split-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Zone Items List */
+.zone-cards-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.zone-item-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-3) var(--space-4);
+  background-color: var(--color-surface-soft);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-fast);
+}
+
+.zone-item-card:hover {
+  border-color: var(--color-primary-400);
+}
+
+.zone-item-card.active-stress {
+  border-color: var(--color-warning);
+  background-color: rgba(217, 119, 6, 0.05);
+}
+
+.zone-item-main {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.zone-icon-status {
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-size-xs);
+  font-weight: 800;
+}
+
+.status-success {
+  background-color: var(--color-primary-100);
+  color: var(--color-primary-800);
+}
+
+.status-warning {
+  background-color: #FEF3C7;
+  color: #92400E;
+}
+
+.zone-name {
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.zone-meta {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+}
+
+.zone-item-badges {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+}
+
+.valve-status {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: var(--radius-sm);
+}
+
+.valve-closed {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+}
+
+.valve-scheduled {
+  background-color: #FEF3C7;
+  color: #92400E;
+  border: 1px dashed var(--color-warning);
+}
+
+/* Advisory Feed in Dashboard */
+.advisory-feed {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.advisory-card {
+  padding: var(--space-4);
+  background-color: var(--color-surface-soft);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+.advisory-card.urgent {
+  border-left: 4px solid var(--color-warning);
+}
+
+.advisory-badge-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-2);
+}
+
+.advisory-time {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
+
+.advisory-heading {
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-1);
+}
+
+.advisory-text {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+}
+
+.advisory-actions {
+  display: flex;
+  gap: var(--space-2);
+  margin-top: var(--space-3);
+}

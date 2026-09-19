@@ -1,0 +1,88 @@
+/* ==========================================================================
+   KrishiNirnay AI - Market & Mandi Intelligence (Phase 20)
+   ========================================================================== */
+
+.advisory-card-highlight {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-6);
+  background: linear-gradient(135deg, var(--color-card-bg) 0%, var(--color-surface-soft) 100%);
+  border-color: var(--color-primary-300);
+}
+
+.advisory-highlight-content {
+  flex: 1;
+  min-width: 280px;
+}
+
+.advisory-chip {
+  display: inline-block;
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  color: var(--color-ai);
+  background-color: #EDE9FE;
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+  margin-bottom: var(--space-2);
+}
+
+.advisory-title {
+  font-size: var(--font-size-lg);
+  font-weight: 800;
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-2);
+}
+
+.advisory-desc {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+}
+
+.benchmark-pill {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4) var(--space-5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  box-shadow: var(--shadow-sm);
+  min-width: 180px;
+}
+
+.bm-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.bm-val {
+  font-size: var(--font-size-lg);
+  font-weight: 800;
+  color: var(--color-text-primary);
+}
+
+.bm-delta {
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.trend-up {
+  color: var(--color-success);
+  font-weight: 700;
+}
+
+.trend-neutral {
+  color: var(--color-text-muted);
+  font-weight: 600;
+}
+
+.trend-down {
+  color: var(--color-danger);
+  font-weight: 700;
+}
