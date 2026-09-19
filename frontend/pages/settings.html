@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Platform Settings, Appearance and Farm Profile - KrishiNirnay AI">
+  <meta name="description" content="Platform Settings, Farm Profile, Device Telemetry and Appearance - KrishiNirnay AI">
   <title>Settings — KrishiNirnay AI</title>
   <link rel="icon" type="image/svg+xml" href="../assets/icons/sprout.svg">
   <link rel="stylesheet" href="../css/variables.css">
@@ -41,6 +41,11 @@
           <circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="M4.93 4.93l1.41 1.41"/><path d="M17.66 17.66l1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/>
         </svg>
       </button>
+      <a href="./notifications.html" class="icon-button notification-bell" aria-label="Notifications">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/>
+        </svg>
+      </a>
       <div class="farmer-pill"><div class="farmer-avatar">RP</div></div>
     </div>
   </header>
@@ -60,7 +65,7 @@
         <ul class="nav-list">
           <li class="nav-item"><a href="./market.html" class="nav-link"><span class="nav-icon">📈</span><span class="nav-text">Market & Mandi</span></a></li>
           <li class="nav-item"><a href="./reports.html" class="nav-link"><span class="nav-icon">📑</span><span class="nav-text">Reports</span></a></li>
-          <li class="nav-item"><a href="./simulation.html" class="nav-link"><span class="nav-icon">🧪</span><span class="nav-text">Simulation Center</span></a></li>
+          <li class="nav-item"><a href="./simulation.html" class="nav-link"><span class="nav-icon">🧪</span><span class="nav-text">Simulation Center</span></li>
           <li class="nav-item"><a href="./notifications.html" class="nav-link"><span class="nav-icon">🔔</span><span class="nav-text">Notifications</span></a></li>
           <li class="nav-item"><a href="./settings.html" class="nav-link active"><span class="nav-icon">⚙️</span><span class="nav-text">Settings</span></a></li>
           <li class="nav-item"><a href="./admin.html" class="nav-link"><span class="nav-icon">🛡️</span><span class="nav-text">Admin & Health</span></a></li>
@@ -71,22 +76,23 @@
     <main class="app-main" id="main-content">
       <div class="page-title-banner">
         <div>
-          <h1 class="page-title">Profile & Platform Settings</h1>
-          <p class="page-subtitle">Configure visual theme, farm parameters, and notification channels</p>
+          <h1 class="page-title">Platform Settings & Farm Profile</h1>
+          <p class="page-subtitle">Configure appearance tokens, farm boundaries, IoT hardware, and notification channels</p>
         </div>
       </div>
 
-      <!-- Section 68 & 69: Appearance & Theme Settings -->
-      <section class="card settings-section">
+      <!-- Section 69.1 & 69.2: Appearance Card -->
+      <section class="card settings-section" id="appearance-section">
         <div class="card-header">
           <div>
-            <h2 class="card-title">Appearance & Visual Theme</h2>
-            <p class="card-subtitle">Choose how KrishiNirnay AI looks on this device</p>
+            <h2 class="card-title">Appearance & Theme (Section 69.1)</h2>
+            <p class="card-subtitle">Choose how KrishiNirnay AI looks on your device</p>
           </div>
+          <span class="badge badge-execution">UI TOKENS</span>
         </div>
 
         <div class="theme-options-grid" role="radiogroup" aria-label="Theme Selection">
-          <!-- Light Theme Option -->
+          <!-- Light Option -->
           <label class="theme-card" for="theme-light">
             <input type="radio" id="theme-light" name="theme-choice" value="light" class="theme-radio">
             <div class="theme-preview light-preview">
@@ -94,11 +100,11 @@
             </div>
             <div class="theme-details">
               <span class="theme-name">Light Theme</span>
-              <span class="theme-desc">Bright agricultural green and white palette for outdoor daylight use.</span>
+              <span class="theme-desc">Bright agricultural green & clean white palette for direct field sunlight.</span>
             </div>
           </label>
 
-          <!-- Dark Theme Option -->
+          <!-- Dark Option -->
           <label class="theme-card" for="theme-dark">
             <input type="radio" id="theme-dark" name="theme-choice" value="dark" class="theme-radio">
             <div class="theme-preview dark-preview">
@@ -106,7 +112,7 @@
             </div>
             <div class="theme-details">
               <span class="theme-name">Dark Theme</span>
-              <span class="theme-desc">Low-light OLED-friendly dark green theme for evening monitoring.</span>
+              <span class="theme-desc">OLED-friendly deep forest green palette for low-light evening monitoring.</span>
             </div>
           </label>
 
@@ -122,47 +128,102 @@
             </div>
           </label>
         </div>
+
+        <!-- Section 69.1: Live Dashboard Token Preview -->
+        <div class="appearance-preview-container">
+          <span class="preview-box-label">Live Token Preview</span>
+          <div class="dashboard-token-preview" id="appearance-live-preview">
+            <div class="preview-header-bar">
+              <span class="preview-title">🌱 Dashboard Preview</span>
+              <span class="badge badge-success">Field 1: Healthy</span>
+            </div>
+            <div class="preview-content-row">
+              <span>Soil Moisture (Root Zone)</span>
+              <span class="preview-metric-val">42%</span>
+            </div>
+            <div class="preview-content-row">
+              <span>Canopy Temperature</span>
+              <span class="preview-metric-val">31°C</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 69.2: Reduced Motion & Compact Mode Toggles -->
+        <div class="preferences-toggle-group">
+          <div class="toggle-card">
+            <div class="toggle-info">
+              <span class="toggle-title">Reduced Motion (Section 69.2)</span>
+              <span class="toggle-desc">Minimizes smooth animations and transitions for battery saving or motion sensitivity</span>
+            </div>
+            <label class="switch" for="toggle-reduced-motion">
+              <input type="checkbox" id="toggle-reduced-motion">
+              <span class="slider-switch"></span>
+            </label>
+          </div>
+
+          <div class="toggle-card">
+            <div class="toggle-info">
+              <span class="toggle-title">Compact Mode</span>
+              <span class="toggle-desc">Tighter table row padding and denser data card presentation</span>
+            </div>
+            <label class="switch" for="toggle-compact-mode">
+              <input type="checkbox" id="toggle-compact-mode">
+              <span class="slider-switch"></span>
+            </label>
+          </div>
+        </div>
       </section>
 
-      <!-- Farmer & Farm Profile Section -->
-      <section class="card settings-section">
+      <!-- Section 31: Farmer Profile Details & Farm Management -->
+      <section class="card settings-section" id="profile-section">
         <div class="card-header">
           <div>
-            <h2 class="card-title">Farmer & Farm Profile</h2>
-            <p class="card-subtitle">Manage land ownership records and regional agricultural data</p>
+            <h2 class="card-title">Farmer Profile & Farm Management (Section 31)</h2>
+            <p class="card-subtitle">Landholding registration, soil profile, and regional agrarian credentials</p>
           </div>
         </div>
 
         <form id="profile-settings-form" class="settings-form">
           <div class="form-row">
             <div class="form-group">
-              <label for="set-farmer-name" class="form-label">Farmer Name</label>
-              <input type="text" id="set-farmer-name" class="form-input" value="Ramesh Patel">
+              <label for="set-farmer-name" class="form-label">Farmer Full Name</label>
+              <input type="text" id="set-farmer-name" class="form-input" value="Ramesh Patel" required>
             </div>
             <div class="form-group">
-              <label for="set-mobile" class="form-label">Mobile Number</label>
+              <label for="set-mobile" class="form-label">Registered Mobile Number (OTP Verified)</label>
               <input type="tel" id="set-mobile" class="form-input" value="+91 98765 43210" disabled>
             </div>
           </div>
 
           <div class="form-row">
             <div class="form-group">
-              <label for="set-farm-name" class="form-label">Farm Title</label>
-              <input type="text" id="set-farm-name" class="form-input" value="Shanti Agro Farm">
+              <label for="set-farm-title" class="form-label">Farm Title</label>
+              <input type="text" id="set-farm-title" class="form-input" value="Shanti Agro Farm" required>
             </div>
             <div class="form-group">
               <label for="set-acres" class="form-label">Total Monitored Acres</label>
-              <input type="number" id="set-acres" class="form-input" value="12">
+              <input type="number" id="set-acres" class="form-input" value="12" step="0.5" required>
             </div>
           </div>
 
           <div class="form-row">
             <div class="form-group">
-              <label for="set-language" class="form-label">Preferred Interface Language</label>
+              <label for="set-soil-type" class="form-label">Dominant Soil Type</label>
+              <input type="text" id="set-soil-type" class="form-input" value="Medium Black Soil (Vertisol)">
+            </div>
+            <div class="form-group">
+              <label for="set-water-source" class="form-label">Primary Irrigation Source</label>
+              <input type="text" id="set-water-source" class="form-input" value="Borewell #1 (380 ft) & Check Dam Canal">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="set-language" class="form-label">Interface Language (Section 31)</label>
               <select id="set-language" class="form-select">
                 <option value="en" selected>English (Primary)</option>
-                <option value="hi">हिन्दी (Hindi)</option>
                 <option value="gu">ગુજરાતી (Gujarati)</option>
+                <option value="hi">हिन्दी (Hindi)</option>
                 <option value="mr">मराठी (Marathi)</option>
               </select>
             </div>
@@ -172,21 +233,203 @@
             </div>
           </div>
 
-          <button type="submit" class="btn btn-primary">Save Profile Changes</button>
+          <button type="submit" class="btn btn-primary" id="save-profile-btn">Save Profile Changes</button>
         </form>
       </section>
 
-      <!-- Account & Session Section -->
-      <section class="card settings-section danger-zone">
+      <!-- Section 31: Field Management -->
+      <section class="card settings-section" id="fields-section">
         <div class="card-header">
           <div>
-            <h2 class="card-title text-danger">Farm Session & Account</h2>
-            <p class="card-subtitle">Log out or clear offline cached simulation data</p>
+            <h2 class="card-title">Field & Zone Management (Section 31)</h2>
+            <p class="card-subtitle">Active monitored plots, crop rotation, and micro-irrigation layout</p>
+          </div>
+          <span class="badge badge-success">3 REGISTERED FIELDS</span>
+        </div>
+
+        <div class="fields-management-grid" id="fields-management-list">
+          <!-- Rendered dynamically by settings.js -->
+        </div>
+      </section>
+
+      <!-- Section 31: Device Settings & Sensor Matrix -->
+      <section class="card settings-section" id="device-settings-section">
+        <div class="card-header">
+          <div>
+            <h2 class="card-title">Device Settings & Sensor Matrix (Section 31)</h2>
+            <p class="card-subtitle">Status overview of Virtual Sensors vs Physical Sensors</p>
+          </div>
+          <span class="badge badge-simulated">HYBRID TELEMETRY</span>
+        </div>
+
+        <!-- Section 31 Mandatory Counters: Virtual Sensor, Physical Sensor, Online, Offline, Error -->
+        <div class="device-matrix-summary">
+          <div class="matrix-stat-box">
+            <span class="matrix-stat-label">Virtual Sensor</span>
+            <span class="matrix-stat-val matrix-virtual" id="cnt-virtual-sensors">4</span>
+          </div>
+          <div class="matrix-stat-box">
+            <span class="matrix-stat-label">Physical Sensor</span>
+            <span class="matrix-stat-val matrix-physical" id="cnt-physical-sensors">3</span>
+          </div>
+          <div class="matrix-stat-box">
+            <span class="matrix-stat-label">Online</span>
+            <span class="matrix-stat-val matrix-online" id="cnt-online-sensors">5</span>
+          </div>
+          <div class="matrix-stat-box">
+            <span class="matrix-stat-label">Offline</span>
+            <span class="matrix-stat-val matrix-offline" id="cnt-offline-sensors">1</span>
+          </div>
+          <div class="matrix-stat-box">
+            <span class="matrix-stat-label">Error</span>
+            <span class="matrix-stat-val matrix-error" id="cnt-error-sensors">1</span>
+          </div>
+        </div>
+
+        <!-- Device Inventory Table -->
+        <div class="device-table-container">
+          <table class="device-table" aria-label="Sensor and Actuator Inventory">
+            <thead>
+              <tr>
+                <th>Device ID & Type</th>
+                <th>Assigned Zone</th>
+                <th>Status</th>
+                <th>Signal / Power</th>
+              </tr>
+            </thead>
+            <tbody id="device-matrix-table-body">
+              <!-- Rendered dynamically by settings.js -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Section 31: Notification Preferences -->
+      <section class="card settings-section" id="notification-preferences-section">
+        <div class="card-header">
+          <div>
+            <h2 class="card-title">Notification Preferences (Section 31)</h2>
+            <p class="card-subtitle">Select alert delivery channels and threshold sensitivity</p>
+          </div>
+        </div>
+
+        <form id="notification-settings-form" class="settings-form">
+          <div class="preferences-toggle-group">
+            <div class="toggle-card">
+              <div class="toggle-info">
+                <span class="toggle-title">WhatsApp Agronomic Alerts</span>
+                <span class="toggle-desc">Instant action plans & voice advisories delivered to registered mobile</span>
+              </div>
+              <label class="switch" for="notif-whatsapp">
+                <input type="checkbox" id="notif-whatsapp" checked>
+                <span class="slider-switch"></span>
+              </label>
+            </div>
+
+            <div class="toggle-card">
+              <div class="toggle-info">
+                <span class="toggle-title">SMS Flash Bulletins</span>
+                <span class="toggle-desc">Offline cellular SMS for critical frost, storm, or pump power failure</span>
+              </div>
+              <label class="switch" for="notif-sms" checked>
+                <input type="checkbox" id="notif-sms" checked>
+                <span class="slider-switch"></span>
+              </label>
+            </div>
+
+            <div class="toggle-card">
+              <div class="toggle-info">
+                <span class="toggle-title">Browser Push Notifications</span>
+                <span class="toggle-desc">Real-time alerts when telemetry deviates or approval is requested</span>
+              </div>
+              <label class="switch" for="notif-push">
+                <input type="checkbox" id="notif-push" checked>
+                <span class="slider-switch"></span>
+              </label>
+            </div>
+
+            <div class="toggle-card">
+              <div class="toggle-info">
+                <span class="toggle-title">Severe Weather Radar Warnings</span>
+                <span class="toggle-desc">Precipitation, squall, and heatwave alerts from IMD radar</span>
+              </div>
+              <label class="switch" for="notif-weather">
+                <input type="checkbox" id="notif-weather" checked>
+                <span class="slider-switch"></span>
+              </label>
+            </div>
+
+            <div class="toggle-card">
+              <div class="toggle-info">
+                <span class="toggle-title">Disease Outbreak Warnings</span>
+                <span class="toggle-desc">High spore germination alerts based on leaf wetness and humidity</span>
+              </div>
+              <label class="switch" for="notif-disease">
+                <input type="checkbox" id="notif-disease" checked>
+                <span class="slider-switch"></span>
+              </label>
+            </div>
+
+            <div class="toggle-card">
+              <div class="toggle-info">
+                <span class="toggle-title">Mandi Price Movement Alerts</span>
+                <span class="toggle-desc">Notify when Rajkot APMC spot price crosses ±5% threshold</span>
+              </div>
+              <label class="switch" for="notif-market">
+                <input type="checkbox" id="notif-market">
+                <span class="slider-switch"></span>
+              </label>
+            </div>
+          </div>
+        </form>
+      </section>
+
+      <!-- Section 69: Help & Support -->
+      <section class="card settings-section" id="help-support-section">
+        <div class="card-header">
+          <div>
+            <h2 class="card-title">Agronomic Help & Support (Section 69)</h2>
+            <p class="card-subtitle">Connect with agricultural universities and toll-free farmer assistance</p>
+          </div>
+        </div>
+
+        <div class="support-cards-grid">
+          <div class="support-card">
+            <span class="support-icon">📞</span>
+            <h4 class="support-title">Kisan Call Center (Govt of India)</h4>
+            <p class="support-desc">Free agricultural consultation in Gujarati, Hindi & English 24x7.</p>
+            <span class="support-contact">Toll-Free: 1800-180-1551</span>
+          </div>
+
+          <div class="support-card">
+            <span class="support-icon">🔬</span>
+            <h4 class="support-title">Rajkot KVK Extension Officer</h4>
+            <p class="support-desc">Direct line to Krishi Vigyan Kendra specialist for soil test validation.</p>
+            <span class="support-contact">+91 281 257 8890</span>
+          </div>
+
+          <div class="support-card">
+            <span class="support-icon">📖</span>
+            <h4 class="support-title">Farmer Knowledge Base</h4>
+            <p class="support-desc">Step-by-step guides for sensor calibration and autonomous drip setups.</p>
+            <span class="support-contact">Open User Documentation →</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 31: Account Settings & Danger Zone -->
+      <section class="card settings-section danger-zone" id="account-settings-section">
+        <div class="card-header">
+          <div>
+            <h2 class="card-title text-danger">Farm Session & Account (Section 31)</h2>
+            <p class="card-subtitle">Manage session cache, export farm records, or securely log out</p>
           </div>
         </div>
 
         <div class="danger-actions-row">
+          <button type="button" class="btn btn-outline" id="export-data-btn">Export Farm Data (JSON)</button>
           <button type="button" class="btn btn-outline" id="clear-cache-btn">Clear Local Telemetry Cache</button>
+          <button type="button" class="btn btn-outline" id="reset-defaults-btn">Reset All Settings</button>
           <button type="button" class="btn btn-danger" id="logout-btn">Log Out from Farm</button>
         </div>
       </section>
@@ -201,29 +444,6 @@
     <a href="./settings.html" class="mobile-nav-item active"><span class="mobile-nav-icon">⚙️</span><span class="mobile-nav-label">Settings</span></a>
   </nav>
 
-  <script type="module">
-    import themeManager from '../js/theme.js';
-
-    // Sync theme radio with current preference
-    const currentPref = themeManager.currentPreference;
-    const radio = document.querySelector(`input[name="theme-choice"][value="${currentPref}"]`);
-    if (radio) radio.checked = true;
-
-    // Handle theme radio selection
-    document.querySelectorAll('input[name="theme-choice"]').forEach(r => {
-      r.addEventListener('change', (e) => {
-        themeManager.setTheme(e.target.value);
-      });
-    });
-
-    // Handle logout
-    document.getElementById('logout-btn')?.addEventListener('click', () => {
-      if (confirm('Are you sure you want to log out from this farm session?')) {
-        localStorage.removeItem('krishi_auth_token');
-        localStorage.removeItem('krishi_farmer_session');
-        window.location.replace('./login.html');
-      }
-    });
-  </script>
+  <script type="module" src="../js/settings.js"></script>
 </body>
 </html>
