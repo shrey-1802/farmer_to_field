@@ -496,13 +496,17 @@
       </div>
 
       <!-- =====================================================================
-           TAB 3: SENSORS PANE
+           TAB 3: SENSORS PANE (VIRTUAL SENSOR CENTER - PHASE 9)
            ===================================================================== -->
       <div id="tab-pane-sensors" class="tab-pane" role="tabpanel" aria-labelledby="tab-btn-sensors">
-        <section class="card">
+        <!-- Dedicated Virtual Sensor Center Container -->
+        <div id="virtual-sensor-center-container"></div>
+
+        <!-- Virtual IoT Hardware Nodes Diagnostics -->
+        <section class="card" style="margin-top: var(--space-4);">
           <div class="card-header">
             <div>
-              <h2 class="card-title">Virtual IoT Sensor Telemetry Stream</h2>
+              <h2 class="card-title">Virtual IoT Hardware Nodes Diagnostics</h2>
               <p class="card-subtitle">Real-time parameters simulated from digital twin virtual telemetry nodes</p>
             </div>
             <span class="source-tag source-simulated">SIMULATED — Virtual IoT</span>
@@ -889,5 +893,6 @@
 
   <script type="module" src="../js/fields.js"></script>
   <script type="module" src="../js/map.js"></script>
+  <script type="module" src="../js/sensors.js"></script>
 </body>
 </html>
