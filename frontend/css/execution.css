@@ -176,3 +176,150 @@
   font-size: 11px;
   color: var(--color-text-secondary);
 }
+
+/* ==========================================================================
+   Section 25: Autonomous Closed-Loop Feedback Timeline
+   ========================================================================== */
+.feedback-timeline-card {
+  border-top: 4px solid var(--color-primary-600);
+}
+
+.feedback-timeline-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+
+.feedback-timeline {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  margin: var(--space-4) 0;
+  padding-left: var(--space-2);
+}
+
+.feedback-timeline::before {
+  content: '';
+  position: absolute;
+  top: 15px;
+  bottom: 15px;
+  left: 23px;
+  width: 2px;
+  background-color: var(--color-border);
+  z-index: 1;
+}
+
+.feedback-step {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-4);
+  position: relative;
+  padding-bottom: var(--space-5);
+  z-index: 2;
+  transition: all var(--transition-normal);
+}
+
+.feedback-step:last-child {
+  padding-bottom: 0;
+}
+
+.feedback-step-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 800;
+  flex-shrink: 0;
+  background-color: var(--color-surface);
+  border: 2px solid var(--color-border);
+  color: var(--color-text-muted);
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-fast);
+}
+
+.feedback-step.step-status-done .feedback-step-icon {
+  background-color: #10B981;
+  border-color: #10B981;
+  color: #FFFFFF;
+}
+
+.feedback-step.step-status-active .feedback-step-icon {
+  background-color: var(--color-primary-600);
+  border-color: var(--color-primary-600);
+  color: #FFFFFF;
+  box-shadow: 0 0 0 4px rgba(22, 163, 74, 0.2);
+  animation: pulse 1.5s infinite;
+}
+
+.feedback-step.step-status-pending .feedback-step-icon {
+  opacity: 0.6;
+}
+
+.feedback-step-body {
+  flex: 1;
+  background-color: var(--color-surface-soft);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-3) var(--space-4);
+  transition: all var(--transition-fast);
+}
+
+.feedback-step.step-status-done .feedback-step-body {
+  border-left: 3px solid #10B981;
+}
+
+.feedback-step.step-status-active .feedback-step-body {
+  border-left: 3px solid var(--color-primary-600);
+  background: linear-gradient(135deg, var(--color-surface-soft) 0%, rgba(22, 163, 74, 0.05) 100%);
+}
+
+.feedback-step-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-bottom: 3px;
+}
+
+.feedback-step-title {
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.feedback-step-desc {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+  margin: 0 0 var(--space-2) 0;
+}
+
+.feedback-step-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-size: 11px;
+  color: var(--color-text-muted);
+}
+
+/* Pre-Post Delta Box */
+.delta-metric-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: var(--radius-sm);
+  background-color: rgba(16, 185, 129, 0.12);
+  color: #059669;
+}
+

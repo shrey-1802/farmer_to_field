@@ -200,6 +200,7 @@ class ExecutionController {
     this.renderJobsList();
     this.renderDeviceStatusGrid();
     this.renderManualOverrideSection();
+    this.renderFeedbackTimeline();
     this.bindEvents();
   }
 
@@ -484,6 +485,239 @@ class ExecutionController {
 
     overrideCard.querySelector('#btn-toggle-override')?.addEventListener('click', () => {
       this.toggleManualOverride();
+    });
+  }
+
+  renderFeedbackTimeline() {
+    let timelineCard = document.getElementById('feedback-timeline-card');
+    if (!timelineCard) {
+      timelineCard = document.createElement('section');
+      timelineCard.id = 'feedback-timeline-card';
+      timelineCard.className = 'card feedback-timeline-card';
+      const mainContent = document.getElementById('main-content');
+      if (mainContent) {
+        mainContent.appendChild(timelineCard);
+      }
+    }
+
+    timelineCard.innerHTML = `
+      <div class="feedback-timeline-header">
+        <div>
+          <h2 class="card-title">Autonomous Closed-Loop Feedback & Verification Timeline</h2>
+          <p class="card-subtitle">Real-time telemetry delta and multi-agent reassessment cycle (Section 25)</p>
+        </div>
+        <div style="display: flex; gap: var(--space-2); align-items: center;">
+          <button type="button" class="btn btn-sm btn-primary" id="btn-replay-feedback-loop">
+            ⚡ Simulate Feedback Loop (Action → Verification)
+          </button>
+          <span class="badge badge-success">Audit: VERIFIED_SUCCESSFUL</span>
+        </div>
+      </div>
+
+      <!-- Section 25 Pre vs Post Telemetry Delta -->
+      <div class="verification-stats-grid" style="margin-bottom: var(--space-5);">
+        <div class="v-stat-card">
+          <span class="v-label">Root-Zone Moisture Delta</span>
+          <div style="display: flex; align-items: baseline; gap: var(--space-2); margin-top: var(--space-1);">
+            <span class="v-value text-danger" style="font-size: var(--font-size-lg);">24.1%</span>
+            <span style="font-size: var(--font-size-sm); color: var(--color-text-muted);">→</span>
+            <span class="v-value text-success" style="font-size: var(--font-size-xl);" id="delta-moisture-val">38.8%</span>
+          </div>
+          <span class="v-sub"><strong class="delta-metric-badge">+14.7%</strong> Restored to field capacity</span>
+        </div>
+
+        <div class="v-stat-card">
+          <span class="v-label">Water Stress Hazard Score</span>
+          <div style="display: flex; align-items: baseline; gap: var(--space-2); margin-top: var(--space-1);">
+            <span class="v-value text-danger" style="font-size: var(--font-size-lg);">84/100</span>
+            <span style="font-size: var(--font-size-sm); color: var(--color-text-muted);">→</span>
+            <span class="v-value text-success" style="font-size: var(--font-size-xl);" id="delta-risk-val">16/100</span>
+          </div>
+          <span class="v-sub"><strong class="delta-metric-badge">-68 pts</strong> Critical hazard resolved</span>
+        </div>
+
+        <div class="v-stat-card">
+          <span class="v-label">Soil Matric Suction</span>
+          <div style="display: flex; align-items: baseline; gap: var(--space-2); margin-top: var(--space-1);">
+            <span class="v-value text-warning" style="font-size: var(--font-size-lg);">-68 kPa</span>
+            <span style="font-size: var(--font-size-sm); color: var(--color-text-muted);">→</span>
+            <span class="v-value text-success" style="font-size: var(--font-size-xl);">-22 kPa</span>
+          </div>
+          <span class="v-sub">Optimal plant root uptake tension</span>
+        </div>
+
+        <div class="v-stat-card">
+          <span class="v-label">Autonomous Verification</span>
+          <span class="v-value text-info" style="font-size: var(--font-size-lg);" id="loop-verification-status">VERIFIED</span>
+          <span class="v-sub">Immutable audit trace generated</span>
+        </div>
+      </div>
+
+      <!-- Section 25 Explicit 6-Stage Timeline -->
+      <div class="feedback-timeline" id="feedback-timeline-list">
+        <!-- Stage 1: Action completed -->
+        <div class="feedback-step step-status-done" id="step-1">
+          <div class="feedback-step-icon">✓</div>
+          <div class="feedback-step-body">
+            <div class="feedback-step-title-row">
+              <h4 class="feedback-step-title">1. Action completed</h4>
+              <span class="badge badge-success">Completed</span>
+            </div>
+            <p class="feedback-step-desc">
+              Zone 2 Precision Drip Irrigation run (#JOB-1082) reached target run duration (45 minutes). Solenoid Valve B signaled closed via relay interlock.
+            </p>
+            <div class="feedback-step-meta">
+              <span>⏱️ Total Dispatched: <strong>42,000 Litres</strong></span>
+              <span>⚡ Volume Target: 100% Met</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Stage 2: Execution result -->
+        <div class="feedback-step step-status-done" id="step-2">
+          <div class="feedback-step-icon">✓</div>
+          <div class="feedback-step-body">
+            <div class="feedback-step-title-row">
+              <h4 class="feedback-step-title">2. Execution result</h4>
+              <span class="badge badge-outline">Hardware Certified</span>
+            </div>
+            <p class="feedback-step-desc">
+              In-line ultrasonic flow sensor recorded continuous 933 L/min discharge. Main manifold pressure maintained 1.82 Bar (tolerance ±0.05 Bar). Zero cavitation or pipe pressure drop events.
+            </p>
+            <div class="feedback-step-meta">
+              <span>📊 Avg Pressure: 1.82 Bar</span>
+              <span>⚡ Power Draw: 11.4A nominal</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Stage 3: Sensor values updated -->
+        <div class="feedback-step step-status-done" id="step-3">
+          <div class="feedback-step-icon">✓</div>
+          <div class="feedback-step-body">
+            <div class="feedback-step-title-row">
+              <h4 class="feedback-step-title">3. Sensor values updated</h4>
+              <span class="badge badge-success">Telemetry Ingested</span>
+            </div>
+            <p class="feedback-step-desc">
+              Virtual Soil Moisture sensor (Node-02, 15cm probe) registered post-infiltration increase from <strong>24.1% → 38.8%</strong>. Root zone temperature stabilized from 33.2°C → 28.5°C.
+            </p>
+            <div class="feedback-step-meta">
+              <span>📡 Node-02 Ping: 1.1s</span>
+              <span>🌊 Readily Available Water (RAW): 100% Replenished</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Stage 4: Risk recalculated -->
+        <div class="feedback-step step-status-done" id="step-4">
+          <div class="feedback-step-icon">✓</div>
+          <div class="feedback-step-body">
+            <div class="feedback-step-title-row">
+              <h4 class="feedback-step-title">4. Risk recalculated</h4>
+              <span class="badge badge-success">Drought Mitigated</span>
+            </div>
+            <p class="feedback-step-desc">
+              Risk Engine recalculated Zone 2 water stress deficit score: dropped from <strong>84 (CRITICAL) → 16 (LOW)</strong>. Red moisture hazard banner cleared from farm dashboard.
+            </p>
+            <div class="feedback-step-meta">
+              <span>🚨 Active Critical Risks: 0</span>
+              <span>📉 Score Reduction: -68 Points</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Stage 5: Agent reassessment -->
+        <div class="feedback-step step-status-done" id="step-5">
+          <div class="feedback-step-icon">✓</div>
+          <div class="feedback-step-body">
+            <div class="feedback-step-title-row">
+              <h4 class="feedback-step-title">5. Agent reassessment</h4>
+              <span class="badge badge-ai">Multi-Agent Consensus</span>
+            </div>
+            <p class="feedback-step-desc">
+              Irrigation Advisory Agent and Crop Nutrition Agent conducted post-action consensus. Verified evapotranspiration projection (ETc 5.8 mm/day) will maintain optimal moisture for next 72 hours.
+            </p>
+            <div class="feedback-step-meta">
+              <span>🤖 Multi-Agent Cycle: Consensus Passed</span>
+              <span>🛡️ Next Scheduled Check: Tomorrow at 06:00 AM</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Stage 6: Verification result -->
+        <div class="feedback-step step-status-done" id="step-6">
+          <div class="feedback-step-icon">✓</div>
+          <div class="feedback-step-body">
+            <div class="feedback-step-title-row">
+              <h4 class="feedback-step-title">6. Verification result</h4>
+              <span class="badge badge-success">Closed-Loop Certified</span>
+            </div>
+            <p class="feedback-step-desc">
+              Autonomous feedback cycle concluded and certified as <strong>VERIFIED_SUCCESSFUL</strong>. Cryptographic execution receipt logged into farm audit records. Farmer push alert dispatched.
+            </p>
+            <div class="feedback-step-meta">
+              <span>📜 Audit Log ID: #VERIF-2026-9481</span>
+              <span>✅ Status: VERIFIED_SUCCESSFUL</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+
+    timelineCard.querySelector('#btn-replay-feedback-loop')?.addEventListener('click', () => {
+      this.animateFeedbackTimeline();
+    });
+  }
+
+  animateFeedbackTimeline() {
+    const steps = [1, 2, 3, 4, 5, 6];
+    const timeline = document.getElementById('feedback-timeline-list');
+    if (!timeline) return;
+
+    // Reset all steps to pending
+    steps.forEach(num => {
+      const el = document.getElementById(`step-${num}`);
+      if (el) {
+        el.className = 'feedback-step step-status-pending';
+        const icon = el.querySelector('.feedback-step-icon');
+        if (icon) icon.textContent = `${num}`;
+      }
+    });
+
+    const statusLabel = document.getElementById('loop-verification-status');
+    if (statusLabel) {
+      statusLabel.textContent = 'EVALUATING...';
+      statusLabel.className = 'v-value text-warning';
+    }
+
+    appShell.showToast('Initiating autonomous feedback loop sequence...', 'info', 2000);
+
+    // Animate sequentially
+    steps.forEach((num, idx) => {
+      setTimeout(() => {
+        const el = document.getElementById(`step-${num}`);
+        if (el) {
+          el.className = 'feedback-step step-status-active';
+          const icon = el.querySelector('.feedback-step-icon');
+          if (icon) icon.textContent = '⚙️';
+        }
+
+        setTimeout(() => {
+          if (el) {
+            el.className = 'feedback-step step-status-done';
+            const icon = el.querySelector('.feedback-step-icon');
+            if (icon) icon.textContent = '✓';
+          }
+          if (num === 6) {
+            if (statusLabel) {
+              statusLabel.textContent = 'VERIFIED';
+              statusLabel.className = 'v-value text-success';
+            }
+            appShell.showToast('Closed-loop feedback cycle completed & verified!', 'success', 3500);
+          }
+        }, 500);
+      }, idx * 700);
     });
   }
 
