@@ -63,36 +63,245 @@
   color: var(--color-text-primary);
 }
 
-/* Map Card */
+/* ==========================================================================
+   Phase 8: Map Interface & Spatial Visualization Styling
+   ========================================================================== */
 .field-map-card {
   overflow: hidden;
-}
-
-.map-controls {
-  display: flex;
-  align-items: center;
-  gap: var(--space-2);
+  position: relative;
 }
 
 .map-container {
   border-radius: var(--radius-md);
   overflow: hidden;
   border: 1px solid var(--color-border);
+  position: relative;
+  background-color: var(--color-surface-soft);
+  min-height: 420px;
 }
 
-.field-svg-map text {
-  font-family: var(--font-family-base);
+/* Floating Layer Toolbar */
+.map-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-2) var(--space-3);
+  background-color: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.map-toolbar-group {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.map-toolbar-label {
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.map-chip {
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--color-border);
+  background-color: var(--color-surface);
+  color: var(--color-text-secondary);
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.map-chip:hover {
+  background-color: var(--color-surface-soft);
+  color: var(--color-primary-600);
+  border-color: var(--color-primary-400);
+}
+
+.map-chip.active {
+  background-color: var(--color-primary-600);
+  color: var(--color-text-inverse);
+  border-color: var(--color-primary-600);
+}
+
+.map-chip.btn-reset-view {
+  background-color: transparent;
+  color: var(--color-text-secondary);
+}
+
+.map-viewport {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.field-svg-canvas {
+  width: 100%;
+  height: 380px;
+  display: block;
   user-select: none;
 }
 
-.sensor-node {
+.map-zone-poly {
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.map-zone-poly:hover {
+  fill-opacity: 0.35;
+}
+
+.zone-poly-title {
+  font-size: 13px;
+  font-weight: 700;
+  fill: var(--color-text-primary);
+  pointer-events: none;
+}
+
+.zone-poly-sub {
+  font-size: 11px;
+  fill: var(--color-text-secondary);
+  pointer-events: none;
+}
+
+/* Sensor Marker Pins */
+.map-sensor-marker {
   cursor: pointer;
   transition: transform var(--transition-fast);
 }
 
-.sensor-node:hover {
-  transform: scale(1.15);
+.map-sensor-marker:hover {
+  transform: scale(1.2);
 }
+
+.sensor-marker-label {
+  font-size: 11px;
+  font-weight: 700;
+  fill: var(--color-text-primary);
+  pointer-events: none;
+}
+
+.map-sensor-marker.marker-alert .sensor-marker-label {
+  fill: var(--color-danger);
+}
+
+.sensor-pulse-ring {
+  animation: sensorPulse 2.5s infinite;
+  transform-origin: center;
+}
+
+@keyframes sensorPulse {
+  0% { r: 12; opacity: 0.8; }
+  50% { r: 22; opacity: 0.1; }
+  100% { r: 12; opacity: 0.8; }
+}
+
+/* Risk Markers */
+.map-risk-marker {
+  cursor: pointer;
+  transition: transform var(--transition-fast);
+}
+
+.map-risk-marker:hover {
+  transform: scale(1.25);
+}
+
+/* Task Markers */
+.map-task-node {
+  cursor: pointer;
+}
+
+/* Floating Popup Tooltip */
+.map-floating-popup {
+  position: absolute;
+  z-index: var(--z-dropdown);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  padding: var(--space-3);
+  font-size: var(--font-size-xs);
+  min-width: 200px;
+  max-width: 280px;
+  pointer-events: none;
+  animation: popupFade 0.15s ease-out;
+}
+
+@keyframes popupFade {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.popup-title {
+  font-weight: 700;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-primary);
+  margin-bottom: 2px;
+}
+
+.popup-meta {
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-1);
+}
+
+.popup-stat-row {
+  display: flex;
+  justify-content: space-between;
+  padding: var(--space-1) 0;
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+  margin: var(--space-1) 0;
+}
+
+.popup-hint {
+  font-size: 10px;
+  color: var(--color-primary-600);
+  font-weight: 600;
+  margin-top: 4px;
+}
+
+/* Map Legend Bar */
+.map-legend-bar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-2) var(--space-4);
+  background-color: var(--color-surface);
+  border-top: 1px solid var(--color-border);
+  font-size: 11px;
+  color: var(--color-text-secondary);
+  flex-wrap: wrap;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.legend-swatch {
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  display: inline-block;
+}
+
+.swatch-optimal {
+  background-color: rgba(34, 197, 94, 0.4);
+  border: 1.5px solid var(--color-primary-500);
+}
+
+.swatch-stress {
+  background-color: rgba(217, 119, 6, 0.4);
+  border: 1.5px solid var(--color-warning);
+}
+
 
 /* ==========================================================================
    Hierarchy Drill-Down Navigation Strip (Phase 6)

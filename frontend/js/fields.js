@@ -424,6 +424,13 @@ class HierarchyManager {
         }
       });
     });
+
+    // Listen for zone selections from MapController
+    window.addEventListener('mapzoneselect', (e) => {
+      if (e.detail?.zoneId) {
+        this.setHierarchy(null, null, e.detail.zoneId);
+      }
+    });
   }
 }
 
