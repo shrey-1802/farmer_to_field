@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Execution Tracking — KrishiNirnay AI</title>
+  <meta name="description" content="Real-Time Actuation and Execution Monitoring — KrishiNirnay AI">
+
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/components.css">
+
+  <style>
+    .page-shell {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background-color: var(--color-background);
+    }
+    .page-header {
+      background-color: var(--color-surface);
+      border-bottom: 1px solid var(--color-border);
+      padding: var(--space-3) var(--space-6);
+      position: sticky;
+      top: 0;
+      z-index: var(--z-sticky);
+    }
+    .page-header-inner {
+      max-width: var(--max-content-width);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-4);
+    }
+    .page-body {
+      flex: 1;
+      max-width: var(--max-content-width);
+      margin: 0 auto;
+      width: 100%;
+      padding: var(--space-6);
+    }
+  </style>
+</head>
+<body class="page-shell">
+  <header class="page-header">
+    <div class="page-header-inner">
+      <a href="./dashboard.html" style="display: flex; align-items: center; gap: 8px; text-decoration: none; color: var(--color-text-primary); font-weight: bold;">
+        <span>⚡</span>
+        <span>KrishiNirnay AI — Field Execution Tracker</span>
+      </a>
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <button type="button" id="theme-toggle" class="btn btn-secondary btn-sm" aria-label="Toggle Theme">◐</button>
+        <a href="./dashboard.html" class="btn btn-secondary btn-sm">← Back to Dashboard</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="page-body">
+    <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 12px; margin-bottom: var(--space-6);">
+      <div>
+        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+          <span class="badge badge-primary" id="badge-task-id">TASK #789</span>
+          <span class="badge badge-success" id="badge-task-status">⚡ IN EXECUTION</span>
+        </div>
+        <h1 style="font-size: var(--font-size-2xl); font-weight: bold; color: var(--color-text-primary);" id="task-title">
+          Zone South-1 Drip Valve Actuation
+        </h1>
+        <p style="font-size: var(--font-size-sm); color: var(--color-text-secondary); margin-top: 4px;" id="task-meta">
+          Actuating Solenoid Valve #SV-04 • Relay Bank 1 • 2.5s Short Polling Rhythm Active
+        </p>
+      </div>
+
+      <div style="display: flex; gap: 8px;">
+        <button type="button" class="btn btn-secondary btn-sm" onclick="UrlState.copyShareableUrl()">
+          🔗 Copy Deep Link
+        </button>
+        <button type="button" class="btn btn-danger btn-sm" onclick="Toast.warning('Emergency Stop', 'Actuation emergency pause dispatched.')">
+          ⏹ Emergency Stop
+        </button>
+      </div>
+    </div>
+
+    <!-- Live Execution Telemetry -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: var(--space-4); margin-bottom: var(--space-6);">
+      <div class="stat-pill">
+        <span class="stat-pill-label">Execution Progress</span>
+        <div class="stat-pill-value">68 <span class="stat-pill-unit">%</span></div>
+        <div style="font-size: 10px; color: var(--color-text-muted); margin-top: 6px;">24 / 35 minutes elapsed</div>
+      </div>
+
+      <div class="stat-pill">
+        <span class="stat-pill-label">Flow Meter Discharge</span>
+        <div class="stat-pill-value">120 <span class="stat-pill-unit">L / min</span></div>
+        <div style="font-size: 10px; color: var(--color-text-muted); margin-top: 6px;">Operating pressure: 2.1 bar</div>
+      </div>
+
+      <div class="stat-pill">
+        <span class="stat-pill-label">Polling Cadence</span>
+        <div class="stat-pill-value">2.5 <span class="stat-pill-unit">sec</span></div>
+        <div style="font-size: 10px; color: var(--color-text-muted); margin-top: 6px;">Section 44 Execution Rule</div>
+      </div>
+    </div>
+
+    <!-- Deep Link Parameter Verification Card -->
+    <article class="card">
+      <div class="card-title">
+        <span>Deep Link Parameter Verification</span>
+        <span class="badge badge-info">Section 54 Standard</span>
+      </div>
+      <p class="card-desc">
+        Deep links directly to active execution tasks via query parameter <code>execution.html?task=789</code>.
+      </p>
+
+      <div id="validation-report-box" style="padding: 12px; background-color: var(--color-surface-soft); border-radius: var(--radius-md); font-size: 13px; line-height: 1.5;">
+        Validating task parameter...
+      </div>
+
+      <div style="margin-top: 16px; display: flex; flex-wrap: wrap; gap: 8px;">
+        <button type="button" class="btn btn-secondary btn-sm" onclick="switchTaskParam('789')">?task=789</button>
+        <button type="button" class="btn btn-secondary btn-sm" onclick="switchTaskParam('exec_irrigation_88')">?task=exec_irrigation_88</button>
+        <button type="button" class="btn btn-secondary btn-sm" onclick="switchTaskParam('boom_spray_task_01')">?task=boom_spray_task_01</button>
+        <button type="button" class="btn btn-secondary btn-sm" onclick="switchTaskParam('task;DROP TABLE')">?task=task;DROP TABLE</button>
+      </div>
+    </article>
+  </main>
+
+  <script src="../js/config.js"></script>
+  <script src="../js/utils.js"></script>
+  <script src="../js/api.js"></script>
+  <script src="../js/ui.js"></script>
+  <script src="../js/state.js"></script>
+  <script src="../js/router.js"></script>
+
+  <script>
+    function inspectUrlParam() {
+      const taskParam = UrlState.get('task') || '789';
+      const check = UrlState.validateId(taskParam, 'task');
+      const box = document.getElementById('validation-report-box');
+      const title = document.getElementById('task-title');
+      const badge = document.getElementById('badge-task-id');
+
+      if (check.valid) {
+        badge.textContent = `TASK #${check.sanitized}`;
+        badge.className = 'badge badge-primary';
+        title.textContent = `Execution Task #${check.sanitized} — Telemetry Stream`;
+
+        if (box) {
+          box.innerHTML = `
+            <span class="badge badge-success" style="margin-bottom: 6px;">✓ TASK ID VALIDATED</span><br>
+            • <strong>Task Identifier:</strong> <code>${Utils.escapeHtml(check.sanitized)}</code><br>
+            • <strong>Short Polling Target:</strong> <code>GET /api/execution/${encodeURIComponent(check.sanitized)}/status</code> (2.5s rhythm)
+          `;
+        }
+      } else {
+        badge.textContent = 'INVALID TASK ID';
+        badge.className = 'badge badge-danger';
+        title.textContent = 'Execution Lookup Error';
+        if (box) {
+          box.innerHTML = `
+            <span class="badge badge-danger" style="margin-bottom: 6px;">✕ VALIDATION FAILED</span><br>
+            • <strong>Error:</strong> ${Utils.escapeHtml(check.error)}
+          `;
+        }
+      }
+    }
+
+    function switchTaskParam(val) {
+      UrlState.setParam('task', val);
+      inspectUrlParam();
+    }
+
+    window.addEventListener('DOMContentLoaded', inspectUrlParam);
+    window.addEventListener('krishinirnay:url_changed', inspectUrlParam);
+
+    document.getElementById('theme-toggle').addEventListener('click', () => {
+      const html = document.documentElement;
+      const current = html.getAttribute('data-theme') || 'light';
+      html.setAttribute('data-theme', current === 'light' ? 'dark' : 'light');
+    });
+  </script>
+</body>
+</html>

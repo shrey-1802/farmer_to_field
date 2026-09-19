@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agent Details — KrishiNirnay AI</title>
+  <meta name="description" content="AI Sub-Agent Diagnostics and Telemetry Correlation — KrishiNirnay AI">
+
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/components.css">
+
+  <style>
+    .page-shell {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background-color: var(--color-background);
+    }
+    .page-header {
+      background-color: var(--color-surface);
+      border-bottom: 1px solid var(--color-border);
+      padding: var(--space-3) var(--space-6);
+      position: sticky;
+      top: 0;
+      z-index: var(--z-sticky);
+    }
+    .page-header-inner {
+      max-width: var(--max-content-width);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-4);
+    }
+    .page-body {
+      flex: 1;
+      max-width: var(--max-content-width);
+      margin: 0 auto;
+      width: 100%;
+      padding: var(--space-6);
+    }
+  </style>
+</head>
+<body class="page-shell">
+  <header class="page-header">
+    <div class="page-header-inner">
+      <a href="./dashboard.html" style="display: flex; align-items: center; gap: 8px; text-decoration: none; color: var(--color-text-primary); font-weight: bold;">
+        <span>🧠</span>
+        <span>KrishiNirnay AI — Autonomous Agent Registry</span>
+      </a>
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <button type="button" id="theme-toggle" class="btn btn-secondary btn-sm" aria-label="Toggle Theme">◐</button>
+        <a href="./dashboard.html" class="btn btn-secondary btn-sm">← Back to Dashboard</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="page-body">
+    <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 12px; margin-bottom: var(--space-6);">
+      <div>
+        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+          <span class="badge badge-info" id="badge-agent-id">AGENT: soil-agent</span>
+          <span class="badge badge-success">STATE: ACTIVE</span>
+        </div>
+        <h1 style="font-size: var(--font-size-2xl); font-weight: bold; color: var(--color-text-primary);" id="agent-title">
+          Soil Moisture & Root-Zone Agent
+        </h1>
+        <p style="font-size: var(--font-size-sm); color: var(--color-text-secondary); margin-top: 4px;" id="agent-desc">
+          Evaluates continuous virtual IoT dielectric readings, tracks soil water-holding capacity, and detects hydraulic stress.
+        </p>
+      </div>
+
+      <div style="display: flex; gap: 8px;">
+        <button type="button" class="btn btn-secondary btn-sm" onclick="UrlState.copyShareableUrl()">
+          🔗 Copy Deep Link
+        </button>
+        <a href="../index.html" class="btn btn-primary btn-sm">Master Harness →</a>
+      </div>
+    </div>
+
+    <!-- Agent Operational Telemetry Grid -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: var(--space-4); margin-bottom: var(--space-6);">
+      <div class="stat-pill">
+        <span class="stat-pill-label">Agent Ingestion Rate</span>
+        <div class="stat-pill-value">100 <span class="stat-pill-unit">Hz / sim</span></div>
+        <div style="font-size: 10px; color: var(--color-text-muted); margin-top: 6px;">Continuous virtual stream</div>
+      </div>
+
+      <div class="stat-pill">
+        <span class="stat-pill-label">Inference Latency</span>
+        <div class="stat-pill-value">12 <span class="stat-pill-unit">ms</span></div>
+        <div style="font-size: 10px; color: var(--color-text-muted); margin-top: 6px;">FastAPI Backend Microservice</div>
+      </div>
+
+      <div class="stat-pill">
+        <span class="stat-pill-label">Confidence Benchmark</span>
+        <div class="stat-pill-value">94.8 <span class="stat-pill-unit">%</span></div>
+        <div style="font-size: 10px; color: var(--color-text-muted); margin-top: 6px;">Multi-sensor ensemble</div>
+      </div>
+    </div>
+
+    <!-- Deep Link Parameter Verification Card -->
+    <article class="card">
+      <div class="card-title">
+        <span>Deep Link Parameter Verification</span>
+        <span class="badge badge-info">Section 54 Standard</span>
+      </div>
+      <p class="card-desc">
+        Deep links directly to specific autonomous agents via query parameter <code>agent-details.html?id=soil-agent</code>.
+      </p>
+
+      <div id="validation-report-box" style="padding: 12px; background-color: var(--color-surface-soft); border-radius: var(--radius-md); font-size: 13px; line-height: 1.5;">
+        Validating agent parameter...
+      </div>
+
+      <div style="margin-top: 16px; display: flex; flex-wrap: wrap; gap: 8px;">
+        <button type="button" class="btn btn-secondary btn-sm" onclick="switchAgentParam('soil-agent')">?id=soil-agent</button>
+        <button type="button" class="btn btn-secondary btn-sm" onclick="switchAgentParam('weather-agent')">?id=weather-agent</button>
+        <button type="button" class="btn btn-secondary btn-sm" onclick="switchAgentParam('irrigation-agent')">?id=irrigation-agent</button>
+        <button type="button" class="btn btn-secondary btn-sm" onclick="switchAgentParam('drone-vision-agent')">?id=drone-vision-agent</button>
+      </div>
+    </article>
+  </main>
+
+  <script src="../js/config.js"></script>
+  <script src="../js/utils.js"></script>
+  <script src="../js/api.js"></script>
+  <script src="../js/ui.js"></script>
+  <script src="../js/state.js"></script>
+  <script src="../js/router.js"></script>
+
+  <script>
+    const AGENTS_META = {
+      'soil-agent': {
+        title: 'Soil Moisture & Root-Zone Reasoning Agent',
+        desc: 'Evaluates continuous virtual IoT dielectric readings, tracks soil water-holding capacity, and detects hydraulic stress.'
+      },
+      'weather-agent': {
+        title: 'Weather & Microclimate Correlation Agent',
+        desc: 'Synthesizes Open-Meteo precipitation forecasts, detects heavy rain anomalies, and arbitrates conflicts.'
+      },
+      'irrigation-agent': {
+        title: 'Irrigation & Fertigation Orchestration Agent',
+        desc: 'Calculates crop evapotranspiration water balance and formulates zone-specific drip valve actuation schedules.'
+      },
+      'drone-vision-agent': {
+        title: 'Drone Multispectral Vision AI Agent',
+        desc: 'Runs pathogen inference models on drone orthomosaic captures with lesion bounding-box coordinates.'
+      }
+    };
+
+    function inspectUrlParam() {
+      const idParam = UrlState.get('id') || 'soil-agent';
+      const check = UrlState.validateId(idParam, 'agent');
+      const box = document.getElementById('validation-report-box');
+      const title = document.getElementById('agent-title');
+      const desc = document.getElementById('agent-desc');
+      const badge = document.getElementById('badge-agent-id');
+
+      if (check.valid) {
+        badge.textContent = `AGENT: ${check.sanitized}`;
+        badge.className = 'badge badge-info';
+        const meta = AGENTS_META[check.sanitized] || {
+          title: `Custom Agent: ${check.sanitized}`,
+          desc: 'Specialized autonomous agricultural reasoning agent.'
+        };
+        title.textContent = meta.title;
+        desc.textContent = meta.desc;
+
+        if (box) {
+          box.innerHTML = `
+            <span class="badge badge-success" style="margin-bottom: 6px;">✓ AGENT ID VALIDATED</span><br>
+            • <strong>Target Agent:</strong> <code>${Utils.escapeHtml(check.sanitized)}</code><br>
+            • <strong>Validation Check:</strong> Conforms to alphanumeric slug specification.<br>
+            • <strong>Backend API Path:</strong> <code>GET /api/agents/${encodeURIComponent(check.sanitized)}/status</code>
+          `;
+        }
+      } else {
+        badge.textContent = 'INVALID AGENT ID';
+        badge.className = 'badge badge-danger';
+        title.textContent = 'Agent Lookup Error';
+        if (box) {
+          box.innerHTML = `
+            <span class="badge badge-danger" style="margin-bottom: 6px;">✕ VALIDATION FAILED</span><br>
+            • <strong>Error:</strong> ${Utils.escapeHtml(check.error)}
+          `;
+        }
+      }
+    }
+
+    function switchAgentParam(val) {
+      UrlState.setParam('id', val);
+      inspectUrlParam();
+    }
+
+    window.addEventListener('DOMContentLoaded', inspectUrlParam);
+    window.addEventListener('krishinirnay:url_changed', inspectUrlParam);
+
+    document.getElementById('theme-toggle').addEventListener('click', () => {
+      const html = document.documentElement;
+      const current = html.getAttribute('data-theme') || 'light';
+      html.setAttribute('data-theme', current === 'light' ? 'dark' : 'light');
+    });
+  </script>
+</body>
+</html>

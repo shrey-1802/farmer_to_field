@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Page Not Found — KrishiNirnay AI</title>
+  <meta name="description" content="KrishiNirnay AI — Farm-to-Field Advisory & Action Orchestration Platform">
+
+  <!-- Core Stylesheets -->
+  <link rel="stylesheet" href="./css/variables.css">
+  <link rel="stylesheet" href="./css/reset.css">
+  <link rel="stylesheet" href="./css/components.css">
+
+  <style>
+    .notfound-shell {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: var(--space-6);
+      background-color: var(--color-background);
+      text-align: center;
+    }
+    .notfound-card {
+      max-width: 540px;
+      width: 100%;
+      background-color: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-xl);
+      padding: var(--space-8);
+      box-shadow: var(--shadow-md);
+    }
+    .notfound-icon {
+      font-size: 3.5rem;
+      margin-bottom: var(--space-4);
+      display: inline-block;
+    }
+    .notfound-code {
+      font-size: var(--font-size-3xl);
+      font-weight: 800;
+      color: var(--color-primary-800);
+      letter-spacing: -0.02em;
+    }
+    .notfound-title {
+      font-size: var(--font-size-xl);
+      font-weight: 700;
+      color: var(--color-text-primary);
+      margin-top: var(--space-2);
+    }
+    .notfound-desc {
+      font-size: var(--font-size-sm);
+      color: var(--color-text-secondary);
+      margin-top: var(--space-3);
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body class="notfound-shell">
+  <div class="notfound-card">
+    <div class="notfound-icon" aria-hidden="true">🌾</div>
+    <div class="badge badge-warning" style="margin-bottom: 8px;">HTTP 404 — Route Not Located</div>
+    <h1 class="notfound-code">404</h1>
+    <h2 class="notfound-title">Field Route Not Found</h2>
+    <p class="notfound-desc" id="notfound-message">
+      The requested farm-to-field page or operational endpoint could not be found. If you followed a deep link, the destination may have moved or been updated.
+    </p>
+
+    <!-- Deep Link Recovery Banner -->
+    <div id="recovery-box" style="display: none; margin-top: var(--space-4); padding: var(--space-3); background-color: var(--color-surface-soft); border: 1px solid var(--color-border); border-radius: var(--radius-md); font-size: var(--font-size-xs); text-align: left;">
+      <strong style="color: var(--color-primary-700);">Deep Link Detected:</strong>
+      <div id="recovery-link-display" style="font-family: monospace; word-break: break-all; margin-top: 4px; color: var(--color-text-primary);"></div>
+      <div style="margin-top: 8px;">
+        <a id="recovery-btn" href="#" class="btn btn-primary btn-sm">Navigate to Target →</a>
+      </div>
+    </div>
+
+    <div style="margin-top: var(--space-6); display: flex; flex-wrap: wrap; justify-content: center; gap: var(--space-3);">
+      <a href="./index.html" class="btn btn-primary">
+        🏠 Return to Master Overview
+      </a>
+      <a href="./pages/dashboard.html" class="btn btn-secondary">
+        👨‍🌾 Go to Farmer Dashboard
+      </a>
+    </div>
+  </div>
+
+  <script src="./js/config.js"></script>
+  <script src="./js/utils.js"></script>
+  <script>
+    // GitHub Pages SPA deep link recovery handler
+    (function () {
+      const path = window.location.pathname;
+      const search = window.location.search;
+
+      // Check if user was trying to access one of the standard pages
+      const knownPages = ['dashboard', 'field-details', 'agent-details', 'action-plans', 'execution', 'login', 'verify-otp'];
+      let target = null;
+      for (const p of knownPages) {
+        if (path.includes(p)) {
+          target = `./pages/${p}.html` + (search || '');
+          break;
+        }
+      }
+
+      if (target) {
+        const box = document.getElementById('recovery-box');
+        const display = document.getElementById('recovery-link-display');
+        const btn = document.getElementById('recovery-btn');
+        if (box && display && btn) {
+          box.style.display = 'block';
+          display.textContent = target;
+          btn.href = target;
+        }
+      }
+    })();
+  </script>
+</body>
+</html>

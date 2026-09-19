@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Verify Mobile OTP — KrishiNirnay AI</title>
+  <meta name="description" content="Verify your mobile number using the 6-digit OTP to access KrishiNirnay AI.">
+
+  <!-- Core Stylesheets -->
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/auth.css">
+</head>
+<body class="auth-viewport">
+
+  <!-- Accessible Header -->
+  <header class="auth-header">
+    <a href="../index.html" class="auth-brand" aria-label="KrishiNirnay AI Home">
+      <div class="auth-brand-icon" aria-hidden="true">🌱</div>
+      <div>
+        <span class="auth-brand-name">KrishiNirnay AI</span>
+      </div>
+    </a>
+    <div>
+      <button type="button" id="theme-toggle" class="btn btn-secondary btn-sm" aria-label="Toggle Theme">
+        <span>◐</span> <span id="theme-label">Dark Mode</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Verification Main Container -->
+  <main class="auth-container">
+    <div class="auth-card-split">
+
+      <!-- Left Hero Panel (Desktop) -->
+      <section class="auth-hero-panel">
+        <div>
+          <div class="badge badge-success" style="background: rgba(255, 255, 255, 0.2); color: #FFFFFF; border: none;">
+            Instant Farm Access
+          </div>
+          <h1 class="auth-hero-title">Verifying Your Identity</h1>
+          <p class="auth-hero-subtitle">
+            We prioritize your farm's security. Entering the one-time code verifies your mobile device and grants direct access to field telemetry, AI risk alerts, and action planner.
+          </p>
+
+          <div class="auth-feature-list">
+            <div class="auth-feature-item">
+              <span class="auth-feature-bullet">🔒</span>
+              <span>Encrypted session authorization</span>
+            </div>
+            <div class="auth-feature-item">
+              <span class="auth-feature-bullet">⚡</span>
+              <span>Real-time autonomous farm sync</span>
+            </div>
+            <div class="auth-feature-item">
+              <span class="auth-feature-bullet">📱</span>
+              <span>Zero passwords to remember</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="auth-hero-footer">
+          <span>KrishiNirnay AI • Autonomous Farm-to-Field Advisory</span>
+        </div>
+      </section>
+
+      <!-- Right Form Panel -->
+      <section class="auth-form-panel">
+        <h2 class="auth-heading">Verify your mobile number</h2>
+        <p class="auth-subheading">
+          OTP sent to <strong id="display-phone">+91 ••••• •••••</strong>
+        </p>
+
+        <!-- Inline Error Banner Target -->
+        <div id="otp-alert-container"></div>
+
+        <form id="otp-form" novalidate>
+          <div class="form-group">
+            <label class="form-label" id="otp-label">Enter the 6-digit OTP</label>
+
+            <!-- 6-digit OTP Input Boxes -->
+            <div class="otp-container" role="group" aria-labelledby="otp-label">
+              <input type="text" class="otp-box" maxlength="1" inputmode="numeric" pattern="[0-9]*" autocomplete="one-time-code" required aria-label="Digit 1">
+              <input type="text" class="otp-box" maxlength="1" inputmode="numeric" pattern="[0-9]*" required aria-label="Digit 2">
+              <input type="text" class="otp-box" maxlength="1" inputmode="numeric" pattern="[0-9]*" required aria-label="Digit 3">
+              <input type="text" class="otp-box" maxlength="1" inputmode="numeric" pattern="[0-9]*" required aria-label="Digit 4">
+              <input type="text" class="otp-box" maxlength="1" inputmode="numeric" pattern="[0-9]*" required aria-label="Digit 5">
+              <input type="text" class="otp-box" maxlength="1" inputmode="numeric" pattern="[0-9]*" required aria-label="Digit 6">
+            </div>
+
+            <!-- Hidden input to hold full code for easy form serialization -->
+            <input type="hidden" id="full-otp-value" name="otp">
+          </div>
+
+          <button type="submit" id="verify-otp-btn" class="btn btn-primary auth-btn-block">
+            Verify & Continue
+          </button>
+        </form>
+
+        <div class="auth-help-links">
+          <div>
+            <span>Didn't receive the OTP? </span>
+            <button type="button" id="resend-otp-btn" class="btn btn-sm btn-secondary" style="margin-left: 6px;" disabled>
+              Resend OTP (<span id="resend-timer">30</span>s)
+            </button>
+          </div>
+          <a href="./login.html" class="auth-link" style="margin-top: 8px;">Change mobile number</a>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Core JavaScript Architecture -->
+  <script src="../js/config.js"></script>
+  <script src="../js/utils.js"></script>
+  <script src="../js/api.js"></script>
+  <script src="../js/ui.js"></script>
+  <script src="../js/state.js"></script>
+  <script src="../js/auth.js"></script>
+
+  <script>
+    // Route guard: if already logged in, redirect to dashboard
+    Auth.requireGuest('./dashboard.html');
+
+    // Retrieve pending phone
+    const pendingPhone = Auth.getPendingPhone();
+    if (!pendingPhone) {
+      window.location.href = './login.html';
+    }
+
+    // Mask phone for display (+91 98765 •••••)
+    const displayPhoneEl = document.getElementById('display-phone');
+    if (pendingPhone) {
+      const clean = pendingPhone.replace(/\D/g, '').slice(-10);
+      displayPhoneEl.textContent = `+91 ${clean.slice(0, 5)} •••••`;
+    }
+
+    // Theme toggle handling
+    const themeBtn = document.getElementById('theme-toggle');
+    const themeLabel = document.getElementById('theme-label');
+    const htmlEl = document.documentElement;
+
+    themeBtn.addEventListener('click', () => {
+      const current = htmlEl.getAttribute('data-theme') || 'light';
+      const next = current === 'light' ? 'dark' : 'light';
+      htmlEl.setAttribute('data-theme', next);
+      themeLabel.textContent = next === 'light' ? 'Dark Mode' : 'Light Mode';
+    });
+
+    const otpBoxes = Array.from(document.querySelectorAll('.otp-box'));
+    const form = document.getElementById('otp-form');
+    const verifyBtn = document.getElementById('verify-otp-btn');
+    const resendBtn = document.getElementById('resend-otp-btn');
+    const resendTimerEl = document.getElementById('resend-timer');
+    const alertTarget = document.getElementById('otp-alert-container');
+
+    // Handle box input, backspace navigation, and paste
+    otpBoxes.forEach((box, index) => {
+      box.addEventListener('input', (e) => {
+        const val = box.value.replace(/\D/g, '');
+        box.value = val;
+
+        if (val) {
+          box.classList.add('filled');
+          if (index < otpBoxes.length - 1) {
+            otpBoxes[index + 1].focus();
+          }
+        } else {
+          box.classList.remove('filled');
+        }
+
+        AlertBanner.clear(alertTarget);
+
+        // Auto submit if all 6 boxes are filled
+        const allCode = otpBoxes.map(b => b.value).join('');
+        if (allCode.length === 6) {
+          form.dispatchEvent(new Event('submit'));
+        }
+      });
+
+      box.addEventListener('keydown', (e) => {
+        if (e.key === 'Backspace' && !box.value && index > 0) {
+          otpBoxes[index - 1].focus();
+        }
+      });
+
+      // Handle paste of 6-digit code
+      box.addEventListener('paste', (e) => {
+        e.preventDefault();
+        const pastedData = (e.clipboardData || window.clipboardData).getData('text');
+        const digits = pastedData.replace(/\D/g, '').slice(0, 6);
+
+        if (digits) {
+          digits.split('').forEach((digit, i) => {
+            if (otpBoxes[i]) {
+              otpBoxes[i].value = digit;
+              otpBoxes[i].classList.add('filled');
+            }
+          });
+
+          const nextIndex = Math.min(digits.length, otpBoxes.length - 1);
+          otpBoxes[nextIndex].focus();
+
+          if (digits.length === 6) {
+            form.dispatchEvent(new Event('submit'));
+          }
+        }
+      });
+    });
+
+    // Form Submission Handler
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const code = otpBoxes.map(b => b.value.trim()).join('');
+
+      if (code.length !== 6) {
+        AlertBanner.render(alertTarget, {
+          severity: 'warning',
+          title: 'Incomplete OTP',
+          message: 'Please enter all 6 digits of the one-time password.'
+        });
+        const firstEmpty = otpBoxes.find(b => !b.value);
+        if (firstEmpty) firstEmpty.focus();
+        return;
+      }
+
+      verifyBtn.disabled = true;
+      verifyBtn.innerHTML = '<span class="spinner"></span> Verifying & Continue...';
+
+      try {
+        const result = await Auth.verifyOtp(code);
+        Toast.success('Verification Successful', `Welcome back, ${result.user.name}!`);
+        setTimeout(() => {
+          window.location.href = './dashboard.html';
+        }, 700);
+      } catch (err) {
+        verifyBtn.disabled = false;
+        verifyBtn.textContent = 'Verify & Continue';
+
+        // Clear boxes on invalid code
+        otpBoxes.forEach(b => {
+          b.value = '';
+          b.classList.remove('filled');
+        });
+        otpBoxes[0].focus();
+
+        AlertBanner.render(alertTarget, {
+          severity: 'danger',
+          title: 'Verification Failed',
+          message: err.message || 'That OTP is not correct. Please check and try again.'
+        });
+      }
+    });
+
+    // Cooldown Timer Logic
+    let countdown = 30;
+    let timerInterval = null;
+
+    function startCooldown() {
+      countdown = 30;
+      resendBtn.disabled = true;
+      resendBtn.innerHTML = `Resend OTP (<span id="resend-timer">${countdown}</span>s)`;
+
+      if (timerInterval) clearInterval(timerInterval);
+
+      timerInterval = setInterval(() => {
+        countdown--;
+        const label = document.getElementById('resend-timer');
+        if (label) label.textContent = countdown;
+
+        if (countdown <= 0) {
+          clearInterval(timerInterval);
+          resendBtn.disabled = false;
+          resendBtn.textContent = 'Resend OTP';
+        }
+      }, 1000);
+    }
+
+    resendBtn.addEventListener('click', async () => {
+      resendBtn.disabled = true;
+      resendBtn.innerHTML = '<span class="spinner"></span> Resending...';
+
+      try {
+        await Auth.requestOtp(pendingPhone);
+        Toast.success('New OTP Dispatched', 'A fresh 6-digit code has been sent.');
+        startCooldown();
+        otpBoxes[0].focus();
+      } catch (err) {
+        resendBtn.disabled = false;
+        resendBtn.textContent = 'Resend OTP';
+        Toast.error('Resend Failed', err.message);
+      }
+    });
+
+    // Start countdown on page load and focus first box
+    window.addEventListener('DOMContentLoaded', () => {
+      startCooldown();
+      otpBoxes[0].focus();
+    });
+  </script>
+</body>
+</html>

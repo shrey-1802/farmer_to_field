@@ -1,0 +1,296 @@
+/**
+ * KrishiNirnay AI - Sensor Telemetry & Chart Styling
+ * Section 45 (Phase 39) & Section 16 (Phase 10) Compliance
+ * Green + White Agricultural Palette, Responsive Canvas, Accessible Screen Reader Table
+ */
+
+.telemetry-chart-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-5);
+  box-shadow: var(--shadow-sm);
+  transition: border-color var(--transition-normal);
+}
+
+.telemetry-chart-container:hover {
+  border-color: var(--color-border-strong);
+}
+
+/* Chart Header Area */
+.chart-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.chart-title-group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.chart-title {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+/* Mandatory Section 2, 3, 45 Virtual IoT Source Tag */
+.badge-virtual-iot {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background-color: #FEF3C7;
+  color: #92400E;
+  border: 1px solid #FCD34D;
+  font-size: 0.725rem;
+  font-weight: var(--font-weight-bold);
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+[data-theme="dark"] .badge-virtual-iot {
+  background-color: rgba(217, 119, 6, 0.2);
+  color: #FCD34D;
+  border-color: rgba(245, 158, 11, 0.4);
+}
+
+/* Selector Button Groups (Metric and Time-range) */
+.chart-selectors-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.segmented-control {
+  display: inline-flex;
+  background-color: var(--color-surface-soft);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 3px;
+  gap: 2px;
+}
+
+.segmented-btn {
+  border: none;
+  background: transparent;
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  padding: 6px 12px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+}
+
+.segmented-btn:hover {
+  color: var(--color-text-primary);
+  background-color: rgba(22, 163, 74, 0.08);
+}
+
+.segmented-btn.active {
+  background-color: var(--color-surface);
+  color: var(--color-primary-700);
+  font-weight: var(--font-weight-bold);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--color-border);
+}
+
+[data-theme="dark"] .segmented-btn.active {
+  color: var(--color-primary-400);
+  background-color: var(--color-surface-elevated);
+}
+
+/* Telemetry Summary Stats Row */
+.chart-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: var(--space-3);
+}
+
+.stat-pill {
+  background-color: var(--color-surface-soft);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-2) var(--space-3);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.stat-pill-label {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  font-weight: var(--font-weight-medium);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.stat-pill-value {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  display: flex;
+  align-items: baseline;
+  gap: 3px;
+}
+
+.stat-pill-unit {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+  font-weight: var(--font-weight-normal);
+}
+
+.stat-trend-rising {
+  color: var(--color-danger);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+}
+
+.stat-trend-falling {
+  color: var(--color-info);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+}
+
+.stat-trend-optimal {
+  color: var(--color-success);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+}
+
+/* Canvas Wrapper with Retina support */
+.chart-canvas-wrapper {
+  position: relative;
+  width: 100%;
+  height: 260px;
+  min-height: 220px;
+  user-select: none;
+}
+
+.chart-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  cursor: crosshair;
+}
+
+/* Interactive Floating Tooltip */
+.chart-tooltip {
+  position: absolute;
+  pointer-events: none;
+  z-index: var(--z-dropdown);
+  background-color: var(--color-surface-elevated);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-md);
+  padding: var(--space-2) var(--space-3);
+  box-shadow: var(--shadow-md);
+  display: none;
+  font-size: var(--font-size-xs);
+  line-height: 1.4;
+  white-space: nowrap;
+  transform: translate(-50%, -115%);
+  transition: opacity var(--transition-fast);
+}
+
+.chart-tooltip-time {
+  color: var(--color-text-muted);
+  font-size: 0.7rem;
+  margin-bottom: 2px;
+}
+
+.chart-tooltip-value {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+}
+
+.chart-tooltip-source {
+  font-size: 0.65rem;
+  font-weight: var(--font-weight-bold);
+  color: #D97706;
+  margin-top: 2px;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+/* Accessible Data Table (WCAG AAA Compliance) */
+.chart-a11y-section {
+  border-top: 1px dashed var(--color-border);
+  padding-top: var(--space-3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.chart-a11y-toggle-btn {
+  align-self: flex-start;
+  font-size: var(--font-size-xs);
+  color: var(--color-primary-700);
+  background: transparent;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 4px 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.chart-a11y-toggle-btn:hover {
+  background-color: var(--color-surface-soft);
+}
+
+.chart-a11y-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--font-size-xs);
+  margin-top: var(--space-2);
+}
+
+.chart-a11y-table th,
+.chart-a11y-table td {
+  padding: var(--space-2);
+  border: 1px solid var(--color-border);
+  text-align: left;
+}
+
+.chart-a11y-table th {
+  background-color: var(--color-surface-soft);
+  color: var(--color-text-primary);
+  font-weight: var(--font-weight-semibold);
+}
+
+/* High Contrast Adjustments */
+[data-high-contrast="true"] .telemetry-chart-container {
+  border: 3px solid #000000;
+  box-shadow: none;
+}
+
+[data-high-contrast="true"] .badge-virtual-iot {
+  border: 2px solid #000000;
+  color: #000000;
+  background-color: #FCD34D;
+}
+
+[data-high-contrast="true"] .segmented-btn.active {
+  border: 2px solid #000000;
+}

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Farmer Login — KrishiNirnay AI</title>
+  <meta name="description" content="Login to your KrishiNirnay AI farm dashboard using mobile number and OTP.">
+
+  <!-- Core Stylesheets -->
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/auth.css">
+</head>
+<body class="auth-viewport">
+
+  <!-- Minimal Accessible Header -->
+  <header class="auth-header">
+    <a href="../index.html" class="auth-brand" aria-label="KrishiNirnay AI Home">
+      <div class="auth-brand-icon" aria-hidden="true">🌱</div>
+      <div>
+        <span class="auth-brand-name">KrishiNirnay AI</span>
+      </div>
+    </a>
+    <div>
+      <button type="button" id="theme-toggle" class="btn btn-secondary btn-sm" aria-label="Toggle Theme">
+        <span>◐</span> <span id="theme-label">Dark Mode</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Login Main Container -->
+  <main class="auth-container">
+    <div class="auth-card-split">
+
+      <!-- Left Hero Panel (Agricultural Showcase - Desktop) -->
+      <section class="auth-hero-panel">
+        <div>
+          <div class="badge badge-success" style="background: rgba(255, 255, 255, 0.2); color: #FFFFFF; border: none;">
+            Autonomous AgTech Platform
+          </div>
+          <h1 class="auth-hero-title">From Farm Data to Intelligent Action</h1>
+          <p class="auth-hero-subtitle">
+            KrishiNirnay AI continuously monitors your crops, detects water stress, anticipates weather impacts, and helps you take timely field actions.
+          </p>
+
+          <div class="auth-feature-list">
+            <div class="auth-feature-item">
+              <span class="auth-feature-bullet">✓</span>
+              <span>Smart virtual soil & telemetry sensing</span>
+            </div>
+            <div class="auth-feature-item">
+              <span class="auth-feature-bullet">✓</span>
+              <span>Autonomous risk detection & advisory</span>
+            </div>
+            <div class="auth-feature-item">
+              <span class="auth-feature-bullet">✓</span>
+              <span>Direct farmer control & action approvals</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="auth-hero-footer">
+          <span>Trusted by modern farms • Fast & secure OTP access</span>
+        </div>
+      </section>
+
+      <!-- Right Form Panel -->
+      <section class="auth-form-panel">
+        <h2 class="auth-heading">Welcome, Farmer</h2>
+        <p class="auth-subheading">Login to your farm with your mobile number</p>
+
+        <!-- Inline Error Banner Target -->
+        <div id="login-alert-container"></div>
+
+        <form id="login-form" novalidate>
+          <div class="form-group">
+            <label for="mobile-number" class="form-label">Enter your mobile number</label>
+            <div class="phone-input-group">
+              <span class="phone-prefix" aria-hidden="true">+91</span>
+              <input
+                type="tel"
+                id="mobile-number"
+                name="phone"
+                class="phone-input"
+                placeholder="98765 43210"
+                maxlength="10"
+                inputmode="numeric"
+                autocomplete="tel-national"
+                required
+                aria-describedby="phone-hint"
+              >
+            </div>
+            <span id="phone-hint" class="resend-timer-label" style="display: block; margin-top: 6px;">
+              We'll send a 6-digit one-time password to verify your number.
+            </span>
+          </div>
+
+          <button type="submit" id="send-otp-btn" class="btn btn-primary auth-btn-block">
+            Send OTP
+          </button>
+        </form>
+
+        <div class="auth-help-links">
+          <span>By continuing, you agree to KrishiNirnay AI's agricultural terms & privacy guidelines.</span>
+          <a href="../index.html" class="auth-link">← Return to System Overview</a>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Core JavaScript Architecture -->
+  <script src="../js/config.js"></script>
+  <script src="../js/utils.js"></script>
+  <script src="../js/api.js"></script>
+  <script src="../js/ui.js"></script>
+  <script src="../js/state.js"></script>
+  <script src="../js/auth.js"></script>
+
+  <script>
+    // Route guard: if already logged in, redirect to dashboard
+    Auth.requireGuest('./dashboard.html');
+
+    // Theme toggle handling
+    const themeBtn = document.getElementById('theme-toggle');
+    const themeLabel = document.getElementById('theme-label');
+    const htmlEl = document.documentElement;
+
+    themeBtn.addEventListener('click', () => {
+      const current = htmlEl.getAttribute('data-theme') || 'light';
+      const next = current === 'light' ? 'dark' : 'light';
+      htmlEl.setAttribute('data-theme', next);
+      themeLabel.textContent = next === 'light' ? 'Dark Mode' : 'Light Mode';
+    });
+
+    const phoneInput = document.getElementById('mobile-number');
+    const form = document.getElementById('login-form');
+    const submitBtn = document.getElementById('send-otp-btn');
+    const alertTarget = document.getElementById('login-alert-container');
+
+    // Filter non-numeric characters on type
+    phoneInput.addEventListener('input', (e) => {
+      phoneInput.value = phoneInput.value.replace(/\D/g, '').slice(0, 10);
+      AlertBanner.clear(alertTarget);
+    });
+
+    // Form Submission Handler
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const phone = phoneInput.value.trim();
+
+      if (!Auth.isValidPhone(phone)) {
+        AlertBanner.render(alertTarget, {
+          severity: 'warning',
+          title: 'Invalid Mobile Number',
+          message: 'Please enter a valid 10-digit Indian mobile number.'
+        });
+        phoneInput.focus();
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<span class="spinner"></span> Sending OTP...';
+
+      try {
+        await Auth.requestOtp(phone);
+        Toast.success('OTP Sent', `Verification code sent to +91 ${phone.slice(0, 5)} ${phone.slice(5)}`);
+        setTimeout(() => {
+          window.location.href = './verify-otp.html';
+        }, 600);
+      } catch (err) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Send OTP';
+
+        AlertBanner.render(alertTarget, {
+          severity: 'danger',
+          title: 'Unable to Send OTP',
+          message: err.message || 'We could not send the OTP right now. Please check your connection and try again.',
+          onRetry: () => form.dispatchEvent(new Event('submit'))
+        });
+      }
+    });
+
+    // Auto-focus input on open
+    window.addEventListener('DOMContentLoaded', () => {
+      phoneInput.focus();
+    });
+  </script>
+</body>
+</html>

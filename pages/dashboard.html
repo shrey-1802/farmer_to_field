@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Farmer Dashboard — KrishiNirnay AI</title>
+  <meta name="description" content="Autonomous Farm-to-Field Advisory & Action Orchestration Platform for Farmers.">
+
+  <!-- Core Stylesheets -->
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/components.css">
+
+  <style>
+    .dash-shell {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background-color: var(--color-background);
+    }
+
+    .dash-header {
+      background-color: var(--color-surface);
+      border-bottom: 1px solid var(--color-border);
+      padding: var(--space-3) var(--space-6);
+      position: sticky;
+      top: 0;
+      z-index: var(--z-sticky);
+    }
+
+    .dash-header-inner {
+      max-width: var(--max-content-width);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-4);
+    }
+
+    .dash-brand {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      text-decoration: none;
+    }
+
+    .dash-brand-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: var(--radius-md);
+      background: linear-gradient(135deg, var(--color-primary-600), var(--color-primary-800));
+      color: #FFFFFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+    }
+
+    .dash-user-bar {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+    }
+
+    .dash-user-badge {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      padding: var(--space-1) var(--space-3);
+      background-color: var(--color-surface-soft);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-full);
+      font-size: var(--font-size-sm);
+      font-weight: var(--font-weight-semibold);
+      color: var(--color-text-primary);
+    }
+
+    .dash-body {
+      flex: 1;
+      max-width: var(--max-content-width);
+      margin: 0 auto;
+      width: 100%;
+      padding: var(--space-6);
+    }
+
+    .greeting-banner {
+      margin-bottom: var(--space-6);
+    }
+
+    .greeting-title {
+      font-size: var(--font-size-3xl);
+      font-weight: var(--font-weight-bold);
+      color: var(--color-text-primary);
+      letter-spacing: -0.02em;
+    }
+
+    .greeting-sub {
+      font-size: var(--font-size-base);
+      color: var(--color-text-secondary);
+      margin-top: var(--space-1);
+    }
+
+    .dash-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: var(--space-6);
+    }
+
+    .stat-card-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: var(--space-4);
+      margin-bottom: var(--space-6);
+    }
+
+    .stat-box {
+      padding: var(--space-4);
+      background-color: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-xs);
+    }
+
+    .stat-label {
+      font-size: var(--font-size-xs);
+      color: var(--color-text-muted);
+      font-weight: var(--font-weight-medium);
+    }
+
+    .stat-val {
+      font-size: var(--font-size-2xl);
+      font-weight: var(--font-weight-bold);
+      color: var(--color-text-primary);
+      margin: var(--space-1) 0;
+    }
+
+    .stat-source {
+      font-size: 10px;
+      font-weight: var(--font-weight-semibold);
+      color: var(--color-text-muted);
+    }
+
+    .alert-priority-card {
+      border: 1.5px solid var(--color-warning-border);
+      background-color: var(--color-warning-bg);
+      border-radius: var(--radius-lg);
+      padding: var(--space-5);
+      margin-bottom: var(--space-6);
+    }
+
+    @media (max-width: 900px) {
+      .dash-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body class="dash-shell">
+
+  <!-- Header with Session Information -->
+  <header class="dash-header">
+    <div class="dash-header-inner">
+      <a href="./dashboard.html" class="dash-brand">
+        <div class="dash-brand-icon" aria-hidden="true">🌱</div>
+        <div>
+          <span style="font-size: 18px; font-weight: 700; color: var(--color-text-primary);">KrishiNirnay AI</span>
+        </div>
+      </a>
+
+      <div class="dash-user-bar">
+        <div class="dash-user-badge">
+          <span>👨‍🌾</span>
+          <span id="farmer-name-display">Farmer</span>
+        </div>
+        <button type="button" id="theme-toggle" class="btn btn-secondary btn-sm" aria-label="Toggle Theme">
+          <span>◐</span>
+        </button>
+        <button type="button" id="logout-btn" class="btn btn-danger btn-sm">
+          Logout
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Dashboard View -->
+  <main class="dash-body">
+    <!-- Farmer Greeting -->
+    <section class="greeting-banner">
+      <div class="badge badge-success" style="margin-bottom: 8px;">Authenticated Farmer Session Active</div>
+      <h1 class="greeting-title" id="greeting-headline">Welcome, Farmer</h1>
+      <p class="greeting-sub">Here is what is happening across your fields today.</p>
+    </section>
+
+    <!-- Phase 46 (Section 52): Continuous Monitoring Autonomous Loop Visualizer -->
+    <section id="dashboard-autonomous-loop-container" style="margin-bottom: var(--space-6);" aria-label="Autonomous Closed-Loop Pipeline">
+      <!-- Dynamically mounted via AutonomousLoop.render -->
+    </section>
+
+    <!-- Priority Alert Card (Section 71.3) -->
+    <section class="alert-priority-card">
+      <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <span style="font-size: 24px;">⚠</span>
+          <div>
+            <h2 style="font-size: 18px; font-weight: 700; color: var(--color-text-primary);">Attention Needed: Low Soil Moisture</h2>
+            <p style="font-size: 14px; color: var(--color-text-secondary); margin-top: 2px;">
+              Water stress detected in <strong>Field 2 (Wheat & Grain)</strong>
+            </p>
+          </div>
+        </div>
+        <span class="badge badge-danger">HIGH SEVERITY</span>
+      </div>
+
+      <div style="margin-top: 14px; display: flex; flex-wrap: wrap; gap: 20px; font-size: 13px; color: var(--color-text-secondary);">
+        <span>Confidence: <strong>91%</strong></span>
+        <span>Detected: <strong>10 minutes ago</strong></span>
+        <span>Recommended Action: <strong>Schedule 25mm Drip Irrigation</strong></span>
+      </div>
+
+      <div style="margin-top: 16px; display: flex; gap: 10px;">
+        <button type="button" class="btn btn-primary btn-sm" onclick="Toast.info('Action Planner', 'Opening Action Plan for Field 2...')">
+          View Proposed Action
+        </button>
+        <button type="button" class="btn btn-secondary btn-sm" onclick="Toast.info('Risk Center', 'Opening Risk Analysis...')">
+          View Risk Evidence
+        </button>
+      </div>
+    </section>
+
+    <!-- Stat Row -->
+    <section class="stat-card-row">
+      <div class="stat-box">
+        <span class="stat-label">Farm Health Index</span>
+        <div class="stat-val" style="color: var(--color-primary-700);">94%</div>
+        <span class="stat-source">STATUS: HEALTHY</span>
+      </div>
+
+      <div class="stat-box">
+        <span class="stat-label">Avg Soil Moisture</span>
+        <div class="stat-val">39.2%</div>
+        <span class="stat-source">SOURCE: SIMULATED — Virtual IoT</span>
+      </div>
+
+      <div class="stat-box">
+        <span class="stat-label">Weather Forecast</span>
+        <div class="stat-val">31°C ☀</div>
+        <span class="stat-source">FastAPI Backend Sync</span>
+      </div>
+
+      <div class="stat-box">
+        <span class="stat-label">Active Fields</span>
+        <div class="stat-val">4 Fields</div>
+        <span class="stat-source">Total Area: 45 Acres</span>
+      </div>
+    </section>
+
+    <!-- Navigations & Deep Links (Section 54) -->
+    <section class="card">
+      <div class="card-title">
+        <span>System Navigation & Deep Links</span>
+        <span class="badge badge-info">Section 54 Deep Links</span>
+      </div>
+      <p class="card-desc">
+        Direct deep linking to operational entities with query parameter routing and strict ID validation:
+      </p>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px;">
+        <a href="./field-details.html?field=123" class="btn btn-secondary btn-sm">🌾 Field #123 Details</a>
+        <a href="./agent-details.html?id=soil-agent" class="btn btn-secondary btn-sm">🧠 Soil Agent Diagnostics</a>
+        <a href="./action-plans.html?action=456" class="btn btn-secondary btn-sm">📋 Action Plan #456</a>
+        <a href="./execution.html?task=789" class="btn btn-secondary btn-sm">⚡ Execution Task #789</a>
+      </div>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 10px; border-top: 1px dashed var(--color-border); padding-top: 12px;">
+        <a href="../index.html" class="btn btn-primary btn-sm">← Return to Master Verification Harness</a>
+        <button type="button" class="btn btn-danger btn-sm" onclick="Auth.logout()">Simulate Farmer Logout</button>
+      </div>
+    </section>
+  </main>
+
+  <!-- Core JavaScript Architecture -->
+  <script src="../js/config.js"></script>
+  <script src="../js/utils.js"></script>
+  <script src="../js/api.js"></script>
+  <script src="../js/ui.js"></script>
+  <script src="../js/state.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/loop.js"></script>
+  <script src="../js/router.js"></script>
+
+  <script>
+    // Route guard: requires authenticated session
+    if (!Auth.requireAuth('./login.html')) {
+      // Stopped by route guard
+    }
+
+    // Populate user profile
+    const user = Auth.getCurrentUser();
+    if (user && user.name) {
+      document.getElementById('farmer-name-display').textContent = user.name;
+      document.getElementById('greeting-headline').textContent = `Good morning, ${user.name}`;
+    }
+
+    // Initialize Phase 46 Continuous Monitoring Autonomous Loop Component
+    if (window.AutonomousLoop) {
+      AutonomousLoop.render('#dashboard-autonomous-loop-container', { idPrefix: 'dash-loop' });
+      // Synchronize with initial water stress alert on dashboard
+      AutonomousLoop.syncWithBackendState('stress');
+    }
+
+    // Theme toggle handling
+    const themeBtn = document.getElementById('theme-toggle');
+    const htmlEl = document.documentElement;
+
+    themeBtn.addEventListener('click', () => {
+      const current = htmlEl.getAttribute('data-theme') || 'light';
+      const next = current === 'light' ? 'dark' : 'light';
+      htmlEl.setAttribute('data-theme', next);
+    });
+
+    // Logout handler
+    document.getElementById('logout-btn').addEventListener('click', () => {
+      Auth.logout();
+    });
+  </script>
+</body>
+</html>

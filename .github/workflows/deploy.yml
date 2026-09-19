@@ -1,0 +1,100 @@
+name: Deploy KrishiNirnay AI to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  workflow_dispatch:
+
+# Permissions required for GitHub Pages deployment
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  # Build and validation job
+  validate-and-deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Validate Required Files
+        run: |
+          echo "=== 1. Validating Critical Frontend Files ==="
+          test -f index.html || (echo "ERROR: index.html is missing at repository root!" && exit 1)
+          test -f 404.html || (echo "ERROR: 404.html is missing at repository root!" && exit 1)
+          test -d css || (echo "ERROR: css directory is missing!" && exit 1)
+          test -d js || (echo "ERROR: js directory is missing!" && exit 1)
+          test -d pages || (echo "ERROR: pages directory is missing!" && exit 1)
+          test -f css/variables.css || (echo "ERROR: css/variables.css is missing!" && exit 1)
+          test -f css/components.css || (echo "ERROR: css/components.css is missing!" && exit 1)
+          test -f js/config.js || (echo "ERROR: js/config.js is missing!" && exit 1)
+          test -f js/api.js || (echo "ERROR: js/api.js is missing!" && exit 1)
+          test -f js/state.js || (echo "ERROR: js/state.js is missing!" && exit 1)
+          test -f js/router.js || (echo "ERROR: js/router.js is missing!" && exit 1)
+          test -f pages/dashboard.html || (echo "ERROR: pages/dashboard.html is missing!" && exit 1)
+          test -f pages/field-details.html || (echo "ERROR: pages/field-details.html is missing!" && exit 1)
+          test -f pages/agent-details.html || (echo "ERROR: pages/agent-details.html is missing!" && exit 1)
+          test -f pages/action-plans.html || (echo "ERROR: pages/action-plans.html is missing!" && exit 1)
+          test -f pages/execution.html || (echo "ERROR: pages/execution.html is missing!" && exit 1)
+          echo "✓ All critical frontend files verified successfully."
+
+      - name: Run Frontend Static Compliance Checks
+        run: |
+          echo "=== 2. Running Frontend Static Compliance Checks (Section 55 & 56) ==="
+          python3 - << 'EOF'
+          import glob
+          import os
+          import re
+          import sys
+
+          violations = []
+
+          # Check HTML files for absolute root paths (href="/..." or src="/...")
+          html_files = glob.glob("**/*.html", recursive=True)
+          for hf in html_files:
+              with open(hf, "r", encoding="utf-8") as f:
+                  content = f.read()
+              bad_links = re.findall(r'(?:href|src)=["\'](/[^/"\'][^"\']*)["\']', content)
+              if bad_links:
+                  violations.append(f"{hf}: Found illegal absolute root links: {bad_links}")
+
+          # Check JS files for Node runtime constructs (require, process.env)
+          js_files = glob.glob("js/*.js")
+          for jf in js_files:
+              with open(jf, "r", encoding="utf-8") as f:
+                  content = f.read()
+              if re.search(r'\bprocess\.env\b', content) or re.search(r'\brequire\([\'"]', content):
+                  violations.append(f"{jf}: Found illegal Node runtime construct")
+
+          if violations:
+              print("✕ Static checks failed with violations:")
+              for v in violations:
+                  print(f"  - {v}")
+              sys.exit(1)
+          else:
+              print("✓ All static compliance checks passed cleanly: 100% relative paths and zero Node dependencies.")
+          EOF
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload Artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: "."
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

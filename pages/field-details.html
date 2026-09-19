@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Field Details — KrishiNirnay AI</title>
+  <meta name="description" content="Field Telemetry and Operational Intelligence — KrishiNirnay AI">
+
+  <!-- Core Stylesheets -->
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/charts.css">
+
+  <style>
+    .page-shell {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background-color: var(--color-background);
+    }
+    .page-header {
+      background-color: var(--color-surface);
+      border-bottom: 1px solid var(--color-border);
+      padding: var(--space-3) var(--space-6);
+      position: sticky;
+      top: 0;
+      z-index: var(--z-sticky);
+    }
+    .page-header-inner {
+      max-width: var(--max-content-width);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-4);
+    }
+    .page-body {
+      flex: 1;
+      max-width: var(--max-content-width);
+      margin: 0 auto;
+      width: 100%;
+      padding: var(--space-6);
+    }
+    .field-card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: var(--space-4);
+      margin-bottom: var(--space-6);
+    }
+  </style>
+</head>
+<body class="page-shell">
+  <header class="page-header">
+    <div class="page-header-inner">
+      <a href="./dashboard.html" style="display: flex; align-items: center; gap: 8px; text-decoration: none; color: var(--color-text-primary); font-weight: bold;">
+        <span>🌱</span>
+        <span>KrishiNirnay AI — Field Details</span>
+      </a>
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <button type="button" id="theme-toggle" class="btn btn-secondary btn-sm" aria-label="Toggle Theme">◐</button>
+        <a href="./dashboard.html" class="btn btn-secondary btn-sm">← Back to Dashboard</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="page-body">
+    <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 12px; margin-bottom: var(--space-6);">
+      <div>
+        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+          <span class="badge badge-success" id="badge-field-id">FIELD #123</span>
+          <span class="badge badge-neutral" id="badge-url-state">URL STATE: SYNCHRONIZED</span>
+        </div>
+        <h1 style="font-size: var(--font-size-2xl); font-weight: bold; color: var(--color-text-primary);" id="field-title">
+          Wheat & Grain Production Block
+        </h1>
+        <p style="font-size: var(--font-size-sm); color: var(--color-text-secondary); margin-top: 4px;" id="field-meta">
+          Durum Wheat • 18.5 Hectares • Black Clay Loam • Micro-Drip Irrigation
+        </p>
+      </div>
+
+      <div style="display: flex; gap: 8px;">
+        <button type="button" class="btn btn-secondary btn-sm" onclick="UrlState.copyShareableUrl()">
+          🔗 Copy Deep Link
+        </button>
+        <button type="button" class="btn btn-primary btn-sm" onclick="Toast.success('Refreshed', 'Telemetry synced for field.')">
+          ↻ Sync Telemetry
+        </button>
+      </div>
+    </div>
+
+    <!-- Field Telemetry Grid -->
+    <div class="field-card-grid">
+      <div class="stat-pill">
+        <span class="stat-pill-label">Soil Moisture (Virtual IoT)</span>
+        <div class="stat-pill-value">
+          <span id="f-moisture">42.4</span>
+          <span class="stat-pill-unit">%</span>
+        </div>
+        <div style="font-size: 10px; color: var(--color-text-muted); margin-top: 6px;">
+          SOURCE: SIMULATED — Virtual IoT
+        </div>
+      </div>
+
+      <div class="stat-pill">
+        <span class="stat-pill-label">Soil Temperature</span>
+        <div class="stat-pill-value">
+          <span id="f-temp">25.8</span>
+          <span class="stat-pill-unit">°C</span>
+        </div>
+        <div style="font-size: 10px; color: var(--color-text-muted); margin-top: 6px;">
+          Nominal Agronomic Range
+        </div>
+      </div>
+
+      <div class="stat-pill">
+        <span class="stat-pill-label">Electrical Conductivity (EC)</span>
+        <div class="stat-pill-value">
+          <span>1.42</span>
+          <span class="stat-pill-unit">dS/m</span>
+        </div>
+        <div style="font-size: 10px; color: var(--color-text-muted); margin-top: 6px;">
+          Nutrient Ion Balance: OPTIMAL
+        </div>
+      </div>
+
+      <div class="stat-pill">
+        <span class="stat-pill-label">Soil Nitrogen (N)</span>
+        <div class="stat-pill-value">
+          <span>185</span>
+          <span class="stat-pill-unit">mg/kg</span>
+        </div>
+        <div style="font-size: 10px; color: var(--color-text-muted); margin-top: 6px;">
+          Target: 160-220 mg/kg
+        </div>
+      </div>
+    </div>
+
+    <!-- Parameter Validation Inspector Card -->
+    <article class="card">
+      <div class="card-title">
+        <span>Deep Link Parameter Verification</span>
+        <span class="badge badge-info">Section 54 Standard</span>
+      </div>
+      <p class="card-desc">
+        Demonstrates URL parameter reading (<code>?field=123</code>), strict ID validation against path traversal / XSS, and state hydration.
+      </p>
+
+      <div id="validation-report-box" style="padding: 12px; background-color: var(--color-surface-soft); border-radius: var(--radius-md); font-size: 13px; line-height: 1.5;">
+        Validating field parameter...
+      </div>
+
+      <div style="margin-top: 16px; display: flex; flex-wrap: wrap; gap: 8px;">
+        <button type="button" class="btn btn-secondary btn-sm" onclick="switchFieldParam('123')">Test ?field=123</button>
+        <button type="button" class="btn btn-secondary btn-sm" onclick="switchFieldParam('north_block_b')">Test ?field=north_block_b</button>
+        <button type="button" class="btn btn-secondary btn-sm" onclick="switchFieldParam('invalid_id<script>')">Test Invalid ?field=&lt;script&gt;</button>
+      </div>
+    </article>
+  </main>
+
+  <!-- Core Scripts -->
+  <script src="../js/config.js"></script>
+  <script src="../js/utils.js"></script>
+  <script src="../js/api.js"></script>
+  <script src="../js/ui.js"></script>
+  <script src="../js/state.js"></script>
+  <script src="../js/router.js"></script>
+
+  <script>
+    function inspectUrlParam() {
+      const fieldParam = UrlState.get('field') || '123';
+      const check = UrlState.validateId(fieldParam, 'field');
+      const box = document.getElementById('validation-report-box');
+      const title = document.getElementById('field-title');
+      const badge = document.getElementById('badge-field-id');
+
+      if (check.valid) {
+        badge.textContent = `FIELD #${check.sanitized}`;
+        badge.className = 'badge badge-success';
+        title.textContent = `Field #${check.sanitized} — Agricultural Intelligence`;
+        if (box) {
+          box.innerHTML = `
+            <span class="badge badge-success" style="margin-bottom: 6px;">✓ ID VALIDATION PASSED</span><br>
+            • <strong>Parsed Value:</strong> <code>${Utils.escapeHtml(check.sanitized)}</code><br>
+            • <strong>Entity Rule:</strong> Validated against <code>^[a-zA-Z0-9_-]{1,32}$</code>.<br>
+            • <strong>Backend API Readiness:</strong> Clean and safe for <code>GET /api/fields/${encodeURIComponent(check.sanitized)}</code>.
+          `;
+        }
+      } else {
+        badge.textContent = 'INVALID FIELD ID';
+        badge.className = 'badge badge-danger';
+        title.textContent = 'Field Validation Error';
+        if (box) {
+          box.innerHTML = `
+            <span class="badge badge-danger" style="margin-bottom: 6px;">✕ ID VALIDATION FAILED</span><br>
+            • <strong>Raw Input:</strong> <code>${Utils.escapeHtml(fieldParam)}</code><br>
+            • <strong>Rejection Reason:</strong> ${Utils.escapeHtml(check.error)}<br>
+            • <strong>Security Shield:</strong> Malicious or malformed ID blocked from sending API requests.
+          `;
+        }
+      }
+    }
+
+    function switchFieldParam(val) {
+      UrlState.setParam('field', val);
+      inspectUrlParam();
+    }
+
+    window.addEventListener('DOMContentLoaded', inspectUrlParam);
+    window.addEventListener('krishinirnay:url_changed', inspectUrlParam);
+
+    // Theme toggle
+    document.getElementById('theme-toggle').addEventListener('click', () => {
+      const html = document.documentElement;
+      const current = html.getAttribute('data-theme') || 'light';
+      html.setAttribute('data-theme', current === 'light' ? 'dark' : 'light');
+    });
+  </script>
+</body>
+</html>
