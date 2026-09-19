@@ -146,6 +146,20 @@ export class ApiError extends Error {
 
 // ─── Domain Functions — Authentication (Section 36) ─────────────────────────
 
+export async function registerUser(userData) {
+  return apiRequest('/auth/register', {
+    method: 'POST',
+    body: JSON.stringify(userData)
+  });
+}
+
+export async function loginUser(credentials) {
+  return apiRequest('/auth/login', {
+    method: 'POST',
+    body: JSON.stringify(credentials)
+  });
+}
+
 export async function sendOTP(mobile) {
   return apiRequest('/auth/send-otp', {
     method: 'POST',
@@ -202,6 +216,14 @@ export async function getSensors(farmId) {
   return farmId ? apiRequest(`/sensors?farm_id=${farmId}`) : apiRequest('/sensors');
 }
 
+export async function createSensor(data) {
+  return apiRequest('/sensors', { method: 'POST', body: JSON.stringify(data) });
+}
+
+export async function getSensor(sensorId) {
+  return apiRequest(`/sensors/${sensorId}`);
+}
+
 export async function getSensorReadings(sensorId) {
   return apiRequest(`/sensors/${sensorId}/readings`);
 }
@@ -211,6 +233,14 @@ export async function getZoneSensors(zoneId) {
 }
 
 // ─── Domain Functions — Weather (Section 36) ────────────────────────────────
+
+export async function getWeatherCurrent() {
+  return apiRequest('/weather/current');
+}
+
+export async function getWeatherFarm(farmId) {
+  return apiRequest(`/weather/farm/${farmId}`);
+}
 
 export async function getWeather(farmId) {
   return apiRequest(farmId ? `/weather/farm/${farmId}` : '/weather/current');
@@ -330,8 +360,12 @@ export async function getExecution(jobId) {
 
 // ─── Domain Functions — Notifications / Alerts (Section 36) ─────────────────
 
-export async function getNotifications(farmId) {
+export async function getAlerts(farmId) {
   return apiRequest(farmId ? `/alerts?farm_id=${farmId}` : '/alerts');
+}
+
+export async function getNotifications(farmId) {
+  return getAlerts(farmId);
 }
 
 export async function acknowledgeAlert(alertId) {
@@ -358,6 +392,34 @@ export async function runSimulation(scenario, farmId) {
   return apiRequest(`/simulation/${scenario}${qs}`, { method: 'POST' });
 }
 
+export async function simulateWaterStress(farmId) {
+  return runSimulation('water-stress', farmId);
+}
+
+export async function simulateDisease(farmId) {
+  return runSimulation('disease', farmId);
+}
+
+export async function simulateNutrient(farmId) {
+  return runSimulation('nutrient', farmId);
+}
+
+export async function simulateHeavyRain(farmId) {
+  return runSimulation('heavy-rain', farmId);
+}
+
+export async function simulateHeatWave(farmId) {
+  return runSimulation('heat-wave', farmId);
+}
+
+export async function simulateSensorFailure(farmId) {
+  return runSimulation('sensor-failure', farmId);
+}
+
+export async function resetSimulation(farmId) {
+  return runSimulation('reset', farmId);
+}
+
 export async function getSimulationStatus(farmId) {
   const qs = farmId ? `?farm_id=${farmId}` : '';
   return apiRequest(`/simulation/status${qs}`);
@@ -367,13 +429,13 @@ export async function getSimulationStatus(farmId) {
 
 const api = {
   // Auth
-  sendOTP, verifyOTP, getCurrentUser, logoutUser,
+  registerUser, loginUser, sendOTP, verifyOTP, getCurrentUser, logoutUser,
   // Farms / Fields / Sensors
   getFarms, getFarm, createFarm,
   getFields, getField, createField,
-  getSensors, getSensorReadings, getZoneSensors,
+  getSensors, getSensor, createSensor, getSensorReadings, getZoneSensors,
   // Weather
-  getWeather, getWeatherForecast, getWeatherHourly,
+  getWeather, getWeatherCurrent, getWeatherFarm, getWeatherForecast, getWeatherHourly,
   // Agents / Risks / Actions
   getAgents, getAgent, getAgentRuns,
   getRisks, getRisk,
@@ -382,9 +444,12 @@ const api = {
   getTasks, getTask, startTask, completeTask, failTask,
   startExecution, pauseExecution, stopExecution, getExecution,
   // Notifications / Alerts
-  getNotifications, acknowledgeAlert,
+  getAlerts, getNotifications, acknowledgeAlert,
   // Simulation
-  runSimulation, getSimulationStatus
+  runSimulation, simulateWaterStress, simulateDisease, simulateNutrient,
+  simulateHeavyRain, simulateHeatWave, simulateSensorFailure, resetSimulation,
+  getSimulationStatus
 };
 
 export default api;
+
