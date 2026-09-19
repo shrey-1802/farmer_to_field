@@ -16,6 +16,9 @@ from app.api.routes.tasks import router as tasks_router
 from app.api.routes.execution import router as execution_router
 from app.api.routes.experts import router as experts_router
 from app.api.routes.alerts import router as alerts_router
+from app.api.routes.reports import router as reports_router
+from app.api.routes.audit import router as audit_router
+from app.api.routes.water_stress_demo import router as water_stress_router
 
 api_router = APIRouter()
 
@@ -47,6 +50,9 @@ api_router.include_router(tasks_router)
 api_router.include_router(execution_router)
 api_router.include_router(experts_router)
 api_router.include_router(alerts_router)
+api_router.include_router(reports_router)
+api_router.include_router(audit_router)
+api_router.include_router(water_stress_router)
 
 
 
