@@ -6,6 +6,7 @@
 
 import themeManager from './theme.js';
 import APP_CONFIG from './config.js';
+import authManager from './auth.js';
 
 class ApplicationShell {
   constructor() {
@@ -13,6 +14,14 @@ class ApplicationShell {
   }
 
   init() {
+    const isAuthPage = window.location.pathname.includes('login.html') ||
+                       window.location.pathname.includes('verify-otp.html') ||
+                       window.location.pathname.includes('onboarding.html');
+
+    if (!isAuthPage) {
+      if (!authManager.requireAuth()) return;
+    }
+
     this.setupThemeToggle();
     this.setupSidebarDrawer();
     this.setupActiveNavigation();
