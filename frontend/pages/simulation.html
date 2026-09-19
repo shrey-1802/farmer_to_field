@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Virtual IoT Sensor & Agronomic Scenario Simulation Center - KrishiNirnay AI">
+  <title>Simulation Center — KrishiNirnay AI</title>
+  <link rel="icon" type="image/svg+xml" href="../assets/icons/sprout.svg">
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/simulation.css">
+  <script type="module" src="../js/theme.js"></script>
+</head>
+<body class="app-body">
+  <header class="app-header">
+    <div class="header-left">
+      <button id="sidebar-toggle-btn" class="icon-button mobile-only" aria-label="Toggle navigation menu">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </button>
+      <div class="brand-badge">
+        <div class="brand-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M7 20h10"/><path d="M10 20c0-4.4 3.6-8 8-8v-1a5 5 0 0 0-5-5c-2.4 0-4.5 1.5-5 3.5A5.5 5.5 0 0 0 2 12c0 4.4 3.6 8 8 8Z"/>
+          </svg>
+        </div>
+        <span class="brand-title">KrishiNirnay AI</span>
+      </div>
+    </div>
+    <div class="header-right">
+      <div class="weather-pill">
+        <span class="weather-icon">☀️</span>
+        <span class="weather-temp">31°C</span>
+        <span class="source-tag source-live">LIVE</span>
+      </div>
+      <button id="theme-toggle-btn" class="icon-button" aria-label="Toggle theme">
+        <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="M4.93 4.93l1.41 1.41"/><path d="M17.66 17.66l1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/>
+        </svg>
+      </button>
+      <a href="./notifications.html" class="icon-button notification-bell" aria-label="Notifications">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/>
+        </svg>
+      </a>
+      <div class="farmer-pill"><div class="farmer-avatar">RP</div></div>
+    </div>
+  </header>
+
+  <div class="app-layout">
+    <aside class="app-sidebar" id="app-sidebar">
+      <nav class="sidebar-nav" aria-label="Main Navigation">
+        <div class="nav-section-title">Core Operations</div>
+        <ul class="nav-list">
+          <li class="nav-item"><a href="./dashboard.html" class="nav-link"><span class="nav-icon">📊</span><span class="nav-text">Dashboard</span></a></li>
+          <li class="nav-item"><a href="./field-details.html" class="nav-link"><span class="nav-icon">🌾</span><span class="nav-text">Fields & Zones</span></a></li>
+          <li class="nav-item"><a href="./agents.html" class="nav-link"><span class="nav-icon">🤖</span><span class="nav-text">AI Agents</span></a></li>
+          <li class="nav-item"><a href="./action-plans.html" class="nav-link"><span class="nav-icon">📋</span><span class="nav-text">Action Plans</span></a></li>
+          <li class="nav-item"><a href="./execution.html" class="nav-link"><span class="nav-icon">⚡</span><span class="nav-text">Execution Center</span></a></li>
+        </ul>
+        <div class="nav-section-title">Intelligence & Tools</div>
+        <ul class="nav-list">
+          <li class="nav-item"><a href="./market.html" class="nav-link"><span class="nav-icon">📈</span><span class="nav-text">Market & Mandi</span></a></li>
+          <li class="nav-item"><a href="./reports.html" class="nav-link"><span class="nav-icon">📑</span><span class="nav-text">Reports</span></a></li>
+          <li class="nav-item"><a href="./simulation.html" class="nav-link active"><span class="nav-icon">🧪</span><span class="nav-text">Simulation Center</span><span class="badge badge-simulated">Virtual IoT</span></a></li>
+          <li class="nav-item"><a href="./notifications.html" class="nav-link"><span class="nav-icon">🔔</span><span class="nav-text">Notifications</span></a></li>
+          <li class="nav-item"><a href="./settings.html" class="nav-link"><span class="nav-icon">⚙️</span><span class="nav-text">Settings</span></a></li>
+          <li class="nav-item"><a href="./admin.html" class="nav-link"><span class="nav-icon">🛡️</span><span class="nav-text">Admin & Health</span></a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <main class="app-main" id="main-content">
+      <div class="page-title-banner">
+        <div>
+          <h1 class="page-title">Virtual IoT & Scenario Simulation Center</h1>
+          <p class="page-subtitle">Test autonomous AI agent reactions against extreme agronomic conditions</p>
+        </div>
+        <span class="source-tag source-simulated">SIMULATED — Virtual IoT Engine</span>
+      </div>
+
+      <!-- Active Simulation Banner -->
+      <section class="card simulation-status-banner">
+        <div class="sim-banner-left">
+          <span class="badge badge-simulated">SIMULATION MODE ACTIVE</span>
+          <p class="sim-banner-desc">Virtual IoT sensor generator is feeding live synthetic telemetry to the FastAPI backend and AI agents.</p>
+        </div>
+        <button type="button" class="btn btn-outline btn-sm" id="reset-sim-btn">Reset to Normal Baseline</button>
+      </section>
+
+      <!-- Pre-configured Agronomic Scenarios -->
+      <section class="card">
+        <div class="card-header">
+          <div>
+            <h2 class="card-title">One-Click Agronomic Scenario Injection</h2>
+            <p class="card-subtitle">Trigger complex environmental events and observe end-to-end multi-agent orchestration</p>
+          </div>
+        </div>
+
+        <div class="scenarios-grid">
+          <!-- Scenario 1: Severe Drought -->
+          <article class="scenario-card">
+            <div class="scenario-icon">🏜️</div>
+            <h3 class="scenario-title">1. Severe Water Deficit</h3>
+            <p class="scenario-desc">Simulates prolonged lack of rainfall. Drops Zone 2 soil moisture to 18%, raises ET0 to 6.2 mm/day.</p>
+            <div class="scenario-effect">
+              <strong>Agent Trigger:</strong> Irrigation Agent triggers urgent 22mm watering plan.
+            </div>
+            <button type="button" class="btn btn-primary btn-sm btn-block" data-scenario="drought">Inject Drought Scenario</button>
+          </article>
+
+          <!-- Scenario 2: Torrential Downpour -->
+          <article class="scenario-card">
+            <div class="scenario-icon">⛈️</div>
+            <h3 class="scenario-title">2. Flash Heavy Downpour</h3>
+            <p class="scenario-desc">Simulates 55mm sudden deluge. Spikes soil moisture to 54%, rain probability to 100%.</p>
+            <div class="scenario-effect">
+              <strong>Agent Trigger:</strong> Cancels scheduled irrigation; triggers waterlogging drainage alerts.
+            </div>
+            <button type="button" class="btn btn-outline btn-sm btn-block" data-scenario="downpour">Inject Heavy Rain Scenario</button>
+          </article>
+
+          <!-- Scenario 3: Fungal Pathogen Spore Risk -->
+          <article class="scenario-card">
+            <div class="scenario-icon">🍄</div>
+            <h3 class="scenario-title">3. Fungal Blight Risk</h3>
+            <p class="scenario-desc">Simulates 94% canopy humidity and 9 hours continuous leaf wetness at 26°C.</p>
+            <div class="scenario-effect">
+              <strong>Agent Trigger:</strong> Disease Agent generates preventive bio-fungicide recommendation.
+            </div>
+            <button type="button" class="btn btn-outline btn-sm btn-block" data-scenario="disease">Inject Blight Risk</button>
+          </article>
+
+          <!-- Scenario 4: Extreme Heatwave -->
+          <article class="scenario-card">
+            <div class="scenario-icon">🔥</div>
+            <h3 class="scenario-title">4. Severe 42°C Heatwave</h3>
+            <p class="scenario-desc">Simulates scorching temperatures and high vapor pressure deficit (VPD).</p>
+            <div class="scenario-effect">
+              <strong>Agent Trigger:</strong> Weather Agent locks midday irrigation; schedules twilight misting.
+            </div>
+            <button type="button" class="btn btn-outline btn-sm btn-block" data-scenario="heatwave">Inject Heatwave</button>
+          </article>
+        </div>
+      </section>
+
+      <!-- Manual Virtual Sensor Sliders -->
+      <section class="card">
+        <div class="card-header">
+          <div>
+            <h2 class="card-title">Manual Virtual IoT Parameter Tuning</h2>
+            <p class="card-subtitle">Fine-tune individual telemetry signals for Zone 2 (East Cotton)</p>
+          </div>
+        </div>
+
+        <div class="slider-controls-grid">
+          <div class="slider-group">
+            <div class="slider-header">
+              <label for="slider-moisture" class="slider-label">Soil Moisture (15cm)</label>
+              <span class="slider-val" id="val-disp-moisture">24%</span>
+            </div>
+            <input type="range" id="slider-moisture" min="10" max="60" value="24" class="range-slider">
+          </div>
+
+          <div class="slider-group">
+            <div class="slider-header">
+              <label for="slider-temp" class="slider-label">Soil Temperature</label>
+              <span class="slider-val" id="val-disp-temp">30.1°C</span>
+            </div>
+            <input type="range" id="slider-temp" min="15" max="45" value="30.1" step="0.5" class="range-slider">
+          </div>
+
+          <div class="slider-group">
+            <div class="slider-header">
+              <label for="slider-humidity" class="slider-label">Ambient Relative Humidity</label>
+              <span class="slider-val" id="val-disp-humidity">42%</span>
+            </div>
+            <input type="range" id="slider-humidity" min="15" max="99" value="42" class="range-slider">
+          </div>
+
+          <div class="slider-group">
+            <div class="slider-header">
+              <label for="slider-radiation" class="slider-label">Solar Irradiance</label>
+              <span class="slider-val" id="val-disp-radiation">860 W/m²</span>
+            </div>
+            <input type="range" id="slider-radiation" min="100" max="1100" value="860" step="10" class="range-slider">
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <nav class="mobile-bottom-nav" aria-label="Mobile Navigation">
+    <a href="./dashboard.html" class="mobile-nav-item"><span class="mobile-nav-icon">📊</span><span class="mobile-nav-label">Dashboard</span></a>
+    <a href="./field-details.html" class="mobile-nav-item"><span class="mobile-nav-icon">🌾</span><span class="mobile-nav-label">Fields</span></a>
+    <a href="./action-plans.html" class="mobile-nav-item"><span class="mobile-nav-icon">📋</span><span class="mobile-nav-label">Actions</span></a>
+    <a href="./market.html" class="mobile-nav-item"><span class="mobile-nav-icon">📈</span><span class="mobile-nav-label">Market</span></a>
+    <a href="./settings.html" class="mobile-nav-item"><span class="mobile-nav-icon">⚙️</span><span class="mobile-nav-label">Settings</span></a>
+  </nav>
+
+  <script type="module">
+    // Wire slider displays
+    const sliders = [
+      { id: 'slider-moisture', disp: 'val-disp-moisture', unit: '%' },
+      { id: 'slider-temp', disp: 'val-disp-temp', unit: '°C' },
+      { id: 'slider-humidity', disp: 'val-disp-humidity', unit: '%' },
+      { id: 'slider-radiation', disp: 'val-disp-radiation', unit: ' W/m²' }
+    ];
+    sliders.forEach(s => {
+      const el = document.getElementById(s.id);
+      const disp = document.getElementById(s.disp);
+      if (el && disp) {
+        el.addEventListener('input', () => {
+          disp.textContent = el.value + s.unit;
+        });
+      }
+    });
+  </script>
+</body>
+</html>

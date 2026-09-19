@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Field and Zone Intelligence Details - KrishiNirnay AI">
+  <title>Fields & Zones — KrishiNirnay AI</title>
+  <link rel="icon" type="image/svg+xml" href="../assets/icons/sprout.svg">
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/field.css">
+  <script type="module" src="../js/theme.js"></script>
+</head>
+<body class="app-body">
+  <header class="app-header">
+    <div class="header-left">
+      <button id="sidebar-toggle-btn" class="icon-button mobile-only" aria-label="Toggle navigation menu">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </button>
+      <div class="brand-badge">
+        <div class="brand-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M7 20h10"/><path d="M10 20c0-4.4 3.6-8 8-8v-1a5 5 0 0 0-5-5c-2.4 0-4.5 1.5-5 3.5A5.5 5.5 0 0 0 2 12c0 4.4 3.6 8 8 8Z"/>
+          </svg>
+        </div>
+        <span class="brand-title">KrishiNirnay AI</span>
+      </div>
+      <div class="farm-selector-wrapper">
+        <select id="farm-select" class="header-select" aria-label="Select Farm">
+          <option value="farm-1">Shanti Agro Farm (12 Acres)</option>
+          <option value="farm-2">South Valley Field (8 Acres)</option>
+        </select>
+      </div>
+    </div>
+    <div class="header-right">
+      <div class="weather-pill" title="Live Weather">
+        <span class="weather-icon">☀️</span>
+        <span class="weather-temp">31°C</span>
+        <span class="source-tag source-live">LIVE</span>
+      </div>
+      <button id="theme-toggle-btn" class="icon-button" aria-label="Toggle theme">
+        <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="M4.93 4.93l1.41 1.41"/><path d="M17.66 17.66l1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/>
+        </svg>
+      </button>
+      <a href="./notifications.html" class="icon-button notification-bell" aria-label="Notifications">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/>
+        </svg>
+      </a>
+      <div class="farmer-pill">
+        <div class="farmer-avatar">RP</div>
+      </div>
+    </div>
+  </header>
+
+  <div class="app-layout">
+    <aside class="app-sidebar" id="app-sidebar">
+      <nav class="sidebar-nav" aria-label="Main Navigation">
+        <div class="nav-section-title">Core Operations</div>
+        <ul class="nav-list">
+          <li class="nav-item"><a href="./dashboard.html" class="nav-link"><span class="nav-icon">📊</span><span class="nav-text">Dashboard</span></a></li>
+          <li class="nav-item"><a href="./field-details.html" class="nav-link active"><span class="nav-icon">🌾</span><span class="nav-text">Fields & Zones</span></a></li>
+          <li class="nav-item"><a href="./agents.html" class="nav-link"><span class="nav-icon">🤖</span><span class="nav-text">AI Agents</span><span class="badge badge-ai">5 Active</span></a></li>
+          <li class="nav-item"><a href="./action-plans.html" class="nav-link"><span class="nav-icon">📋</span><span class="nav-text">Action Plans</span><span class="badge badge-warning">1 New</span></a></li>
+          <li class="nav-item"><a href="./execution.html" class="nav-link"><span class="nav-icon">⚡</span><span class="nav-text">Execution Center</span></a></li>
+        </ul>
+        <div class="nav-section-title">Intelligence & Tools</div>
+        <ul class="nav-list">
+          <li class="nav-item"><a href="./market.html" class="nav-link"><span class="nav-icon">📈</span><span class="nav-text">Market & Mandi</span></a></li>
+          <li class="nav-item"><a href="./reports.html" class="nav-link"><span class="nav-icon">📑</span><span class="nav-text">Reports</span></a></li>
+          <li class="nav-item"><a href="./simulation.html" class="nav-link"><span class="nav-icon">🧪</span><span class="nav-text">Simulation Center</span><span class="badge badge-simulated">Virtual IoT</span></a></li>
+          <li class="nav-item"><a href="./notifications.html" class="nav-link"><span class="nav-icon">🔔</span><span class="nav-text">Notifications</span></a></li>
+          <li class="nav-item"><a href="./settings.html" class="nav-link"><span class="nav-icon">⚙️</span><span class="nav-text">Settings</span></a></li>
+          <li class="nav-item"><a href="./admin.html" class="nav-link"><span class="nav-icon">🛡️</span><span class="nav-text">Admin & Health</span></a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <main class="app-main" id="main-content">
+      <!-- Breadcrumb and Field Header -->
+      <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+        <a href="./dashboard.html">Home</a>
+        <span class="breadcrumb-separator">/</span>
+        <span class="breadcrumb-current">Shanti Agro Farm — North Cotton Field</span>
+      </nav>
+
+      <section class="field-header-card">
+        <div class="field-header-info">
+          <div class="field-title-row">
+            <h1 class="page-title">North Cotton Plot (Field #1)</h1>
+            <span class="badge badge-success">Active Growing Season</span>
+            <span class="source-tag source-user">USER INPUT</span>
+          </div>
+          <p class="field-meta-row">
+            <span><strong>Location:</strong> Rajkot, Gujarat</span> •
+            <span><strong>Total Area:</strong> 12.0 Acres</span> •
+            <span><strong>Primary Crop:</strong> BT Cotton (Bt-2)</span> •
+            <span><strong>Sowing Date:</strong> June 18, 2026 (Day 93)</span>
+          </p>
+        </div>
+        <div class="field-header-actions">
+          <a href="./simulation.html" class="btn btn-outline">
+            <span>Simulate Conditions</span>
+          </a>
+          <a href="./action-plans.html" class="btn btn-primary">
+            <span>View Advisory Plans</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- Agronomic Property Strip -->
+      <section class="properties-strip" aria-label="Agronomic Attributes">
+        <div class="property-pill">
+          <span class="prop-label">Soil Classification</span>
+          <span class="prop-value">Deep Black Cotton Soil</span>
+        </div>
+        <div class="property-pill">
+          <span class="prop-label">Field Capacity</span>
+          <span class="prop-value">38.5% Volumetric</span>
+        </div>
+        <div class="property-pill">
+          <span class="prop-label">Permanent Wilting Point</span>
+          <span class="prop-value">18.0% Volumetric</span>
+        </div>
+        <div class="property-pill">
+          <span class="prop-label">Irrigation Architecture</span>
+          <span class="prop-value">Automated Drip (4 Valves)</span>
+        </div>
+      </section>
+
+      <!-- Map & Spatial Zone Visualizer -->
+      <section class="card field-map-card">
+        <div class="card-header">
+          <div>
+            <h2 class="card-title">Interactive Field Map & Virtual IoT Sensors</h2>
+            <p class="card-subtitle">Boundary polygons, management zones, and sensor positions</p>
+          </div>
+          <div class="map-controls">
+            <span class="source-tag source-simulated">SIMULATED — Virtual IoT</span>
+            <button type="button" class="btn btn-sm btn-outline active-filter">NDVI Overlay</button>
+            <button type="button" class="btn btn-sm btn-outline">Moisture Heatmap</button>
+          </div>
+        </div>
+
+        <div class="map-container" id="field-map-container" style="min-height: 380px; position: relative;">
+          <!-- Interactive SVG/Canvas Farm Map Mockup -->
+          <svg width="100%" height="100%" viewBox="0 0 800 380" class="field-svg-map" style="background-color: var(--color-surface-soft); border-radius: 8px;">
+            <defs>
+              <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+                <path d="M 40 0 L 0 0 0 40" fill="none" stroke="var(--color-border)" stroke-width="0.5"/>
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#grid)" />
+            
+            <!-- Field Outer Boundary Polygon -->
+            <polygon points="60,40 740,30 710,340 90,350" fill="none" stroke="var(--color-primary-600)" stroke-width="3" stroke-dasharray="6,3"/>
+            
+            <!-- Zone 1 Polygon -->
+            <polygon points="65,45 390,40 380,180 80,190" fill="rgba(34, 197, 94, 0.15)" stroke="var(--color-primary-500)" stroke-width="1.5"/>
+            <text x="180" y="110" font-size="14" font-weight="bold" fill="var(--color-text-primary)">Zone 1: North (3.5 Ac)</text>
+            <text x="180" y="130" font-size="12" fill="var(--color-primary-700)">Moisture: 41% (Optimal)</text>
+
+            <!-- Zone 2 Polygon (Under Stress) -->
+            <polygon points="390,40 735,35 715,175 380,180" fill="rgba(217, 119, 6, 0.2)" stroke="var(--color-warning)" stroke-width="2"/>
+            <text x="500" y="110" font-size="14" font-weight="bold" fill="var(--color-warning)">Zone 2: East (2.8 Ac)</text>
+            <text x="500" y="130" font-size="12" fill="var(--color-danger)">Moisture: 24% (Water Stress)</text>
+
+            <!-- Zone 3 Polygon -->
+            <polygon points="80,190 380,180 370,335 95,345" fill="rgba(34, 197, 94, 0.15)" stroke="var(--color-primary-500)" stroke-width="1.5"/>
+            <text x="180" y="260" font-size="14" font-weight="bold" fill="var(--color-text-primary)">Zone 3: Central (3.2 Ac)</text>
+            <text x="180" y="280" font-size="12" fill="var(--color-primary-700)">Moisture: 38% (Good)</text>
+
+            <!-- Zone 4 Polygon -->
+            <polygon points="380,180 715,175 700,335 370,335" fill="rgba(34, 197, 94, 0.15)" stroke="var(--color-primary-500)" stroke-width="1.5"/>
+            <text x="500" y="260" font-size="14" font-weight="bold" fill="var(--color-text-primary)">Zone 4: South (2.5 Ac)</text>
+            <text x="500" y="280" font-size="12" fill="var(--color-primary-700)">Moisture: 36% (Normal)</text>
+
+            <!-- Virtual IoT Sensor Nodes -->
+            <g class="sensor-node" transform="translate(220, 150)">
+              <circle r="9" fill="#16A34A" stroke="#FFFFFF" stroke-width="2"/>
+              <text x="14" y="5" font-size="11" font-weight="bold" fill="var(--color-text-primary)">Node-01</text>
+            </g>
+            <g class="sensor-node" transform="translate(540, 140)">
+              <circle r="9" fill="#DC2626" stroke="#FFFFFF" stroke-width="2"/>
+              <text x="14" y="5" font-size="11" font-weight="bold" fill="var(--color-danger)">Node-02 (Alert)</text>
+            </g>
+            <g class="sensor-node" transform="translate(210, 300)">
+              <circle r="9" fill="#16A34A" stroke="#FFFFFF" stroke-width="2"/>
+              <text x="14" y="5" font-size="11" font-weight="bold" fill="var(--color-text-primary)">Node-03</text>
+            </g>
+            <g class="sensor-node" transform="translate(530, 290)">
+              <circle r="9" fill="#16A34A" stroke="#FFFFFF" stroke-width="2"/>
+              <text x="14" y="5" font-size="11" font-weight="bold" fill="var(--color-text-primary)">Node-04</text>
+            </g>
+          </svg>
+        </div>
+      </section>
+
+      <!-- Detailed Zone Sensor Telemetry Breakdown -->
+      <section class="card">
+        <div class="card-header">
+          <div>
+            <h2 class="card-title">Virtual IoT Sensor Readings by Management Zone</h2>
+            <p class="card-subtitle">Live synthetic data stream from virtual sensor layer</p>
+          </div>
+          <span class="source-tag source-simulated">SIMULATED — Virtual IoT</span>
+        </div>
+
+        <div class="table-responsive">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Zone / Node</th>
+                <th>Soil Moisture (15cm)</th>
+                <th>Soil Temp</th>
+                <th>Leaf Wetness</th>
+                <th>Solar Irradiance</th>
+                <th>Health Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Zone 1</strong> (Node-01)</td>
+                <td><span class="val-badge success">41%</span></td>
+                <td>27.4°C</td>
+                <td>0% (Dry)</td>
+                <td>820 W/m²</td>
+                <td><span class="badge badge-success">Optimal</span></td>
+                <td><button class="btn btn-sm btn-outline">History</button></td>
+              </tr>
+              <tr class="row-warning">
+                <td><strong>Zone 2</strong> (Node-02)</td>
+                <td><span class="val-badge danger">24%</span></td>
+                <td>30.1°C</td>
+                <td>0% (Dry)</td>
+                <td>860 W/m²</td>
+                <td><span class="badge badge-danger">Water Stress</span></td>
+                <td><a href="./action-plans.html" class="btn btn-sm btn-primary">Irrigate</a></td>
+              </tr>
+              <tr>
+                <td><strong>Zone 3</strong> (Node-03)</td>
+                <td><span class="val-badge success">38%</span></td>
+                <td>28.0°C</td>
+                <td>0% (Dry)</td>
+                <td>815 W/m²</td>
+                <td><span class="badge badge-success">Optimal</span></td>
+                <td><button class="btn btn-sm btn-outline">History</button></td>
+              </tr>
+              <tr>
+                <td><strong>Zone 4</strong> (Node-04)</td>
+                <td><span class="val-badge success">36%</span></td>
+                <td>28.5°C</td>
+                <td>0% (Dry)</td>
+                <td>830 W/m²</td>
+                <td><span class="badge badge-success">Optimal</span></td>
+                <td><button class="btn btn-sm btn-outline">History</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <nav class="mobile-bottom-nav" aria-label="Mobile Navigation">
+    <a href="./dashboard.html" class="mobile-nav-item"><span class="mobile-nav-icon">📊</span><span class="mobile-nav-label">Dashboard</span></a>
+    <a href="./field-details.html" class="mobile-nav-item active"><span class="mobile-nav-icon">🌾</span><span class="mobile-nav-label">Fields</span></a>
+    <a href="./action-plans.html" class="mobile-nav-item"><span class="mobile-nav-icon">📋</span><span class="mobile-nav-label">Actions</span></a>
+    <a href="./market.html" class="mobile-nav-item"><span class="mobile-nav-icon">📈</span><span class="mobile-nav-label">Market</span></a>
+    <a href="./settings.html" class="mobile-nav-item"><span class="mobile-nav-icon">⚙️</span><span class="mobile-nav-label">Settings</span></a>
+  </nav>
+</body>
+</html>

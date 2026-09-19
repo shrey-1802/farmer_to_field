@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Agronomy Performance and Resource Savings Reports - KrishiNirnay AI">
+  <title>Agronomy Reports — KrishiNirnay AI</title>
+  <link rel="icon" type="image/svg+xml" href="../assets/icons/sprout.svg">
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/reports.css">
+  <script type="module" src="../js/theme.js"></script>
+</head>
+<body class="app-body">
+  <header class="app-header">
+    <div class="header-left">
+      <button id="sidebar-toggle-btn" class="icon-button mobile-only" aria-label="Toggle navigation menu">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </button>
+      <div class="brand-badge">
+        <div class="brand-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M7 20h10"/><path d="M10 20c0-4.4 3.6-8 8-8v-1a5 5 0 0 0-5-5c-2.4 0-4.5 1.5-5 3.5A5.5 5.5 0 0 0 2 12c0 4.4 3.6 8 8 8Z"/>
+          </svg>
+        </div>
+        <span class="brand-title">KrishiNirnay AI</span>
+      </div>
+    </div>
+    <div class="header-right">
+      <div class="weather-pill">
+        <span class="weather-icon">☀️</span>
+        <span class="weather-temp">31°C</span>
+        <span class="source-tag source-live">LIVE</span>
+      </div>
+      <button id="theme-toggle-btn" class="icon-button" aria-label="Toggle theme">
+        <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="M4.93 4.93l1.41 1.41"/><path d="M17.66 17.66l1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/>
+        </svg>
+      </button>
+      <a href="./notifications.html" class="icon-button notification-bell" aria-label="Notifications">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/>
+        </svg>
+      </a>
+      <div class="farmer-pill"><div class="farmer-avatar">RP</div></div>
+    </div>
+  </header>
+
+  <div class="app-layout">
+    <aside class="app-sidebar" id="app-sidebar">
+      <nav class="sidebar-nav" aria-label="Main Navigation">
+        <div class="nav-section-title">Core Operations</div>
+        <ul class="nav-list">
+          <li class="nav-item"><a href="./dashboard.html" class="nav-link"><span class="nav-icon">📊</span><span class="nav-text">Dashboard</span></a></li>
+          <li class="nav-item"><a href="./field-details.html" class="nav-link"><span class="nav-icon">🌾</span><span class="nav-text">Fields & Zones</span></a></li>
+          <li class="nav-item"><a href="./agents.html" class="nav-link"><span class="nav-icon">🤖</span><span class="nav-text">AI Agents</span></a></li>
+          <li class="nav-item"><a href="./action-plans.html" class="nav-link"><span class="nav-icon">📋</span><span class="nav-text">Action Plans</span></a></li>
+          <li class="nav-item"><a href="./execution.html" class="nav-link"><span class="nav-icon">⚡</span><span class="nav-text">Execution Center</span></a></li>
+        </ul>
+        <div class="nav-section-title">Intelligence & Tools</div>
+        <ul class="nav-list">
+          <li class="nav-item"><a href="./market.html" class="nav-link"><span class="nav-icon">📈</span><span class="nav-text">Market & Mandi</span></a></li>
+          <li class="nav-item"><a href="./reports.html" class="nav-link active"><span class="nav-icon">📑</span><span class="nav-text">Reports</span></a></li>
+          <li class="nav-item"><a href="./simulation.html" class="nav-link"><span class="nav-icon">🧪</span><span class="nav-text">Simulation Center</span></a></li>
+          <li class="nav-item"><a href="./notifications.html" class="nav-link"><span class="nav-icon">🔔</span><span class="nav-text">Notifications</span></a></li>
+          <li class="nav-item"><a href="./settings.html" class="nav-link"><span class="nav-icon">⚙️</span><span class="nav-text">Settings</span></a></li>
+          <li class="nav-item"><a href="./admin.html" class="nav-link"><span class="nav-icon">🛡️</span><span class="nav-text">Admin & Health</span></a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <main class="app-main" id="main-content">
+      <div class="page-title-banner">
+        <div>
+          <h1 class="page-title">Agronomy & Resource Conservation Reports</h1>
+          <p class="page-subtitle">Quantified savings in irrigation water, energy, and input fertilizer costs</p>
+        </div>
+        <div class="export-actions">
+          <button type="button" class="btn btn-outline btn-sm" id="export-csv-btn">Export CSV</button>
+          <button type="button" class="btn btn-primary btn-sm" id="download-pdf-btn">Download PDF Report</button>
+        </div>
+      </div>
+
+      <!-- Timeframe Filter -->
+      <div class="filter-tabs">
+        <button type="button" class="tab-btn">Last 7 Days</button>
+        <button type="button" class="tab-btn active">Last 30 Days</button>
+        <button type="button" class="tab-btn">Current Season (93 Days)</button>
+      </div>
+
+      <!-- Quantified Savings Metrics Grid -->
+      <section class="metrics-grid" aria-label="Conservation Metrics">
+        <article class="metric-card">
+          <div class="metric-header">
+            <span class="metric-label">Irrigation Water Conserved</span>
+            <span class="badge badge-success">-28.4%</span>
+          </div>
+          <div class="metric-value-row">
+            <span class="metric-value">184,200 L</span>
+          </div>
+          <p class="metric-subtext">Precision drip vs conventional flood flooding</p>
+        </article>
+
+        <article class="metric-card">
+          <div class="metric-header">
+            <span class="metric-label">Pump Electricity Saved</span>
+            <span class="badge badge-success">-310 kWh</span>
+          </div>
+          <div class="metric-value-row">
+            <span class="metric-value">₹2,480 Saved</span>
+          </div>
+          <p class="metric-subtext">32 pump running hours avoided</p>
+        </article>
+
+        <article class="metric-card">
+          <div class="metric-header">
+            <span class="metric-label">Chemical / Input Cost Reduction</span>
+            <span class="badge badge-success">-18.0%</span>
+          </div>
+          <div class="metric-value-row">
+            <span class="metric-value">₹4,200 / Acre</span>
+          </div>
+          <p class="metric-subtext">Foliar precision timing & disease prevention</p>
+        </article>
+
+        <article class="metric-card highlight-card">
+          <div class="metric-header">
+            <span class="metric-label">Projected Yield Enhancement</span>
+            <span class="source-tag source-ai">AI MODEL</span>
+          </div>
+          <div class="metric-value-row">
+            <span class="metric-value">+14.2%</span>
+          </div>
+          <p class="metric-subtext">Est. 12.8 Quintals/Acre vs 11.2 Q regional avg</p>
+        </article>
+      </section>
+
+      <!-- Water Distribution by Zone Table -->
+      <section class="card">
+        <div class="card-header">
+          <div>
+            <h2 class="card-title">Season Water & Energy Distribution by Zone</h2>
+            <p class="card-subtitle">Detailed ledger of autonomous water allocations</p>
+          </div>
+        </div>
+
+        <div class="table-responsive">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Zone</th>
+                <th>Area</th>
+                <th>Irrigation Events</th>
+                <th>Total Water (Liters)</th>
+                <th>Avg. Root Moisture</th>
+                <th>Water Stress Days</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Zone 1</strong> (North)</td>
+                <td>3.5 Acres</td>
+                <td>12 Runs</td>
+                <td>162,000 L</td>
+                <td>39.2%</td>
+                <td><span class="badge badge-success">0 Days</span></td>
+              </tr>
+              <tr>
+                <td><strong>Zone 2</strong> (East Sloped)</td>
+                <td>2.8 Acres</td>
+                <td>14 Runs</td>
+                <td>148,000 L</td>
+                <td>33.8%</td>
+                <td><span class="badge badge-warning">2 Days</span></td>
+              </tr>
+              <tr>
+                <td><strong>Zone 3</strong> (Central Flat)</td>
+                <td>3.2 Acres</td>
+                <td>11 Runs</td>
+                <td>138,000 L</td>
+                <td>38.6%</td>
+                <td><span class="badge badge-success">0 Days</span></td>
+              </tr>
+              <tr>
+                <td><strong>Zone 4</strong> (South Border)</td>
+                <td>2.5 Acres</td>
+                <td>10 Runs</td>
+                <td>115,000 L</td>
+                <td>37.1%</td>
+                <td><span class="badge badge-success">0 Days</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <nav class="mobile-bottom-nav" aria-label="Mobile Navigation">
+    <a href="./dashboard.html" class="mobile-nav-item"><span class="mobile-nav-icon">📊</span><span class="mobile-nav-label">Dashboard</span></a>
+    <a href="./field-details.html" class="mobile-nav-item"><span class="mobile-nav-icon">🌾</span><span class="mobile-nav-label">Fields</span></a>
+    <a href="./action-plans.html" class="mobile-nav-item"><span class="mobile-nav-icon">📋</span><span class="mobile-nav-label">Actions</span></a>
+    <a href="./market.html" class="mobile-nav-item"><span class="mobile-nav-icon">📈</span><span class="mobile-nav-label">Market</span></a>
+    <a href="./settings.html" class="mobile-nav-item"><span class="mobile-nav-icon">⚙️</span><span class="mobile-nav-label">Settings</span></a>
+  </nav>
+</body>
+</html>
