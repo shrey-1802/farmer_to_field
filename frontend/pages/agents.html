@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Autonomous AI Agents Roster - KrishiNirnay AI">
+  <meta name="description" content="Autonomous AI Multi-Agent Engine - KrishiNirnay AI. Coordinated multi-agent reasoning across Soil, Weather, Irrigation, Nutrient, Drone/Disease, Market, Risk, Farm Context, and Orchestrator.">
   <title>Autonomous AI Agents — KrishiNirnay AI</title>
   <link rel="icon" type="image/svg+xml" href="../assets/icons/sprout.svg">
   <link rel="stylesheet" href="../css/variables.css">
@@ -12,8 +12,10 @@
   <link rel="stylesheet" href="../css/components.css">
   <link rel="stylesheet" href="../css/agents.css">
   <script type="module" src="../js/ui.js"></script>
+  <script type="module" src="../js/agents.js"></script>
 </head>
 <body class="app-body">
+  <!-- Application Header -->
   <header class="app-header">
     <div class="header-left">
       <button id="sidebar-toggle-btn" class="icon-button mobile-only" aria-label="Toggle navigation menu">
@@ -31,7 +33,7 @@
       </div>
       <div class="farm-selector-wrapper">
         <select id="farm-select" class="header-select" aria-label="Select Farm">
-          <option value="farm-1">Shanti Agro Farm (12 Acres)</option>
+          <option value="farm-1">Shanti Agro Farm (12 Acres - Bt Cotton)</option>
         </select>
       </div>
     </div>
@@ -39,7 +41,7 @@
       <div class="weather-pill">
         <span class="weather-icon">☀️</span>
         <span class="weather-temp">31°C</span>
-        <span class="source-tag source-live">LIVE</span>
+        <span class="source-tag source-live">LIVE — Open-Meteo</span>
       </div>
       <button id="theme-toggle-btn" class="icon-button" aria-label="Toggle theme">
         <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -58,13 +60,14 @@
   </header>
 
   <div class="app-layout">
+    <!-- Responsive Left Sidebar Navigation -->
     <aside class="app-sidebar" id="app-sidebar">
       <nav class="sidebar-nav" aria-label="Main Navigation">
         <div class="nav-section-title">Core Operations</div>
         <ul class="nav-list">
           <li class="nav-item"><a href="./dashboard.html" class="nav-link"><span class="nav-icon">📊</span><span class="nav-text">Dashboard</span></a></li>
           <li class="nav-item"><a href="./field-details.html" class="nav-link"><span class="nav-icon">🌾</span><span class="nav-text">Fields & Zones</span></a></li>
-          <li class="nav-item"><a href="./agents.html" class="nav-link active"><span class="nav-icon">🤖</span><span class="nav-text">AI Agents</span><span class="badge badge-ai">5 Active</span></a></li>
+          <li class="nav-item"><a href="./agents.html" class="nav-link active"><span class="nav-icon">🤖</span><span class="nav-text">AI Agents</span><span class="badge badge-ai">9 Active</span></a></li>
           <li class="nav-item"><a href="./action-plans.html" class="nav-link"><span class="nav-icon">📋</span><span class="nav-text">Action Plans</span><span class="badge badge-warning">1 New</span></a></li>
           <li class="nav-item"><a href="./execution.html" class="nav-link"><span class="nav-icon">⚡</span><span class="nav-text">Execution Center</span></a></li>
         </ul>
@@ -80,11 +83,13 @@
       </nav>
     </aside>
 
+    <!-- Main Content Area -->
     <main class="app-main" id="main-content">
+      <!-- Title Banner -->
       <div class="page-title-banner">
         <div>
           <h1 class="page-title">Autonomous AI Multi-Agent Engine</h1>
-          <p class="page-subtitle">Coordinated multi-agent reasoning for real-time agronomic interventions</p>
+          <p class="page-subtitle">Coordinated multi-agent reasoning for real-time agronomic interventions across 9 autonomous agents</p>
         </div>
         <div class="orchestrator-status">
           <span class="status-dot status-online"></span>
@@ -93,176 +98,101 @@
         </div>
       </div>
 
-      <!-- Agent Grid -->
-      <section class="agents-grid" aria-label="Autonomous AI Agents">
-        <!-- Agent 1: Irrigation Agent -->
-        <article class="agent-card">
-          <div class="agent-card-header">
-            <div class="agent-icon-badge">💧</div>
+      <!-- Section 18 Master Orchestrator Banner -->
+      <section class="orchestrator-master-card" id="orchestrator-banner-content" aria-label="Orchestrator Consensus Engine">
+        <div class="orchestrator-banner-layout">
+          <div class="orchestrator-banner-left">
+            <div class="orchestrator-pulse-icon">
+              <span class="pulse-ring"></span>
+              <span class="pulse-core">🧠</span>
+            </div>
             <div>
-              <h2 class="agent-name">Irrigation Advisory Agent</h2>
-              <span class="agent-model">Evapo-Transpiration & Moisture Balancing</span>
-            </div>
-            <span class="badge badge-warning">Action Proposed</span>
-          </div>
-          <p class="agent-summary">
-            Synthesizes soil moisture readings (15cm/30cm), forecasted precipitation, solar radiation, and crop growth stage coefficients.
-          </p>
-          <div class="agent-metrics">
-            <div class="agent-metric">
-              <span class="metric-key">Confidence</span>
-              <span class="metric-val">94.8%</span>
-            </div>
-            <div class="agent-metric">
-              <span class="metric-key">Last Decision</span>
-              <span class="metric-val">12m ago</span>
-            </div>
-            <div class="agent-metric">
-              <span class="metric-key">Status</span>
-              <span class="metric-val text-warning">Intervention</span>
+              <div class="orchestrator-headline">
+                <h2>Autonomous Multi-Agent Consensus Engine</h2>
+                <span class="badge badge-running"><span class="pulse-dot"></span> Active Consensus</span>
+                <span class="source-tag source-ai">AI GENERATED</span>
+              </div>
+              <p class="orchestrator-desc">
+                Continuous synthesis across all 9 specialized domain agents. Resolves cross-agent constraints (e.g. soil moisture vs weather rainfall forecast) into unified, verifiable field execution plans.
+              </p>
+              <div class="orchestrator-meta-row">
+                <span class="meta-item"><strong id="orch-cycle-count">#1,492</strong> Consensus Cycle</span>
+                <span class="meta-sep">•</span>
+                <span class="meta-item">Cycle Interval: <strong>10s Heartbeat</strong></span>
+                <span class="meta-sep">•</span>
+                <span class="meta-item">Active Pipeline: <strong>9/9 Agents Online</strong></span>
+                <span class="meta-sep">•</span>
+                <span class="meta-item">Pending Authorization: <strong class="text-warning">1 Action Plan</strong></span>
+              </div>
             </div>
           </div>
-          <footer class="agent-card-footer">
-            <a href="./agent-details.html?agent=irrigation" class="btn btn-outline btn-block">Inspect Reasoning Trace →</a>
-          </footer>
-        </article>
+          <div class="orchestrator-banner-actions">
+            <button id="run-all-agents-btn" class="btn btn-primary btn-run-all">
+              <span class="btn-icon">⚡</span>
+              <span>Run All 9 Agents (Consensus)</span>
+            </button>
+            <button id="refresh-agents-btn" class="btn btn-outline btn-icon-only" title="Sync with Backend" aria-label="Sync with Backend">
+              🔄
+            </button>
+          </div>
+        </div>
+      </section>
 
-        <!-- Agent 2: Crop Health & Disease Agent -->
-        <article class="agent-card">
-          <div class="agent-card-header">
-            <div class="agent-icon-badge">🔬</div>
-            <div>
-              <h2 class="agent-name">Disease & Pest Agent</h2>
-              <span class="agent-model">Micro-Climate Pathogen Risk Engine</span>
-            </div>
-            <span class="badge badge-success">Monitoring (Low Risk)</span>
-          </div>
-          <p class="agent-summary">
-            Tracks fungal spore germination risk, leaf wetness duration, relative humidity, and pest degree-days for Cotton Bollworm.
-          </p>
-          <div class="agent-metrics">
-            <div class="agent-metric">
-              <span class="metric-key">Confidence</span>
-              <span class="metric-val">98.1%</span>
-            </div>
-            <div class="agent-metric">
-              <span class="metric-key">Last Decision</span>
-              <span class="metric-val">45m ago</span>
-            </div>
-            <div class="agent-metric">
-              <span class="metric-key">Pathogen Risk</span>
-              <span class="metric-val text-success">Low (14%)</span>
-            </div>
-          </div>
-          <footer class="agent-card-footer">
-            <a href="./agent-details.html?agent=disease" class="btn btn-outline btn-block">Inspect Reasoning Trace →</a>
-          </footer>
-        </article>
+      <!-- KPI Summary Strip -->
+      <section class="agents-kpi-strip" id="agents-kpi-strip" aria-label="AI Agents Key Performance Indicators">
+        <div class="kpi-mini-card">
+          <span class="kpi-mini-label">Total AI Agents</span>
+          <span class="kpi-mini-value">9</span>
+          <span class="kpi-mini-sub text-success">100% Operational</span>
+        </div>
+        <div class="kpi-mini-card">
+          <span class="kpi-mini-label">Active / Running</span>
+          <span class="kpi-mini-value text-primary">1</span>
+          <span class="kpi-mini-sub">Real-time Polling</span>
+        </div>
+        <div class="kpi-mini-card">
+          <span class="kpi-mini-label">Action / Warnings</span>
+          <span class="kpi-mini-value text-warning">2</span>
+          <span class="kpi-mini-sub">Attention Required</span>
+        </div>
+        <div class="kpi-mini-card">
+          <span class="kpi-mini-label">Mean Confidence</span>
+          <span class="kpi-mini-value">95.4%</span>
+          <span class="kpi-mini-sub text-success">High Reliability</span>
+        </div>
+      </section>
 
-        <!-- Agent 3: Nutrition & Fertigation Agent -->
-        <article class="agent-card">
-          <div class="agent-card-header">
-            <div class="agent-icon-badge">🌱</div>
-            <div>
-              <h2 class="agent-name">Fertigation & Nutrition Agent</h2>
-              <span class="agent-model">Phenology NPK Uptake Optimizer</span>
-            </div>
-            <span class="badge badge-success">On Schedule</span>
-          </div>
-          <p class="agent-summary">
-            Calculates nitrogen, phosphorus, and potassium depletion curves. Aligns booster fertigation with irrigation cycles.
-          </p>
-          <div class="agent-metrics">
-            <div class="agent-metric">
-              <span class="metric-key">Confidence</span>
-              <span class="metric-val">91.5%</span>
-            </div>
-            <div class="agent-metric">
-              <span class="metric-key">Next Dosage</span>
-              <span class="metric-val">In 3 Days</span>
-            </div>
-            <div class="agent-metric">
-              <span class="metric-key">NPK Health</span>
-              <span class="metric-val text-success">Balanced</span>
-            </div>
-          </div>
-          <footer class="agent-card-footer">
-            <a href="./agent-details.html?agent=nutrition" class="btn btn-outline btn-block">Inspect Reasoning Trace →</a>
-          </footer>
-        </article>
+      <!-- Search & Filtering Toolbar -->
+      <div class="agents-toolbar">
+        <div class="filter-tabs-wrapper" id="agent-filter-tabs">
+          <button class="filter-tab active" data-filter="all">All Agents <span class="tab-count">9</span></button>
+          <button class="filter-tab" data-filter="running">Running <span class="tab-count badge-running-count">1</span></button>
+          <button class="filter-tab" data-filter="warning">Warnings & Actions <span class="tab-count badge-warning-count">2</span></button>
+          <button class="filter-tab" data-filter="completed">Completed <span class="tab-count">5</span></button>
+          <button class="filter-tab" data-filter="idle">Idle <span class="tab-count">1</span></button>
+        </div>
+        <div class="agent-search-box">
+          <span class="search-icon-inside">🔍</span>
+          <input type="search" id="agent-search-input" placeholder="Search agents, risks, recommendations..." aria-label="Search agents">
+        </div>
+      </div>
 
-        <!-- Agent 4: Weather Risk Agent -->
-        <article class="agent-card">
-          <div class="agent-card-header">
-            <div class="agent-icon-badge">🌦️</div>
-            <div>
-              <h2 class="agent-name">Weather Risk Agent</h2>
-              <span class="agent-model">Multi-Ensemble Forecast Synthesizer</span>
-            </div>
-            <span class="badge badge-success">Clear Horizon</span>
-          </div>
-          <p class="agent-summary">
-            Monitors high-risk weather patterns including sudden convective storms, severe heatwaves, unseasonal rains, and wind gusts.
-          </p>
-          <div class="agent-metrics">
-            <div class="agent-metric">
-              <span class="metric-key">Confidence</span>
-              <span class="metric-val">96.0%</span>
-            </div>
-            <div class="agent-metric">
-              <span class="metric-key">Forecast Window</span>
-              <span class="metric-val">7 Days</span>
-            </div>
-            <div class="agent-metric">
-              <span class="metric-key">Storm Risk</span>
-              <span class="metric-val text-success">5% (Minimal)</span>
-            </div>
-          </div>
-          <footer class="agent-card-footer">
-            <a href="./agent-details.html?agent=weather" class="btn btn-outline btn-block">Inspect Reasoning Trace →</a>
-          </footer>
-        </article>
-
-        <!-- Agent 5: Market & Mandi Agent -->
-        <article class="agent-card">
-          <div class="agent-card-header">
-            <div class="agent-icon-badge">⚖️</div>
-            <div>
-              <h2 class="agent-name">Market & Harvest Timing Agent</h2>
-              <span class="agent-model">APMC Mandi Price Forecasting</span>
-            </div>
-            <span class="badge badge-info">Advisory Ready</span>
-          </div>
-          <p class="agent-summary">
-            Correlates regional harvest arrivals, national demand, and Mandi price fluctuations to recommend profit-maximizing sell windows.
-          </p>
-          <div class="agent-metrics">
-            <div class="agent-metric">
-              <span class="metric-key">Confidence</span>
-              <span class="metric-val">88.4%</span>
-            </div>
-            <div class="agent-metric">
-              <span class="metric-key">Rajkot APMC</span>
-              <span class="metric-val">₹7,420/Q</span>
-            </div>
-            <div class="agent-metric">
-              <span class="metric-key">Trend</span>
-              <span class="metric-val text-success">▲ Bullish (+3.2%)</span>
-            </div>
-          </div>
-          <footer class="agent-card-footer">
-            <a href="./agent-details.html?agent=market" class="btn btn-outline btn-block">Inspect Reasoning Trace →</a>
-          </footer>
-        </article>
+      <!-- Agent Grid (Dynamic 9 Agents via agents.js) -->
+      <section class="agents-grid" id="agents-grid" aria-label="Autonomous AI Agents">
+        <!-- Loading Skeleton / Fallback Markup -->
+        <div class="loading-state-card" style="grid-column: 1 / -1; padding: var(--space-8); text-align: center; color: var(--color-text-muted);">
+          <span>Loading 9 Autonomous AI Agents...</span>
+        </div>
       </section>
     </main>
   </div>
 
+  <!-- Mobile Bottom Navigation -->
   <nav class="mobile-bottom-nav" aria-label="Mobile Navigation">
     <a href="./dashboard.html" class="mobile-nav-item"><span class="mobile-nav-icon">📊</span><span class="mobile-nav-label">Dashboard</span></a>
     <a href="./field-details.html" class="mobile-nav-item"><span class="mobile-nav-icon">🌾</span><span class="mobile-nav-label">Fields</span></a>
+    <a href="./agents.html" class="mobile-nav-item active"><span class="mobile-nav-icon">🤖</span><span class="mobile-nav-label">Agents</span></a>
     <a href="./action-plans.html" class="mobile-nav-item"><span class="mobile-nav-icon">📋</span><span class="mobile-nav-label">Actions</span></a>
-    <a href="./market.html" class="mobile-nav-item"><span class="mobile-nav-icon">📈</span><span class="mobile-nav-label">Market</span></a>
     <a href="./settings.html" class="mobile-nav-item"><span class="mobile-nav-icon">⚙️</span><span class="mobile-nav-label">Settings</span></a>
   </nav>
 </body>
