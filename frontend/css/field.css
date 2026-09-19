@@ -1524,6 +1524,314 @@
   color: var(--color-text-secondary);
 }
 
+/* ==========================================================================
+   Phase 15: Drone & Aerial Multispectral Crop Intelligence (Section 21)
+   ========================================================================== */
+.drone-main-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
+.drone-header-badges {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.source-demo {
+  background-color: #EDE9FE;
+  color: #5B21B6;
+  border: 1px dashed #7C3AED;
+}
+
+.drone-kpi-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-3);
+  margin-bottom: var(--space-6);
+}
+
+.drone-workspace-grid {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: var(--space-5);
+  margin-bottom: var(--space-6);
+}
+
+@media (max-width: 992px) {
+  .drone-workspace-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.drone-viewer-panel {
+  background-color: var(--color-surface-soft);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.viewer-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.layer-toggle-group {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.layer-btn {
+  padding: 4px 10px;
+  font-size: 11px;
+  font-weight: 700;
+  border-radius: var(--radius-full);
+  background-color: var(--color-card-bg);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.layer-btn:hover {
+  color: var(--color-text-primary);
+  border-color: var(--color-primary-400);
+}
+
+.layer-btn.active {
+  background-color: var(--color-primary-600);
+  border-color: var(--color-primary-600);
+  color: #ffffff;
+}
+
+.resolution-badge {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-card-bg);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+}
+
+.orthomosaic-canvas-container {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background-color: #0F172A;
+  border: 1px solid var(--color-border);
+}
+
+.orthomosaic-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.ndvi-scale-bar-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ndvi-legend-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  color: var(--color-text-muted);
+}
+
+.ndvi-gradient-strip {
+  height: 8px;
+  border-radius: var(--radius-full);
+  background: linear-gradient(90deg, #A855F7, #EF4444, #F59E0B, #84CC16, #10B981, #065F46);
+  border: 1px solid var(--color-border);
+}
+
+.drone-side-panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.drone-upload-card {
+  background-color: var(--color-card-bg);
+  border: 1.5px dashed var(--color-primary-400);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.upload-icon-circle {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: var(--color-primary-50);
+  color: var(--color-primary-700);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+}
+
+.drone-upload-card h4 {
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.drone-upload-card p {
+  font-size: 11px;
+  color: var(--color-text-muted);
+  margin: 0;
+}
+
+.file-input-label {
+  cursor: pointer;
+}
+
+.upload-progress-box {
+  width: 100%;
+  margin-top: var(--space-2);
+  font-size: 11px;
+  color: var(--color-primary-700);
+}
+
+.detected-issues-card {
+  background-color: var(--color-card-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+}
+
+.issues-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.issue-item {
+  background-color: var(--color-surface-soft);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.issue-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.issue-title {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-primary);
+}
+
+.issue-meta-row {
+  font-size: 10px;
+  color: var(--color-text-muted);
+}
+
+.issue-action-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  margin-top: 4px;
+  padding-top: 4px;
+  border-top: 1px solid var(--color-border);
+}
+
+.issue-rec {
+  font-size: 10px;
+  color: var(--color-text-secondary);
+}
+
+.flight-history-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--space-3);
+}
+
+.flight-card {
+  background-color: var(--color-card-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-3);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.flight-card:hover {
+  border-color: var(--color-primary-400);
+  transform: translateY(-1px);
+}
+
+.flight-card.flight-card-active {
+  border-color: var(--color-primary-600);
+  background-color: var(--color-surface-soft);
+  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
+}
+
+.flight-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-1);
+}
+
+.flight-date-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-size: 11px;
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-2);
+}
+
+.flight-metrics-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-1);
+  text-align: center;
+  border-top: 1px solid var(--color-border);
+  padding-top: var(--space-2);
+}
+
+.fm-key {
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.fm-val {
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--color-text-primary);
+}
+
+
 
 
 
