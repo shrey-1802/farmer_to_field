@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Autonomous Action Plans & Approvals - KrishiNirnay AI">
+  <title>Action Plans & Approvals — KrishiNirnay AI</title>
+  <link rel="icon" type="image/svg+xml" href="../assets/icons/sprout.svg">
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/actions.css">
+  <script type="module" src="../js/theme.js"></script>
+</head>
+<body class="app-body">
+  <header class="app-header">
+    <div class="header-left">
+      <button id="sidebar-toggle-btn" class="icon-button mobile-only" aria-label="Toggle navigation menu">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </button>
+      <div class="brand-badge">
+        <div class="brand-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M7 20h10"/><path d="M10 20c0-4.4 3.6-8 8-8v-1a5 5 0 0 0-5-5c-2.4 0-4.5 1.5-5 3.5A5.5 5.5 0 0 0 2 12c0 4.4 3.6 8 8 8Z"/>
+          </svg>
+        </div>
+        <span class="brand-title">KrishiNirnay AI</span>
+      </div>
+      <div class="farm-selector-wrapper">
+        <select id="farm-select" class="header-select">
+          <option value="farm-1">Shanti Agro Farm (12 Acres)</option>
+        </select>
+      </div>
+    </div>
+    <div class="header-right">
+      <div class="weather-pill">
+        <span class="weather-icon">☀️</span>
+        <span class="weather-temp">31°C</span>
+        <span class="source-tag source-live">LIVE</span>
+      </div>
+      <button id="theme-toggle-btn" class="icon-button" aria-label="Toggle theme">
+        <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="M4.93 4.93l1.41 1.41"/><path d="M17.66 17.66l1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/>
+        </svg>
+      </button>
+      <a href="./notifications.html" class="icon-button notification-bell" aria-label="Notifications">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/>
+        </svg>
+      </a>
+      <div class="farmer-pill"><div class="farmer-avatar">RP</div></div>
+    </div>
+  </header>
+
+  <div class="app-layout">
+    <aside class="app-sidebar" id="app-sidebar">
+      <nav class="sidebar-nav" aria-label="Main Navigation">
+        <div class="nav-section-title">Core Operations</div>
+        <ul class="nav-list">
+          <li class="nav-item"><a href="./dashboard.html" class="nav-link"><span class="nav-icon">📊</span><span class="nav-text">Dashboard</span></a></li>
+          <li class="nav-item"><a href="./field-details.html" class="nav-link"><span class="nav-icon">🌾</span><span class="nav-text">Fields & Zones</span></a></li>
+          <li class="nav-item"><a href="./agents.html" class="nav-link"><span class="nav-icon">🤖</span><span class="nav-text">AI Agents</span><span class="badge badge-ai">5 Active</span></a></li>
+          <li class="nav-item"><a href="./action-plans.html" class="nav-link active"><span class="nav-icon">📋</span><span class="nav-text">Action Plans</span><span class="badge badge-warning">1 New</span></a></li>
+          <li class="nav-item"><a href="./execution.html" class="nav-link"><span class="nav-icon">⚡</span><span class="nav-text">Execution Center</span></a></li>
+        </ul>
+        <div class="nav-section-title">Intelligence & Tools</div>
+        <ul class="nav-list">
+          <li class="nav-item"><a href="./market.html" class="nav-link"><span class="nav-icon">📈</span><span class="nav-text">Market & Mandi</span></a></li>
+          <li class="nav-item"><a href="./reports.html" class="nav-link"><span class="nav-icon">📑</span><span class="nav-text">Reports</span></a></li>
+          <li class="nav-item"><a href="./simulation.html" class="nav-link"><span class="nav-icon">🧪</span><span class="nav-text">Simulation Center</span></a></li>
+          <li class="nav-item"><a href="./notifications.html" class="nav-link"><span class="nav-icon">🔔</span><span class="nav-text">Notifications</span></a></li>
+          <li class="nav-item"><a href="./settings.html" class="nav-link"><span class="nav-icon">⚙️</span><span class="nav-text">Settings</span></a></li>
+          <li class="nav-item"><a href="./admin.html" class="nav-link"><span class="nav-icon">🛡️</span><span class="nav-text">Admin & Health</span></a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <main class="app-main" id="main-content">
+      <div class="page-title-banner">
+        <div>
+          <h1 class="page-title">Action Plans & Approvals</h1>
+          <p class="page-subtitle">Autonomous agronomic interventions requiring farmer authorization</p>
+        </div>
+        <div class="filter-tabs" role="tablist">
+          <button type="button" class="tab-btn active" role="tab" aria-selected="true">Pending Approval (1)</button>
+          <button type="button" class="tab-btn" role="tab" aria-selected="false">Executed (14)</button>
+          <button type="button" class="tab-btn" role="tab" aria-selected="false">Rejected (2)</button>
+        </div>
+      </div>
+
+      <!-- Action Plans List -->
+      <section class="action-plans-container" aria-label="Action Plans">
+        <!-- Active Pending Plan AP-1082 -->
+        <article class="action-plan-card urgent-plan">
+          <div class="plan-header">
+            <div class="plan-badge-group">
+              <span class="plan-id">#AP-1082</span>
+              <span class="badge badge-warning">Awaiting Approval</span>
+              <span class="source-tag source-ai">AI GENERATED</span>
+            </div>
+            <span class="plan-timestamp">Generated 15 minutes ago</span>
+          </div>
+
+          <div class="plan-body">
+            <h2 class="plan-title">Execute Drip Irrigation in Zone 2 (East Cotton Acre)</h2>
+            <p class="plan-description">
+              Virtual sensors recorded soil moisture drop to <strong>24%</strong> (critical deficit threshold). Evapotranspiration is 4.8 mm/day with zero rain forecasted. Immediate precision irrigation recommended.
+            </p>
+
+            <div class="plan-specs-grid">
+              <div class="spec-item">
+                <span class="spec-label">Target Zone</span>
+                <span class="spec-value">Zone 2 (Sloped Cotton, 2.8 Ac)</span>
+              </div>
+              <div class="spec-item">
+                <span class="spec-label">Water Quantity</span>
+                <span class="spec-value">15 mm (~42,000 Liters)</span>
+              </div>
+              <div class="spec-item">
+                <span class="spec-label">Estimated Run Time</span>
+                <span class="spec-value">45 Minutes (Drip Valve B)</span>
+              </div>
+              <div class="spec-item">
+                <span class="spec-label">Source Agent</span>
+                <span class="spec-value">💧 Irrigation Advisory Agent</span>
+              </div>
+            </div>
+
+            <!-- Expected Impact Projection -->
+            <div class="impact-projection-box">
+              <div class="impact-title">
+                <span>🎯 Projected Outcome:</span>
+              </div>
+              <p class="impact-text">
+                Restores root zone moisture from <strong>24% → 42%</strong>. Avoids vegetative water stress and prevents an estimated <strong>10–14% yield reduction</strong>.
+              </p>
+            </div>
+          </div>
+
+          <footer class="plan-footer">
+            <div class="plan-actions-left">
+              <a href="./agent-details.html?agent=irrigation" class="btn btn-sm btn-outline">Inspect Agent Reasoning</a>
+            </div>
+            <div class="plan-actions-right">
+              <button type="button" class="btn btn-danger btn-sm" id="reject-plan-btn">Reject Plan</button>
+              <button type="button" class="btn btn-outline btn-sm" id="modify-plan-btn">Adjust Volume</button>
+              <button type="button" class="btn btn-primary" id="approve-plan-btn">
+                <span>Approve & Dispatch Execution</span>
+              </button>
+            </div>
+          </footer>
+        </article>
+
+        <!-- Completed Plan Item AP-1081 -->
+        <article class="action-plan-card completed-plan">
+          <div class="plan-header">
+            <div class="plan-badge-group">
+              <span class="plan-id">#AP-1081</span>
+              <span class="badge badge-success">Completed & Verified</span>
+              <span class="source-tag source-user">FARMER APPROVED</span>
+            </div>
+            <span class="plan-timestamp">Yesterday at 6:30 AM</span>
+          </div>
+          <div class="plan-body">
+            <h3 class="plan-title">Nitrogen Foliar Booster Spray in Zone 1 & Zone 3</h3>
+            <p class="plan-description">
+              Urea spray applied to support early boll formation stage. Telemetry and NDVI confirmed healthy vegetative uptake.
+            </p>
+          </div>
+          <footer class="plan-footer">
+            <a href="./execution.html?job=AP-1081" class="btn btn-sm btn-outline">View Execution Telemetry Log →</a>
+          </footer>
+        </article>
+      </section>
+    </main>
+  </div>
+
+  <nav class="mobile-bottom-nav" aria-label="Mobile Navigation">
+    <a href="./dashboard.html" class="mobile-nav-item"><span class="mobile-nav-icon">📊</span><span class="mobile-nav-label">Dashboard</span></a>
+    <a href="./field-details.html" class="mobile-nav-item"><span class="mobile-nav-icon">🌾</span><span class="mobile-nav-label">Fields</span></a>
+    <a href="./action-plans.html" class="mobile-nav-item active"><span class="mobile-nav-icon">📋</span><span class="mobile-nav-label">Actions</span></a>
+    <a href="./market.html" class="mobile-nav-item"><span class="mobile-nav-icon">📈</span><span class="mobile-nav-label">Market</span></a>
+    <a href="./settings.html" class="mobile-nav-item"><span class="mobile-nav-icon">⚙️</span><span class="mobile-nav-label">Settings</span></a>
+  </nav>
+
+  <script type="module">
+    document.getElementById('approve-plan-btn')?.addEventListener('click', () => {
+      alert('Action Plan #AP-1082 Approved! Handing over to Execution Center.');
+      window.location.href = './execution.html?job=AP-1082&status=running';
+    });
+  </script>
+</body>
+</html>

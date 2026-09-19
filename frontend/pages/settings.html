@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Platform Settings, Appearance and Farm Profile - KrishiNirnay AI">
+  <title>Settings — KrishiNirnay AI</title>
+  <link rel="icon" type="image/svg+xml" href="../assets/icons/sprout.svg">
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/settings.css">
+  <script type="module" src="../js/theme.js"></script>
+</head>
+<body class="app-body">
+  <header class="app-header">
+    <div class="header-left">
+      <button id="sidebar-toggle-btn" class="icon-button mobile-only" aria-label="Toggle navigation menu">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </button>
+      <div class="brand-badge">
+        <div class="brand-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M7 20h10"/><path d="M10 20c0-4.4 3.6-8 8-8v-1a5 5 0 0 0-5-5c-2.4 0-4.5 1.5-5 3.5A5.5 5.5 0 0 0 2 12c0 4.4 3.6 8 8 8Z"/>
+          </svg>
+        </div>
+        <span class="brand-title">KrishiNirnay AI</span>
+      </div>
+    </div>
+    <div class="header-right">
+      <div class="weather-pill">
+        <span class="weather-icon">☀️</span>
+        <span class="weather-temp">31°C</span>
+        <span class="source-tag source-live">LIVE</span>
+      </div>
+      <button id="theme-toggle-btn" class="icon-button" aria-label="Toggle theme">
+        <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="M4.93 4.93l1.41 1.41"/><path d="M17.66 17.66l1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/>
+        </svg>
+      </button>
+      <div class="farmer-pill"><div class="farmer-avatar">RP</div></div>
+    </div>
+  </header>
+
+  <div class="app-layout">
+    <aside class="app-sidebar" id="app-sidebar">
+      <nav class="sidebar-nav" aria-label="Main Navigation">
+        <div class="nav-section-title">Core Operations</div>
+        <ul class="nav-list">
+          <li class="nav-item"><a href="./dashboard.html" class="nav-link"><span class="nav-icon">📊</span><span class="nav-text">Dashboard</span></a></li>
+          <li class="nav-item"><a href="./field-details.html" class="nav-link"><span class="nav-icon">🌾</span><span class="nav-text">Fields & Zones</span></a></li>
+          <li class="nav-item"><a href="./agents.html" class="nav-link"><span class="nav-icon">🤖</span><span class="nav-text">AI Agents</span></a></li>
+          <li class="nav-item"><a href="./action-plans.html" class="nav-link"><span class="nav-icon">📋</span><span class="nav-text">Action Plans</span></a></li>
+          <li class="nav-item"><a href="./execution.html" class="nav-link"><span class="nav-icon">⚡</span><span class="nav-text">Execution Center</span></a></li>
+        </ul>
+        <div class="nav-section-title">Intelligence & Tools</div>
+        <ul class="nav-list">
+          <li class="nav-item"><a href="./market.html" class="nav-link"><span class="nav-icon">📈</span><span class="nav-text">Market & Mandi</span></a></li>
+          <li class="nav-item"><a href="./reports.html" class="nav-link"><span class="nav-icon">📑</span><span class="nav-text">Reports</span></a></li>
+          <li class="nav-item"><a href="./simulation.html" class="nav-link"><span class="nav-icon">🧪</span><span class="nav-text">Simulation Center</span></a></li>
+          <li class="nav-item"><a href="./notifications.html" class="nav-link"><span class="nav-icon">🔔</span><span class="nav-text">Notifications</span></a></li>
+          <li class="nav-item"><a href="./settings.html" class="nav-link active"><span class="nav-icon">⚙️</span><span class="nav-text">Settings</span></a></li>
+          <li class="nav-item"><a href="./admin.html" class="nav-link"><span class="nav-icon">🛡️</span><span class="nav-text">Admin & Health</span></a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <main class="app-main" id="main-content">
+      <div class="page-title-banner">
+        <div>
+          <h1 class="page-title">Profile & Platform Settings</h1>
+          <p class="page-subtitle">Configure visual theme, farm parameters, and notification channels</p>
+        </div>
+      </div>
+
+      <!-- Section 68 & 69: Appearance & Theme Settings -->
+      <section class="card settings-section">
+        <div class="card-header">
+          <div>
+            <h2 class="card-title">Appearance & Visual Theme</h2>
+            <p class="card-subtitle">Choose how KrishiNirnay AI looks on this device</p>
+          </div>
+        </div>
+
+        <div class="theme-options-grid" role="radiogroup" aria-label="Theme Selection">
+          <!-- Light Theme Option -->
+          <label class="theme-card" for="theme-light">
+            <input type="radio" id="theme-light" name="theme-choice" value="light" class="theme-radio">
+            <div class="theme-preview light-preview">
+              <span class="theme-icon">☀️</span>
+            </div>
+            <div class="theme-details">
+              <span class="theme-name">Light Theme</span>
+              <span class="theme-desc">Bright agricultural green and white palette for outdoor daylight use.</span>
+            </div>
+          </label>
+
+          <!-- Dark Theme Option -->
+          <label class="theme-card" for="theme-dark">
+            <input type="radio" id="theme-dark" name="theme-choice" value="dark" class="theme-radio">
+            <div class="theme-preview dark-preview">
+              <span class="theme-icon">🌙</span>
+            </div>
+            <div class="theme-details">
+              <span class="theme-name">Dark Theme</span>
+              <span class="theme-desc">Low-light OLED-friendly dark green theme for evening monitoring.</span>
+            </div>
+          </label>
+
+          <!-- System Option -->
+          <label class="theme-card" for="theme-system">
+            <input type="radio" id="theme-system" name="theme-choice" value="system" class="theme-radio">
+            <div class="theme-preview system-preview">
+              <span class="theme-icon">💻</span>
+            </div>
+            <div class="theme-details">
+              <span class="theme-name">System Default</span>
+              <span class="theme-desc">Automatically synchronize with your operating system and browser preferences.</span>
+            </div>
+          </label>
+        </div>
+      </section>
+
+      <!-- Farmer & Farm Profile Section -->
+      <section class="card settings-section">
+        <div class="card-header">
+          <div>
+            <h2 class="card-title">Farmer & Farm Profile</h2>
+            <p class="card-subtitle">Manage land ownership records and regional agricultural data</p>
+          </div>
+        </div>
+
+        <form id="profile-settings-form" class="settings-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="set-farmer-name" class="form-label">Farmer Name</label>
+              <input type="text" id="set-farmer-name" class="form-input" value="Ramesh Patel">
+            </div>
+            <div class="form-group">
+              <label for="set-mobile" class="form-label">Mobile Number</label>
+              <input type="tel" id="set-mobile" class="form-input" value="+91 98765 43210" disabled>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="set-farm-name" class="form-label">Farm Title</label>
+              <input type="text" id="set-farm-name" class="form-input" value="Shanti Agro Farm">
+            </div>
+            <div class="form-group">
+              <label for="set-acres" class="form-label">Total Monitored Acres</label>
+              <input type="number" id="set-acres" class="form-input" value="12">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="set-language" class="form-label">Preferred Interface Language</label>
+              <select id="set-language" class="form-select">
+                <option value="en" selected>English (Primary)</option>
+                <option value="hi">हिन्दी (Hindi)</option>
+                <option value="gu">ગુજરાતી (Gujarati)</option>
+                <option value="mr">मराठी (Marathi)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="set-district" class="form-label">District & State</label>
+              <input type="text" id="set-district" class="form-input" value="Rajkot, Gujarat">
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary">Save Profile Changes</button>
+        </form>
+      </section>
+
+      <!-- Account & Session Section -->
+      <section class="card settings-section danger-zone">
+        <div class="card-header">
+          <div>
+            <h2 class="card-title text-danger">Farm Session & Account</h2>
+            <p class="card-subtitle">Log out or clear offline cached simulation data</p>
+          </div>
+        </div>
+
+        <div class="danger-actions-row">
+          <button type="button" class="btn btn-outline" id="clear-cache-btn">Clear Local Telemetry Cache</button>
+          <button type="button" class="btn btn-danger" id="logout-btn">Log Out from Farm</button>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <nav class="mobile-bottom-nav" aria-label="Mobile Navigation">
+    <a href="./dashboard.html" class="mobile-nav-item"><span class="mobile-nav-icon">📊</span><span class="mobile-nav-label">Dashboard</span></a>
+    <a href="./field-details.html" class="mobile-nav-item"><span class="mobile-nav-icon">🌾</span><span class="mobile-nav-label">Fields</span></a>
+    <a href="./action-plans.html" class="mobile-nav-item"><span class="mobile-nav-icon">📋</span><span class="mobile-nav-label">Actions</span></a>
+    <a href="./market.html" class="mobile-nav-item"><span class="mobile-nav-icon">📈</span><span class="mobile-nav-label">Market</span></a>
+    <a href="./settings.html" class="mobile-nav-item active"><span class="mobile-nav-icon">⚙️</span><span class="mobile-nav-label">Settings</span></a>
+  </nav>
+
+  <script type="module">
+    import themeManager from '../js/theme.js';
+
+    // Sync theme radio with current preference
+    const currentPref = themeManager.currentPreference;
+    const radio = document.querySelector(`input[name="theme-choice"][value="${currentPref}"]`);
+    if (radio) radio.checked = true;
+
+    // Handle theme radio selection
+    document.querySelectorAll('input[name="theme-choice"]').forEach(r => {
+      r.addEventListener('change', (e) => {
+        themeManager.setTheme(e.target.value);
+      });
+    });
+
+    // Handle logout
+    document.getElementById('logout-btn')?.addEventListener('click', () => {
+      if (confirm('Are you sure you want to log out from this farm session?')) {
+        localStorage.removeItem('krishi_auth_token');
+        localStorage.removeItem('krishi_farmer_session');
+        window.location.replace('./login.html');
+      }
+    });
+  </script>
+</body>
+</html>

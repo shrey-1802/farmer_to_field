@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Farmer Login - KrishiNirnay AI Farm Advisory & Orchestration Platform">
+  <title>Farmer Login — KrishiNirnay AI</title>
+  <link rel="icon" type="image/svg+xml" href="../assets/icons/sprout.svg">
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/auth.css">
+  <script type="module" src="../js/theme.js"></script>
+</head>
+<body class="auth-body">
+  <header class="auth-header">
+    <div class="auth-brand">
+      <div class="brand-logo" aria-hidden="true">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M7 20h10"/>
+          <path d="M10 20c0-4.4 3.6-8 8-8v-1a5 5 0 0 0-5-5c-2.4 0-4.5 1.5-5 3.5A5.5 5.5 0 0 0 2 12c0 4.4 3.6 8 8 8Z"/>
+        </svg>
+      </div>
+      <span class="auth-brand-name">KrishiNirnay AI</span>
+    </div>
+    <div class="auth-header-actions">
+      <button id="theme-toggle-btn" class="icon-button" aria-label="Toggle theme" title="Toggle theme">
+        <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="M4.93 4.93l1.41 1.41"/><path d="M17.66 17.66l1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="M6.34 17.66l-1.41 1.41"/><path d="M19.07 4.93l-1.41 1.41"/>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <main class="auth-container">
+    <section class="auth-grid">
+      <!-- Agricultural Banner Card -->
+      <article class="auth-visual-card">
+        <div class="visual-badge">
+          <span class="badge-dot"></span>
+          <span>Autonomous Agro-Intelligence</span>
+        </div>
+        <h2 class="visual-title">Smart farming.<br>Better decisions.<br>Higher yields.</h2>
+        <p class="visual-desc">
+          Empowering Indian agriculture with autonomous virtual sensors, AI crop monitoring, and automated irrigation orchestration.
+        </p>
+        <div class="visual-highlights">
+          <div class="highlight-item">
+            <span class="highlight-icon">🌱</span>
+            <span>Real-time Field & Soil Moisture Monitoring</span>
+          </div>
+          <div class="highlight-item">
+            <span class="highlight-icon">🤖</span>
+            <span>5 Specialized Autonomous AI Advisory Agents</span>
+          </div>
+          <div class="highlight-item">
+            <span class="highlight-icon">⚡</span>
+            <span>Zero-hardware Virtual IoT Sensor Support</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Farmer Login Form Card -->
+      <article class="auth-form-card">
+        <div class="form-header">
+          <div class="welcome-chip">🌾 Farmer Portal</div>
+          <h1 class="form-title">Welcome, Farmer</h1>
+          <p class="form-subtitle">Login to your farm using your 10-digit mobile number</p>
+        </div>
+
+        <form id="login-form" class="auth-form" novalidate>
+          <div class="form-group">
+            <label for="mobile-input" class="form-label">Mobile Number</label>
+            <div class="phone-input-wrapper">
+              <span class="country-code" aria-hidden="true">🇮🇳 +91</span>
+              <input
+                type="tel"
+                id="mobile-input"
+                name="mobile"
+                class="form-input phone-input"
+                placeholder="98765 43210"
+                maxlength="10"
+                pattern="[0-9]{10}"
+                inputmode="numeric"
+                required
+                autocomplete="tel-national"
+                aria-describedby="phone-hint phone-error"
+              />
+            </div>
+            <p id="phone-hint" class="input-hint">We'll send a 6-digit one-time password (OTP) via SMS.</p>
+            <p id="phone-error" class="input-error" role="alert" style="display: none;"></p>
+          </div>
+
+          <button type="submit" id="send-otp-btn" class="btn btn-primary btn-block">
+            <span class="btn-text">Send OTP</span>
+            <span class="btn-loader" aria-hidden="true" style="display: none;"></span>
+          </button>
+        </form>
+
+        <footer class="form-footer">
+          <div class="demo-bypass">
+            <p class="demo-text">Quick testing or offline demonstration?</p>
+            <button type="button" id="demo-login-btn" class="btn btn-outline btn-sm">
+              Enter with Demo Farm Account
+            </button>
+          </div>
+          <p class="security-note">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+            Secure farmer authentication backed by KrishiNirnay FastAPI
+          </p>
+        </footer>
+      </article>
+    </section>
+  </main>
+
+  <footer class="auth-page-footer">
+    <p>&copy; 2026 KrishiNirnay AI — Farm-to-Field Autonomous Advisory. Deployed on GitHub Pages.</p>
+  </footer>
+
+  <script type="module" src="../js/otp.js"></script>
+</body>
+</html>

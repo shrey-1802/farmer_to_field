@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="KrishiNirnay AI - Autonomous Farm-to-Field Advisory & Action Orchestration Platform">
+  <title>KrishiNirnay AI — Farm Intelligence</title>
+  <link rel="icon" type="image/svg+xml" href="./assets/icons/sprout.svg">
+  <link rel="stylesheet" href="./css/variables.css">
+  <link rel="stylesheet" href="./css/reset.css">
+  <style>
+    body {
+      background-color: var(--color-background, #F7FBF8);
+      color: var(--color-text-primary, #163020);
+      font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      text-align: center;
+    }
+    .brand-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      max-width: 440px;
+    }
+    .brand-logo {
+      width: 64px;
+      height: 64px;
+      padding: 12px;
+      border-radius: 16px;
+      background-color: var(--color-primary-100, #DCFCE7);
+      color: var(--color-primary-600, #16A34A);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .brand-title {
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--color-text-primary, #163020);
+      letter-spacing: -0.02em;
+    }
+    .brand-tagline {
+      font-size: 0.95rem;
+      color: var(--color-text-secondary, #52705C);
+      line-height: 1.5;
+    }
+    .loading-pulse {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 3px solid var(--color-primary-200, #BBF7D0);
+      border-top-color: var(--color-primary-600, #16A34A);
+      animation: spin 0.85s linear infinite;
+      margin-top: 1.5rem;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    .noscript-warning {
+      margin-top: 1.5rem;
+      padding: 1rem;
+      background-color: #FEF2F2;
+      border: 1px solid #FCA5A5;
+      color: #991B1B;
+      border-radius: 8px;
+      font-size: 0.875rem;
+    }
+    .fallback-links {
+      margin-top: 1.5rem;
+      font-size: 0.875rem;
+    }
+    .fallback-links a {
+      color: var(--color-primary-600, #16A34A);
+      text-decoration: none;
+      font-weight: 600;
+      margin: 0 0.5rem;
+    }
+    .fallback-links a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <main class="brand-container">
+    <div class="brand-logo" aria-hidden="true">
+      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M7 20h10"></path>
+        <path d="M10 20c0-4.4 3.6-8 8-8v-1a5 5 0 0 0-5-5c-2.4 0-4.5 1.5-5 3.5A5.5 5.5 0 0 0 2 12c0 4.4 3.6 8 8 8Z"></path>
+      </svg>
+    </div>
+    <h1 class="brand-title">KrishiNirnay AI</h1>
+    <p class="brand-tagline">Autonomous Farm-to-Field Advisory & Action Orchestration Platform</p>
+    
+    <div class="loading-pulse" role="status" aria-label="Authenticating session"></div>
+    
+    <noscript>
+      <div class="noscript-warning">
+        JavaScript is required to run KrishiNirnay AI. Please enable JavaScript in your browser to continue.
+      </div>
+      <div class="fallback-links">
+        <a href="./pages/login.html">Farmer Login</a>
+        <a href="./pages/dashboard.html">Direct Dashboard Preview</a>
+      </div>
+    </noscript>
+
+    <div class="fallback-links" id="redirect-hint" style="display: none;">
+      <p>Taking too long? <a href="./pages/login.html" id="manual-route-link">Click here to enter</a></p>
+    </div>
+  </main>
+
+  <script type="module">
+    // Primary auth routing logic as defined in Section 66.1 & Section 74
+    try {
+      const token = localStorage.getItem('krishi_auth_token') || sessionStorage.getItem('krishi_auth_token');
+      const farmerSession = localStorage.getItem('krishi_farmer_session');
+      
+      // Safety timeout to show hint if redirection is delayed
+      setTimeout(() => {
+        const hint = document.getElementById('redirect-hint');
+        if (hint) hint.style.display = 'block';
+      }, 1500);
+
+      if (token && farmerSession) {
+        window.location.replace('./pages/dashboard.html');
+      } else {
+        window.location.replace('./pages/login.html');
+      }
+    } catch (err) {
+      console.warn('Local storage inaccessible, routing to login:', err);
+      window.location.replace('./pages/login.html');
+    }
+  </script>
+</body>
+</html>
