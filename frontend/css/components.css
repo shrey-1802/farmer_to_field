@@ -837,3 +837,45 @@
   flex-shrink: 0;
 }
 
+/* ==========================================================================
+   Demo Mode Banner (Section 42/48 — Visual labeling of demo/simulation)
+   ========================================================================== */
+
+.demo-mode-banner {
+  display: none;
+  align-items: center;
+  gap: var(--space-3);
+  background-color: #EFF6FF;
+  border: 1px solid #93C5FD;
+  border-left: 4px solid #3B82F6;
+  border-radius: var(--radius-md);
+  padding: var(--space-2) var(--space-4);
+  margin: var(--space-2) var(--space-4);
+  font-size: var(--font-size-xs);
+  flex-wrap: wrap;
+}
+
+[data-theme="dark"] .demo-mode-banner {
+  background-color: rgba(59,130,246,0.1);
+  border-color: #60A5FA;
+}
+
+.demo-mode-pill {
+  font-weight: 800;
+  color: #1E40AF;
+  white-space: nowrap;
+  letter-spacing: 0.02em;
+}
+
+[data-theme="dark"] .demo-mode-pill {
+  color: #93C5FD;
+}
+
+.demo-mode-desc {
+  color: #3B82F6;
+  flex: 1;
+}
+
+[data-theme="dark"] .demo-mode-desc {
+  color: #60A5FA;
+}
