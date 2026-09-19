@@ -1,0 +1,369 @@
+/* ==========================================================================
+   KrishiNirnay AI - Admin Panel & System Health Diagnostics (Phase 26)
+   ========================================================================== */
+
+/* Code tag base */
+code {
+  font-family: monospace;
+  background-color: var(--color-surface-soft);
+  padding: 2px 6px;
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-xs);
+  color: var(--color-primary-800);
+}
+
+[data-theme="dark"] code {
+  color: #86EFAC;
+}
+
+/* ── Authorization Gate ─────────────────────────────────────────────────── */
+.admin-auth-gate {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-4);
+  padding: var(--space-12) var(--space-6);
+  text-align: center;
+  min-height: 40vh;
+}
+
+.auth-gate-icon {
+  font-size: 4rem;
+}
+
+.auth-gate-title {
+  font-size: var(--font-size-xl);
+  font-weight: 800;
+  color: var(--color-danger, #DC2626);
+}
+
+.auth-gate-desc {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  max-width: 400px;
+}
+
+/* ── Admin Tab Bar ──────────────────────────────────────────────────────── */
+.admin-tab-bar {
+  display: flex;
+  gap: 4px;
+  overflow-x: auto;
+  padding-bottom: var(--space-2);
+  flex-wrap: wrap;
+  margin-bottom: var(--space-4);
+}
+
+.admin-tab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-full);
+  border: 1px solid var(--color-border);
+  background-color: var(--color-surface-soft);
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  cursor: pointer;
+  color: var(--color-text-secondary);
+  white-space: nowrap;
+  transition: all var(--transition-fast);
+}
+
+.admin-tab-btn:hover {
+  border-color: var(--color-primary-400);
+  color: var(--color-primary-700);
+}
+
+.admin-tab-active {
+  background-color: var(--color-primary-600);
+  color: #FFFFFF;
+  border-color: var(--color-primary-700);
+}
+
+/* ── Admin Metrics / Health Grid ───────────────────────────────────────── */
+.admin-health-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--space-4);
+  margin-bottom: var(--space-4);
+}
+
+.admin-metric-card {
+  background-color: var(--color-surface-soft);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.admin-metric-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.admin-metric-label {
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  color: var(--color-text-secondary);
+}
+
+.admin-metric-value {
+  font-size: var(--font-size-xl);
+  font-weight: 800;
+  color: var(--color-text-primary);
+  font-family: monospace;
+}
+
+.admin-metric-sub {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-tertiary);
+}
+
+/* ── Admin Tables ───────────────────────────────────────────────────────── */
+.admin-table-container {
+  overflow-x: auto;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--font-size-xs);
+}
+
+.admin-table th,
+.admin-table td {
+  padding: var(--space-3) var(--space-4);
+  text-align: left;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.admin-table th {
+  background-color: var(--color-surface-soft);
+  font-weight: 700;
+  color: var(--color-text-secondary);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.admin-table tr:last-child td {
+  border-bottom: none;
+}
+
+.admin-table tr:hover td {
+  background-color: var(--color-surface-soft);
+}
+
+.admin-cell-main {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.admin-user-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--color-primary-600), var(--color-primary-800));
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+
+.admin-cell-sub {
+  font-size: 11px;
+  color: var(--color-text-tertiary);
+}
+
+.admin-cell-decision {
+  max-width: 280px;
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+}
+
+.sensor-code {
+  font-size: 11px;
+}
+
+.confidence-val {
+  font-weight: 700;
+  color: var(--color-primary-600);
+}
+
+/* ── Method Badges ──────────────────────────────────────────────────────── */
+.method-badge {
+  font-size: 10px;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: var(--radius-sm);
+  font-family: monospace;
+  letter-spacing: 0.04em;
+}
+
+.method-badge.get  { background-color: #DCFCE7; color: #166534; }
+.method-badge.post { background-color: #DBEAFE; color: #1E40AF; }
+.method-badge.put  { background-color: #FEF3C7; color: #92400E; }
+
+[data-theme="dark"] .method-badge.get  { background-color: rgba(34,197,94,0.2); color: #86EFAC; }
+[data-theme="dark"] .method-badge.post { background-color: rgba(59,130,246,0.2); color: #93C5FD; }
+[data-theme="dark"] .method-badge.put  { background-color: rgba(251,191,36,0.2); color: #FDE68A; }
+
+/* ── System Logs ─────────────────────────────────────────────────────────── */
+.log-controls {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-3);
+  flex-wrap: wrap;
+}
+
+.log-live-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  color: var(--color-primary-600);
+}
+
+.log-live-dot {
+  font-size: 0.8rem;
+  color: var(--color-primary-600);
+}
+
+.log-feed {
+  background-color: #0A1A0F;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  padding: var(--space-3);
+  max-height: 360px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-family: 'Courier New', monospace;
+  font-size: 11px;
+}
+
+.log-entry {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  line-height: 1.5;
+  padding: 2px 0;
+  border-bottom: 1px dashed rgba(255,255,255,0.05);
+}
+
+.log-ts { color: #6B7280; min-width: 150px; }
+.log-info .log-level { color: #86EFAC; }
+.log-warn .log-level { color: #FDE68A; }
+.log-error .log-level { color: #FCA5A5; }
+.log-source { color: #93C5FD; }
+.log-msg { color: #E5E7EB; flex: 1; }
+
+/* ── Agent Activity Status Colors ────────────────────────────────────────── */
+.badge-info {
+  background-color: #DBEAFE;
+  color: #1E40AF;
+}
+
+[data-theme="dark"] .badge-info {
+  background-color: rgba(59, 130, 246, 0.2);
+  color: #93C5FD;
+}
+
+.badge-execution {
+  background-color: var(--color-primary-100, #DCFCE7);
+  color: var(--color-primary-700, #15803D);
+  font-weight: 700;
+}
+
+/* ── System Settings Info Cards ─────────────────────────────────────────── */
+.sysinfo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--space-4);
+}
+
+.sysinfo-card {
+  background-color: var(--color-surface-soft);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.sysinfo-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-tertiary);
+}
+
+.sysinfo-value {
+  font-size: var(--font-size-base);
+  font-weight: 800;
+  color: var(--color-text-primary);
+  font-family: monospace;
+  word-break: break-all;
+}
+
+/* ── Ping Banner ─────────────────────────────────────────────────────────── */
+.ping-result-banner {
+  background-color: var(--color-surface-soft);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+  flex-wrap: wrap;
+  font-size: var(--font-size-sm);
+}
+
+.ping-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.ping-stat-label {
+  font-size: 11px;
+  color: var(--color-text-tertiary);
+  font-weight: 700;
+}
+
+.ping-stat-val {
+  font-family: monospace;
+  font-weight: 800;
+  font-size: var(--font-size-base);
+  color: var(--color-text-primary);
+}
+
+/* ── Device type tags reused ─────────────────────────────────────────────── */
+.device-type-tag {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: var(--radius-sm);
+  text-transform: uppercase;
+}
+
+.tag-virtual  { background-color: #DBEAFE; color: #1E40AF; }
+.tag-physical { background-color: #DCFCE7; color: #166534; }
+
+[data-theme="dark"] .tag-virtual  { background-color: rgba(59,130,246,0.2); color: #93C5FD; }
+[data-theme="dark"] .tag-physical { background-color: rgba(34,197,94,0.2); color: #86EFAC; }

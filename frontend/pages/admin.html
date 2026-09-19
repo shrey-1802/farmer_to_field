@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Admin Panel — Manage Users, Farms, Fields, Sensors, Logs, Agents & System Health - KrishiNirnay AI">
+  <title>Admin Panel — KrishiNirnay AI</title>
+  <link rel="icon" type="image/svg+xml" href="../assets/icons/sprout.svg">
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/admin.css">
+  <script type="module" src="../js/ui.js"></script>
+</head>
+<body class="app-body">
+  <header class="app-header">
+    <div class="header-left">
+      <button id="sidebar-toggle-btn" class="icon-button mobile-only" aria-label="Toggle navigation menu">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </button>
+      <div class="brand-badge">
+        <div class="brand-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M7 20h10"/><path d="M10 20c0-4.4 3.6-8 8-8v-1a5 5 0 0 0-5-5c-2.4 0-4.5 1.5-5 3.5A5.5 5.5 0 0 0 2 12c0 4.4 3.6 8 8 8Z"/>
+          </svg>
+        </div>
+        <span class="brand-title">KrishiNirnay AI</span>
+      </div>
+    </div>
+    <div class="header-right">
+      <div class="weather-pill">
+        <span class="weather-icon">☀️</span>
+        <span class="weather-temp">31°C</span>
+        <span class="source-tag source-live">LIVE</span>
+      </div>
+      <button id="theme-toggle-btn" class="icon-button" aria-label="Toggle theme">
+        <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="M4.93 4.93l1.41 1.41"/><path d="M17.66 17.66l1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/>
+        </svg>
+      </button>
+      <a href="./notifications.html" class="icon-button notification-bell" aria-label="Notifications">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/>
+        </svg>
+      </a>
+      <div class="farmer-pill"><div class="farmer-avatar">RP</div></div>
+    </div>
+  </header>
+
+  <div class="app-layout">
+    <aside class="app-sidebar" id="app-sidebar">
+      <nav class="sidebar-nav" aria-label="Main Navigation">
+        <div class="nav-section-title">Core Operations</div>
+        <ul class="nav-list">
+          <li class="nav-item"><a href="./dashboard.html" class="nav-link"><span class="nav-icon">📊</span><span class="nav-text">Dashboard</span></a></li>
+          <li class="nav-item"><a href="./field-details.html" class="nav-link"><span class="nav-icon">🌾</span><span class="nav-text">Fields & Zones</span></a></li>
+          <li class="nav-item"><a href="./agents.html" class="nav-link"><span class="nav-icon">🤖</span><span class="nav-text">AI Agents</span></a></li>
+          <li class="nav-item"><a href="./action-plans.html" class="nav-link"><span class="nav-icon">📋</span><span class="nav-text">Action Plans</span></a></li>
+          <li class="nav-item"><a href="./execution.html" class="nav-link"><span class="nav-icon">⚡</span><span class="nav-text">Execution Center</span></a></li>
+        </ul>
+        <div class="nav-section-title">Intelligence & Tools</div>
+        <ul class="nav-list">
+          <li class="nav-item"><a href="./market.html" class="nav-link"><span class="nav-icon">📈</span><span class="nav-text">Market & Mandi</span></a></li>
+          <li class="nav-item"><a href="./reports.html" class="nav-link"><span class="nav-icon">📑</span><span class="nav-text">Reports</span></a></li>
+          <li class="nav-item"><a href="./simulation.html" class="nav-link"><span class="nav-icon">🧪</span><span class="nav-text">Simulation Center</span></a></li>
+          <li class="nav-item"><a href="./notifications.html" class="nav-link"><span class="nav-icon">🔔</span><span class="nav-text">Notifications</span></a></li>
+          <li class="nav-item"><a href="./settings.html" class="nav-link"><span class="nav-icon">⚙️</span><span class="nav-text">Settings</span></a></li>
+          <li class="nav-item"><a href="./admin.html" class="nav-link active"><span class="nav-icon">🛡️</span><span class="nav-text">Admin & Health</span></a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <main class="app-main" id="main-content">
+      <div class="page-title-banner">
+        <div>
+          <h1 class="page-title">Admin Panel & System Health (Section 32)</h1>
+          <p class="page-subtitle">Platform-wide management — users, farms, fields, sensors, logs, agents, and system diagnostics</p>
+        </div>
+        <div style="display:flex;gap:var(--space-2);flex-wrap:wrap;">
+          <span class="badge badge-warning">ADMIN ACCESS ONLY</span>
+          <button type="button" class="btn btn-outline btn-sm" id="ping-backend-btn">Ping FastAPI Backend</button>
+        </div>
+      </div>
+
+      <!-- ── Section 32 Authorization Gate ─────────────────────────────── -->
+      <section class="card admin-auth-gate" id="admin-auth-gate" style="display:none;">
+        <div class="auth-gate-icon">🔒</div>
+        <h2 class="auth-gate-title">Unauthorized Access</h2>
+        <p class="auth-gate-desc">
+          Admin Panel access is restricted to users with <strong>FARMER_ADMIN</strong> or <strong>SUPER_ADMIN</strong> privileges.
+          Backend authorization is authoritative. Contact your platform administrator.
+        </p>
+        <a href="./dashboard.html" class="btn btn-primary">Return to Dashboard</a>
+      </section>
+
+      <!-- ── Admin Authorized Content ───────────────────────────────────── -->
+      <div id="admin-authorized-content">
+
+        <!-- Admin Tab Navigation -->
+        <div class="admin-tab-bar" role="tablist" aria-label="Admin Sections">
+          <button class="admin-tab-btn" data-admin-tab="health" role="tab">🩺 System Health</button>
+          <button class="admin-tab-btn" data-admin-tab="users" role="tab">👥 Manage Users</button>
+          <button class="admin-tab-btn" data-admin-tab="farms" role="tab">🏡 Manage Farms</button>
+          <button class="admin-tab-btn" data-admin-tab="fields" role="tab">🌾 Manage Fields</button>
+          <button class="admin-tab-btn" data-admin-tab="sensors" role="tab">📡 Sensor Status</button>
+          <button class="admin-tab-btn" data-admin-tab="logs" role="tab">📋 System Logs</button>
+          <button class="admin-tab-btn" data-admin-tab="agents" role="tab">🤖 Agent Activity</button>
+          <button class="admin-tab-btn" data-admin-tab="syssettings" role="tab">⚙️ System Settings</button>
+        </div>
+
+        <!-- ── Tab: System Health & Backend Diagnostics ────────────────── -->
+        <div data-admin-section="health">
+
+          <!-- Backend Ping Result -->
+          <section class="card" style="margin-bottom: var(--space-4);">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">Backend Connectivity — FastAPI on Render</h2>
+                <p class="card-subtitle" id="health-timestamp">Checking...</p>
+              </div>
+            </div>
+            <div class="ping-result-banner">
+              <div class="ping-stat">
+                <span class="ping-stat-label">Status</span>
+                <span class="ping-stat-val"><span class="badge badge-success" id="be-status-badge">CHECKING</span></span>
+              </div>
+              <div class="ping-stat">
+                <span class="ping-stat-label">HTTP Response</span>
+                <span class="ping-stat-val" id="be-http-status">—</span>
+              </div>
+              <div class="ping-stat">
+                <span class="ping-stat-label">Round-Trip Latency</span>
+                <span class="ping-stat-val" id="be-latency">—</span>
+              </div>
+              <div class="ping-stat">
+                <span class="ping-stat-label">Wake-Up State</span>
+                <span class="ping-stat-val" style="font-size: var(--font-size-xs);" id="be-uptime-label">Pinging Render...</span>
+              </div>
+            </div>
+          </section>
+
+          <!-- Platform Health Metrics Grid -->
+          <section class="card" style="margin-bottom: var(--space-4);">
+            <div class="card-header">
+              <h2 class="card-title">Platform Health Indicators</h2>
+            </div>
+            <div class="admin-health-grid">
+              <div class="admin-metric-card">
+                <div class="admin-metric-header">
+                  <span class="admin-metric-label">Virtual IoT Streams</span>
+                  <span class="badge badge-simulated">SIMULATED</span>
+                </div>
+                <span class="admin-metric-value">7</span>
+                <span class="admin-metric-sub">Active sensor channels, 1 reading/zone/10s</span>
+              </div>
+              <div class="admin-metric-card">
+                <div class="admin-metric-header">
+                  <span class="admin-metric-label">AI Agent Consensus Cycles</span>
+                  <span class="badge badge-success">ACTIVE</span>
+                </div>
+                <span class="admin-metric-value">1,492</span>
+                <span class="admin-metric-sub">Total cycles since session start</span>
+              </div>
+              <div class="admin-metric-card">
+                <div class="admin-metric-header">
+                  <span class="admin-metric-label">Avg Agent Confidence</span>
+                  <span class="badge badge-success">HIGH</span>
+                </div>
+                <span class="admin-metric-value">94.2%</span>
+                <span class="admin-metric-sub">Across 9 autonomous decision agents</span>
+              </div>
+              <div class="admin-metric-card">
+                <div class="admin-metric-header">
+                  <span class="admin-metric-label">Mock Fallback</span>
+                  <span class="badge badge-warning">ENABLED</span>
+                </div>
+                <span class="admin-metric-value">Ready</span>
+                <span class="admin-metric-sub">Auto-triggers if Render cold-starts</span>
+              </div>
+              <div class="admin-metric-card">
+                <div class="admin-metric-header">
+                  <span class="admin-metric-label">Actions This Session</span>
+                  <span class="badge badge-execution">14</span>
+                </div>
+                <span class="admin-metric-value">14</span>
+                <span class="admin-metric-sub">100% target attainment rate</span>
+              </div>
+              <div class="admin-metric-card">
+                <div class="admin-metric-header">
+                  <span class="admin-metric-label">Registered Users</span>
+                  <span class="badge badge-success">4</span>
+                </div>
+                <span class="admin-metric-value">4</span>
+                <span class="admin-metric-sub">3 Active / 1 Inactive</span>
+              </div>
+            </div>
+          </section>
+
+          <!-- API Endpoint Health Table -->
+          <section class="card">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">API Contract Health — All Endpoints</h2>
+                <p class="card-subtitle">Backend REST contract mapping to FastAPI route controllers</p>
+              </div>
+              <span class="badge badge-success">12 HEALTHY</span>
+            </div>
+            <div class="admin-table-container">
+              <table class="admin-table" aria-label="API Endpoints Health">
+                <thead>
+                  <tr>
+                    <th>Module</th>
+                    <th>Method</th>
+                    <th>Endpoint</th>
+                    <th>Description</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody id="api-endpoints-body">
+                  <!-- Rendered by admin.js -->
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </div>
+
+        <!-- ── Tab: Manage Users (Section 32) ────────────────────────────── -->
+        <div data-admin-section="users" style="display:none;">
+          <section class="card">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">Manage Users (Section 32)</h2>
+                <p class="card-subtitle">Farmer accounts, roles, and farm access permissions</p>
+              </div>
+              <span class="badge badge-success">4 USERS</span>
+            </div>
+            <div class="admin-table-container">
+              <table class="admin-table" aria-label="User Management">
+                <thead>
+                  <tr>
+                    <th>User</th>
+                    <th>Role</th>
+                    <th>Farm Access</th>
+                    <th>Status</th>
+                    <th>Joined</th>
+                  </tr>
+                </thead>
+                <tbody id="users-table-body">
+                  <!-- Rendered by admin.js -->
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </div>
+
+        <!-- ── Tab: Manage Farms (Section 32) ────────────────────────────── -->
+        <div data-admin-section="farms" style="display:none;">
+          <section class="card">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">Manage Farms (Section 32)</h2>
+                <p class="card-subtitle">Registered farm boundaries, ownership records, and IoT inventory</p>
+              </div>
+              <span class="badge badge-success">2 FARMS</span>
+            </div>
+            <div class="admin-table-container">
+              <table class="admin-table" aria-label="Farm Management">
+                <thead>
+                  <tr>
+                    <th>Farm</th>
+                    <th>Owner</th>
+                    <th>Location</th>
+                    <th>Acreage</th>
+                    <th>Fields / Sensors</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody id="farms-table-body">
+                  <!-- Rendered by admin.js -->
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </div>
+
+        <!-- ── Tab: Manage Fields (Section 32) ───────────────────────────── -->
+        <div data-admin-section="fields" style="display:none;">
+          <section class="card">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">Manage Fields (Section 32)</h2>
+                <p class="card-subtitle">Active and fallow field plots, crop rotation, and zone assignments</p>
+              </div>
+              <span class="badge badge-success">4 FIELDS</span>
+            </div>
+            <div class="admin-table-container">
+              <table class="admin-table" aria-label="Field Management">
+                <thead>
+                  <tr>
+                    <th>Field</th>
+                    <th>Farm</th>
+                    <th>Current Crop</th>
+                    <th>Acres / Zones</th>
+                    <th>Sensors</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody id="fields-table-body">
+                  <!-- Rendered by admin.js -->
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </div>
+
+        <!-- ── Tab: Sensor Status (Section 32) ───────────────────────────── -->
+        <div data-admin-section="sensors" style="display:none;">
+          <section class="card">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">Sensor Status (Section 32)</h2>
+                <p class="card-subtitle">Virtual and physical IoT hardware health, last reading, and signal strength</p>
+              </div>
+              <div id="sensor-health-summary" style="display:flex;gap:var(--space-2);">
+                <!-- Rendered by admin.js -->
+              </div>
+            </div>
+            <div class="admin-table-container">
+              <table class="admin-table" aria-label="Sensor Status Matrix">
+                <thead>
+                  <tr>
+                    <th>Device ID & Type</th>
+                    <th>Zone</th>
+                    <th>Last Reading</th>
+                    <th>Last Seen</th>
+                    <th>Power</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody id="sensors-status-body">
+                  <!-- Rendered by admin.js -->
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </div>
+
+        <!-- ── Tab: System Logs (Section 32) ─────────────────────────────── -->
+        <div data-admin-section="logs" style="display:none;">
+          <section class="card">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">System Logs (Section 32)</h2>
+                <p class="card-subtitle">Real-time backend application event stream from all modules</p>
+              </div>
+              <span class="log-live-pill">
+                <span class="log-live-dot" id="log-live-indicator">●</span>LIVE STREAM
+              </span>
+            </div>
+
+            <div class="log-controls">
+              <input
+                type="search"
+                id="log-filter-input"
+                class="form-input"
+                placeholder="Filter by source, level, or message..."
+                style="max-width: 360px;"
+              >
+              <span class="badge badge-outline">INFO</span>
+              <span class="badge badge-warning">WARN</span>
+              <span class="badge badge-danger">ERROR</span>
+            </div>
+
+            <div class="log-feed" id="system-logs-feed" role="log" aria-live="polite" aria-label="System Logs">
+              <!-- Rendered by admin.js -->
+            </div>
+          </section>
+        </div>
+
+        <!-- ── Tab: Agent Activity (Section 32) ──────────────────────────── -->
+        <div data-admin-section="agents" style="display:none;">
+          <section class="card">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">Agent Activity (Section 32)</h2>
+                <p class="card-subtitle">All 9 autonomous AI agents — decision states, confidence, and processing latency</p>
+              </div>
+              <span class="badge badge-execution">9 AGENTS</span>
+            </div>
+            <div class="admin-table-container">
+              <table class="admin-table" aria-label="AI Agent Activity">
+                <thead>
+                  <tr>
+                    <th>Agent</th>
+                    <th>Status</th>
+                    <th>Last Decision</th>
+                    <th>Cycles</th>
+                    <th>Confidence</th>
+                    <th>Latency</th>
+                  </tr>
+                </thead>
+                <tbody id="agent-activity-body">
+                  <!-- Rendered by admin.js -->
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </div>
+
+        <!-- ── Tab: System Settings (Section 32) ─────────────────────────── -->
+        <div data-admin-section="syssettings" style="display:none;">
+          <section class="card">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">System Settings (Section 32)</h2>
+                <p class="card-subtitle">Runtime configuration, API base URL, environment mode, and feature flags</p>
+              </div>
+            </div>
+
+            <div class="sysinfo-grid">
+              <div class="sysinfo-card">
+                <span class="sysinfo-label">App Version</span>
+                <span class="sysinfo-value" id="system-version">1.0.0</span>
+              </div>
+              <div class="sysinfo-card">
+                <span class="sysinfo-label">Environment</span>
+                <span class="sysinfo-value"><span id="system-env" class="badge badge-success">PRODUCTION</span></span>
+              </div>
+              <div class="sysinfo-card">
+                <span class="sysinfo-label">FastAPI Base URL</span>
+                <span class="sysinfo-value" id="system-api-url">—</span>
+              </div>
+              <div class="sysinfo-card">
+                <span class="sysinfo-label">Virtual IoT Engine</span>
+                <span class="sysinfo-value" id="system-sim-mode">ON</span>
+              </div>
+              <div class="sysinfo-card">
+                <span class="sysinfo-label">Sensor Poll Interval</span>
+                <span class="sysinfo-value">10,000ms</span>
+              </div>
+              <div class="sysinfo-card">
+                <span class="sysinfo-label">Render Wake-up Timeout</span>
+                <span class="sysinfo-value">30,000ms</span>
+              </div>
+              <div class="sysinfo-card">
+                <span class="sysinfo-label">Mock Fallback Mode</span>
+                <span class="sysinfo-value"><span class="badge badge-warning">ENABLED</span></span>
+              </div>
+              <div class="sysinfo-card">
+                <span class="sysinfo-label">Simulation Platform</span>
+                <span class="sysinfo-value">Autonomous Farm-to-Field</span>
+              </div>
+            </div>
+
+            <div style="margin-top: var(--space-6); padding: var(--space-4); background-color: var(--color-surface-soft); border-radius: var(--radius-md); border: 1px solid var(--color-border);">
+              <p style="font-size: var(--font-size-xs); color: var(--color-text-secondary); margin: 0;">
+                <strong>Note:</strong> System Settings are read-only in the frontend. Modify <code>APP_CONFIG</code> in
+                <code>frontend/js/config.js</code> or inject overrides via <code>window.APP_CONFIG</code> at runtime.
+                Backend environment variables (API keys, DB URLs) are managed in <code>backend/.env</code>.
+              </p>
+            </div>
+          </section>
+        </div>
+
+      </div><!-- /admin-authorized-content -->
+    </main>
+  </div>
+
+  <nav class="mobile-bottom-nav" aria-label="Mobile Navigation">
+    <a href="./dashboard.html" class="mobile-nav-item"><span class="mobile-nav-icon">📊</span><span class="mobile-nav-label">Dashboard</span></a>
+    <a href="./field-details.html" class="mobile-nav-item"><span class="mobile-nav-icon">🌾</span><span class="mobile-nav-label">Fields</span></a>
+    <a href="./action-plans.html" class="mobile-nav-item"><span class="mobile-nav-icon">📋</span><span class="mobile-nav-label">Actions</span></a>
+    <a href="./market.html" class="mobile-nav-item"><span class="mobile-nav-icon">📈</span><span class="mobile-nav-label">Market</span></a>
+    <a href="./settings.html" class="mobile-nav-item"><span class="mobile-nav-icon">⚙️</span><span class="mobile-nav-label">Settings</span></a>
+  </nav>
+
+  <script type="module" src="../js/admin.js"></script>
+</body>
+</html>

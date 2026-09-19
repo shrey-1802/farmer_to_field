@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Field Operations Dashboard - KrishiNirnay AI">
+  <title>Farm Dashboard — KrishiNirnay AI</title>
+  <link rel="icon" type="image/svg+xml" href="../assets/icons/sprout.svg">
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/dashboard.css">
+  <script type="module" src="../js/ui.js"></script>
+</head>
+<body class="app-body">
+  <!-- Top Navigation Header -->
+  <header class="app-header">
+    <div class="header-left">
+      <button id="sidebar-toggle-btn" class="icon-button mobile-only" aria-label="Toggle navigation menu">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </button>
+      <div class="brand-badge">
+        <div class="brand-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M7 20h10"/><path d="M10 20c0-4.4 3.6-8 8-8v-1a5 5 0 0 0-5-5c-2.4 0-4.5 1.5-5 3.5A5.5 5.5 0 0 0 2 12c0 4.4 3.6 8 8 8Z"/>
+          </svg>
+        </div>
+        <span class="brand-title">KrishiNirnay AI</span>
+      </div>
+
+      <!-- Farm & Field Selector -->
+      <div class="farm-selector-wrapper">
+        <select id="farm-select" class="header-select" aria-label="Select Farm">
+          <option value="farm-1">Shanti Agro Farm (12 Acres)</option>
+          <option value="farm-2">South Valley Field (8 Acres)</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="header-right">
+      <!-- Live Weather Pill -->
+      <div class="weather-pill" id="header-weather-pill" title="Live Open-Meteo Weather">
+        <span class="weather-icon">☀️</span>
+        <span class="weather-temp">31°C</span>
+        <span class="weather-desc">Clear Sky</span>
+        <span class="source-tag source-live">LIVE</span>
+      </div>
+
+      <!-- Quick Theme Switcher -->
+      <button id="theme-toggle-btn" class="icon-button" aria-label="Toggle visual theme" title="Toggle Theme (Light / Dark)">
+        <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="M4.93 4.93l1.41 1.41"/><path d="M17.66 17.66l1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/>
+        </svg>
+      </button>
+
+      <!-- Notifications Icon -->
+      <a href="./notifications.html" class="icon-button notification-bell" aria-label="Notifications" title="Notifications">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/>
+        </svg>
+        <span class="notification-dot" aria-hidden="true"></span>
+      </a>
+
+      <!-- Farmer Profile Pill -->
+      <div class="farmer-pill">
+        <div class="farmer-avatar" aria-hidden="true">RP</div>
+        <div class="farmer-info">
+          <span class="farmer-name" id="user-display-name">Ramesh Patel</span>
+          <span class="farmer-role">Farm Owner</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="app-layout">
+    <!-- Sidebar Navigation -->
+    <aside class="app-sidebar" id="app-sidebar">
+      <nav class="sidebar-nav" aria-label="Main Navigation">
+        <div class="nav-section-title">Core Operations</div>
+        <ul class="nav-list">
+          <li class="nav-item">
+            <a href="./dashboard.html" class="nav-link active">
+              <span class="nav-icon">📊</span>
+              <span class="nav-text">Dashboard</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="./field-details.html" class="nav-link">
+              <span class="nav-icon">🌾</span>
+              <span class="nav-text">Fields & Zones</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="./agents.html" class="nav-link">
+              <span class="nav-icon">🤖</span>
+              <span class="nav-text">AI Agents</span>
+              <span class="badge badge-ai">5 Active</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="./action-plans.html" class="nav-link">
+              <span class="nav-icon">📋</span>
+              <span class="nav-text">Action Plans</span>
+              <span class="badge badge-warning" id="pending-actions-count">1 New</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="./execution.html" class="nav-link">
+              <span class="nav-icon">⚡</span>
+              <span class="nav-text">Execution Center</span>
+            </a>
+          </li>
+        </ul>
+
+        <div class="nav-section-title">Intelligence & Tools</div>
+        <ul class="nav-list">
+          <li class="nav-item">
+            <a href="./market.html" class="nav-link">
+              <span class="nav-icon">📈</span>
+              <span class="nav-text">Market & Mandi</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="./reports.html" class="nav-link">
+              <span class="nav-icon">📑</span>
+              <span class="nav-text">Reports</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="./simulation.html" class="nav-link">
+              <span class="nav-icon">🧪</span>
+              <span class="nav-text">Simulation Center</span>
+              <span class="badge badge-simulated">Virtual IoT</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="./notifications.html" class="nav-link">
+              <span class="nav-icon">🔔</span>
+              <span class="nav-text">Notifications</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="./settings.html" class="nav-link">
+              <span class="nav-icon">⚙️</span>
+              <span class="nav-text">Settings</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="./admin.html" class="nav-link">
+              <span class="nav-icon">🛡️</span>
+              <span class="nav-text">Admin & Health</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Connection Status Footer in Sidebar -->
+      <div class="sidebar-status-card">
+        <div class="status-indicator">
+          <span class="status-dot status-online"></span>
+          <span class="status-text">Backend Connected</span>
+        </div>
+        <p class="status-meta">FastAPI on Render • Auto-Sync</p>
+      </div>
+    </aside>
+
+    <!-- Main Dashboard Content -->
+    <main class="app-main" id="main-content">
+
+      <!-- Render Wake-Up Banner (Section 38) — shown by api.js when backend is cold -->
+      <div id="render-wakeup-banner" role="alert" aria-live="polite">
+        <div class="wakeup-banner-text">
+          <span class="wakeup-banner-icon">⏳</span>
+          <div class="wakeup-spinner"></div>
+          <span>Backend is waking up on Render. Please wait a few seconds…</span>
+        </div>
+        <button class="btn btn-sm btn-outline" id="wakeup-retry-btn" style="font-size:0.75rem;">Retry</button>
+      </div>
+
+      <!-- Demo Mode Banner (Section 42/48) — shown when ENABLE_VIRTUAL_IOT = true -->
+      <div id="demo-mode-banner" class="demo-mode-banner" role="status" aria-label="Demo Mode Active" style="display:none;">
+        <span class="demo-mode-pill">🧪 VIRTUAL IoT — DEMO / SIMULATION MODE</span>
+        <span class="demo-mode-desc">All sensor readings are generated by the Virtual IoT Engine. This is not real field data.</span>
+        <a href="./simulation.html" class="btn btn-sm btn-outline" style="font-size:0.7rem;padding:2px 10px;">Open Simulation Center</a>
+      </div>
+
+      <!-- Farmer Greeting Banner & Quick Actions (Section 71.1) -->
+      <section class="dashboard-greeting-banner">
+        <div>
+          <h1 class="page-title" id="farmer-greeting-text">Welcome to Your Farm</h1>
+          <p class="page-subtitle">Here's what is happening across your 12 acres today.</p>
+        </div>
+        <div class="quick-action-strip">
+          <button type="button" class="btn btn-sm btn-outline" data-quick-action="check-weather">Check Weather</button>
+          <button type="button" class="btn btn-sm btn-outline" data-quick-action="view-sensors">View Sensors</button>
+          <button type="button" class="btn btn-sm btn-outline" data-quick-action="run-simulation">Run Simulation</button>
+          <a href="./action-plans.html" class="btn btn-sm btn-primary">Review Actions (1)</a>
+        </div>
+      </section>
+
+      <!-- Priority Alert Card (Section 71.3) -->
+      <article class="card priority-alert-card">
+        <div class="priority-alert-header">
+          <div class="alert-icon-title">
+            <span class="alert-icon">⚠️</span>
+            <div>
+              <div class="alert-tag">ATTENTION NEEDED</div>
+              <h2 class="alert-headline">Water stress detected in Zone 2 (East Cotton Acre)</h2>
+            </div>
+          </div>
+          <span class="source-tag source-ai">AI DETECTED</span>
+        </div>
+        <div class="priority-alert-body">
+          <div class="alert-specs">
+            <span><strong>Severity:</strong> <span class="text-danger font-bold">HIGH</span></span>
+            <span><strong>Confidence:</strong> 91%</span>
+            <span><strong>Detected:</strong> 10 minutes ago</span>
+            <span><strong>Root Moisture:</strong> 24.1% (Critical Deficit)</span>
+          </div>
+          <p class="alert-advice">
+            The Irrigation Advisory Agent proposes Action Plan #AP-1082 (15mm drip cycle). Authorize to avert vegetative stress.
+          </p>
+        </div>
+        <div class="priority-alert-footer">
+          <a href="./field-details.html" class="btn btn-sm btn-outline">View Sensor Readings</a>
+          <a href="./action-plans.html" class="btn btn-sm btn-primary">Review & Approve Action</a>
+        </div>
+      </article>
+
+      <!-- Autonomous Operational Loop Bar (Section 1) -->
+      <section class="orchestration-loop-card" aria-label="Operational Loop Status">
+        <div class="loop-header">
+          <h2 class="loop-title">Continuous Farm Orchestration Loop</h2>
+          <span id="loop-current-step-label" class="badge badge-success" style="font-size:0.75rem;padding:2px 8px;">Decide</span>
+          <span class="source-tag source-ai">AI ORCHESTRATED</span>
+        </div>
+        <div class="loop-steps">
+          <div class="loop-step completed">
+            <div class="step-circle">1</div>
+            <span class="step-name">Monitor</span>
+          </div>
+          <div class="loop-arrow">→</div>
+          <div class="loop-step completed">
+            <div class="step-circle">2</div>
+            <span class="step-name">Analyze</span>
+          </div>
+          <div class="loop-arrow">→</div>
+          <div class="loop-step completed">
+            <div class="step-circle">3</div>
+            <span class="step-name">Detect</span>
+          </div>
+          <div class="loop-arrow">→</div>
+          <div class="loop-step active">
+            <div class="step-circle">4</div>
+            <span class="step-name">Decide</span>
+          </div>
+          <div class="loop-arrow">→</div>
+          <div class="loop-step pending">
+            <div class="step-circle">5</div>
+            <span class="step-name">Act</span>
+          </div>
+          <div class="loop-arrow">→</div>
+          <div class="loop-step pending">
+            <div class="step-circle">6</div>
+            <span class="step-name">Verify</span>
+          </div>
+          <div class="loop-arrow">→</div>
+          <div class="loop-step pending">
+            <div class="step-circle">7</div>
+            <span class="step-name">Reassess</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Primary Metrics Grid -->
+      <section class="metrics-grid" aria-label="Key Farm Indicators">
+        <!-- Metric 1: Soil Moisture -->
+        <article class="metric-card">
+          <div class="metric-header">
+            <span class="metric-label">Avg. Soil Moisture</span>
+            <span class="source-tag source-simulated" title="Simulated via Virtual IoT Engine">SIMULATED — Virtual IoT</span>
+          </div>
+          <div class="metric-value-row">
+            <span class="metric-value" id="val-soil-moisture">26%</span>
+            <span class="badge badge-warning">Low Moisture</span>
+          </div>
+          <p class="metric-subtext">Optimal range: 35% – 50% for Cotton</p>
+          <div class="metric-progress-bar">
+            <div class="progress-fill warning" style="width: 26%;"></div>
+          </div>
+        </article>
+
+        <!-- Metric 2: Live Weather Forecast -->
+        <article class="metric-card">
+          <div class="metric-header">
+            <span class="metric-label">Weather & Evapotranspiration</span>
+            <span class="source-tag source-live">LIVE — Open-Meteo</span>
+          </div>
+          <div class="metric-value-row">
+            <span class="metric-value">31°C</span>
+            <span class="badge badge-info">Rain Risk: 10%</span>
+          </div>
+          <p class="metric-subtext">ET0: 4.8 mm/day • Humidity: 42% • Wind: 12 km/h</p>
+          <div class="metric-progress-bar">
+            <div class="progress-fill info" style="width: 42%;"></div>
+          </div>
+        </article>
+
+        <!-- Metric 3: Crop Health / AI NDVI -->
+        <article class="metric-card">
+          <div class="metric-header">
+            <span class="metric-label">Crop Canopy Health (NDVI)</span>
+            <span class="source-tag source-ai">MODEL — Multi-Spectral</span>
+          </div>
+          <div class="metric-value-row">
+            <span class="metric-value">0.74</span>
+            <span class="badge badge-success">Good Vigor</span>
+          </div>
+          <p class="metric-subtext">Zone 2 showing mild moisture stress</p>
+          <div class="metric-progress-bar">
+            <div class="progress-fill success" style="width: 74%;"></div>
+          </div>
+        </article>
+
+        <!-- Metric 4: Autonomous Action Status -->
+        <article class="metric-card highlight-card">
+          <div class="metric-header">
+            <span class="metric-label">Autonomous Action Approval</span>
+            <span class="source-tag source-ai">AI GENERATED</span>
+          </div>
+          <div class="metric-value-row">
+            <span class="metric-value">1 Pending</span>
+            <a href="./action-plans.html" class="btn btn-sm btn-primary">Review Plan</a>
+          </div>
+          <p class="metric-subtext">Irrigation Agent proposes 15mm run in Zone 2</p>
+        </article>
+      </section>
+
+      <!-- Zones Overview and Live Map / Telemetry Preview -->
+      <div class="dashboard-split-grid">
+        <!-- Zones Health Section -->
+        <section class="card zone-section">
+          <div class="card-header">
+            <div>
+              <h2 class="card-title">Active Field Zones</h2>
+              <p class="card-subtitle">Real-time status of 4 monitored management zones</p>
+            </div>
+            <a href="./field-details.html" class="card-action-link">View All Field Details →</a>
+          </div>
+
+          <div class="zone-cards-list">
+            <!-- Zone 1 -->
+            <article class="zone-item-card">
+              <div class="zone-item-main">
+                <div class="zone-icon-status status-success">Z1</div>
+                <div>
+                  <h3 class="zone-name">Zone 1: North Cotton Acre</h3>
+                  <p class="zone-meta">3.5 Acres • Drip Line A • Normal Moisture (41%)</p>
+                </div>
+              </div>
+              <div class="zone-item-badges">
+                <span class="badge badge-success">Optimal</span>
+                <span class="valve-status valve-closed">Valve Closed</span>
+              </div>
+            </article>
+
+            <!-- Zone 2 -->
+            <article class="zone-item-card active-stress">
+              <div class="zone-item-main">
+                <div class="zone-icon-status status-warning">Z2</div>
+                <div>
+                  <h3 class="zone-name">Zone 2: East Sloped Cotton</h3>
+                  <p class="zone-meta">2.8 Acres • Drip Line B • Low Moisture (24%)</p>
+                </div>
+              </div>
+              <div class="zone-item-badges">
+                <span class="badge badge-warning">Water Stress</span>
+                <span class="valve-status valve-scheduled">Action Proposed</span>
+              </div>
+            </article>
+
+            <!-- Zone 3 -->
+            <article class="zone-item-card">
+              <div class="zone-item-main">
+                <div class="zone-icon-status status-success">Z3</div>
+                <div>
+                  <h3 class="zone-name">Zone 3: Central Flat Loam</h3>
+                  <p class="zone-meta">3.2 Acres • Drip Line C • Healthy (38%)</p>
+                </div>
+              </div>
+              <div class="zone-item-badges">
+                <span class="badge badge-success">Optimal</span>
+                <span class="valve-status valve-closed">Valve Closed</span>
+              </div>
+            </article>
+
+            <!-- Zone 4 -->
+            <article class="zone-item-card">
+              <div class="zone-item-main">
+                <div class="zone-icon-status status-success">Z4</div>
+                <div>
+                  <h3 class="zone-name">Zone 4: South Border Tract</h3>
+                  <p class="zone-meta">2.5 Acres • Drip Line D • Normal (36%)</p>
+                </div>
+              </div>
+              <div class="zone-item-badges">
+                <span class="badge badge-success">Optimal</span>
+                <span class="valve-status valve-closed">Valve Closed</span>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <!-- AI Advisory & Agent Quick Feed -->
+        <section class="card advisory-section">
+          <div class="card-header">
+            <div>
+              <h2 class="card-title">Autonomous AI Recommendations</h2>
+              <p class="card-subtitle">Live synthesized decisions from 5 agent modules</p>
+            </div>
+            <a href="./agents.html" class="card-action-link">AI Agents →</a>
+          </div>
+
+          <div class="advisory-feed">
+            <article class="advisory-card urgent">
+              <div class="advisory-badge-row">
+                <span class="badge badge-ai">Irrigation Agent</span>
+                <span class="advisory-time">10 mins ago</span>
+              </div>
+              <h3 class="advisory-heading">Water Stress Detected in Zone 2</h3>
+              <p class="advisory-text">
+                Soil moisture is 24% (below 35% threshold). No rain expected for 48 hours. Recommend 45 min drip irrigation (15mm equivalent) before 2:00 PM.
+              </p>
+              <div class="advisory-actions">
+                <a href="./action-plans.html" class="btn btn-sm btn-primary">Approve 15mm Irrigation</a>
+                <button type="button" class="btn btn-sm btn-outline">Dismiss</button>
+              </div>
+            </article>
+
+            <article class="advisory-card">
+              <div class="advisory-badge-row">
+                <span class="badge badge-ai">Disease & Pest Agent</span>
+                <span class="advisory-time">1 hr ago</span>
+              </div>
+              <h3 class="advisory-heading">Fungal Risk Index: Very Low</h3>
+              <p class="advisory-text">
+                Canopy humidity 42% and high solar irradiance reduce spore germination probability. No fungicide required this cycle.
+              </p>
+            </article>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <!-- Bottom Mobile Navigation Bar -->
+  <nav class="mobile-bottom-nav" aria-label="Mobile Navigation">
+    <a href="./dashboard.html" class="mobile-nav-item active">
+      <span class="mobile-nav-icon">📊</span>
+      <span class="mobile-nav-label">Dashboard</span>
+    </a>
+    <a href="./field-details.html" class="mobile-nav-item">
+      <span class="mobile-nav-icon">🌾</span>
+      <span class="mobile-nav-label">Fields</span>
+    </a>
+    <a href="./action-plans.html" class="mobile-nav-item">
+      <span class="mobile-nav-icon">📋</span>
+      <span class="mobile-nav-label">Actions</span>
+    </a>
+    <a href="./market.html" class="mobile-nav-item">
+      <span class="mobile-nav-icon">📈</span>
+      <span class="mobile-nav-label">Market</span>
+    </a>
+    <a href="./settings.html" class="mobile-nav-item">
+      <span class="mobile-nav-icon">⚙️</span>
+      <span class="mobile-nav-label">Settings</span>
+    </a>
+  </nav>
+
+  <script type="module" src="../js/dashboard.js"></script>
+</body>
+</html>

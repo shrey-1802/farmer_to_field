@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Farmer Onboarding - Setup Your Farm in KrishiNirnay AI">
+  <title>Setup Your Farm — KrishiNirnay AI</title>
+  <link rel="icon" type="image/svg+xml" href="../assets/icons/sprout.svg">
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/auth.css">
+  <script type="module" src="../js/ui.js"></script>
+</head>
+<body class="auth-body">
+  <header class="auth-header">
+    <div class="auth-brand">
+      <div class="brand-logo" aria-hidden="true">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M7 20h10"/>
+          <path d="M10 20c0-4.4 3.6-8 8-8v-1a5 5 0 0 0-5-5c-2.4 0-4.5 1.5-5 3.5A5.5 5.5 0 0 0 2 12c0 4.4 3.6 8 8 8Z"/>
+        </svg>
+      </div>
+      <span class="auth-brand-name">KrishiNirnay AI</span>
+    </div>
+    <div class="auth-header-actions">
+      <button id="theme-toggle-btn" class="icon-button" aria-label="Toggle theme">
+        <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="M4.93 4.93l1.41 1.41"/><path d="M17.66 17.66l1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <main class="auth-container">
+    <section class="auth-card-single">
+      <article class="auth-form-card">
+        <div class="form-header">
+          <div class="welcome-chip">🌾 Step 2 of 2: Farm Profile</div>
+          <h1 class="form-title">Tell Us About Your Farm</h1>
+          <p class="form-subtitle">Customize autonomous AI irrigation and disease prediction for your land</p>
+        </div>
+
+        <form id="onboarding-form" class="auth-form">
+          <div class="form-group">
+            <label for="farmer-name" class="form-label">Farmer / Manager Name</label>
+            <input type="text" id="farmer-name" name="farmerName" class="form-input" placeholder="e.g. Ramesh Patel" required>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="farm-name" class="form-label">Farm Name</label>
+              <input type="text" id="farm-name" name="farmName" class="form-input" placeholder="e.g. Shanti Agro Farm" required>
+            </div>
+            <div class="form-group">
+              <label for="farm-area" class="form-label">Total Acres</label>
+              <input type="number" id="farm-area" name="acres" class="form-input" placeholder="e.g. 12" min="1" step="0.5" required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="primary-crop" class="form-label">Primary Crop</label>
+              <select id="primary-crop" name="primaryCrop" class="form-select" required>
+                <option value="" disabled selected>Select crop...</option>
+                <option value="cotton">Cotton (कपास)</option>
+                <option value="wheat">Wheat (गेहूं)</option>
+                <option value="rice">Rice / Paddy (धान)</option>
+                <option value="soybean">Soybean (सोयाबीन)</option>
+                <option value="sugarcane">Sugarcane (गन्ना)</option>
+                <option value="groundnut">Groundnut (मूंगफली)</option>
+                <option value="maize">Maize (मक्का)</option>
+                <option value="chilli">Chilli / Pepper (मिर्च)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="soil-type" class="form-label">Predominant Soil</label>
+              <select id="soil-type" name="soilType" class="form-select" required>
+                <option value="" disabled selected>Select soil...</option>
+                <option value="black-cotton">Black Cotton Soil (काली मिट्टी)</option>
+                <option value="alluvial">Alluvial Loam (जलोढ़ मिट्टी)</option>
+                <option value="red-sandy">Red Sandy Loam (लाल मिट्टी)</option>
+                <option value="clayey">Clay Loam (चिकनी मिट्टी)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="state-district" class="form-label">District & State</label>
+            <input type="text" id="state-district" name="district" class="form-input" placeholder="e.g. Rajkot, Gujarat" required>
+          </div>
+
+          <button type="submit" id="save-farm-btn" class="btn btn-primary btn-block">
+            <span class="btn-text">Save Farm & Open Dashboard</span>
+            <span class="btn-loader" aria-hidden="true" style="display: none;"></span>
+          </button>
+        </form>
+
+        <footer class="form-footer">
+          <button type="button" id="skip-onboarding-btn" class="btn btn-link">
+            Skip for now & use demo farm data
+          </button>
+        </footer>
+      </article>
+    </section>
+  </main>
+
+  <footer class="auth-page-footer">
+    <p>&copy; 2026 KrishiNirnay AI — Autonomous Farm-to-Field Advisory</p>
+  </footer>
+
+  <script type="module">
+    import themeManager from '../js/theme.js';
+    
+    document.getElementById('onboarding-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const farmerName = document.getElementById('farmer-name').value;
+      const farmName = document.getElementById('farm-name').value;
+      const crop = document.getElementById('primary-crop').value;
+      
+      localStorage.setItem('krishi_farmer_session', JSON.stringify({
+        farmerName: farmerName || 'Ramesh Patel',
+        farmName: farmName || 'Shanti Agro Farm',
+        crop: crop || 'cotton',
+        loginTime: new Date().toISOString()
+      }));
+      
+      window.location.replace('./dashboard.html');
+    });
+
+    document.getElementById('skip-onboarding-btn').addEventListener('click', () => {
+      localStorage.setItem('krishi_farmer_session', JSON.stringify({
+        farmerName: 'Demo Farmer',
+        farmName: 'KrishiNirnay Model Farm',
+        crop: 'cotton',
+        loginTime: new Date().toISOString()
+      }));
+      window.location.replace('./dashboard.html');
+    });
+  </script>
+</body>
+</html>

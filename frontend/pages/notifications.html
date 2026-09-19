@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Agricultural Alerts and Notifications - KrishiNirnay AI">
+  <title>Notifications & Alerts — KrishiNirnay AI</title>
+  <link rel="icon" type="image/svg+xml" href="../assets/icons/sprout.svg">
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/notifications.css">
+  <script type="module" src="../js/ui.js"></script>
+</head>
+<body class="app-body">
+  <header class="app-header">
+    <div class="header-left">
+      <button id="sidebar-toggle-btn" class="icon-button mobile-only" aria-label="Toggle navigation menu">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </button>
+      <div class="brand-badge">
+        <div class="brand-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M7 20h10"/><path d="M10 20c0-4.4 3.6-8 8-8v-1a5 5 0 0 0-5-5c-2.4 0-4.5 1.5-5 3.5A5.5 5.5 0 0 0 2 12c0 4.4 3.6 8 8 8Z"/>
+          </svg>
+        </div>
+        <span class="brand-title">KrishiNirnay AI</span>
+      </div>
+    </div>
+    <div class="header-right">
+      <div class="weather-pill">
+        <span class="weather-icon">☀️</span>
+        <span class="weather-temp">31°C</span>
+        <span class="source-tag source-live">LIVE</span>
+      </div>
+      <button id="theme-toggle-btn" class="icon-button" aria-label="Toggle theme">
+        <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="M4.93 4.93l1.41 1.41"/><path d="M17.66 17.66l1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/>
+        </svg>
+      </button>
+      <div class="farmer-pill"><div class="farmer-avatar">RP</div></div>
+    </div>
+  </header>
+
+  <div class="app-layout">
+    <aside class="app-sidebar" id="app-sidebar">
+      <nav class="sidebar-nav" aria-label="Main Navigation">
+        <div class="nav-section-title">Core Operations</div>
+        <ul class="nav-list">
+          <li class="nav-item"><a href="./dashboard.html" class="nav-link"><span class="nav-icon">📊</span><span class="nav-text">Dashboard</span></a></li>
+          <li class="nav-item"><a href="./field-details.html" class="nav-link"><span class="nav-icon">🌾</span><span class="nav-text">Fields & Zones</span></a></li>
+          <li class="nav-item"><a href="./agents.html" class="nav-link"><span class="nav-icon">🤖</span><span class="nav-text">AI Agents</span></a></li>
+          <li class="nav-item"><a href="./action-plans.html" class="nav-link"><span class="nav-icon">📋</span><span class="nav-text">Action Plans</span></a></li>
+          <li class="nav-item"><a href="./execution.html" class="nav-link"><span class="nav-icon">⚡</span><span class="nav-text">Execution Center</span></a></li>
+        </ul>
+        <div class="nav-section-title">Intelligence & Tools</div>
+        <ul class="nav-list">
+          <li class="nav-item"><a href="./market.html" class="nav-link"><span class="nav-icon">📈</span><span class="nav-text">Market & Mandi</span></a></li>
+          <li class="nav-item"><a href="./reports.html" class="nav-link"><span class="nav-icon">📑</span><span class="nav-text">Reports</span></a></li>
+          <li class="nav-item"><a href="./simulation.html" class="nav-link"><span class="nav-icon">🧪</span><span class="nav-text">Simulation Center</span></a></li>
+          <li class="nav-item"><a href="./notifications.html" class="nav-link active"><span class="nav-icon">🔔</span><span class="nav-text">Notifications</span></a></li>
+          <li class="nav-item"><a href="./settings.html" class="nav-link"><span class="nav-icon">⚙️</span><span class="nav-text">Settings</span></a></li>
+          <li class="nav-item"><a href="./admin.html" class="nav-link"><span class="nav-icon">🛡️</span><span class="nav-text">Admin & Health</span></a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <main class="app-main" id="main-content">
+      <div class="page-title-banner">
+        <div>
+          <h1 class="page-title">Notification & Alert Center</h1>
+          <p class="page-subtitle">Real-time alerts, agent decisions, and automated dispatch logs</p>
+        </div>
+        <button type="button" class="btn btn-outline btn-sm">Mark All as Read</button>
+      </div>
+
+      <!-- Severity Filter Tabs -->
+      <div class="filter-tabs">
+        <button type="button" class="tab-btn active">All (3)</button>
+        <button type="button" class="tab-btn">Critical Alerts (1)</button>
+        <button type="button" class="tab-btn">Advisories (1)</button>
+        <button type="button" class="tab-btn">System (1)</button>
+      </div>
+
+      <section class="notifications-list" aria-label="Notifications Feed">
+        <!-- Notification 1 (Critical) -->
+        <article class="notification-item unread critical">
+          <div class="notif-icon">⚠️</div>
+          <div class="notif-content">
+            <div class="notif-header-row">
+              <h2 class="notif-title">Critical Water Deficit in Zone 2</h2>
+              <span class="notif-time">15 mins ago</span>
+            </div>
+            <p class="notif-text">
+              Soil moisture reached 24% in East Cotton Acre. Irrigation Advisory Agent generated Action Plan #AP-1082. Immediate attention recommended.
+            </p>
+            <div class="notif-meta">
+              <span class="dispatch-badge">📱 SMS & WhatsApp Sent to +91 ••••• 43210</span>
+              <a href="./action-plans.html" class="btn btn-sm btn-primary">Review Action Plan</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Notification 2 (Advisory) -->
+        <article class="notification-item unread info">
+          <div class="notif-icon">📈</div>
+          <div class="notif-content">
+            <div class="notif-header-row">
+              <h2 class="notif-title">Mandi Price Spike Alert</h2>
+              <span class="notif-time">2 hours ago</span>
+            </div>
+            <p class="notif-text">
+              Rajkot APMC Modal price increased to ₹7,420/Q (+₹80). Optimal selling advisory generated by Market Agent.
+            </p>
+            <div class="notif-meta">
+              <a href="./market.html" class="btn btn-sm btn-outline">Check APMC Rates</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Notification 3 (System) -->
+        <article class="notification-item read">
+          <div class="notif-icon">🤖</div>
+          <div class="notif-content">
+            <div class="notif-header-row">
+              <h2 class="notif-title">Virtual IoT Engine Online</h2>
+              <span class="notif-time">Yesterday at 11:30 PM</span>
+            </div>
+            <p class="notif-text">
+              Synthetic sensor stream active across 4 management zones. Soil moisture, temperature, and solar radiation synced.
+            </p>
+            <div class="notif-meta">
+              <span class="source-tag source-simulated">SIMULATED — Virtual IoT</span>
+            </div>
+          </div>
+        </article>
+      </section>
+    </main>
+  </div>
+
+  <nav class="mobile-bottom-nav" aria-label="Mobile Navigation">
+    <a href="./dashboard.html" class="mobile-nav-item"><span class="mobile-nav-icon">📊</span><span class="mobile-nav-label">Dashboard</span></a>
+    <a href="./field-details.html" class="mobile-nav-item"><span class="mobile-nav-icon">🌾</span><span class="mobile-nav-label">Fields</span></a>
+    <a href="./action-plans.html" class="mobile-nav-item"><span class="mobile-nav-icon">📋</span><span class="mobile-nav-label">Actions</span></a>
+    <a href="./market.html" class="mobile-nav-item"><span class="mobile-nav-icon">📈</span><span class="mobile-nav-label">Market</span></a>
+    <a href="./settings.html" class="mobile-nav-item"><span class="mobile-nav-icon">⚙️</span><span class="mobile-nav-label">Settings</span></a>
+  </nav>
+
+  <script type="module" src="../js/notifications.js"></script>
+</body>
+</html>

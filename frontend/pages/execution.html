@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Field Task Execution Center - KrishiNirnay AI">
+  <title>Execution Center — KrishiNirnay AI</title>
+  <link rel="icon" type="image/svg+xml" href="../assets/icons/sprout.svg">
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/execution.css">
+  <script type="module" src="../js/ui.js"></script>
+</head>
+<body class="app-body">
+  <header class="app-header">
+    <div class="header-left">
+      <button id="sidebar-toggle-btn" class="icon-button mobile-only" aria-label="Toggle navigation menu">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </button>
+      <div class="brand-badge">
+        <div class="brand-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M7 20h10"/><path d="M10 20c0-4.4 3.6-8 8-8v-1a5 5 0 0 0-5-5c-2.4 0-4.5 1.5-5 3.5A5.5 5.5 0 0 0 2 12c0 4.4 3.6 8 8 8Z"/>
+          </svg>
+        </div>
+        <span class="brand-title">KrishiNirnay AI</span>
+      </div>
+    </div>
+    <div class="header-right">
+      <div class="weather-pill">
+        <span class="weather-icon">☀️</span>
+        <span class="weather-temp">31°C</span>
+        <span class="source-tag source-live">LIVE</span>
+      </div>
+      <button id="theme-toggle-btn" class="icon-button" aria-label="Toggle theme">
+        <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="M4.93 4.93l1.41 1.41"/><path d="M17.66 17.66l1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/>
+        </svg>
+      </button>
+      <a href="./notifications.html" class="icon-button notification-bell" aria-label="Notifications">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/>
+        </svg>
+      </a>
+      <div class="farmer-pill"><div class="farmer-avatar">RP</div></div>
+    </div>
+  </header>
+
+  <div class="app-layout">
+    <aside class="app-sidebar" id="app-sidebar">
+      <nav class="sidebar-nav" aria-label="Main Navigation">
+        <div class="nav-section-title">Core Operations</div>
+        <ul class="nav-list">
+          <li class="nav-item"><a href="./dashboard.html" class="nav-link"><span class="nav-icon">📊</span><span class="nav-text">Dashboard</span></a></li>
+          <li class="nav-item"><a href="./field-details.html" class="nav-link"><span class="nav-icon">🌾</span><span class="nav-text">Fields & Zones</span></a></li>
+          <li class="nav-item"><a href="./agents.html" class="nav-link"><span class="nav-icon">🤖</span><span class="nav-text">AI Agents</span><span class="badge badge-ai">5 Active</span></a></li>
+          <li class="nav-item"><a href="./action-plans.html" class="nav-link"><span class="nav-icon">📋</span><span class="nav-text">Action Plans</span></a></li>
+          <li class="nav-item"><a href="./execution.html" class="nav-link active"><span class="nav-icon">⚡</span><span class="nav-text">Execution Center</span><span class="badge badge-execution">Active</span></a></li>
+        </ul>
+        <div class="nav-section-title">Intelligence & Tools</div>
+        <ul class="nav-list">
+          <li class="nav-item"><a href="./market.html" class="nav-link"><span class="nav-icon">📈</span><span class="nav-text">Market & Mandi</span></a></li>
+          <li class="nav-item"><a href="./reports.html" class="nav-link"><span class="nav-icon">📑</span><span class="nav-text">Reports</span></a></li>
+          <li class="nav-item"><a href="./simulation.html" class="nav-link"><span class="nav-icon">🧪</span><span class="nav-text">Simulation Center</span></a></li>
+          <li class="nav-item"><a href="./notifications.html" class="nav-link"><span class="nav-icon">🔔</span><span class="nav-text">Notifications</span></a></li>
+          <li class="nav-item"><a href="./settings.html" class="nav-link"><span class="nav-icon">⚙️</span><span class="nav-text">Settings</span></a></li>
+          <li class="nav-item"><a href="./admin.html" class="nav-link"><span class="nav-icon">🛡️</span><span class="nav-text">Admin & Health</span></a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <main class="app-main" id="main-content">
+      <div class="page-title-banner">
+        <div>
+          <h1 class="page-title">Execution & Smart Actuation Center</h1>
+          <p class="page-subtitle">Real-time control and telemetry monitoring of smart field actuators and valves</p>
+        </div>
+        <span class="source-tag source-simulated">SIMULATED — Virtual IoT Actuators</span>
+      </div>
+
+      <!-- Active Job Progress Banner -->
+      <section class="card active-execution-card">
+        <div class="execution-header-row">
+          <div class="execution-status-group">
+            <span class="pulse-indicator"></span>
+            <div>
+              <h2 class="execution-title">Active Job #AP-1082: Precision Drip Irrigation</h2>
+              <p class="execution-target">Target: Zone 2 (East Cotton Plot) • Valve B Active</p>
+            </div>
+          </div>
+          <div class="execution-timer">
+            <span class="timer-label">Time Remaining</span>
+            <span class="timer-countdown">26m 40s</span>
+          </div>
+        </div>
+
+        <div class="progress-container">
+          <div class="progress-bar-wrapper">
+            <div class="progress-bar-fill active-glow" style="width: 41%;"></div>
+          </div>
+          <div class="progress-stats-row">
+            <span>Progress: <strong>41% complete</strong> (18m 20s of 45m)</span>
+            <span>Water Dispatched: <strong>17,220 L of 42,000 L</strong> (6.15mm)</span>
+          </div>
+        </div>
+
+        <div class="execution-controls">
+          <button type="button" class="btn btn-outline" id="pause-execution-btn">Pause Valve</button>
+          <button type="button" class="btn btn-danger" id="stop-execution-btn">Emergency Valve Shutoff</button>
+        </div>
+      </section>
+
+      <!-- Actuator Hardware Matrix -->
+      <section class="card">
+        <div class="card-header">
+          <div>
+            <h2 class="card-title">Field Valve & Pump Status</h2>
+            <p class="card-subtitle">Telemetry from IoT relay controllers and pressure flow sensors</p>
+          </div>
+        </div>
+
+        <div class="actuator-grid">
+          <!-- Main Borewell Pump -->
+          <article class="actuator-card active-pump">
+            <div class="actuator-card-header">
+              <span class="actuator-icon">⚙️</span>
+              <span class="badge badge-execution">PUMP RUNNING</span>
+            </div>
+            <h3 class="actuator-name">Main Submersible Pump (7.5 HP)</h3>
+            <p class="actuator-meta">Line Pressure: 2.8 Bar • Flow: 920 L/min</p>
+          </article>
+
+          <!-- Valve 1 -->
+          <article class="actuator-card">
+            <div class="actuator-card-header">
+              <span class="actuator-icon">🚰</span>
+              <span class="badge badge-outline">CLOSED</span>
+            </div>
+            <h3 class="actuator-name">Solenoid Valve A (Zone 1)</h3>
+            <p class="actuator-meta">Scheduled: Off • Pressure: 0.0 Bar</p>
+          </article>
+
+          <!-- Valve 2 (Running) -->
+          <article class="actuator-card active-valve">
+            <div class="actuator-card-header">
+              <span class="actuator-icon">💧</span>
+              <span class="badge badge-success">OPEN (45m Cycle)</span>
+            </div>
+            <h3 class="actuator-name">Solenoid Valve B (Zone 2)</h3>
+            <p class="actuator-meta">Discharging: 933 L/min • Drip Pressure: 1.8 Bar</p>
+          </article>
+
+          <!-- Valve 3 -->
+          <article class="actuator-card">
+            <div class="actuator-card-header">
+              <span class="actuator-icon">🚰</span>
+              <span class="badge badge-outline">CLOSED</span>
+            </div>
+            <h3 class="actuator-name">Solenoid Valve C (Zone 3)</h3>
+            <p class="actuator-meta">Scheduled: Off • Pressure: 0.0 Bar</p>
+          </article>
+        </div>
+      </section>
+
+      <!-- Closed Loop Reassessment and Telemetry Feedback -->
+      <section class="card">
+        <div class="card-header">
+          <div>
+            <h2 class="card-title">Closed-Loop Verification & Telemetry Delta</h2>
+            <p class="card-subtitle">Real-time sensor response during and after irrigation run</p>
+          </div>
+          <span class="source-tag source-simulated">SIMULATED — Virtual IoT</span>
+        </div>
+
+        <div class="verification-stats-grid">
+          <div class="v-stat-card">
+            <span class="v-label">Pre-Action Moisture</span>
+            <span class="v-value text-danger">24%</span>
+            <span class="v-sub">Measured at 09:15 AM</span>
+          </div>
+          <div class="v-stat-card">
+            <span class="v-label">Current Mid-Run Moisture</span>
+            <span class="v-value text-warning">31%</span>
+            <span class="v-sub">+7% increase detected</span>
+          </div>
+          <div class="v-stat-card">
+            <span class="v-label">Target Stabilized Moisture</span>
+            <span class="v-value text-success">42%</span>
+            <span class="v-sub">Projected at completion</span>
+          </div>
+          <div class="v-stat-card">
+            <span class="v-label">Verification Status</span>
+            <span class="v-value text-info">In Progress</span>
+            <span class="v-sub">Reassessing in 20m</span>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <nav class="mobile-bottom-nav" aria-label="Mobile Navigation">
+    <a href="./dashboard.html" class="mobile-nav-item"><span class="mobile-nav-icon">📊</span><span class="mobile-nav-label">Dashboard</span></a>
+    <a href="./field-details.html" class="mobile-nav-item"><span class="mobile-nav-icon">🌾</span><span class="mobile-nav-label">Fields</span></a>
+    <a href="./action-plans.html" class="mobile-nav-item"><span class="mobile-nav-icon">📋</span><span class="mobile-nav-label">Actions</span></a>
+    <a href="./execution.html" class="mobile-nav-item active"><span class="mobile-nav-icon">⚡</span><span class="mobile-nav-label">Execution</span></a>
+    <a href="./market.html" class="mobile-nav-item"><span class="mobile-nav-icon">📈</span><span class="mobile-nav-label">Market</span></a>
+    <a href="./settings.html" class="mobile-nav-item"><span class="mobile-nav-icon">⚙️</span><span class="mobile-nav-label">Settings</span></a>
+  </nav>
+
+  <script type="module" src="../js/execution.js"></script>
+</body>
+</html>

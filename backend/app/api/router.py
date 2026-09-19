@@ -1,0 +1,59 @@
+from fastapi import APIRouter
+
+from app.api.routes.auth import router as auth_router
+from app.api.routes.farms import router as farms_router
+from app.api.routes.fields import router as fields_router
+from app.api.routes.zones import router as zones_router
+from app.api.routes.sensors import router as sensors_router
+from app.api.routes.sensor_lookup import zones_sensor_router, fields_sensor_router
+from app.api.routes.simulation import router as simulation_router
+from app.api.routes.weather import router as weather_router
+from app.api.routes.crops import router as crops_router
+from app.api.routes.context import router as context_router
+from app.api.routes.agents import router as agents_router
+from app.api.routes.actions import router as actions_router
+from app.api.routes.tasks import router as tasks_router
+from app.api.routes.execution import router as execution_router
+from app.api.routes.experts import router as experts_router
+from app.api.routes.alerts import router as alerts_router
+from app.api.routes.reports import router as reports_router
+from app.api.routes.audit import router as audit_router
+from app.api.routes.water_stress_demo import router as water_stress_router
+
+api_router = APIRouter()
+
+# Core status
+@api_router.get("/status", tags=["Status"])
+def api_status():
+    return {
+        "status": "online",
+        "system": "KrishiNirnay AI Orchestration Engine",
+        "mode": "autonomous",
+        "version": "1.0.0",
+    }
+
+# Register route modules
+api_router.include_router(auth_router)
+api_router.include_router(farms_router)
+api_router.include_router(fields_router)
+api_router.include_router(zones_router)
+api_router.include_router(sensors_router)
+api_router.include_router(zones_sensor_router)
+api_router.include_router(fields_sensor_router)
+api_router.include_router(simulation_router)
+api_router.include_router(weather_router)
+api_router.include_router(crops_router)
+api_router.include_router(context_router)
+api_router.include_router(agents_router)
+api_router.include_router(actions_router)
+api_router.include_router(tasks_router)
+api_router.include_router(execution_router)
+api_router.include_router(experts_router)
+api_router.include_router(alerts_router)
+api_router.include_router(reports_router)
+api_router.include_router(audit_router)
+api_router.include_router(water_stress_router)
+
+
+
+

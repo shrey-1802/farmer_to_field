@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Autonomous AI Multi-Agent Engine - KrishiNirnay AI. Coordinated multi-agent reasoning across Soil, Weather, Irrigation, Nutrient, Drone/Disease, Market, Risk, Farm Context, and Orchestrator.">
+  <title>Autonomous AI Agents — KrishiNirnay AI</title>
+  <link rel="icon" type="image/svg+xml" href="../assets/icons/sprout.svg">
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/agents.css">
+  <script type="module" src="../js/ui.js"></script>
+  <script type="module" src="../js/agents.js"></script>
+</head>
+<body class="app-body">
+  <!-- Application Header -->
+  <header class="app-header">
+    <div class="header-left">
+      <button id="sidebar-toggle-btn" class="icon-button mobile-only" aria-label="Toggle navigation menu">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </button>
+      <div class="brand-badge">
+        <div class="brand-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M7 20h10"/><path d="M10 20c0-4.4 3.6-8 8-8v-1a5 5 0 0 0-5-5c-2.4 0-4.5 1.5-5 3.5A5.5 5.5 0 0 0 2 12c0 4.4 3.6 8 8 8Z"/>
+          </svg>
+        </div>
+        <span class="brand-title">KrishiNirnay AI</span>
+      </div>
+      <div class="farm-selector-wrapper">
+        <select id="farm-select" class="header-select" aria-label="Select Farm">
+          <option value="farm-1">Shanti Agro Farm (12 Acres - Bt Cotton)</option>
+        </select>
+      </div>
+    </div>
+    <div class="header-right">
+      <div class="weather-pill">
+        <span class="weather-icon">☀️</span>
+        <span class="weather-temp">31°C</span>
+        <span class="source-tag source-live">LIVE — Open-Meteo</span>
+      </div>
+      <button id="theme-toggle-btn" class="icon-button" aria-label="Toggle theme">
+        <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="M4.93 4.93l1.41 1.41"/><path d="M17.66 17.66l1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/>
+        </svg>
+      </button>
+      <a href="./notifications.html" class="icon-button notification-bell" aria-label="Notifications">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/>
+        </svg>
+      </a>
+      <div class="farmer-pill">
+        <div class="farmer-avatar">RP</div>
+      </div>
+    </div>
+  </header>
+
+  <div class="app-layout">
+    <!-- Responsive Left Sidebar Navigation -->
+    <aside class="app-sidebar" id="app-sidebar">
+      <nav class="sidebar-nav" aria-label="Main Navigation">
+        <div class="nav-section-title">Core Operations</div>
+        <ul class="nav-list">
+          <li class="nav-item"><a href="./dashboard.html" class="nav-link"><span class="nav-icon">📊</span><span class="nav-text">Dashboard</span></a></li>
+          <li class="nav-item"><a href="./field-details.html" class="nav-link"><span class="nav-icon">🌾</span><span class="nav-text">Fields & Zones</span></a></li>
+          <li class="nav-item"><a href="./agents.html" class="nav-link active"><span class="nav-icon">🤖</span><span class="nav-text">AI Agents</span><span class="badge badge-ai">9 Active</span></a></li>
+          <li class="nav-item"><a href="./action-plans.html" class="nav-link"><span class="nav-icon">📋</span><span class="nav-text">Action Plans</span><span class="badge badge-warning">1 New</span></a></li>
+          <li class="nav-item"><a href="./execution.html" class="nav-link"><span class="nav-icon">⚡</span><span class="nav-text">Execution Center</span></a></li>
+        </ul>
+        <div class="nav-section-title">Intelligence & Tools</div>
+        <ul class="nav-list">
+          <li class="nav-item"><a href="./market.html" class="nav-link"><span class="nav-icon">📈</span><span class="nav-text">Market & Mandi</span></a></li>
+          <li class="nav-item"><a href="./reports.html" class="nav-link"><span class="nav-icon">📑</span><span class="nav-text">Reports</span></a></li>
+          <li class="nav-item"><a href="./simulation.html" class="nav-link"><span class="nav-icon">🧪</span><span class="nav-text">Simulation Center</span><span class="badge badge-simulated">Virtual IoT</span></a></li>
+          <li class="nav-item"><a href="./notifications.html" class="nav-link"><span class="nav-icon">🔔</span><span class="nav-text">Notifications</span></a></li>
+          <li class="nav-item"><a href="./settings.html" class="nav-link"><span class="nav-icon">⚙️</span><span class="nav-text">Settings</span></a></li>
+          <li class="nav-item"><a href="./admin.html" class="nav-link"><span class="nav-icon">🛡️</span><span class="nav-text">Admin & Health</span></a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="app-main" id="main-content">
+      <!-- Title Banner -->
+      <div class="page-title-banner">
+        <div>
+          <h1 class="page-title">Autonomous AI Multi-Agent Engine</h1>
+          <p class="page-subtitle">Coordinated multi-agent reasoning for real-time agronomic interventions across 9 autonomous agents</p>
+        </div>
+        <div class="orchestrator-status">
+          <span class="status-dot status-online"></span>
+          <span>Orchestrator: <strong>Active • Polling every 10s</strong></span>
+          <span class="source-tag source-ai">AI GENERATED</span>
+        </div>
+      </div>
+
+      <!-- Section 18 Master Orchestrator Banner -->
+      <section class="orchestrator-master-card" id="orchestrator-banner-content" aria-label="Orchestrator Consensus Engine">
+        <div class="orchestrator-banner-layout">
+          <div class="orchestrator-banner-left">
+            <div class="orchestrator-pulse-icon">
+              <span class="pulse-ring"></span>
+              <span class="pulse-core">🧠</span>
+            </div>
+            <div>
+              <div class="orchestrator-headline">
+                <h2>Autonomous Multi-Agent Consensus Engine</h2>
+                <span class="badge badge-running"><span class="pulse-dot"></span> Active Consensus</span>
+                <span class="source-tag source-ai">AI GENERATED</span>
+              </div>
+              <p class="orchestrator-desc">
+                Continuous synthesis across all 9 specialized domain agents. Resolves cross-agent constraints (e.g. soil moisture vs weather rainfall forecast) into unified, verifiable field execution plans.
+              </p>
+              <div class="orchestrator-meta-row">
+                <span class="meta-item"><strong id="orch-cycle-count">#1,492</strong> Consensus Cycle</span>
+                <span class="meta-sep">•</span>
+                <span class="meta-item">Cycle Interval: <strong>10s Heartbeat</strong></span>
+                <span class="meta-sep">•</span>
+                <span class="meta-item">Active Pipeline: <strong>9/9 Agents Online</strong></span>
+                <span class="meta-sep">•</span>
+                <span class="meta-item">Pending Authorization: <strong class="text-warning">1 Action Plan</strong></span>
+              </div>
+            </div>
+          </div>
+          <div class="orchestrator-banner-actions">
+            <button id="run-all-agents-btn" class="btn btn-primary btn-run-all">
+              <span class="btn-icon">⚡</span>
+              <span>Run All 9 Agents (Consensus)</span>
+            </button>
+            <button id="refresh-agents-btn" class="btn btn-outline btn-icon-only" title="Sync with Backend" aria-label="Sync with Backend">
+              🔄
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- KPI Summary Strip -->
+      <section class="agents-kpi-strip" id="agents-kpi-strip" aria-label="AI Agents Key Performance Indicators">
+        <div class="kpi-mini-card">
+          <span class="kpi-mini-label">Total AI Agents</span>
+          <span class="kpi-mini-value">9</span>
+          <span class="kpi-mini-sub text-success">100% Operational</span>
+        </div>
+        <div class="kpi-mini-card">
+          <span class="kpi-mini-label">Active / Running</span>
+          <span class="kpi-mini-value text-primary">1</span>
+          <span class="kpi-mini-sub">Real-time Polling</span>
+        </div>
+        <div class="kpi-mini-card">
+          <span class="kpi-mini-label">Action / Warnings</span>
+          <span class="kpi-mini-value text-warning">2</span>
+          <span class="kpi-mini-sub">Attention Required</span>
+        </div>
+        <div class="kpi-mini-card">
+          <span class="kpi-mini-label">Mean Confidence</span>
+          <span class="kpi-mini-value">95.4%</span>
+          <span class="kpi-mini-sub text-success">High Reliability</span>
+        </div>
+      </section>
+
+      <!-- Search & Filtering Toolbar -->
+      <div class="agents-toolbar">
+        <div class="filter-tabs-wrapper" id="agent-filter-tabs">
+          <button class="filter-tab active" data-filter="all">All Agents <span class="tab-count">9</span></button>
+          <button class="filter-tab" data-filter="running">Running <span class="tab-count badge-running-count">1</span></button>
+          <button class="filter-tab" data-filter="warning">Warnings & Actions <span class="tab-count badge-warning-count">2</span></button>
+          <button class="filter-tab" data-filter="completed">Completed <span class="tab-count">5</span></button>
+          <button class="filter-tab" data-filter="idle">Idle <span class="tab-count">1</span></button>
+        </div>
+        <div class="agent-search-box">
+          <span class="search-icon-inside">🔍</span>
+          <input type="search" id="agent-search-input" placeholder="Search agents, risks, recommendations..." aria-label="Search agents">
+        </div>
+      </div>
+
+      <!-- Agent Grid (Dynamic 9 Agents via agents.js) -->
+      <section class="agents-grid" id="agents-grid" aria-label="Autonomous AI Agents">
+        <!-- Loading Skeleton / Fallback Markup -->
+        <div class="loading-state-card" style="grid-column: 1 / -1; padding: var(--space-8); text-align: center; color: var(--color-text-muted);">
+          <span>Loading 9 Autonomous AI Agents...</span>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Mobile Bottom Navigation -->
+  <nav class="mobile-bottom-nav" aria-label="Mobile Navigation">
+    <a href="./dashboard.html" class="mobile-nav-item"><span class="mobile-nav-icon">📊</span><span class="mobile-nav-label">Dashboard</span></a>
+    <a href="./field-details.html" class="mobile-nav-item"><span class="mobile-nav-icon">🌾</span><span class="mobile-nav-label">Fields</span></a>
+    <a href="./agents.html" class="mobile-nav-item active"><span class="mobile-nav-icon">🤖</span><span class="mobile-nav-label">Agents</span></a>
+    <a href="./action-plans.html" class="mobile-nav-item"><span class="mobile-nav-icon">📋</span><span class="mobile-nav-label">Actions</span></a>
+    <a href="./settings.html" class="mobile-nav-item"><span class="mobile-nav-icon">⚙️</span><span class="mobile-nav-label">Settings</span></a>
+  </nav>
+</body>
+</html>

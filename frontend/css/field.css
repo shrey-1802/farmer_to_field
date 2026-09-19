@@ -1,0 +1,2077 @@
+/* ==========================================================================
+   KrishiNirnay AI - Field Details & Map Visualization (Phase 7 & 8)
+   ========================================================================== */
+
+.field-header-card {
+  background-color: var(--color-card-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+}
+
+.field-title-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
+.field-meta-row {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  margin-top: var(--space-2);
+}
+
+.field-header-actions {
+  display: flex;
+  gap: var(--space-3);
+}
+
+/* Agronomic Properties Strip */
+.properties-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--space-3);
+}
+
+.property-pill {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-3) var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.prop-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.prop-value {
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+/* ==========================================================================
+   Phase 8: Map Interface & Spatial Visualization Styling
+   ========================================================================== */
+.field-map-card {
+  overflow: hidden;
+  position: relative;
+}
+
+.map-container {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  position: relative;
+  background-color: var(--color-surface-soft);
+  min-height: 420px;
+}
+
+/* Floating Layer Toolbar */
+.map-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-2) var(--space-3);
+  background-color: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.map-toolbar-group {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.map-toolbar-label {
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.map-chip {
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--color-border);
+  background-color: var(--color-surface);
+  color: var(--color-text-secondary);
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.map-chip:hover {
+  background-color: var(--color-surface-soft);
+  color: var(--color-primary-600);
+  border-color: var(--color-primary-400);
+}
+
+.map-chip.active {
+  background-color: var(--color-primary-600);
+  color: var(--color-text-inverse);
+  border-color: var(--color-primary-600);
+}
+
+.map-chip.btn-reset-view {
+  background-color: transparent;
+  color: var(--color-text-secondary);
+}
+
+.map-viewport {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.field-svg-canvas {
+  width: 100%;
+  height: 380px;
+  display: block;
+  user-select: none;
+}
+
+.map-zone-poly {
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.map-zone-poly:hover {
+  fill-opacity: 0.35;
+}
+
+.zone-poly-title {
+  font-size: 13px;
+  font-weight: 700;
+  fill: var(--color-text-primary);
+  pointer-events: none;
+}
+
+.zone-poly-sub {
+  font-size: 11px;
+  fill: var(--color-text-secondary);
+  pointer-events: none;
+}
+
+/* Sensor Marker Pins */
+.map-sensor-marker {
+  cursor: pointer;
+  transition: transform var(--transition-fast);
+}
+
+.map-sensor-marker:hover {
+  transform: scale(1.2);
+}
+
+.sensor-marker-label {
+  font-size: 11px;
+  font-weight: 700;
+  fill: var(--color-text-primary);
+  pointer-events: none;
+}
+
+.map-sensor-marker.marker-alert .sensor-marker-label {
+  fill: var(--color-danger);
+}
+
+.sensor-pulse-ring {
+  animation: sensorPulse 2.5s infinite;
+  transform-origin: center;
+}
+
+@keyframes sensorPulse {
+  0% { r: 12; opacity: 0.8; }
+  50% { r: 22; opacity: 0.1; }
+  100% { r: 12; opacity: 0.8; }
+}
+
+/* Risk Markers */
+.map-risk-marker {
+  cursor: pointer;
+  transition: transform var(--transition-fast);
+}
+
+.map-risk-marker:hover {
+  transform: scale(1.25);
+}
+
+/* Task Markers */
+.map-task-node {
+  cursor: pointer;
+}
+
+/* Floating Popup Tooltip */
+.map-floating-popup {
+  position: absolute;
+  z-index: var(--z-dropdown);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  padding: var(--space-3);
+  font-size: var(--font-size-xs);
+  min-width: 200px;
+  max-width: 280px;
+  pointer-events: none;
+  animation: popupFade 0.15s ease-out;
+}
+
+@keyframes popupFade {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.popup-title {
+  font-weight: 700;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-primary);
+  margin-bottom: 2px;
+}
+
+.popup-meta {
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-1);
+}
+
+.popup-stat-row {
+  display: flex;
+  justify-content: space-between;
+  padding: var(--space-1) 0;
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+  margin: var(--space-1) 0;
+}
+
+.popup-hint {
+  font-size: 10px;
+  color: var(--color-primary-600);
+  font-weight: 600;
+  margin-top: 4px;
+}
+
+/* Map Legend Bar */
+.map-legend-bar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-2) var(--space-4);
+  background-color: var(--color-surface);
+  border-top: 1px solid var(--color-border);
+  font-size: 11px;
+  color: var(--color-text-secondary);
+  flex-wrap: wrap;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.legend-swatch {
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  display: inline-block;
+}
+
+.swatch-optimal {
+  background-color: rgba(34, 197, 94, 0.4);
+  border: 1.5px solid var(--color-primary-500);
+}
+
+.swatch-stress {
+  background-color: rgba(217, 119, 6, 0.4);
+  border: 1.5px solid var(--color-warning);
+}
+
+
+/* ==========================================================================
+   Hierarchy Drill-Down Navigation Strip (Phase 6)
+   ========================================================================== */
+.hierarchy-strip-card {
+  padding: var(--space-4);
+  background-color: var(--color-surface-soft);
+  border: 1px solid var(--color-border);
+}
+
+.hierarchy-level-row {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.hierarchy-group {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
+.hierarchy-label {
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+  min-width: 140px;
+}
+
+.hierarchy-pills {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.pill-btn {
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-full);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  color: var(--color-text-primary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.pill-btn:hover {
+  border-color: var(--color-primary-400);
+  background-color: var(--color-surface-soft);
+}
+
+.pill-btn.active {
+  background-color: var(--color-primary-600);
+  color: var(--color-text-inverse);
+  border-color: var(--color-primary-600);
+  font-weight: 700;
+}
+
+.pill-btn.pill-stress {
+  border-color: var(--color-warning);
+}
+
+.pill-btn.pill-stress.active {
+  background-color: var(--color-warning);
+  border-color: var(--color-warning);
+}
+
+/* ==========================================================================
+   Phase 7: Field Details Tab Panes Styling
+   ========================================================================== */
+
+/* Crop Stage Progress Stepper */
+.crop-growth-stepper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  margin: var(--space-4) 0 var(--space-2);
+  padding: 0 var(--space-2);
+}
+
+.crop-growth-stepper::before {
+  content: '';
+  position: absolute;
+  top: 14px;
+  left: 30px;
+  right: 30px;
+  height: 3px;
+  background-color: var(--color-border);
+  z-index: 1;
+}
+
+.step-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+  text-align: center;
+}
+
+.step-node {
+  width: 30px;
+  height: 30px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-surface);
+  border: 2px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  color: var(--color-text-secondary);
+  transition: all var(--transition-normal);
+}
+
+.step-item.completed .step-node {
+  background-color: var(--color-primary-600);
+  border-color: var(--color-primary-600);
+  color: var(--color-text-inverse);
+}
+
+.step-item.current .step-node {
+  background-color: var(--color-primary-100);
+  border-color: var(--color-primary-600);
+  color: var(--color-primary-800);
+  box-shadow: 0 0 0 4px rgba(22, 163, 74, 0.2);
+}
+
+.step-label {
+  font-size: 11px;
+  font-weight: 600;
+  margin-top: var(--space-1);
+  color: var(--color-text-primary);
+}
+
+.step-subtext {
+  font-size: 10px;
+  color: var(--color-text-muted);
+}
+
+/* Zone Cards Grid */
+.zone-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--space-4);
+}
+
+.zone-card {
+  background-color: var(--color-card-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  transition: all var(--transition-fast);
+}
+
+.zone-card:hover {
+  border-color: var(--color-primary-300);
+  box-shadow: var(--shadow-md);
+}
+
+.zone-card.zone-stress {
+  border-left: 4px solid var(--color-danger);
+  background-color: #FEF2F2;
+}
+
+[data-theme="dark"] .zone-card.zone-stress {
+  background-color: rgba(220, 38, 38, 0.08);
+}
+
+.zone-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.zone-title {
+  font-size: var(--font-size-base);
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.zone-acreage {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+}
+
+.zone-telemetry-preview {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-2);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-2) var(--space-3);
+}
+
+.metric-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.metric-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.metric-val {
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+/* Moisture Progress Bar */
+.moisture-bar-wrap {
+  margin-top: var(--space-1);
+}
+
+.moisture-bar-track {
+  height: 8px;
+  background-color: var(--color-border);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.moisture-bar-fill {
+  height: 100%;
+  border-radius: var(--radius-full);
+  transition: width 0.4s ease;
+}
+
+.fill-optimal { background-color: var(--color-success); }
+.fill-warning { background-color: var(--color-warning); }
+.fill-stress  { background-color: var(--color-danger); }
+
+/* Valve Control Strip */
+.valve-control-strip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: var(--space-2);
+  border-top: 1px solid var(--color-border);
+}
+
+.valve-info {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+}
+
+/* Virtual IoT Telemetry Grid (Tab 3) */
+.sensor-metric-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: var(--space-3);
+}
+
+.sensor-box {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.sensor-box-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sensor-reading {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.sensor-target {
+  font-size: 11px;
+  color: var(--color-text-muted);
+}
+
+/* Weather Tab Grid (Tab 4) */
+.weather-hero-card {
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  gap: var(--space-4);
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .weather-hero-card {
+    grid-template-columns: 1fr;
+  }
+}
+
+.weather-hero-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: var(--space-3);
+}
+
+/* Drone NDVI Tab (Tab 5) */
+.drone-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: var(--space-4);
+}
+
+@media (max-width: 900px) {
+  .drone-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.ndvi-scale-bar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  margin-top: var(--space-3);
+}
+
+.ndvi-gradient {
+  height: 12px;
+  border-radius: var(--radius-full);
+  background: linear-gradient(to right, #DC2626 0%, #F59E0B 40%, #84CC16 70%, #16A34A 100%);
+}
+
+.ndvi-legend-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  color: var(--color-text-muted);
+}
+
+/* Risk Matrix List (Tab 6) */
+.risk-matrix-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.risk-matrix-item {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+  display: flex;
+  gap: var(--space-3);
+  align-items: flex-start;
+}
+
+.risk-matrix-item.risk-high {
+  border-left: 5px solid var(--color-danger);
+}
+
+.risk-matrix-item.risk-medium {
+  border-left: 5px solid var(--color-warning);
+}
+
+.risk-matrix-item.risk-low {
+  border-left: 5px solid var(--color-info);
+}
+
+/* Action Plans List (Tab 7) */
+.action-plans-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.action-plan-card {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.action-plan-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+/* History Timeline (Tab 8) */
+.timeline-stream {
+  position: relative;
+  padding-left: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.timeline-stream::before {
+  content: '';
+  position: absolute;
+  top: 6px;
+  bottom: 6px;
+  left: 11px;
+  width: 2px;
+  background-color: var(--color-border);
+}
+
+.timeline-entry {
+  position: relative;
+}
+
+.timeline-dot {
+  position: absolute;
+  left: -28px;
+  top: 4px;
+  width: 14px;
+  height: 14px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-primary-600);
+  border: 2px solid var(--color-surface);
+}
+
+.timeline-entry-content {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-3) var(--space-4);
+}
+
+/* ==========================================================================
+   Phase 9: Dedicated Virtual Sensor Center Styling (Section 15)
+   ========================================================================== */
+.sensor-vitals-banner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-3) var(--space-4);
+  background-color: var(--color-surface);
+  border-left: 4px solid var(--color-primary-600);
+  margin-bottom: var(--space-4);
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+.stream-vitals-info {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
+.stream-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--font-size-xs);
+  color: var(--color-primary-700);
+  background-color: var(--color-primary-50);
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--color-primary-200);
+}
+
+[data-theme="dark"] .stream-status-pill {
+  background-color: rgba(22, 163, 74, 0.15);
+  border-color: rgba(22, 163, 74, 0.3);
+  color: var(--color-primary-400);
+}
+
+.pulse-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-primary-600);
+  box-shadow: 0 0 0 0 rgba(22, 163, 74, 0.7);
+  animation: pulseDot 2s infinite;
+}
+
+@keyframes pulseDot {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(22, 163, 74, 0.7); }
+  70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(22, 163, 74, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(22, 163, 74, 0); }
+}
+
+.stream-stat-item {
+  font-size: var(--font-size-xs);
+  display: flex;
+  gap: var(--space-1);
+}
+
+.stream-stat-item .v-label {
+  color: var(--color-text-muted);
+}
+
+.stream-stat-item .v-val {
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+/* Filter Strip */
+.sensor-filter-strip {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin-bottom: var(--space-4);
+}
+
+.filter-group {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
+.filter-label {
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  min-width: 90px;
+}
+
+.filter-pills {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+/* 10 Supported Sensor Cards Grid */
+.virtual-sensor-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  gap: var(--space-4);
+}
+
+.virtual-sensor-card {
+  background-color: var(--color-card-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  transition: all var(--transition-fast);
+}
+
+.virtual-sensor-card:hover {
+  border-color: var(--color-primary-400);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.virtual-sensor-card.card-stress-border {
+  border-left: 4px solid var(--color-danger);
+  background-color: #FEF2F2;
+}
+
+[data-theme="dark"] .virtual-sensor-card.card-stress-border {
+  background-color: rgba(220, 38, 38, 0.08);
+}
+
+.sensor-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--space-2);
+}
+
+.sensor-name-group {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.sensor-icon-bubble {
+  font-size: 1.4rem;
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-surface);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  flex-shrink: 0;
+}
+
+.sensor-title {
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: 2px;
+}
+
+.sensor-zone-subtitle {
+  font-size: 11px;
+  color: var(--color-text-secondary);
+  display: block;
+}
+
+.sensor-card-body {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: var(--space-2) 0;
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.sensor-val-row {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-1);
+}
+
+.sensor-reading-num {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--color-text-primary);
+  line-height: 1;
+}
+
+.sensor-reading-unit {
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  color: var(--color-text-secondary);
+}
+
+.sensor-trend-badge {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+}
+
+.trend-down {
+  background-color: #FEE2E2;
+  color: #DC2626;
+}
+
+.trend-up {
+  background-color: #FEF3C7;
+  color: #D97706;
+}
+
+.trend-steady {
+  background-color: var(--color-surface-soft);
+  color: var(--color-text-secondary);
+}
+
+.sensor-card-meta-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  font-size: 11px;
+}
+
+.sensor-meta-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.meta-label {
+  color: var(--color-text-muted);
+}
+
+.meta-val {
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.sensor-update-ticker {
+  color: var(--color-text-secondary);
+  font-style: italic;
+}
+
+/* ==========================================================================
+   Phase 10: Sensor Telemetry Charts Styling (Section 16)
+   ========================================================================== */
+.chart-analytics-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding: var(--space-5);
+  margin-top: var(--space-4);
+}
+
+.chart-controls-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.chart-filter-bar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  background-color: var(--color-surface-soft);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+}
+
+/* Summary Statistics Strip */
+.chart-stats-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: var(--space-3);
+}
+
+.stat-box {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-3);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.stat-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.stat-val-row {
+  display: flex;
+  align-items: baseline;
+  gap: 3px;
+}
+
+.stat-num {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--color-text-primary);
+  line-height: 1.1;
+}
+
+.stat-unit {
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  color: var(--color-text-secondary);
+}
+
+.stat-trend-val {
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  color: var(--color-primary-700);
+}
+
+.stat-time-val {
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  color: var(--color-text-secondary);
+}
+
+.stat-sub {
+  font-size: 10px;
+  color: var(--color-text-muted);
+}
+
+/* Chart Canvas & SVG Viewport */
+.chart-canvas-container {
+  width: 100%;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  position: relative;
+  padding: var(--space-2);
+}
+
+.chart-svg {
+  width: 100%;
+  height: 300px;
+  display: block;
+}
+
+.chart-point-marker {
+  cursor: pointer;
+  transition: transform var(--transition-fast);
+}
+
+.chart-point-marker:hover {
+  transform: scale(1.3);
+}
+
+/* Agronomic Threshold Reference Legend */
+.chart-threshold-legend {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-2) var(--space-3);
+  background-color: var(--color-surface-soft);
+  border-radius: var(--radius-sm);
+  font-size: 11px;
+  color: var(--color-text-secondary);
+  flex-wrap: wrap;
+}
+
+.thresh-item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.thresh-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: var(--radius-full);
+}
+
+.thresh-fc .thresh-dot { background-color: #16A34A; }
+.thresh-mad .thresh-dot { background-color: #D97706; }
+.thresh-pwp .thresh-dot { background-color: #DC2626; }
+
+/* ==========================================================================
+   Phase 11: Sensor Status & Operational Thresholds Styling (Section 17)
+   ========================================================================== */
+.sensor-status-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+}
+
+.status-tools {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.status-pulse {
+  animation: statusGlow 2s infinite ease-in-out;
+}
+
+@keyframes statusGlow {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.65; }
+}
+
+.node-status-table td,
+.node-status-table th {
+  vertical-align: middle;
+}
+
+.operational-thresholds-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+}
+
+.threshold-stage-info-pill {
+  padding: var(--space-2) var(--space-3);
+  background-color: var(--color-surface-soft);
+  border-radius: var(--radius-sm);
+  border-left: 4px solid var(--color-primary-600);
+  font-size: var(--font-size-xs);
+  color: var(--color-text-primary);
+}
+
+.threshold-table .val-badge {
+  font-family: monospace;
+  font-size: 11px;
+}
+
+/* ==========================================================================
+   Phase 14: Weather & Microclimate Intelligence (Section 20)
+   ========================================================================== */
+.weather-main-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
+.weather-header-actions-group {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.source-cached {
+  background-color: #FEF3C7;
+  color: #92400E;
+  border: 1px dashed #D97706;
+}
+
+[data-theme="dark"] .source-cached {
+  background-color: rgba(245, 158, 11, 0.15);
+  color: #FCD34D;
+  border-color: rgba(245, 158, 11, 0.4);
+}
+
+.weather-hero-card-v2 {
+  background: linear-gradient(135deg, var(--color-surface-soft) 0%, rgba(59, 130, 246, 0.05) 100%);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  margin-bottom: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.weather-hero-primary {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
+.weather-hero-icon {
+  font-size: 3.6rem;
+  line-height: 1;
+}
+
+.weather-hero-temp {
+  font-size: 2.8rem;
+  font-weight: 800;
+  color: var(--color-text-primary);
+  line-height: 1.1;
+}
+
+.weather-hero-sub {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  margin-top: 2px;
+}
+
+.weather-hero-time {
+  font-size: 11px;
+  color: var(--color-text-muted);
+  margin-top: 2px;
+}
+
+.weather-core-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: var(--space-3);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--color-border);
+}
+
+.weather-core-cell {
+  background-color: var(--color-card-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-3);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.core-label {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.core-value {
+  font-size: var(--font-size-base);
+  font-weight: 800;
+  color: var(--color-text-primary);
+}
+
+.core-sub {
+  font-size: 10px;
+  color: var(--color-text-secondary);
+}
+
+/* Suitability Cards Grid */
+.suitability-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--space-4);
+}
+
+.suitability-card {
+  background-color: var(--color-card-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.suitability-card.suitability-success {
+  border-left: 4px solid var(--color-success);
+}
+
+.suitability-card.suitability-warning {
+  border-left: 4px solid var(--color-warning);
+}
+
+.suitability-card.suitability-info {
+  border-left: 4px solid var(--color-info);
+}
+
+.suitability-card-header {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+}
+
+.suitability-icon {
+  font-size: 1.4rem;
+  line-height: 1;
+}
+
+.suitability-title {
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: 2px;
+}
+
+.suitability-window {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+}
+
+.suitability-desc {
+  font-size: 11px;
+  color: var(--color-text-muted);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Hourly Forecast Strip */
+.weather-forecast-block {
+  margin-top: var(--space-6);
+}
+
+.forecast-block-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: var(--space-3);
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.forecast-subtitle {
+  font-size: 11px;
+  color: var(--color-text-muted);
+}
+
+.hourly-forecast-strip {
+  display: flex;
+  gap: var(--space-3);
+  overflow-x: auto;
+  padding-bottom: var(--space-3);
+  scroll-snap-type: x mandatory;
+}
+
+.hourly-forecast-card {
+  flex: 0 0 76px;
+  background-color: var(--color-card-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-3) var(--space-2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1);
+  text-align: center;
+  scroll-snap-align: start;
+}
+
+.hourly-time {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--color-text-muted);
+}
+
+.hourly-icon {
+  font-size: 1.4rem;
+}
+
+.hourly-temp {
+  font-size: var(--font-size-sm);
+  font-weight: 800;
+  color: var(--color-text-primary);
+}
+
+.hourly-pop {
+  font-size: 10px;
+  font-weight: 600;
+  color: #3B82F6;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.hourly-wind {
+  font-size: 9px;
+  color: var(--color-text-muted);
+}
+
+/* Daily Forecast Rows */
+.daily-forecast-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.daily-forecast-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-3) var(--space-4);
+  background-color: var(--color-card-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  gap: var(--space-3);
+  font-size: var(--font-size-xs);
+  flex-wrap: wrap;
+}
+
+.daily-day-col {
+  width: 100px;
+  display: flex;
+  flex-direction: column;
+}
+
+.daily-date {
+  font-size: 10px;
+  color: var(--color-text-muted);
+}
+
+.daily-cond-col {
+  width: 160px;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.daily-icon {
+  font-size: 1.2rem;
+}
+
+.daily-pop-col {
+  width: 110px;
+}
+
+.pop-pill {
+  font-size: 11px;
+  font-weight: 600;
+  color: #2563EB;
+}
+
+.pop-elevated {
+  color: #B45309;
+}
+
+.daily-temp-col {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  width: 180px;
+}
+
+.max-temp {
+  font-weight: 800;
+  color: var(--color-text-primary);
+}
+
+.min-temp {
+  font-weight: 600;
+  color: var(--color-text-muted);
+}
+
+.temp-range-track {
+  flex: 1;
+  height: 6px;
+  background-color: var(--color-surface-soft);
+  border-radius: var(--radius-full);
+  position: relative;
+  overflow: hidden;
+}
+
+.temp-range-fill {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, #60A5FA, #F59E0B);
+  border-radius: var(--radius-full);
+}
+
+.daily-hum-col {
+  width: 90px;
+  font-size: 11px;
+  color: var(--color-text-secondary);
+}
+
+/* ==========================================================================
+   Phase 15: Drone & Aerial Multispectral Crop Intelligence (Section 21)
+   ========================================================================== */
+.drone-main-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
+.drone-header-badges {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.source-demo {
+  background-color: #EDE9FE;
+  color: #5B21B6;
+  border: 1px dashed #7C3AED;
+}
+
+.drone-kpi-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-3);
+  margin-bottom: var(--space-6);
+}
+
+.drone-workspace-grid {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: var(--space-5);
+  margin-bottom: var(--space-6);
+}
+
+@media (max-width: 992px) {
+  .drone-workspace-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.drone-viewer-panel {
+  background-color: var(--color-surface-soft);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.viewer-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.layer-toggle-group {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.layer-btn {
+  padding: 4px 10px;
+  font-size: 11px;
+  font-weight: 700;
+  border-radius: var(--radius-full);
+  background-color: var(--color-card-bg);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.layer-btn:hover {
+  color: var(--color-text-primary);
+  border-color: var(--color-primary-400);
+}
+
+.layer-btn.active {
+  background-color: var(--color-primary-600);
+  border-color: var(--color-primary-600);
+  color: #ffffff;
+}
+
+.resolution-badge {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-card-bg);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+}
+
+.orthomosaic-canvas-container {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background-color: #0F172A;
+  border: 1px solid var(--color-border);
+}
+
+.orthomosaic-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.ndvi-scale-bar-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ndvi-legend-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  color: var(--color-text-muted);
+}
+
+.ndvi-gradient-strip {
+  height: 8px;
+  border-radius: var(--radius-full);
+  background: linear-gradient(90deg, #A855F7, #EF4444, #F59E0B, #84CC16, #10B981, #065F46);
+  border: 1px solid var(--color-border);
+}
+
+.drone-side-panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.drone-upload-card {
+  background-color: var(--color-card-bg);
+  border: 1.5px dashed var(--color-primary-400);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.upload-icon-circle {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: var(--color-primary-50);
+  color: var(--color-primary-700);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+}
+
+.drone-upload-card h4 {
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.drone-upload-card p {
+  font-size: 11px;
+  color: var(--color-text-muted);
+  margin: 0;
+}
+
+.file-input-label {
+  cursor: pointer;
+}
+
+.upload-progress-box {
+  width: 100%;
+  margin-top: var(--space-2);
+  font-size: 11px;
+  color: var(--color-primary-700);
+}
+
+.detected-issues-card {
+  background-color: var(--color-card-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+}
+
+.issues-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.issue-item {
+  background-color: var(--color-surface-soft);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.issue-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.issue-title {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-primary);
+}
+
+.issue-meta-row {
+  font-size: 10px;
+  color: var(--color-text-muted);
+}
+
+.issue-action-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  margin-top: 4px;
+  padding-top: 4px;
+  border-top: 1px solid var(--color-border);
+}
+
+.issue-rec {
+  font-size: 10px;
+  color: var(--color-text-secondary);
+}
+
+.flight-history-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--space-3);
+}
+
+.flight-card {
+  background-color: var(--color-card-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-3);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.flight-card:hover {
+  border-color: var(--color-primary-400);
+  transform: translateY(-1px);
+}
+
+.flight-card.flight-card-active {
+  border-color: var(--color-primary-600);
+  background-color: var(--color-surface-soft);
+  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
+}
+
+.flight-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-1);
+}
+
+.flight-date-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-size: 11px;
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-2);
+}
+
+.flight-metrics-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-1);
+  text-align: center;
+  border-top: 1px solid var(--color-border);
+  padding-top: var(--space-2);
+}
+
+.fm-key {
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.fm-val {
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--color-text-primary);
+}
+
+/* ==========================================================================
+   Phase 16: Agronomic Risk Center (Section 22)
+   ========================================================================== */
+.risk-main-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
+.risk-header-badges {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.risk-kpi-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-3);
+  margin-bottom: var(--space-6);
+}
+
+.risk-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+  margin-bottom: var(--space-6);
+  padding: var(--space-3) var(--space-4);
+  background-color: var(--color-surface-soft);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+}
+
+.badge-danger-count {
+  background-color: #FEE2E2 !important;
+  color: #991B1B !important;
+}
+
+.risks-cards-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.risk-card {
+  background-color: var(--color-card-bg);
+  border: 1px solid var(--color-border);
+  border-left: 5px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-fast);
+}
+
+.risk-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-1px);
+}
+
+.risk-card.sev-critical,
+.risk-card.severity-critical {
+  border-left-color: #EF4444;
+  background: linear-gradient(135deg, var(--color-card-bg) 0%, rgba(239, 68, 68, 0.04) 100%);
+}
+
+.risk-card.sev-high,
+.risk-card.severity-high {
+  border-left-color: #F59E0B;
+  background: linear-gradient(135deg, var(--color-card-bg) 0%, rgba(245, 158, 11, 0.04) 100%);
+}
+
+.risk-card.sev-medium,
+.risk-card.severity-medium {
+  border-left-color: #3B82F6;
+}
+
+.risk-card.sev-low,
+.risk-card.severity-low {
+  border-left-color: #10B981;
+}
+
+.risk-card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
+.risk-title-group {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+}
+
+.risk-type-icon {
+  font-size: 1.8rem;
+  line-height: 1;
+}
+
+.risk-type-name-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.risk-type-title {
+  font-size: var(--font-size-base);
+  font-weight: 800;
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.risk-score-badge {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-surface-soft);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-secondary);
+}
+
+.risk-hierarchy-row {
+  font-size: 11px;
+  color: var(--color-text-muted);
+  margin-top: 3px;
+}
+
+.risk-confidence-col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+}
+
+.confidence-val {
+  font-size: var(--font-size-sm);
+  font-weight: 800;
+  color: var(--color-primary-600);
+}
+
+.risk-evidence-box {
+  background-color: var(--color-surface-soft);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-3);
+}
+
+.evidence-tag {
+  display: block;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-text-muted);
+  margin-bottom: 2px;
+}
+
+.evidence-body {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.risk-response-box {
+  background: linear-gradient(135deg, var(--color-surface-soft) 0%, rgba(16, 185, 129, 0.06) 100%);
+  border: 1px solid var(--color-primary-200);
+  border-radius: var(--radius-md);
+  padding: var(--space-3) var(--space-4);
+}
+
+[data-theme="dark"] .risk-response-box {
+  border-color: rgba(16, 185, 129, 0.25);
+}
+
+.response-header {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 2px;
+}
+
+.response-icon {
+  font-size: 12px;
+}
+
+.response-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-primary-700);
+}
+
+[data-theme="dark"] .response-label {
+  color: var(--color-primary-400);
+}
+
+.response-body {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-primary);
+  font-weight: 500;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.risk-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: var(--space-2);
+  border-top: 1px solid var(--color-border);
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
+.risk-timing {
+  font-size: 11px;
+  color: var(--color-text-muted);
+}
+
+.risk-cta-group {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+
+
+
+
+
+
+

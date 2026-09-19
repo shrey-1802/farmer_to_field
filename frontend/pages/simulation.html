@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Virtual IoT Sensor & Agronomic Scenario Simulation Center - KrishiNirnay AI">
+  <title>Simulation Center — KrishiNirnay AI</title>
+  <link rel="icon" type="image/svg+xml" href="../assets/icons/sprout.svg">
+  <link rel="stylesheet" href="../css/variables.css">
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/simulation.css">
+  <script type="module" src="../js/ui.js"></script>
+</head>
+<body class="app-body">
+  <header class="app-header">
+    <div class="header-left">
+      <button id="sidebar-toggle-btn" class="icon-button mobile-only" aria-label="Toggle navigation menu">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </button>
+      <div class="brand-badge">
+        <div class="brand-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M7 20h10"/><path d="M10 20c0-4.4 3.6-8 8-8v-1a5 5 0 0 0-5-5c-2.4 0-4.5 1.5-5 3.5A5.5 5.5 0 0 0 2 12c0 4.4 3.6 8 8 8Z"/>
+          </svg>
+        </div>
+        <span class="brand-title">KrishiNirnay AI</span>
+      </div>
+    </div>
+    <div class="header-right">
+      <div class="weather-pill">
+        <span class="weather-icon">☀️</span>
+        <span class="weather-temp">31°C</span>
+        <span class="source-tag source-live">LIVE</span>
+      </div>
+      <button id="theme-toggle-btn" class="icon-button" aria-label="Toggle theme">
+        <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="M4.93 4.93l1.41 1.41"/><path d="M17.66 17.66l1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/>
+        </svg>
+      </button>
+      <a href="./notifications.html" class="icon-button notification-bell" aria-label="Notifications">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/>
+        </svg>
+      </a>
+      <div class="farmer-pill"><div class="farmer-avatar">RP</div></div>
+    </div>
+  </header>
+
+  <div class="app-layout">
+    <aside class="app-sidebar" id="app-sidebar">
+      <nav class="sidebar-nav" aria-label="Main Navigation">
+        <div class="nav-section-title">Core Operations</div>
+        <ul class="nav-list">
+          <li class="nav-item"><a href="./dashboard.html" class="nav-link"><span class="nav-icon">📊</span><span class="nav-text">Dashboard</span></a></li>
+          <li class="nav-item"><a href="./field-details.html" class="nav-link"><span class="nav-icon">🌾</span><span class="nav-text">Fields & Zones</span></a></li>
+          <li class="nav-item"><a href="./agents.html" class="nav-link"><span class="nav-icon">🤖</span><span class="nav-text">AI Agents</span></a></li>
+          <li class="nav-item"><a href="./action-plans.html" class="nav-link"><span class="nav-icon">📋</span><span class="nav-text">Action Plans</span></a></li>
+          <li class="nav-item"><a href="./execution.html" class="nav-link"><span class="nav-icon">⚡</span><span class="nav-text">Execution Center</span></a></li>
+        </ul>
+        <div class="nav-section-title">Intelligence & Tools</div>
+        <ul class="nav-list">
+          <li class="nav-item"><a href="./market.html" class="nav-link"><span class="nav-icon">📈</span><span class="nav-text">Market & Mandi</span></a></li>
+          <li class="nav-item"><a href="./reports.html" class="nav-link"><span class="nav-icon">📑</span><span class="nav-text">Reports</span></a></li>
+          <li class="nav-item"><a href="./simulation.html" class="nav-link active"><span class="nav-icon">🧪</span><span class="nav-text">Simulation Center</span><span class="badge badge-simulated">Virtual IoT</span></a></li>
+          <li class="nav-item"><a href="./notifications.html" class="nav-link"><span class="nav-icon">🔔</span><span class="nav-text">Notifications</span></a></li>
+          <li class="nav-item"><a href="./settings.html" class="nav-link"><span class="nav-icon">⚙️</span><span class="nav-text">Settings</span></a></li>
+          <li class="nav-item"><a href="./admin.html" class="nav-link"><span class="nav-icon">🛡️</span><span class="nav-text">Admin & Health</span></a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <main class="app-main" id="main-content">
+      <div class="page-title-banner">
+        <div>
+          <h1 class="page-title">Virtual IoT & Scenario Simulation Center</h1>
+          <p class="page-subtitle">Test autonomous AI agent reactions against extreme agronomic stress conditions</p>
+        </div>
+        <span class="source-tag source-simulated">SIMULATED — Virtual IoT Engine</span>
+      </div>
+
+      <!-- Section 30: Prominent DEMO / SIMULATION MODE Banner -->
+      <section class="card simulation-status-banner">
+        <div class="sim-banner-left">
+          <span class="demo-mode-badge" id="sim-banner-badge">DEMO / SIMULATION MODE</span>
+          <p class="sim-banner-desc" id="sim-banner-desc">Virtual IoT sensor generator is feeding live synthetic telemetry to the FastAPI backend and AI agents.</p>
+        </div>
+        <button type="button" class="btn btn-outline btn-sm" id="reset-sim-btn">Reset Simulation to Baseline</button>
+      </section>
+
+      <!-- Section 30: Real-Time Simulation Status Dashboard Card -->
+      <section class="card sim-status-dashboard">
+        <div class="card-header">
+          <div>
+            <h2 class="card-title">Real-Time Simulation Status (Section 30)</h2>
+            <p class="card-subtitle">Live telemetry distortion, affected infrastructure, and multi-agent autonomous response</p>
+          </div>
+          <span class="badge badge-simulated">VIRTUAL TELEMETRY</span>
+        </div>
+
+        <!-- Overview Meta Grid -->
+        <div class="sim-overview-grid">
+          <div class="sim-meta-box">
+            <span class="sim-meta-label">Simulation Mode</span>
+            <div class="sim-meta-val">
+              <span class="status-pill-val badge-success" id="sim-status-mode">IDLE (BASELINE)</span>
+            </div>
+          </div>
+
+          <div class="sim-meta-box">
+            <span class="sim-meta-label">Started At</span>
+            <div class="sim-meta-val" id="sim-started-at">Baseline Nominal</div>
+          </div>
+
+          <div class="sim-meta-box">
+            <span class="sim-meta-label">Elapsed Runtime</span>
+            <div class="sim-meta-val">
+              <span class="sim-timer-val" id="sim-elapsed-timer">00:00:00</span>
+            </div>
+          </div>
+
+          <div class="sim-meta-box">
+            <span class="sim-meta-label">Backend Telemetry Channel</span>
+            <div class="sim-meta-val">
+              <span class="status-pill-val badge-success">POST /api/simulation/...</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Active Scenario Banner -->
+        <div class="sim-active-scenario-banner">
+          <div class="sim-scenario-header">
+            <div class="sim-scenario-title" id="sim-active-scenario-name">
+              <span class="sim-scenario-icon">🌱</span> Normal Baseline Conditions
+            </div>
+          </div>
+          <p class="sim-gen-desc" id="sim-scenario-desc-text">All virtual IoT sensors report optimal agronomic parameters. Crop physiology within healthy benchmark thresholds.</p>
+          <div class="sim-affected-callout">
+            <strong>Affected Fields:</strong> <span id="sim-affected-fields">None — All 12 Monitored Acres in Optimal State</span>
+          </div>
+        </div>
+
+        <!-- Affected Sensors Matrix -->
+        <div>
+          <h3 class="card-title" style="font-size: var(--font-size-sm); margin-bottom: var(--space-3);">Affected Virtual Sensors (Telemetry Deviations)</h3>
+          <div class="sim-sensors-grid" id="sim-affected-sensors-list">
+            <!-- Rendered dynamically by simulation.js -->
+          </div>
+        </div>
+
+        <!-- Agent Status -->
+        <div>
+          <h3 class="card-title" style="font-size: var(--font-size-sm); margin-bottom: var(--space-3);">Agent Real-Time Status</h3>
+          <div class="sim-agents-list" id="sim-agent-status-list">
+            <!-- Rendered dynamically by simulation.js -->
+          </div>
+        </div>
+
+        <!-- Generated Risks & Actions Grid -->
+        <div class="sim-overview-grid">
+          <div>
+            <h3 class="card-title" style="font-size: var(--font-size-sm); margin-bottom: var(--space-3);">Generated Agronomic Risks</h3>
+            <div class="sim-generated-grid" id="sim-generated-risks-list">
+              <!-- Rendered dynamically by simulation.js -->
+            </div>
+          </div>
+          <div>
+            <h3 class="card-title" style="font-size: var(--font-size-sm); margin-bottom: var(--space-3);">Generated Action Plans</h3>
+            <div class="sim-generated-grid" id="sim-generated-actions-list">
+              <!-- Rendered dynamically by simulation.js -->
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 29: One-Click Agronomic Scenario Injection (6 Scenarios + Reset) -->
+      <section class="card">
+        <div class="card-header">
+          <div>
+            <h2 class="card-title">One-Click Agronomic Stress Injection (Section 29)</h2>
+            <p class="card-subtitle">Inject environmental stress vectors into the backend virtual sensor engine</p>
+          </div>
+        </div>
+
+        <div class="scenarios-grid">
+          <!-- Scenario 1: Water Stress -->
+          <article class="scenario-card" id="card-water-stress">
+            <div class="scenario-icon">🏜️</div>
+            <h3 class="scenario-title">1. Simulate Water Stress</h3>
+            <p class="scenario-desc">Drops Zone 2 soil moisture to 18% and raises vapor pressure deficit. Triggers severe wilting threshold alert.</p>
+            <div class="scenario-effect">
+              <strong>Agent Trigger:</strong> Irrigation Agent dispatches emergency 24mm drip irrigation plan.
+            </div>
+            <button type="button" class="btn btn-primary btn-sm btn-block" data-scenario="water-stress">Simulate Water Stress</button>
+          </article>
+
+          <!-- Scenario 2: Disease Risk -->
+          <article class="scenario-card" id="card-disease">
+            <div class="scenario-icon">🍄</div>
+            <h3 class="scenario-title">2. Simulate Disease Risk</h3>
+            <p class="scenario-desc">Simulates 94% canopy humidity and 9.5 hours continuous leaf wetness at 26°C favorable for Tikka Cercospora.</p>
+            <div class="scenario-effect">
+              <strong>Agent Trigger:</strong> Pest/Disease Agent generates prophylactic bio-fungicide recommendation.
+            </div>
+            <button type="button" class="btn btn-outline btn-sm btn-block" data-scenario="disease">Simulate Disease Risk</button>
+          </article>
+
+          <!-- Scenario 3: Nutrient Deficiency -->
+          <article class="scenario-card" id="card-nutrient">
+            <div class="scenario-icon">🧪</div>
+            <h3 class="scenario-title">3. Simulate Nutrient Deficiency</h3>
+            <p class="scenario-desc">Depletes available nitrogen to 54 mg/kg and potassium to 88 mg/kg, inducing lower-canopy leaf chlorosis.</p>
+            <div class="scenario-effect">
+              <strong>Agent Trigger:</strong> Nutrient Agent computes urea top-dress and coordinates drip fertigation.
+            </div>
+            <button type="button" class="btn btn-outline btn-sm btn-block" data-scenario="nutrient">Simulate Nutrient Deficiency</button>
+          </article>
+
+          <!-- Scenario 4: Heavy Rain -->
+          <article class="scenario-card" id="card-heavy-rain">
+            <div class="scenario-icon">⛈️</div>
+            <h3 class="scenario-title">4. Simulate Heavy Rain</h3>
+            <p class="scenario-desc">Simulates torrential 58mm sudden deluge in 90 mins. Spikes soil moisture to 58%, threatening root anoxia.</p>
+            <div class="scenario-effect">
+              <strong>Agent Trigger:</strong> Weather Agent locks pumps; activates emergency gravitational drainage gates.
+            </div>
+            <button type="button" class="btn btn-outline btn-sm btn-block" data-scenario="heavy-rain">Simulate Heavy Rain</button>
+          </article>
+
+          <!-- Scenario 5: Heat Wave -->
+          <article class="scenario-card" id="card-heat-wave">
+            <div class="scenario-icon">🔥</div>
+            <h3 class="scenario-title">5. Simulate Heat Wave</h3>
+            <p class="scenario-desc">Ambient temperature surges to 43.6°C with 15% desiccating humidity and 4.3 kPa vapor pressure deficit.</p>
+            <div class="scenario-effect">
+              <strong>Agent Trigger:</strong> Locks midday irrigation to avoid root scalding; schedules twilight misting.
+            </div>
+            <button type="button" class="btn btn-outline btn-sm btn-block" data-scenario="heat-wave">Simulate Heat Wave</button>
+          </article>
+
+          <!-- Scenario 6: Sensor Failure -->
+          <article class="scenario-card" id="card-sensor-failure">
+            <div class="scenario-icon">⚠️</div>
+            <h3 class="scenario-title">6. Simulate Sensor Failure</h3>
+            <p class="scenario-desc">Simulates sudden LoRa gateway brownout and corrupted checksums, dropping Field Node #2 offline.</p>
+            <div class="scenario-effect">
+              <strong>Agent Trigger:</strong> System Agent activates satellite NDVI/ET0 surrogate failsafe model.
+            </div>
+            <button type="button" class="btn btn-outline btn-sm btn-block" data-scenario="sensor-failure">Simulate Sensor Failure</button>
+          </article>
+        </div>
+      </section>
+
+      <!-- Manual Virtual Sensor Sliders -->
+      <section class="card">
+        <div class="card-header">
+          <div>
+            <h2 class="card-title">Manual Virtual IoT Parameter Tuning</h2>
+            <p class="card-subtitle">Fine-tune individual telemetry signals for Zone 2 (East Cotton)</p>
+          </div>
+        </div>
+
+        <div class="slider-controls-grid">
+          <div class="slider-group">
+            <div class="slider-header">
+              <label for="slider-moisture" class="slider-label">Soil Moisture (15cm)</label>
+              <span class="slider-val" id="val-disp-moisture">38%</span>
+            </div>
+            <input type="range" id="slider-moisture" min="10" max="60" value="38" class="range-slider">
+          </div>
+
+          <div class="slider-group">
+            <div class="slider-header">
+              <label for="slider-temp" class="slider-label">Soil Temperature</label>
+              <span class="slider-val" id="val-disp-temp">28.2°C</span>
+            </div>
+            <input type="range" id="slider-temp" min="15" max="48" value="28.2" step="0.5" class="range-slider">
+          </div>
+
+          <div class="slider-group">
+            <div class="slider-header">
+              <label for="slider-humidity" class="slider-label">Ambient Relative Humidity</label>
+              <span class="slider-val" id="val-disp-humidity">54%</span>
+            </div>
+            <input type="range" id="slider-humidity" min="10" max="99" value="54" class="range-slider">
+          </div>
+
+          <div class="slider-group">
+            <div class="slider-header">
+              <label for="slider-radiation" class="slider-label">Solar Irradiance</label>
+              <span class="slider-val" id="val-disp-radiation">860 W/m²</span>
+            </div>
+            <input type="range" id="slider-radiation" min="100" max="1200" value="860" step="10" class="range-slider">
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <nav class="mobile-bottom-nav" aria-label="Mobile Navigation">
+    <a href="./dashboard.html" class="mobile-nav-item"><span class="mobile-nav-icon">📊</span><span class="mobile-nav-label">Dashboard</span></a>
+    <a href="./field-details.html" class="mobile-nav-item"><span class="mobile-nav-icon">🌾</span><span class="mobile-nav-label">Fields</span></a>
+    <a href="./action-plans.html" class="mobile-nav-item"><span class="mobile-nav-icon">📋</span><span class="mobile-nav-label">Actions</span></a>
+    <a href="./market.html" class="mobile-nav-item"><span class="mobile-nav-icon">📈</span><span class="mobile-nav-label">Market</span></a>
+    <a href="./settings.html" class="mobile-nav-item"><span class="mobile-nav-icon">⚙️</span><span class="mobile-nav-label">Settings</span></a>
+  </nav>
+
+  <script type="module" src="../js/simulation.js"></script>
+</body>
+</html>
