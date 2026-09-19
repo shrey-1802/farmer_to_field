@@ -14,6 +14,8 @@ from app.api.routes.agents import router as agents_router
 from app.api.routes.actions import router as actions_router
 from app.api.routes.tasks import router as tasks_router
 from app.api.routes.execution import router as execution_router
+from app.api.routes.experts import router as experts_router
+from app.api.routes.alerts import router as alerts_router
 
 api_router = APIRouter()
 
@@ -43,6 +45,9 @@ api_router.include_router(agents_router)
 api_router.include_router(actions_router)
 api_router.include_router(tasks_router)
 api_router.include_router(execution_router)
+api_router.include_router(experts_router)
+api_router.include_router(alerts_router)
+
 
 
 

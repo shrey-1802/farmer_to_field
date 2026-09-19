@@ -20,7 +20,8 @@ class Alert(Base):
     id = Column(String(36), primary_key=True, default=generate_uuid)
     farm_id = Column(String(36), ForeignKey("farms.id", ondelete="CASCADE"), nullable=False, index=True)
     field_id = Column(String(36), ForeignKey("fields.id", ondelete="SET NULL"), nullable=True, index=True)
-    severity = Column(String(50), default="INFO", nullable=False, doc="INFO, WARNING, CRITICAL")
+    category = Column(String(50), default="SYSTEM", nullable=False, index=True, doc="SYSTEM, WEATHER, RISK, ACTION, SENSOR, EXPERT, MARKET")
+    severity = Column(String(50), default="INFO", nullable=False, doc="INFO, WARNING, HIGH, CRITICAL")
     title = Column(String(255), nullable=False)
     message = Column(Text, nullable=False)
     is_acknowledged = Column(Boolean, default=False, nullable=False, index=True)
@@ -34,14 +35,17 @@ class ExpertCase(Base):
     __tablename__ = "expert_cases"
 
     id = Column(String(36), primary_key=True, default=generate_uuid)
+    farm_id = Column(String(36), ForeignKey("farms.id", ondelete="CASCADE"), nullable=True, index=True)
     action_plan_id = Column(String(36), ForeignKey("action_plans.id", ondelete="CASCADE"), nullable=True)
     risk_id = Column(String(36), ForeignKey("risk_events.id", ondelete="SET NULL"), nullable=True)
+    escalation_reason = Column(String(255), nullable=True)
     status = Column(String(50), default="OPEN", nullable=False, doc="OPEN, IN_REVIEW, RESOLVED, REJECTED")
     notes = Column(Text, nullable=True)
     expert_notes = Column(Text, nullable=True)
     expert_id = Column(String(36), nullable=True)
     created_at = Column(DateTime(timezone=True), default=utc_now, nullable=False)
     updated_at = Column(DateTime(timezone=True), default=utc_now, onupdate=utc_now, nullable=False)
+
 
 
 class MarketPrice(Base):
