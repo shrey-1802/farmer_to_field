@@ -11,6 +11,9 @@ from app.api.routes.weather import router as weather_router
 from app.api.routes.crops import router as crops_router
 from app.api.routes.context import router as context_router
 from app.api.routes.agents import router as agents_router
+from app.api.routes.actions import router as actions_router
+from app.api.routes.tasks import router as tasks_router
+from app.api.routes.execution import router as execution_router
 
 api_router = APIRouter()
 
@@ -37,5 +40,9 @@ api_router.include_router(weather_router)
 api_router.include_router(crops_router)
 api_router.include_router(context_router)
 api_router.include_router(agents_router)
+api_router.include_router(actions_router)
+api_router.include_router(tasks_router)
+api_router.include_router(execution_router)
+
 
 
