@@ -186,11 +186,6 @@
     <a href="./settings.html" class="mobile-nav-item"><span class="mobile-nav-icon">⚙️</span><span class="mobile-nav-label">Settings</span></a>
   </nav>
 
-  <script type="module">
-    document.getElementById('approve-plan-btn')?.addEventListener('click', () => {
-      alert('Action Plan #AP-1082 Approved! Handing over to Execution Center.');
-      window.location.href = './execution.html?job=AP-1082&status=running';
-    });
-  </script>
+  <script type="module" src="../js/actions.js"></script>
 </body>
 </html>
