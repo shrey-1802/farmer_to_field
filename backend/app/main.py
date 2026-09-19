@@ -24,9 +24,19 @@ async def lifespan(app: FastAPI):
         init_db(seed=True)
     except Exception as exc:
         logger.error(f"Error during database initialization on startup: {exc}")
+
+    # Start virtual sensor telemetry background worker
+    from app.simulation.sensor_worker import start_sensor_worker
+    start_sensor_worker()
+    logger.info("Virtual sensor worker started.")
+
     yield
-    # Shutdown
+
+    # Shutdown: stop background worker gracefully
+    from app.simulation.sensor_worker import stop_sensor_worker
+    stop_sensor_worker()
     logger.info("Application shutdown.")
+
 
 
 app = FastAPI(
