@@ -505,81 +505,8 @@
         <!-- Dedicated Sensor Telemetry Charts Viewer (Phase 10) -->
         <div id="telemetry-chart-viewer-container"></div>
 
-        <!-- Virtual IoT Hardware Nodes Diagnostics -->
-        <section class="card" style="margin-top: var(--space-4);">
-          <div class="card-header">
-            <div>
-              <h2 class="card-title">Virtual IoT Hardware Nodes Diagnostics</h2>
-              <p class="card-subtitle">Real-time parameters simulated from digital twin virtual telemetry nodes</p>
-            </div>
-            <span class="source-tag source-simulated">SIMULATED — Virtual IoT</span>
-          </div>
-
-          <div class="table-responsive">
-            <table class="data-table">
-              <thead>
-                <tr>
-                  <th>Node ID</th>
-                  <th>Zone</th>
-                  <th>Soil Moisture</th>
-                  <th>Soil Temp</th>
-                  <th>Leaf Wetness</th>
-                  <th>Solar Irradiance</th>
-                  <th>Node Health</th>
-                  <th>Last Ping</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><strong>Node-01</strong></td>
-                  <td>Zone 1: North</td>
-                  <td><span class="val-badge success">41.2%</span></td>
-                  <td>27.4°C</td>
-                  <td>0% (Dry)</td>
-                  <td>820 W/m²</td>
-                  <td><span class="badge badge-success">Online (98% Batt)</span></td>
-                  <td>2s ago</td>
-                </tr>
-                <tr class="row-warning">
-                  <td><strong>Node-02</strong></td>
-                  <td>Zone 2: East</td>
-                  <td><span class="val-badge danger">24.1%</span></td>
-                  <td>30.1°C</td>
-                  <td>0% (Dry)</td>
-                  <td>860 W/m²</td>
-                  <td><span class="badge badge-danger">Alert: Low Moisture</span></td>
-                  <td>1s ago</td>
-                </tr>
-                <tr>
-                  <td><strong>Node-03</strong></td>
-                  <td>Zone 3: Central</td>
-                  <td><span class="val-badge success">38.5%</span></td>
-                  <td>28.0°C</td>
-                  <td>0% (Dry)</td>
-                  <td>815 W/m²</td>
-                  <td><span class="badge badge-success">Online (95% Batt)</span></td>
-                  <td>4s ago</td>
-                </tr>
-                <tr>
-                  <td><strong>Node-04</strong></td>
-                  <td>Zone 4: South</td>
-                  <td><span class="val-badge success">36.3%</span></td>
-                  <td>28.5°C</td>
-                  <td>0% (Dry)</td>
-                  <td>830 W/m²</td>
-                  <td><span class="badge badge-success">Online (99% Batt)</span></td>
-                  <td>3s ago</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
-          <div style="margin-top: var(--space-4); display: flex; justify-content: flex-end;">
-            <a href="./simulation.html" class="btn btn-outline">
-              <span>Inject Telemetry Anomaly in Simulation Center →</span>
-            </a>
-          </div>
-        </section>
+        <!-- Dedicated Sensor Status & Operational Thresholds Container (Phase 11) -->
+        <div id="sensor-status-thresholds-container"></div>
       </div>
 
       <!-- =====================================================================

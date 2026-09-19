@@ -363,11 +363,293 @@ export class VirtualSensorCenter {
   }
 }
 
-// Auto-initialize when sensor container is present
+/* ==========================================================================
+   Phase 11: Sensor Status & Operational Thresholds
+   ========================================================================== */
+export const SENSOR_NODES_DATA = [
+  {
+    id: 'node-01',
+    name: 'Node-01 (North Quadrant)',
+    zone: 'Zone 1: North',
+    status: 'ONLINE', // ONLINE, STALE, OFFLINE, ERROR, SIMULATED
+    source: 'SIMULATED', // SIMULATED, PHYSICAL IoT
+    battery: 98,
+    voltage: '3.65 V',
+    rssi: '-92 dBm',
+    snr: '+9.2 dB',
+    lastPingSecondsAgo: 2,
+    packetLoss: '0.0%',
+    calibrationStatus: 'Valid (Calibrated Sept 18)'
+  },
+  {
+    id: 'node-02',
+    name: 'Node-02 (East Sloped)',
+    zone: 'Zone 2: East',
+    status: 'SIMULATED',
+    source: 'SIMULATED',
+    battery: 96,
+    voltage: '3.62 V',
+    rssi: '-95 dBm',
+    snr: '+8.8 dB',
+    lastPingSecondsAgo: 1,
+    packetLoss: '0.0%',
+    calibrationStatus: 'Valid (Calibrated Sept 18)'
+  },
+  {
+    id: 'node-03',
+    name: 'Node-03 (Central Loam)',
+    zone: 'Zone 3: Central',
+    status: 'ONLINE',
+    source: 'SIMULATED',
+    battery: 95,
+    voltage: '3.61 V',
+    rssi: '-90 dBm',
+    snr: '+9.5 dB',
+    lastPingSecondsAgo: 4,
+    packetLoss: '0.0%',
+    calibrationStatus: 'Valid (Calibrated Sept 18)'
+  },
+  {
+    id: 'node-04',
+    name: 'Node-04 (South Border)',
+    zone: 'Zone 4: South',
+    status: 'ONLINE',
+    source: 'SIMULATED',
+    battery: 99,
+    voltage: '3.67 V',
+    rssi: '-91 dBm',
+    snr: '+9.1 dB',
+    lastPingSecondsAgo: 3,
+    packetLoss: '0.0%',
+    calibrationStatus: 'Valid (Calibrated Sept 18)'
+  }
+];
+
+export const CROP_THRESHOLDS = {
+  'boll_formation': {
+    stageName: 'BT Cotton — Boll Formation (Day 75 – 115) [CURRENT]',
+    parameters: [
+      { name: 'Soil Moisture (15cm)', unit: '%', critMin: 20.0, warnMin: 28.0, optMin: 32.0, optMax: 42.0, warnMax: 46.0, note: 'Depletion < 28% causes boll shedding' },
+      { name: 'Soil Temperature', unit: '°C', critMin: 15.0, warnMin: 20.0, optMin: 24.0, optMax: 30.0, warnMax: 34.0, note: 'Temperatures > 34°C induce stomatal closure' },
+      { name: 'Available Nitrogen (N)', unit: 'kg/ha', critMin: 90, warnMin: 110, optMin: 120, optMax: 160, warnMax: 180, note: 'Critical for boll development' },
+      { name: 'Soil Reaction (pH)', unit: 'pH', critMin: 5.8, warnMin: 6.2, optMin: 6.8, optMax: 8.0, warnMax: 8.4, note: 'Alkaline buffer' },
+      { name: 'Electrical Cond. (EC)', unit: 'dS/m', critMin: 0.2, warnMin: 0.4, optMin: 0.6, optMax: 1.5, warnMax: 2.5, note: 'Salinity check' }
+    ]
+  },
+  'vegetative': {
+    stageName: 'BT Cotton — Vegetative Growth (Day 25 – 70)',
+    parameters: [
+      { name: 'Soil Moisture (15cm)', unit: '%', critMin: 18.0, warnMin: 24.0, optMin: 28.0, optMax: 38.0, warnMax: 42.0, note: 'Vegetative canopy establishment' },
+      { name: 'Soil Temperature', unit: '°C', critMin: 16.0, warnMin: 22.0, optMin: 25.0, optMax: 32.0, warnMax: 36.0, note: 'Optimal root growth' },
+      { name: 'Available Nitrogen (N)', unit: 'kg/ha', critMin: 110, warnMin: 130, optMin: 140, optMax: 180, warnMax: 200, note: 'High vegetative requirement' },
+      { name: 'Soil Reaction (pH)', unit: 'pH', critMin: 5.8, warnMin: 6.2, optMin: 6.8, optMax: 8.0, warnMax: 8.4, note: 'Alkaline buffer' },
+      { name: 'Electrical Cond. (EC)', unit: 'dS/m', critMin: 0.2, warnMin: 0.4, optMin: 0.6, optMax: 1.5, warnMax: 2.5, note: 'Salinity check' }
+    ]
+  }
+};
+
+export class SensorStatusManager {
+  constructor(containerId = 'sensor-status-thresholds-container') {
+    this.containerId = containerId;
+    this.selectedCropStage = 'boll_formation';
+    this.init();
+  }
+
+  init() {
+    this.render();
+    this.bindEvents();
+  }
+
+  getStatusBadge(status) {
+    switch (status) {
+      case 'ONLINE':
+        return `<span class="badge badge-success status-pulse">● ONLINE</span>`;
+      case 'STALE':
+        return `<span class="badge badge-warning">⏳ STALE (&gt;60s)</span>`;
+      case 'OFFLINE':
+        return `<span class="badge badge-outline">○ OFFLINE</span>`;
+      case 'ERROR':
+        return `<span class="badge badge-danger">✕ ERROR</span>`;
+      case 'SIMULATED':
+      default:
+        return `<span class="badge badge-primary">🧪 SIMULATED</span>`;
+    }
+  }
+
+  getSourceBadge(source) {
+    if (source === 'PHYSICAL IoT') {
+      return `<span class="source-tag source-live">PHYSICAL IoT</span>`;
+    }
+    return `<span class="source-tag source-simulated">SIMULATED</span>`;
+  }
+
+  render() {
+    const container = document.getElementById(this.containerId);
+    if (!container) return;
+
+    const currentStage = CROP_THRESHOLDS[this.selectedCropStage] || CROP_THRESHOLDS.boll_formation;
+
+    container.innerHTML = `
+      <!-- Sensor Node Status Matrix Card (Section 17) -->
+      <section class="card sensor-status-card">
+        <div class="card-header">
+          <div>
+            <h2 class="card-title">📡 Hardware & Virtual Node Status Matrix</h2>
+            <p class="card-subtitle">Formal operational statuses conforming to Section 17 (ONLINE / STALE / OFFLINE / ERROR / SIMULATED)</p>
+          </div>
+          <div class="status-tools">
+            <button type="button" class="btn btn-sm btn-outline" id="btn-toggle-source">
+              🔄 Switch Node-01 to PHYSICAL IoT
+            </button>
+            <button type="button" class="btn btn-sm btn-outline" id="btn-simulate-stale">
+              ⚠️ Simulate Stale Node
+            </button>
+          </div>
+        </div>
+
+        <div class="table-responsive">
+          <table class="data-table node-status-table">
+            <thead>
+              <tr>
+                <th>Node ID & Name</th>
+                <th>Management Zone</th>
+                <th>Status (Section 17)</th>
+                <th>Source Type</th>
+                <th>Battery Vitals</th>
+                <th>LoRaWAN SNR / Signal</th>
+                <th>Last Ping</th>
+                <th>Calibration State</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${SENSOR_NODES_DATA.map(node => `
+                <tr class="${node.status === 'ERROR' ? 'row-danger' : node.status === 'STALE' ? 'row-warning' : ''}">
+                  <td>
+                    <strong>${node.id.toUpperCase()}</strong>
+                    <div style="font-size: 11px; color: var(--color-text-secondary);">${node.name}</div>
+                  </td>
+                  <td>${node.zone}</td>
+                  <td>${this.getStatusBadge(node.status)}</td>
+                  <td>${this.getSourceBadge(node.source)}</td>
+                  <td>
+                    <div style="font-weight: 700;">${node.battery}%</div>
+                    <div style="font-size: 10px; color: var(--color-text-muted);">${node.voltage}</div>
+                  </td>
+                  <td>
+                    <div style="font-weight: 600;">${node.snr}</div>
+                    <div style="font-size: 10px; color: var(--color-text-muted);">${node.rssi}</div>
+                  </td>
+                  <td>${node.lastPingSecondsAgo}s ago</td>
+                  <td><span class="text-success" style="font-size: 11px; font-weight: 600;">✓ ${node.calibrationStatus}</span></td>
+                </tr>
+              `).join('')}
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Operational Thresholds Catalog Card (Section 17) -->
+      <section class="card operational-thresholds-card" style="margin-top: var(--space-4);">
+        <div class="card-header">
+          <div>
+            <h2 class="card-title">⚖️ Agronomic Operational Thresholds & Setpoints</h2>
+            <p class="card-subtitle">Phenology-calibrated thresholds governing automated irrigation and advisory alerts</p>
+          </div>
+          <div class="stage-pills" id="threshold-stage-pills">
+            <button type="button" class="pill-btn ${this.selectedCropStage === 'boll_formation' ? 'active' : ''}" data-stage="boll_formation">
+              🌸 Boll Formation (Day 93)
+            </button>
+            <button type="button" class="pill-btn ${this.selectedCropStage === 'vegetative' ? 'active' : ''}" data-stage="vegetative">
+              🌱 Vegetative Stage
+            </button>
+          </div>
+        </div>
+
+        <div class="threshold-stage-info-pill">
+          <strong>Active Growth Model:</strong> ${currentStage.stageName}
+        </div>
+
+        <div class="table-responsive">
+          <table class="data-table threshold-table">
+            <thead>
+              <tr>
+                <th>Agricultural Parameter</th>
+                <th>Critical Deficit</th>
+                <th>Warning / Action Level</th>
+                <th>Optimal Target Band</th>
+                <th>Warning Excess</th>
+                <th>Agronomic Rationale</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${currentStage.parameters.map(p => `
+                <tr>
+                  <td><strong>${p.name}</strong></td>
+                  <td><span class="val-badge danger">&lt; ${p.critMin} ${p.unit}</span></td>
+                  <td><span class="val-badge warning">&lt; ${p.warnMin} ${p.unit}</span></td>
+                  <td><span class="val-badge success">${p.optMin} – ${p.optMax} ${p.unit}</span></td>
+                  <td><span class="val-badge warning">&gt; ${p.warnMax} ${p.unit}</span></td>
+                  <td style="font-size: 11px; color: var(--color-text-secondary);">${p.note}</td>
+                </tr>
+              `).join('')}
+            </tbody>
+          </table>
+        </div>
+      </section>
+    `;
+
+    this.bindActionEvents();
+  }
+
+  bindEvents() {
+    // Dynamic event bindings
+  }
+
+  bindActionEvents() {
+    const container = document.getElementById(this.containerId);
+    if (!container) return;
+
+    // Toggle PHYSICAL IoT vs SIMULATED on Node-01
+    container.querySelector('#btn-toggle-source')?.addEventListener('click', () => {
+      const node01 = SENSOR_NODES_DATA.find(n => n.id === 'node-01');
+      if (node01) {
+        node01.source = node01.source === 'SIMULATED' ? 'PHYSICAL IoT' : 'SIMULATED';
+        this.render();
+        appShell.showToast(`Switched Node-01 source to ${node01.source}`, 'info', 2500);
+      }
+    });
+
+    // Simulate Stale Node
+    container.querySelector('#btn-simulate-stale')?.addEventListener('click', () => {
+      const node03 = SENSOR_NODES_DATA.find(n => n.id === 'node-03');
+      if (node03) {
+        node03.status = node03.status === 'STALE' ? 'ONLINE' : 'STALE';
+        node03.lastPingSecondsAgo = node03.status === 'STALE' ? 142 : 4;
+        this.render();
+        appShell.showToast(`Simulated Node-03 status: ${node03.status}`, 'warning', 2500);
+      }
+    });
+
+    // Switch Crop Stage
+    container.querySelectorAll('#threshold-stage-pills [data-stage]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        this.selectedCropStage = btn.getAttribute('data-stage');
+        this.render();
+        appShell.showToast(`Updated thresholds for ${btn.textContent.trim()}`, 'info', 2000);
+      });
+    });
+  }
+}
+
+// Auto-initialize when sensor containers are present
 document.addEventListener('DOMContentLoaded', () => {
   if (document.getElementById('virtual-sensor-center-container')) {
     window.virtualSensorCenter = new VirtualSensorCenter('virtual-sensor-center-container');
   }
+  if (document.getElementById('sensor-status-thresholds-container')) {
+    window.sensorStatusManager = new SensorStatusManager('sensor-status-thresholds-container');
+  }
 });
 
 export default VirtualSensorCenter;
+

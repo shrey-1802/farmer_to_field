@@ -1138,6 +1138,59 @@
 .thresh-mad .thresh-dot { background-color: #D97706; }
 .thresh-pwp .thresh-dot { background-color: #DC2626; }
 
+/* ==========================================================================
+   Phase 11: Sensor Status & Operational Thresholds Styling (Section 17)
+   ========================================================================== */
+.sensor-status-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+}
+
+.status-tools {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.status-pulse {
+  animation: statusGlow 2s infinite ease-in-out;
+}
+
+@keyframes statusGlow {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.65; }
+}
+
+.node-status-table td,
+.node-status-table th {
+  vertical-align: middle;
+}
+
+.operational-thresholds-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+}
+
+.threshold-stage-info-pill {
+  padding: var(--space-2) var(--space-3);
+  background-color: var(--color-surface-soft);
+  border-radius: var(--radius-sm);
+  border-left: 4px solid var(--color-primary-600);
+  font-size: var(--font-size-xs);
+  color: var(--color-text-primary);
+}
+
+.threshold-table .val-badge {
+  font-family: monospace;
+  font-size: 11px;
+}
+
+
 
 
 
