@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="AI Agent Telemetry and Reasoning Trace - KrishiNirnay AI">
+  <meta name="description" content="Autonomous AI Agent Telemetry and Reasoning Trace - KrishiNirnay AI. Deep explainability, evaluated inputs, scientific evidence, consensus timeline, and execution history.">
   <title>Agent Reasoning Trace — KrishiNirnay AI</title>
   <link rel="icon" type="image/svg+xml" href="../assets/icons/sprout.svg">
   <link rel="stylesheet" href="../css/variables.css">
@@ -12,8 +12,10 @@
   <link rel="stylesheet" href="../css/components.css">
   <link rel="stylesheet" href="../css/agents.css">
   <script type="module" src="../js/ui.js"></script>
+  <script type="module" src="../js/agent-details.js"></script>
 </head>
 <body class="app-body">
+  <!-- Application Header -->
   <header class="app-header">
     <div class="header-left">
       <button id="sidebar-toggle-btn" class="icon-button mobile-only" aria-label="Toggle navigation menu">
@@ -29,12 +31,17 @@
         </div>
         <span class="brand-title">KrishiNirnay AI</span>
       </div>
+      <div class="farm-selector-wrapper">
+        <select id="farm-select" class="header-select" aria-label="Select Farm">
+          <option value="farm-1">Shanti Agro Farm (12 Acres - Bt Cotton)</option>
+        </select>
+      </div>
     </div>
     <div class="header-right">
       <div class="weather-pill">
         <span class="weather-icon">☀️</span>
         <span class="weather-temp">31°C</span>
-        <span class="source-tag source-live">LIVE</span>
+        <span class="source-tag source-live">LIVE — Open-Meteo</span>
       </div>
       <button id="theme-toggle-btn" class="icon-button" aria-label="Toggle theme">
         <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -51,21 +58,22 @@
   </header>
 
   <div class="app-layout">
+    <!-- Sidebar Navigation -->
     <aside class="app-sidebar" id="app-sidebar">
       <nav class="sidebar-nav" aria-label="Main Navigation">
         <div class="nav-section-title">Core Operations</div>
         <ul class="nav-list">
           <li class="nav-item"><a href="./dashboard.html" class="nav-link"><span class="nav-icon">📊</span><span class="nav-text">Dashboard</span></a></li>
           <li class="nav-item"><a href="./field-details.html" class="nav-link"><span class="nav-icon">🌾</span><span class="nav-text">Fields & Zones</span></a></li>
-          <li class="nav-item"><a href="./agents.html" class="nav-link active"><span class="nav-icon">🤖</span><span class="nav-text">AI Agents</span></a></li>
-          <li class="nav-item"><a href="./action-plans.html" class="nav-link"><span class="nav-icon">📋</span><span class="nav-text">Action Plans</span></a></li>
+          <li class="nav-item"><a href="./agents.html" class="nav-link active"><span class="nav-icon">🤖</span><span class="nav-text">AI Agents</span><span class="badge badge-ai">9 Active</span></a></li>
+          <li class="nav-item"><a href="./action-plans.html" class="nav-link"><span class="nav-icon">📋</span><span class="nav-text">Action Plans</span><span class="badge badge-warning">1 New</span></a></li>
           <li class="nav-item"><a href="./execution.html" class="nav-link"><span class="nav-icon">⚡</span><span class="nav-text">Execution Center</span></a></li>
         </ul>
         <div class="nav-section-title">Intelligence & Tools</div>
         <ul class="nav-list">
           <li class="nav-item"><a href="./market.html" class="nav-link"><span class="nav-icon">📈</span><span class="nav-text">Market & Mandi</span></a></li>
           <li class="nav-item"><a href="./reports.html" class="nav-link"><span class="nav-icon">📑</span><span class="nav-text">Reports</span></a></li>
-          <li class="nav-item"><a href="./simulation.html" class="nav-link"><span class="nav-icon">🧪</span><span class="nav-text">Simulation Center</span></a></li>
+          <li class="nav-item"><a href="./simulation.html" class="nav-link"><span class="nav-icon">🧪</span><span class="nav-text">Simulation Center</span><span class="badge badge-simulated">Virtual IoT</span></a></li>
           <li class="nav-item"><a href="./notifications.html" class="nav-link"><span class="nav-icon">🔔</span><span class="nav-text">Notifications</span></a></li>
           <li class="nav-item"><a href="./settings.html" class="nav-link"><span class="nav-icon">⚙️</span><span class="nav-text">Settings</span></a></li>
           <li class="nav-item"><a href="./admin.html" class="nav-link"><span class="nav-icon">🛡️</span><span class="nav-text">Admin & Health</span></a></li>
@@ -73,111 +81,145 @@
       </nav>
     </aside>
 
+    <!-- Main Content Area -->
     <main class="app-main" id="main-content">
+      <!-- Breadcrumb Navigation -->
       <nav class="breadcrumb-nav" aria-label="Breadcrumb">
-        <a href="./agents.html">AI Agents</a>
+        <a href="./agents.html">AI Agents Roster</a>
         <span class="breadcrumb-separator">/</span>
-        <span class="breadcrumb-current">Irrigation Advisory Agent</span>
+        <span class="breadcrumb-current" id="breadcrumb-agent-name">Irrigation Advisory Agent</span>
       </nav>
 
-      <section class="card agent-detail-banner">
-        <div class="agent-detail-header-row">
-          <div class="agent-identity">
-            <span class="agent-avatar-large">💧</span>
-            <div>
-              <h1 class="page-title">Irrigation Advisory Agent</h1>
-              <p class="agent-detail-sub">Model: FAO-56 Penman-Monteith Evapo-Transpiration + Gradient Boosted Crop Water Deficit</p>
-            </div>
-          </div>
-          <div class="agent-live-badge">
-            <span class="badge badge-warning">Action Proposed</span>
-            <span class="source-tag source-ai">AI GENERATED</span>
-          </div>
+      <!-- Agent Switcher Toolbar (Quick access to all 9 agents) -->
+      <div class="agent-switcher-toolbar" aria-label="Switch AI Agent">
+        <div class="agent-switcher-strip" id="agent-switcher-strip">
+          <!-- Populated dynamically via agent-details.js -->
         </div>
+      </div>
+
+      <!-- Agent Detail Banner -->
+      <section class="card agent-detail-banner" id="agent-detail-banner-content" aria-label="Agent Overview Banner">
+        <!-- Rendered by agent-details.js -->
       </section>
 
-      <!-- Multi-Modal Inputs Evaluated -->
-      <section class="card">
+      <!-- Performance & Execution Metrics Strip -->
+      <section class="agents-kpi-strip" id="agent-perf-strip" aria-label="Agent Execution Metrics">
+        <!-- Rendered by agent-details.js -->
+      </section>
+
+      <!-- Multi-Modal Inputs Evaluated Grid -->
+      <section class="card" aria-label="Multi-Modal Evaluated Inputs">
         <div class="card-header">
           <div>
             <h2 class="card-title">Multi-Modal Inputs Evaluated</h2>
-            <p class="card-subtitle">Real-time parameters fed into the agent's inference pipeline</p>
+            <p class="card-subtitle">Real-time parameters fed into the agent's inference pipeline with mandatory data source attribution</p>
           </div>
         </div>
-
-        <div class="inputs-grid">
-          <div class="input-card">
-            <span class="input-label">Virtual Soil Moisture</span>
-            <span class="input-val text-warning">24% (Zone 2)</span>
-            <span class="input-source">SIMULATED — Virtual IoT</span>
-          </div>
-          <div class="input-card">
-            <span class="input-label">Reference ET (ET0)</span>
-            <span class="input-val">4.8 mm/day</span>
-            <span class="input-source">LIVE — Open-Meteo</span>
-          </div>
-          <div class="input-card">
-            <span class="input-label">Crop Coefficient (Kc)</span>
-            <span class="input-val">1.15 (Flowering / Boll Dev)</span>
-            <span class="input-source">MODEL — Agronomic Baseline</span>
-          </div>
-          <div class="input-card">
-            <span class="input-label">Forecasted Rainfall (48h)</span>
-            <span class="input-val text-success">0.0 mm (0% chance)</span>
-            <span class="input-source">LIVE — Forecast</span>
-          </div>
+        <div class="inputs-grid" id="inputs-grid-content">
+          <!-- Rendered by agent-details.js -->
         </div>
       </section>
 
-      <!-- Chain-of-Thought Explainability -->
-      <section class="card">
+      <!-- Agent Output & Recommendations -->
+      <section class="card" id="agent-output-section" aria-label="Agent Output and Recommendations">
+        <div class="card-header">
+          <div>
+            <h2 class="card-title">Synthesized Output & Actionable Recommendations</h2>
+            <p class="card-subtitle">Direct agronomic recommendations resulting from model evaluation</p>
+          </div>
+        </div>
+        <div id="agent-output-content">
+          <!-- Rendered by agent-details.js -->
+        </div>
+      </section>
+
+      <!-- Scientific Evidence & Grounding -->
+      <section class="card" id="agent-evidence-section" aria-label="Scientific Grounding and Evidence">
+        <div class="card-header">
+          <div>
+            <h2 class="card-title">Scientific Evidence & Agronomic Guardrails</h2>
+            <p class="card-subtitle">Grounding calculations, mathematical models, and detected hazard correlations</p>
+          </div>
+        </div>
+        <div id="agent-evidence-content">
+          <!-- Rendered by agent-details.js -->
+        </div>
+      </section>
+
+      <!-- Chain-of-Thought Explainability Trace -->
+      <section class="card" aria-label="Reasoning Trace Steps">
         <div class="card-header">
           <div>
             <h2 class="card-title">Autonomous Reasoning Trace & Policy Guardrails</h2>
-            <p class="card-subtitle">Step-by-step verification of agronomic rules and safety checks</p>
+            <p class="card-subtitle">Step-by-step verification of agronomic rules, safety checks, and constraint handling</p>
           </div>
         </div>
-
-        <div class="reasoning-timeline">
-          <div class="reasoning-step pass">
-            <div class="step-marker">✓</div>
-            <div class="step-content">
-              <h4>1. Soil Water Depletion Calculation</h4>
-              <p>Depletion factor p = 0.65 for cotton. Readily Available Water (RAW) calculated at 32mm. Current depletion reached 41mm (> RAW threshold). Water stress triggered in Zone 2.</p>
-            </div>
-          </div>
-          <div class="reasoning-step pass">
-            <div class="step-marker">✓</div>
-            <div class="step-content">
-              <h4>2. Weather Precipitation Check</h4>
-              <p>Verified that no rainfall is forecasted for the next 48 hours. Irrigation will not be redundant with impending precipitation.</p>
-            </div>
-          </div>
-          <div class="reasoning-step pass">
-            <div class="step-marker">✓</div>
-            <div class="step-content">
-              <h4>3. Thermal Heat Stress Avoidance Guardrail</h4>
-              <p>Peak afternoon ambient temperature will reach 34°C between 12:30 PM and 3:30 PM. Safety policy dictates irrigation should execute prior to 12:00 PM or after 4:00 PM to prevent leaf scorching.</p>
-            </div>
-          </div>
-          <div class="reasoning-step warning">
-            <div class="step-marker">!</div>
-            <div class="step-content">
-              <h4>4. Synthesized Recommendation</h4>
-              <p>Generated Action Plan #AP-1082: Dispatch 15mm drip irrigation to Zone 2. Awaiting farmer authorization.</p>
-              <a href="./action-plans.html" class="btn btn-sm btn-primary" style="margin-top: 0.5rem;">Review & Approve Action Plan →</a>
-            </div>
-          </div>
+        <div class="reasoning-timeline" id="reasoning-timeline-content">
+          <!-- Rendered by agent-details.js -->
         </div>
       </section>
+
+      <!-- Master Coordinated Consensus Timeline (Section 19) -->
+      <section class="card consensus-timeline-card" aria-label="Master Coordinated Consensus Timeline">
+        <div class="card-header">
+          <div>
+            <h2 class="card-title">Multi-Agent Coordinated Consensus Timeline</h2>
+            <p class="card-subtitle">Chronological sequence of autonomous domain agent deliberations leading to unified action plan synthesis</p>
+          </div>
+          <button id="btn-replay-timeline" class="btn btn-outline btn-sm">
+            <span class="btn-icon">⚡</span>
+            <span>Replay Consensus Pipeline Trace</span>
+          </button>
+        </div>
+        <div class="consensus-timeline" id="master-consensus-timeline">
+          <!-- Rendered by agent-details.js -->
+        </div>
+      </section>
+
+      <!-- Execution History Audit Log (Section 19) -->
+      <section class="card" aria-label="Execution History Table">
+        <div class="card-header">
+          <div>
+            <h2 class="card-title">Execution History & Audit Trail</h2>
+            <p class="card-subtitle">Recent automated inference cycles, performance benchmarks, and outcome logs</p>
+          </div>
+        </div>
+        <div class="execution-history-table-wrapper">
+          <table class="history-table">
+            <thead>
+              <tr>
+                <th>Run ID</th>
+                <th>Timestamp</th>
+                <th>Duration</th>
+                <th>Status</th>
+                <th>Confidence</th>
+                <th>Outcome Summary</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="execution-history-tbody">
+              <!-- Rendered by agent-details.js -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Raw Inference JSON Payload (Collapsible) -->
+      <details class="card" style="margin-top: var(--space-6);" aria-label="Raw Inference Telemetry">
+        <summary style="font-weight: 700; cursor: pointer; padding: var(--space-2) 0; font-size: var(--font-size-sm); color: var(--color-text-secondary);">
+          🔍 Inspect Raw Telemetry Payload (JSON)
+        </summary>
+        <pre class="payload-code-block" id="agent-raw-payload-viewer" style="margin-top: var(--space-3);"></pre>
+      </details>
     </main>
   </div>
 
+  <!-- Mobile Bottom Navigation -->
   <nav class="mobile-bottom-nav" aria-label="Mobile Navigation">
     <a href="./dashboard.html" class="mobile-nav-item"><span class="mobile-nav-icon">📊</span><span class="mobile-nav-label">Dashboard</span></a>
     <a href="./field-details.html" class="mobile-nav-item"><span class="mobile-nav-icon">🌾</span><span class="mobile-nav-label">Fields</span></a>
+    <a href="./agents.html" class="mobile-nav-item active"><span class="mobile-nav-icon">🤖</span><span class="mobile-nav-label">Agents</span></a>
     <a href="./action-plans.html" class="mobile-nav-item"><span class="mobile-nav-icon">📋</span><span class="mobile-nav-label">Actions</span></a>
-    <a href="./market.html" class="mobile-nav-item"><span class="mobile-nav-icon">📈</span><span class="mobile-nav-label">Market</span></a>
     <a href="./settings.html" class="mobile-nav-item"><span class="mobile-nav-icon">⚙️</span><span class="mobile-nav-label">Settings</span></a>
   </nav>
 </body>

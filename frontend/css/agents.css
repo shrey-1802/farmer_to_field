@@ -786,3 +786,383 @@
   line-height: 1.6;
   margin-top: 2px;
 }
+
+/* ==========================================================================
+   Phase 13: Agent Switcher, Explainability, Evidence, and Consensus Timeline
+   ========================================================================== */
+
+/* Agent Switcher Toolbar */
+.agent-switcher-toolbar {
+  margin-bottom: var(--space-6);
+  overflow-x: auto;
+  padding-bottom: var(--space-2);
+}
+
+.agent-switcher-strip {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-width: max-content;
+}
+
+.agent-switch-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  background-color: var(--color-card-bg);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  position: relative;
+}
+
+.agent-switch-pill:hover {
+  border-color: var(--color-primary-400);
+  color: var(--color-text-primary);
+  transform: translateY(-1px);
+}
+
+.agent-switch-pill.active {
+  background: linear-gradient(135deg, var(--color-primary-50), var(--color-card-bg));
+  border-color: var(--color-primary-600);
+  color: var(--color-primary-800);
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.18);
+}
+
+[data-theme="dark"] .agent-switch-pill.active {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.15), var(--color-card-bg));
+  color: var(--color-primary-400);
+  border-color: var(--color-primary-500);
+}
+
+.status-micro-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.status-micro-dot.warning {
+  background-color: #F59E0B;
+}
+
+.status-micro-dot.running {
+  background-color: #3B82F6;
+  animation: pulse-dot 1.2s infinite ease-in-out;
+}
+
+/* Agent Detail Banner Extensions */
+.agent-title-badge-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
+.agent-purpose-text {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+  margin-top: var(--space-2);
+  max-width: 820px;
+}
+
+.agent-banner-controls {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
+/* Inputs Highlight */
+.input-card.input-alert {
+  border-color: #F59E0B;
+  background-color: #FFFBEB;
+}
+
+[data-theme="dark"] .input-card.input-alert {
+  background-color: rgba(245, 158, 11, 0.12);
+  border-color: rgba(245, 158, 11, 0.35);
+}
+
+/* Output Statement */
+.output-statement-box {
+  background-color: var(--color-surface-soft);
+  border-left: 4px solid var(--color-primary-500);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  padding: var(--space-4);
+  margin-bottom: var(--space-4);
+}
+
+.output-statement-box h4 {
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  letter-spacing: 0.04em;
+  margin-bottom: var(--space-1);
+}
+
+.output-statement-box p {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-primary);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.highlight-recommendation {
+  background: linear-gradient(135deg, var(--color-surface-soft) 0%, rgba(16, 185, 129, 0.05) 100%);
+  border: 1.5px solid var(--color-primary-300);
+  padding: var(--space-4);
+}
+
+/* Evidence Card */
+.evidence-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.evidence-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.evidence-icon {
+  font-size: 1.2rem;
+}
+
+.evidence-header h4 {
+  font-size: var(--font-size-base);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.evidence-text {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+  line-height: 1.7;
+  margin: 0;
+}
+
+.sub-heading {
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-2);
+}
+
+.detected-risks-chips {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.risk-chip {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding: var(--space-3);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-xs);
+}
+
+.risk-chip.risk-danger {
+  background-color: #FEF2F2;
+  border-left: 3px solid #EF4444;
+  color: #991B1B;
+}
+
+[data-theme="dark"] .risk-chip.risk-danger {
+  background-color: rgba(239, 68, 68, 0.12);
+  color: #FCA5A5;
+}
+
+.risk-chip.risk-warning {
+  background-color: #FFFBEB;
+  border-left: 3px solid #F59E0B;
+  color: #92400E;
+}
+
+[data-theme="dark"] .risk-chip.risk-warning {
+  background-color: rgba(245, 158, 11, 0.12);
+  color: #FCD34D;
+}
+
+.risk-chip.risk-safe {
+  background-color: #F0FDF4;
+  border-left: 3px solid #10B981;
+  color: #065F46;
+}
+
+[data-theme="dark"] .risk-chip.risk-safe {
+  background-color: rgba(16, 185, 129, 0.12);
+  color: #6EE7B7;
+}
+
+.risk-chip.risk-info {
+  background-color: #EFF6FF;
+  border-left: 3px solid #3B82F6;
+  color: #1E40AF;
+}
+
+[data-theme="dark"] .risk-chip.risk-info {
+  background-color: rgba(59, 130, 246, 0.12);
+  color: #93C5FD;
+}
+
+.risk-chip-sub {
+  display: block;
+  font-size: 11px;
+  opacity: 0.85;
+  margin-top: 2px;
+}
+
+/* Master Consensus Timeline (Section 19) */
+.consensus-timeline-card {
+  margin-top: var(--space-6);
+}
+
+.consensus-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  position: relative;
+  padding-left: 140px;
+}
+
+.consensus-timeline::before {
+  content: '';
+  position: absolute;
+  left: 122px;
+  top: 12px;
+  bottom: 12px;
+  width: 2px;
+  background: linear-gradient(180deg, var(--color-primary-400), var(--color-border));
+}
+
+.consensus-timeline-item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  transition: all var(--transition-fast);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-md);
+}
+
+.consensus-time {
+  position: absolute;
+  left: -130px;
+  top: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--color-text-muted);
+  text-align: right;
+  width: 90px;
+}
+
+.consensus-bullet {
+  position: absolute;
+  left: -26px;
+  top: 4px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: var(--color-surface);
+  border: 2px solid var(--color-primary-500);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+}
+
+.consensus-agent-title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-primary);
+}
+
+.consensus-summary {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+  margin: 2px 0 0 0;
+}
+
+.consensus-timeline-item.active-step {
+  background-color: var(--color-primary-50);
+  border-left: 3px solid var(--color-primary-600);
+  transform: translateX(4px);
+}
+
+[data-theme="dark"] .consensus-timeline-item.active-step {
+  background-color: rgba(16, 185, 129, 0.15);
+}
+
+.consensus-timeline-item.completed-step .consensus-bullet {
+  background-color: var(--color-primary-500);
+  color: #fff;
+}
+
+/* Execution History Table */
+.execution-history-table-wrapper {
+  overflow-x: auto;
+}
+
+.history-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--font-size-xs);
+}
+
+.history-table th {
+  text-align: left;
+  padding: var(--space-3);
+  background-color: var(--color-surface-soft);
+  color: var(--color-text-muted);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 10px;
+  border-bottom: 1.5px solid var(--color-border);
+}
+
+.history-table td {
+  padding: var(--space-3);
+  border-bottom: 1px solid var(--color-border);
+  color: var(--color-text-primary);
+}
+
+.history-table tr:hover td {
+  background-color: var(--color-surface-soft);
+}
+
+.btn-xs {
+  padding: 2px 8px;
+  font-size: 11px;
+}
+
+/* Payload Code Block */
+.payload-code-block {
+  background-color: #0F172A;
+  color: #E2E8F0;
+  padding: var(--space-4);
+  border-radius: var(--radius-md);
+  font-family: monospace;
+  font-size: 11px;
+  line-height: 1.5;
+  max-height: 240px;
+  overflow-y: auto;
+}
+
