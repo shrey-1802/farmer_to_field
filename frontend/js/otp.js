@@ -173,9 +173,15 @@ class OtpController {
       });
     });
 
-    // Auto-focus first input box
+    // Pre-fill demo code 123456 for instant one-click testing
+    const demoDigits = ['1', '2', '3', '4', '5', '6'];
+    otpInputs.forEach((inp, i) => {
+      inp.value = demoDigits[i] || '';
+    });
+
+    // Auto-focus last input box so user can press Enter immediately
     if (otpInputs.length > 0) {
-      otpInputs[0].focus();
+      otpInputs[otpInputs.length - 1].focus();
     }
 
     // 60-Second Resend Countdown Timer

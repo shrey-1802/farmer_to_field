@@ -117,11 +117,8 @@ def send_otp(payload: SendOtpRequest):
     if len(phone) != 10 or phone[0] not in "6789":
         raise ValidationError("Please provide a valid 10-digit Indian mobile number starting with 6, 7, 8, or 9.")
 
-    # Demo numbers always get fixed OTP 123456
-    if phone in settings.demo_phone_numbers:
-        code = "123456"
-    else:
-        code = str(random.randint(100000, 999999))
+    # Universal demo OTP for all phone numbers (no external SMS dependency)
+    code = "123456"
 
     # Store with configurable expiry
     _OTP_CACHE[phone] = {
@@ -129,15 +126,18 @@ def send_otp(payload: SendOtpRequest):
         "expires_at": time.time() + settings.OTP_EXPIRY_SECONDS
     }
 
-    # Dispatch via configured SMS provider
-    _send_sms_otp(phone, code)
+    # Dispatch via SMS provider only if explicitly configured
+    if settings.SMS_PROVIDER.lower() not in ("none", "", "demo"):
+        _send_sms_otp(phone, code)
+    else:
+        logger.info(f"[DEMO OTP] Phone +91{phone} → OTP: {code}")
 
     return OtpResponse(
         success=True,
-        message=f"6-digit verification code sent to +91 {phone[:5]} {phone[5:]}.",
+        message=f"6-digit verification code: 123456 (Demo mode active for +91 {phone[:5]} {phone[5:]}).",
         phone=f"+91{phone}",
         expires_in_seconds=settings.OTP_EXPIRY_SECONDS,
-        demo_code=code if phone in settings.demo_phone_numbers else None
+        demo_code=code
     )
 
 
@@ -146,18 +146,17 @@ def verify_otp(payload: VerifyOtpRequest, db: Session = Depends(get_db)):
     phone = _clean_phone_number(payload.phone)
     entered_code = payload.code.strip()
 
-    # Verify against OTP cache or demo-number universal code
+    # Universal demo code 123456 always valid, or verify against cache
     stored = _OTP_CACHE.get(phone)
     is_valid = False
 
-    # Demo numbers: always accept 123456
-    if phone in settings.demo_phone_numbers and entered_code == "123456":
+    if entered_code == "123456":
         is_valid = True
     elif stored and stored["expires_at"] > time.time() and stored["code"] == entered_code:
         is_valid = True
 
     if not is_valid:
-        raise UnauthorizedError("Invalid or expired verification code. Please request a new OTP.")
+        raise UnauthorizedError("Invalid or expired verification code. Use demo code 123456.")
 
     # Find existing user by phone or email
     user = db.query(User).filter(
