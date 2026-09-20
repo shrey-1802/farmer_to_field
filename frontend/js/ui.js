@@ -156,11 +156,44 @@ class ApplicationShell {
   }
 
   /**
-   * Farmer Profile Display in Header
+   * Farmer Profile Display in Header & Logout Handler
    */
   setupFarmerProfile() {
     try {
       const sessionData = localStorage.getItem('krishi_farmer_session');
+      const farmerPill = document.querySelector('.farmer-pill');
+
+      if (farmerPill) {
+        farmerPill.style.cursor = 'pointer';
+        farmerPill.title = 'Click to Logout / Switch Account';
+        farmerPill.addEventListener('click', () => {
+          if (confirm('Do you want to log out or switch farmer account?')) {
+            authManager.logout();
+          }
+        });
+      }
+
+      // Add Logout item to Sidebar if not already present
+      const navList = document.querySelector('.sidebar-nav ul:last-of-type');
+      if (navList && !document.getElementById('sidebar-logout-item')) {
+        const logoutLi = document.createElement('li');
+        logoutLi.className = 'nav-item';
+        logoutLi.id = 'sidebar-logout-item';
+        logoutLi.innerHTML = `
+          <a href="#" class="nav-link" id="sidebar-logout-btn" style="color: #ef4444;" title="Log out from current session">
+            <span class="nav-icon">🚪</span>
+            <span class="nav-text">Logout / Switch</span>
+          </a>
+        `;
+        logoutLi.querySelector('a').addEventListener('click', (e) => {
+          e.preventDefault();
+          if (confirm('Are you sure you want to log out?')) {
+            authManager.logout();
+          }
+        });
+        navList.appendChild(logoutLi);
+      }
+
       if (!sessionData) return;
 
       const session = JSON.parse(sessionData);

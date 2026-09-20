@@ -26,7 +26,7 @@
   const isGitHubPages = window.location.hostname.endsWith('github.io');
   const envMode = isLocalhost ? 'development' : (isGitHubPages ? 'production_github_pages' : 'production');
 
-  const PROD_API_URL = 'https://krishinirnay-backend.onrender.com/api';
+  const PROD_API_URL = 'https://farmer-to-field.onrender.com/api';
   const DEV_API_URL = 'http://localhost:8000/api';
 
   // Check URL query parameter overrides if present (?demo=true or ?api=...)
