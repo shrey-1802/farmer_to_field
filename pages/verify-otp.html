@@ -121,9 +121,6 @@
   <script src="../js/auth.js"></script>
 
   <script>
-    // Route guard: if already logged in, redirect to dashboard
-    Auth.requireGuest('./dashboard.html');
-
     // Retrieve pending phone
     const pendingPhone = Auth.getPendingPhone();
     if (!pendingPhone) {

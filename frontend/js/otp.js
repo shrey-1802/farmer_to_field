@@ -16,10 +16,8 @@ class OtpController {
     const isVerifyPage = window.location.pathname.includes('verify-otp.html');
 
     if (isLoginPage) {
-      authManager.redirectIfAuthenticated();
       this.initLoginScreen();
     } else if (isVerifyPage) {
-      authManager.redirectIfAuthenticated();
       this.initVerifyScreen();
     }
   }
