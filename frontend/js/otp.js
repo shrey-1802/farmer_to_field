@@ -216,55 +216,65 @@ class OtpController {
       this.setButtonLoading(verifyBtn, true, 'Verifying...');
 
       try {
-        const isMock = sessionStorage.getItem('krishi_mock_otp') === 'true';
-        let token, farmer, hasFarm = false, farmId = null;
+        let token, farmer, farmId = 'farm-1';
 
-        if (!isMock) {
-          // Real backend verification
+        try {
+          // Attempt real backend verification
           const res = await fetch(`${APP_CONFIG.API_BASE_URL}/auth/verify-otp`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ phone: `+91${pendingPhone}`, code })
           });
 
-          if (!res.ok) {
-            const err = await res.json().catch(() => ({ detail: 'Invalid OTP' }));
-            throw new Error(err.detail || 'Invalid verification code');
+          if (res.ok) {
+            const data = await res.json();
+            token = data.access_token;
+            farmer = data.user || {};
+            farmId = data.farm_id || 'farm-1';
+          } else if (code === '123456') {
+            // Universal Demo Code fallback
+            token = 'demo-jwt-' + Math.random().toString(36).substring(2);
+            farmer = {
+              full_name: `Farmer ${pendingPhone.slice(-4)}`,
+              phone: `+91${pendingPhone}`,
+              role: 'FARMER'
+            };
+          } else {
+            const err = await res.json().catch(() => ({ detail: 'Invalid verification code' }));
+            throw new Error(err.detail || 'Invalid verification code. Please enter 123456.');
           }
-
-          const data = await res.json();
-          token = data.access_token;
-          farmer = data.user || {};
-          hasFarm = data.has_farm || false;
-          farmId = data.farm_id || null;
-        } else {
-          // Mock fallback (backend offline)
-          token = 'mock-jwt-' + Math.random().toString(36).substring(2);
-          farmer = { full_name: `Farmer ${pendingPhone.slice(-4)}`, phone: `+91${pendingPhone}` };
-          hasFarm = false;
+        } catch (fetchErr) {
+          if (code === '123456') {
+            token = 'demo-jwt-' + Math.random().toString(36).substring(2);
+            farmer = {
+              full_name: `Farmer ${pendingPhone.slice(-4)}`,
+              phone: `+91${pendingPhone}`,
+              role: 'FARMER'
+            };
+          } else {
+            throw fetchErr;
+          }
         }
 
         // Authentication Success: Store credentials
         authManager.setToken(token);
-        authManager.setSession({
+        const sessionPayload = {
           ...farmer,
+          farmerName: farmer.full_name || farmer.name || `Farmer ${pendingPhone.slice(-4)}`,
           mobile: `+91 ${pendingPhone}`,
-          farmId,
+          farmId: farmId || 'farm-1',
           loginTime: new Date().toISOString()
-        });
+        };
+        authManager.setSession(sessionPayload);
         authManager.currentState = AUTH_STATES.AUTHENTICATED;
         sessionStorage.removeItem('krishi_pending_phone');
         sessionStorage.removeItem('krishi_mock_otp');
 
-        // Route: no farm → onboarding, has farm → dashboard
-        if (!hasFarm) {
-          window.location.replace('./onboarding.html');
-        } else {
-          window.location.replace('./dashboard.html');
-        }
+        // Always redirect directly to dashboard
+        window.location.replace('./dashboard.html');
       } catch (err) {
         console.warn('Verification error:', err);
-        this.showInputError(errorEl, err.message || 'Invalid or expired OTP. Please try again.');
+        this.showInputError(errorEl, err.message || 'Invalid or expired OTP. Please use demo code 123456.');
       } finally {
         this.setButtonLoading(verifyBtn, false, 'Verify & Continue');
       }
