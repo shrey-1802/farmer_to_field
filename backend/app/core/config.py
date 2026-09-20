@@ -24,6 +24,9 @@ class Settings(BaseSettings):
     FRONTEND_PRODUCTION_ORIGIN: str = "https://shrey-1802.github.io"
 
     # Weather
+    WEATHER_PROVIDER: str = "agromonitoring"  # agromonitoring | open-meteo
+    AGROMONITORING_API_KEY: str = ""
+    AGROMONITORING_BASE_URL: str = "https://api.agromonitoring.com/agro/1.0"
     WEATHER_API_BASE_URL: str = "https://api.open-meteo.com/v1/forecast"
     WEATHER_CACHE_TTL_SECONDS: int = 1800
 
