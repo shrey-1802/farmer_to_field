@@ -414,24 +414,68 @@
     </span>
   </footer>
 
-  <!-- Auth-aware button labels (if already logged in, change CTA to "Go to Dashboard") -->
+  <!-- Auth-aware button labels -->
   <script type="module">
-    const token = localStorage.getItem('krishi_auth_token') || sessionStorage.getItem('krishi_auth_token');
-    const session = localStorage.getItem('krishi_farmer_session');
+    const token = localStorage.getItem('krishi_auth_token') || sessionStorage.getItem('krishi_auth_token') || localStorage.getItem('krishinirnay_token');
+    const session = localStorage.getItem('krishi_farmer_session') || localStorage.getItem('krishinirnay_user');
+
+    const loginBtn = document.getElementById('nav-login-btn');
+    const enterBtn = document.getElementById('nav-enter-btn');
+    const heroMainBtn = document.getElementById('hero-main-cta');
+    const heroDemoBtn = document.getElementById('hero-demo-cta');
+    const ctaEnterBtn = document.getElementById('cta-enter-btn');
 
     if (token && session) {
-      // Farmer is already logged in — update CTAs to go to dashboard
+      // User is logged in: provide direct Dashboard CTA and Switch/Login option
       const dashUrl = './pages/dashboard.html';
-      document.getElementById('nav-login-btn').style.display = 'none';
-      document.getElementById('nav-enter-btn').textContent = 'Go to Dashboard →';
-      document.getElementById('nav-enter-btn').href = dashUrl;
-      document.getElementById('hero-main-cta').textContent = '🌾 Go to My Dashboard';
-      document.getElementById('hero-main-cta').href = dashUrl;
-      document.getElementById('hero-demo-cta').style.display = 'none';
-      document.getElementById('cta-enter-btn').textContent = '🚀 Open My Farm Dashboard';
-      document.getElementById('cta-enter-btn').href = dashUrl;
+      const loginUrl = './pages/login.html';
+      
+      if (loginBtn) {
+        loginBtn.style.display = 'inline-flex';
+        loginBtn.textContent = 'Switch Account / Login';
+        loginBtn.href = loginUrl;
+      }
+      if (enterBtn) {
+        enterBtn.textContent = 'Enter Dashboard →';
+        enterBtn.href = dashUrl;
+      }
+      if (heroMainBtn) {
+        heroMainBtn.textContent = '🌾 Go to Dashboard';
+        heroMainBtn.href = dashUrl;
+      }
+      if (heroDemoBtn) {
+        heroDemoBtn.textContent = '🔑 Farmer Login Screen';
+        heroDemoBtn.href = loginUrl;
+      }
+      if (ctaEnterBtn) {
+        ctaEnterBtn.textContent = '🚀 Open My Farm Dashboard';
+        ctaEnterBtn.href = dashUrl;
+      }
+    } else {
+      // User is not logged in: all buttons direct to login
+      const loginUrl = './pages/login.html';
+      if (loginBtn) {
+        loginBtn.style.display = 'inline-flex';
+        loginBtn.textContent = 'Login';
+        loginBtn.href = loginUrl;
+      }
+      if (enterBtn) {
+        enterBtn.textContent = 'Enter Farm →';
+        enterBtn.href = loginUrl;
+      }
+      if (heroMainBtn) {
+        heroMainBtn.textContent = '🌾 Farmer Login / Start';
+        heroMainBtn.href = loginUrl;
+      }
+      if (heroDemoBtn) {
+        heroDemoBtn.textContent = 'Try Demo Account';
+        heroDemoBtn.href = loginUrl;
+      }
+      if (ctaEnterBtn) {
+        ctaEnterBtn.textContent = '🚀 Login to Farm Dashboard';
+        ctaEnterBtn.href = loginUrl;
+      }
     }
-    // No redirect — user stays on landing page always
   </script>
 
 </body>
