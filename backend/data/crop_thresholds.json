@@ -1,0 +1,3392 @@
+{
+  "crops": {
+    "arecanut": {
+      "crop_name": "Arecanut",
+      "n": {
+        "min": 104.1,
+        "max": 174.9,
+        "optimal": 139.2
+      },
+      "p": {
+        "min": 40.9,
+        "max": 76.6,
+        "optimal": 54.1
+      },
+      "k": {
+        "min": 122.6,
+        "max": 195.9,
+        "optimal": 155.2
+      },
+      "ph_min": 5.5,
+      "ph_max": 6.5,
+      "ph_optimal": 6.1,
+      "temp_min": 22.4,
+      "temp_max": 31.3,
+      "temp_optimal": 26.6,
+      "humidity_min": 70.6,
+      "humidity_max": 87.9,
+      "rainfall_min": 90.7,
+      "rainfall_max": 3187.7,
+      "rainfall_optimal": 742.1,
+      "suitable_soils": [
+        "Laterite",
+        "Alluvial",
+        "Loamy",
+        "Red"
+      ],
+      "suitable_seasons": [
+        "Zaid",
+        "Rabi",
+        "Kharif"
+      ],
+      "prominent_districts": [
+        "Chikkamagaluru",
+        "Hassan",
+        "Kodagu",
+        "Udupi",
+        "Shivamogga"
+      ],
+      "name": "Arecanut",
+      "total_duration_days": 110,
+      "water_requirement_mm": 500,
+      "stages": [
+        {
+          "name": "Seedling",
+          "days": 20,
+          "soil_moisture_target": 65,
+          "n_demand": "LOW",
+          "irrigation_freq_days": 3
+        },
+        {
+          "name": "Vegetative",
+          "days": 35,
+          "soil_moisture_target": 70,
+          "n_demand": "HIGH",
+          "irrigation_freq_days": 4
+        },
+        {
+          "name": "Flowering",
+          "days": 30,
+          "soil_moisture_target": 75,
+          "n_demand": "MEDIUM",
+          "irrigation_freq_days": 3
+        },
+        {
+          "name": "Maturity",
+          "days": 25,
+          "soil_moisture_target": 45,
+          "n_demand": "LOW",
+          "irrigation_freq_days": 6
+        }
+      ],
+      "critical_temp_min_c": 22.4,
+      "critical_temp_max_c": 31.3,
+      "optimal_soil_ph": [
+        5.5,
+        6.5
+      ]
+    },
+    "bajra": {
+      "crop_name": "Bajra",
+      "n": {
+        "min": 61.7,
+        "max": 95.7,
+        "optimal": 75.8
+      },
+      "p": {
+        "min": 32.9,
+        "max": 49.3,
+        "optimal": 41.7
+      },
+      "k": {
+        "min": 21.6,
+        "max": 39.3,
+        "optimal": 30.7
+      },
+      "ph_min": 6.1,
+      "ph_max": 7.4,
+      "ph_optimal": 6.6,
+      "temp_min": 25.5,
+      "temp_max": 34.9,
+      "temp_optimal": 30.0,
+      "humidity_min": 48.1,
+      "humidity_max": 64.4,
+      "rainfall_min": 347.4,
+      "rainfall_max": 1466.7,
+      "rainfall_optimal": 573.8,
+      "suitable_soils": [
+        "Black",
+        "Red",
+        "Sandy"
+      ],
+      "suitable_seasons": [
+        "Kharif"
+      ],
+      "prominent_districts": [
+        "Yadgir",
+        "Raichur",
+        "Ballari",
+        "Kalaburagi",
+        "Vijayapura"
+      ],
+      "name": "Bajra",
+      "total_duration_days": 110,
+      "water_requirement_mm": 500,
+      "stages": [
+        {
+          "name": "Seedling",
+          "days": 20,
+          "soil_moisture_target": 65,
+          "n_demand": "LOW",
+          "irrigation_freq_days": 3
+        },
+        {
+          "name": "Vegetative",
+          "days": 35,
+          "soil_moisture_target": 70,
+          "n_demand": "HIGH",
+          "irrigation_freq_days": 4
+        },
+        {
+          "name": "Flowering",
+          "days": 30,
+          "soil_moisture_target": 75,
+          "n_demand": "MEDIUM",
+          "irrigation_freq_days": 3
+        },
+        {
+          "name": "Maturity",
+          "days": 25,
+          "soil_moisture_target": 45,
+          "n_demand": "LOW",
+          "irrigation_freq_days": 6
+        }
+      ],
+      "critical_temp_min_c": 25.5,
+      "critical_temp_max_c": 34.9,
+      "optimal_soil_ph": [
+        6.1,
+        7.4
+      ]
+    },
+    "banana": {
+      "crop_name": "Banana",
+      "n": {
+        "min": 106.0,
+        "max": 194.9,
+        "optimal": 149.9
+      },
+      "p": {
+        "min": 40.3,
+        "max": 76.1,
+        "optimal": 51.0
+      },
+      "k": {
+        "min": 152.7,
+        "max": 197.5,
+        "optimal": 175.6
+      },
+      "ph_min": 5.8,
+      "ph_max": 7.0,
+      "ph_optimal": 6.4,
+      "temp_min": 21.2,
+      "temp_max": 34.0,
+      "temp_optimal": 27.7,
+      "humidity_min": 75.0,
+      "humidity_max": 84.3,
+      "rainfall_min": 77.0,
+      "rainfall_max": 758.7,
+      "rainfall_optimal": 285.1,
+      "suitable_soils": [
+        "Red",
+        "Black",
+        "Loamy",
+        "Sandy"
+      ],
+      "suitable_seasons": [
+        "Rabi",
+        "Zaid",
+        "Kharif"
+      ],
+      "prominent_districts": [
+        "Belagavi",
+        "Mysuru",
+        "Haveri",
+        "Vijayapura",
+        "Bagalkote"
+      ],
+      "name": "Banana",
+      "total_duration_days": 110,
+      "water_requirement_mm": 500,
+      "stages": [
+        {
+          "name": "Seedling",
+          "days": 20,
+          "soil_moisture_target": 65,
+          "n_demand": "LOW",
+          "irrigation_freq_days": 3
+        },
+        {
+          "name": "Vegetative",
+          "days": 35,
+          "soil_moisture_target": 70,
+          "n_demand": "HIGH",
+          "irrigation_freq_days": 4
+        },
+        {
+          "name": "Flowering",
+          "days": 30,
+          "soil_moisture_target": 75,
+          "n_demand": "MEDIUM",
+          "irrigation_freq_days": 3
+        },
+        {
+          "name": "Maturity",
+          "days": 25,
+          "soil_moisture_target": 45,
+          "n_demand": "LOW",
+          "irrigation_freq_days": 6
+        }
+      ],
+      "critical_temp_min_c": 21.2,
+      "critical_temp_max_c": 34.0,
+      "optimal_soil_ph": [
+        5.8,
+        7.0
+      ]
+    },
+    "blackgram": {
+      "crop_name": "Blackgram",
+      "n": {
+        "min": 15.5,
+        "max": 24.4,
+        "optimal": 20.1
+      },
+      "p": {
+        "min": 34.6,
+        "max": 49.4,
+        "optimal": 43.2
+      },
+      "k": {
+        "min": 30.7,
+        "max": 47.0,
+        "optimal": 37.1
+      },
+      "ph_min": 6.0,
+      "ph_max": 7.3,
+      "ph_optimal": 6.6,
+      "temp_min": 25.4,
+      "temp_max": 34.0,
+      "temp_optimal": 29.2,
+      "humidity_min": 65.3,
+      "humidity_max": 85.7,
+      "rainfall_min": 332.6,
+      "rainfall_max": 1554.9,
+      "rainfall_optimal": 582.0,
+      "suitable_soils": [
+        "Red",
+        "Black",
+        "Sandy",
+        "Loamy"
+      ],
+      "suitable_seasons": [
+        "Kharif"
+      ],
+      "prominent_districts": [
+        "Hassan",
+        "Vijayapura",
+        "Kalaburagi",
+        "Chitradurga",
+        "Yadgir"
+      ],
+      "name": "Blackgram",
+      "total_duration_days": 110,
+      "water_requirement_mm": 500,
+      "stages": [
+        {
+          "name": "Seedling",
+          "days": 20,
+          "soil_moisture_target": 65,
+          "n_demand": "LOW",
+          "irrigation_freq_days": 3
+        },
+        {
+          "name": "Vegetative",
+          "days": 35,
+          "soil_moisture_target": 70,
+          "n_demand": "HIGH",
+          "irrigation_freq_days": 4
+        },
+        {
+          "name": "Flowering",
+          "days": 30,
+          "soil_moisture_target": 75,
+          "n_demand": "MEDIUM",
+          "irrigation_freq_days": 3
+        },
+        {
+          "name": "Maturity",
+          "days": 25,
+          "soil_moisture_target": 45,
+          "n_demand": "LOW",
+          "irrigation_freq_days": 6
+        }
+      ],
+      "critical_temp_min_c": 25.4,
+      "critical_temp_max_c": 34.0,
+      "optimal_soil_ph": [
+        6.0,
+        7.3
+      ]
+    },
+    "cardamom": {
+      "crop_name": "Cardamom",
+      "n": {
+        "min": 62.0,
+        "max": 97.7,
+        "optimal": 77.8
+      },
+      "p": {
+        "min": 31.1,
+        "max": 58.0,
+        "optimal": 42.0
+      },
+      "k": {
+        "min": 81.7,
+        "max": 118.1,
+        "optimal": 98.9
+      },
+      "ph_min": 5.1,
+      "ph_max": 6.5,
+      "ph_optimal": 5.9,
+      "temp_min": 17.6,
+      "temp_max": 30.8,
+      "temp_optimal": 24.0,
+      "humidity_min": 70.4,
+      "humidity_max": 87.9,
+      "rainfall_min": 66.2,
+      "rainfall_max": 1892.6,
+      "rainfall_optimal": 459.2,
+      "suitable_soils": [
+        "Laterite",
+        "Loamy",
+        "Red"
+      ],
+      "suitable_seasons": [
+        "Rabi",
+        "Zaid",
+        "Kharif"
+      ],
+      "prominent_districts": [
+        "Chikkamagaluru",
+        "Shivamogga",
+        "Hassan",
+        "Kodagu"
+      ],
+      "name": "Cardamom",
+      "total_duration_days": 110,
+      "water_requirement_mm": 500,
+      "stages": [
+        {
+          "name": "Seedling",
+          "days": 20,
+          "soil_moisture_target": 65,
+          "n_demand": "LOW",
+          "irrigation_freq_days": 3
+        },
+        {
+          "name": "Vegetative",
+          "days": 35,
+          "soil_moisture_target": 70,
+          "n_demand": "HIGH",
+          "irrigation_freq_days": 4
+        },
+        {
+          "name": "Flowering",
+          "days": 30,
+          "soil_moisture_target": 75,
+          "n_demand": "MEDIUM",
+          "irrigation_freq_days": 3
+        },
+        {
+          "name": "Maturity",
+          "days": 25,
+          "soil_moisture_target": 45,
+          "n_demand": "LOW",
+          "irrigation_freq_days": 6
+        }
+      ],
+      "critical_temp_min_c": 17.6,
+      "critical_temp_max_c": 30.8,
+      "optimal_soil_ph": [
+        5.1,
+        6.5
+      ]
+    },
+    "cashew": {
+      "crop_name": "Cashew",
+      "n": {
+        "min": 42.7,
+        "max": 76.1,
+        "optimal": 61.7
+      },
+      "p": {
+        "min": 20.0,
+        "max": 39.4,
+        "optimal": 28.9
+      },
+      "k": {
+        "min": 41.9,
+        "max": 74.2,
+        "optimal": 60.8
+      },
+      "ph_min": 5.1,
+      "ph_max": 6.5,
+      "ph_optimal": 6.1,
+      "temp_min": 24.3,
+      "temp_max": 34.3,
+      "temp_optimal": 28.5,
+      "humidity_min": 65.3,
+      "humidity_max": 88.3,
+      "rainfall_min": 97.3,
+      "rainfall_max": 3302.5,
+      "rainfall_optimal": 945.9,
+      "suitable_soils": [
+        "Laterite",
+        "Alluvial",
+        "Loamy"
+      ],
+      "suitable_seasons": [
+        "Zaid",
+        "Rabi",
+        "Kharif"
+      ],
+      "prominent_districts": [
+        "Chikkamagaluru",
+        "Shivamogga",
+        "Udupi",
+        "Uttara Kannada",
+        "Dakshina Kannada"
+      ],
+      "name": "Cashew",
+      "total_duration_days": 110,
+      "water_requirement_mm": 500,
+      "stages": [
+        {
+          "name": "Seedling",
+          "days": 20,
+          "soil_moisture_target": 65,
+          "n_demand": "LOW",
+          "irrigation_freq_days": 3
+        },
+        {
+          "name": "Vegetative",
+          "days": 35,
+          "soil_moisture_target": 70,
+          "n_demand": "HIGH",
+          "irrigation_freq_days": 4
+        },
+        {
+          "name": "Flowering",
+          "days": 30,
+          "soil_moisture_target": 75,
+          "n_demand": "MEDIUM",
+          "irrigation_freq_days": 3
+        },
+        {
+          "name": "Maturity",
+          "days": 25,
+          "soil_moisture_target": 45,
+          "n_demand": "LOW",
+          "irrigation_freq_days": 6
+        }
+      ],
+      "critical_temp_min_c": 24.3,
+      "critical_temp_max_c": 34.3,
+      "optimal_soil_ph": [
+        5.1,
+        6.5
+      ]
+    },
+    "chickpea": {
+      "crop_name": "Chickpea",
+      "n": {
+        "min": 16.0,
+        "max": 29.4,
+        "optimal": 24.3
+      },
+      "p": {
+        "min": 40.8,
+        "max": 58.9,
+        "optimal": 47.8
+      },
+      "k": {
+        "min": 21.7,
+        "max": 39.9,
+        "optimal": 32.1
+      },
+      "ph_min": 6.1,
+      "ph_max": 7.7,
+      "ph_optimal": 6.7,
+      "temp_min": 18.6,
+      "temp_max": 27.6,
+      "temp_optimal": 23.3,
+      "humidity_min": 32.5,
+      "humidity_max": 58.7,
+      "rainfall_min": 121.6,
+      "rainfall_max": 240.1,
+      "rainfall_optimal": 164.8,
+      "suitable_soils": [
+        "Black",
+        "Red"
+      ],
+      "suitable_seasons": [
+        "Rabi"
+      ],
+      "prominent_districts": [
+        "Koppala",
+        "Raichur",
+        "Gadag",
+        "Kalaburagi",
+        "Bagalkote"
+      ],
+      "name": "Chickpea",
+      "total_duration_days": 110,
+      "water_requirement_mm": 500,
+      "stages": [
+        {
+          "name": "Seedling",
+          "days": 20,
+          "soil_moisture_target": 65,
+          "n_demand": "LOW",
+          "irrigation_freq_days": 3
+        },
+        {
+          "name": "Vegetative",
+          "days": 35,
+          "soil_moisture_target": 70,
+          "n_demand": "HIGH",
+          "irrigation_freq_days": 4
+        },
+        {
+          "name": "Flowering",
+          "days": 30,
+          "soil_moisture_target": 75,
+          "n_demand": "MEDIUM",
+          "irrigation_freq_days": 3
+        },
+        {
+          "name": "Maturity",
+          "days": 25,
+          "soil_moisture_target": 45,
+          "n_demand": "LOW",
+          "irrigation_freq_days": 6
+        }
+      ],
+      "critical_temp_min_c": 18.6,
+      "critical_temp_max_c": 27.6,
+      "optimal_soil_ph": [
+        6.1,
+        7.7
+      ]
+    },
+    "chilli": {
+      "crop_name": "Chilli",
+      "n": {
+        "min": 61.6,
+        "max": 97.7,
+        "optimal": 79.3
+      },
+      "p": {
+        "min": 42.6,
+        "max": 58.8,
+        "optimal": 50.9
+      },
+      "k": {
+        "min": 50.0,
+        "max": 77.3,
+        "optimal": 59.6
+      },
+      "ph_min": 6.1,
+      "ph_max": 7.4,
+      "ph_optimal": 6.7,
+      "temp_min": 20.9,
+      "temp_max": 31.2,
+      "temp_optimal": 26.4,
+      "humidity_min": 50.7,
+      "humidity_max": 71.9,
+      "rainfall_min": 136.1,
+      "rainfall_max": 701.4,
+      "rainfall_optimal": 341.1,
+      "suitable_soils": [
+        "Black",
+        "Red",
+        "Loamy"
+      ],
+      "suitable_seasons": [
+        "Kharif",
+        "Rabi"
+      ],
+      "prominent_districts": [
+        "Koppala",
+        "Davanagere",
+        "Ballari",
+        "Bagalkote",
+        "Raichur"
+      ],
+      "name": "Chilli",
+      "total_duration_days": 110,
+      "water_requirement_mm": 500,
+      "stages": [
+        {
+          "name": "Seedling",
+          "days": 20,
+          "soil_moisture_target": 65,
+          "n_demand": "LOW",
+          "irrigation_freq_days": 3
+        },
+        {
+          "name": "Vegetative",
+          "days": 35,
+          "soil_moisture_target": 70,
+          "n_demand": "HIGH",
+          "irrigation_freq_days": 4
+        },
+        {
+          "name": "Flowering",
+          "days": 30,
+          "soil_moisture_target": 75,
+          "n_demand": "MEDIUM",
+          "irrigation_freq_days": 3
+        },
+        {
+          "name": "Maturity",
+          "days": 25,
+          "soil_moisture_target": 45,
+          "n_demand": "LOW",
+          "irrigation_freq_days": 6
+        }
+      ],
+      "critical_temp_min_c": 20.9,
+      "critical_temp_max_c": 31.2,
+      "optimal_soil_ph": [
+        6.1,
+        7.4
+      ]
+    },
+    "coconut": {
+      "crop_name": "Coconut",
+      "n": {
+        "min": 104.3,
+        "max": 194.7,
+        "optimal": 150.1
+      },
+      "p": {
+        "min": 40.9,
+        "max": 77.3,
+        "optimal": 56.7
+      },
+      "k": {
+        "min": 123.1,
+        "max": 185.8,
+        "optimal": 152.4
+      },
+      "ph_min": 5.6,
+      "ph_max": 7.4,
+      "ph_optimal": 6.5,
+      "temp_min": 22.4,
+      "temp_max": 31.3,
+      "temp_optimal": 26.3,
+      "humidity_min": 70.2,
+      "humidity_max": 92.3,
+      "rainfall_min": 83.8,
+      "rainfall_max": 2989.4,
+      "rainfall_optimal": 588.8,
+      "suitable_soils": [
+        "Laterite",
+        "Alluvial",
+        "Loamy",
+        "Red"
+      ],
+      "suitable_seasons": [
+        "Rabi",
+        "Zaid",
+        "Kharif"
+      ],
+      "prominent_districts": [
+        "Shivamogga",
+        "Hassan",
+        "Uttara Kannada",
+        "Mandya",
+        "Mysuru"
+      ],
+      "name": "Coconut",
+      "total_duration_days": 110,
+      "water_requirement_mm": 500,
+      "stages": [
+        {
+          "name": "Seedling",
+          "days": 20,
+          "soil_moisture_target": 65,
+          "n_demand": "LOW",
+          "irrigation_freq_days": 3
+        },
+        {
+          "name": "Vegetative",
+          "days": 35,
+          "soil_moisture_target": 70,
+          "n_demand": "HIGH",
+          "irrigation_freq_days": 4
+        },
+        {
+          "name": "Flowering",
+          "days": 30,
+          "soil_moisture_target": 75,
+          "n_demand": "MEDIUM",
+          "irrigation_freq_days": 3
+        },
+        {
+          "name": "Maturity",
+          "days": 25,
+          "soil_moisture_target": 45,
+          "n_demand": "LOW",
+          "irrigation_freq_days": 6
+        }
+      ],
+      "critical_temp_min_c": 22.4,
+      "critical_temp_max_c": 31.3,
+      "optimal_soil_ph": [
+        5.6,
+        7.4
+      ]
+    },
+    "coffee": {
+      "crop_name": "Coffee",
+      "n": {
+        "min": 105.6,
+        "max": 194.4,
+        "optimal": 149.0
+      },
+      "p": {
+        "min": 31.1,
+        "max": 53.1,
+        "optimal": 40.9
+      },
+      "k": {
+        "min": 81.3,
+        "max": 127.2,
+        "optimal": 101.0
+      },
+      "ph_min": 5.5,
+      "ph_max": 6.5,
+      "ph_optimal": 6.0,
+      "temp_min": 17.9,
+      "temp_max": 27.5,
+      "temp_optimal": 23.9,
+      "humidity_min": 70.6,
+      "humidity_max": 87.5,
+      "rainfall_min": 71.0,
+      "rainfall_max": 2499.6,
+      "rainfall_optimal": 564.2,
+      "suitable_soils": [
+        "Laterite",
+        "Loamy",
+        "Alluvial",
+        "Red"
+      ],
+      "suitable_seasons": [
+        "Rabi",
+        "Zaid",
+        "Kharif"
+      ],
+      "prominent_districts": [
+        "Chikkamagaluru",
+        "Kodagu",
+        "Hassan",
+        "Shivamogga",
+        "Uttara Kannada"
+      ],
+      "name": "Coffee",
+      "total_duration_days": 110,
+      "water_requirement_mm": 500,
+      "stages": [
+        {
+          "name": "Seedling",
+          "days": 20,
+          "soil_moisture_target": 65,
+          "n_demand": "LOW",
+          "irrigation_freq_days": 3
+        },
+        {
+          "name": "Vegetative",
+          "days": 35,
+          "soil_moisture_target": 70,
+          "n_demand": "HIGH",
+          "irrigation_freq_days": 4
+        },
+        {
+          "name": "Flowering",
+          "days": 30,
+          "soil_moisture_target": 75,
+          "n_demand": "MEDIUM",
+          "irrigation_freq_days": 3
+        },
+        {
+          "name": "Maturity",
+          "days": 25,
+          "soil_moisture_target": 45,
+          "n_demand": "LOW",
+          "irrigation_freq_days": 6
+        }
+      ],
+      "critical_temp_min_c": 17.9,
+      "critical_temp_max_c": 27.5,
+      "optimal_soil_ph": [
+        5.5,
+        6.5
+      ]
+    },
+    "cotton": {
+      "crop_name": "Cotton",
+      "n": {
+        "min": 60.0,
+        "max": 97.2,
+        "optimal": 74.5
+      },
+      "p": {
+        "min": 40.5,
+        "max": 58.4,
+        "optimal": 47.2
+      },
+      "k": {
+        "min": 60.0,
+        "max": 78.8,
+        "optimal": 68.6
+      },
+      "ph_min": 6.0,
+      "ph_max": 7.8,
+      "ph_optimal": 6.7,
+      "temp_min": 25.5,
+      "temp_max": 33.9,
+      "temp_optimal": 29.8,
+      "humidity_min": 50.8,
+      "humidity_max": 69.2,
+      "rainfall_min": 335.3,
+      "rainfall_max": 1334.3,
+      "rainfall_optimal": 529.9,
+      "suitable_soils": [
+        "Black",
+        "Red",
+        "Loamy"
+      ],
+      "suitable_seasons": [
+        "Kharif"
+      ],
+      "prominent_districts": [
+        "Vijayanagara",
+        "Ballari",
+        "Dharwad",
+        "Davanagere",
+        "Gadag"
+      ],
+      "name": "Cotton",
+      "scientific_name": "Gossypium hirsutum",
+      "total_duration_days": 180,
+      "water_requirement_mm": 700,
+      "stages": [
+        {
+          "name": "Germination",
+          "days": 10,
+          "soil_moisture_target": 65,
+          "n_demand": "LOW",
+          "irrigation_freq_days": 3
+        },
+        {
+          "name": "Seedling",
+          "days": 20,
+          "soil_moisture_target": 60,
+          "n_demand": "LOW",
+          "irrigation_freq_days": 4
+        },
+        {
+          "name": "Squaring",
+          "days": 35,
+          "soil_moisture_target": 65,
+          "n_demand": "HIGH",
+          "irrigation_freq_days": 5
+        },
+        {
+          "name": "Flowering",
+          "days": 30,
+          "soil_moisture_target": 70,
+          "n_demand": "HIGH",
+          "irrigation_freq_days": 4
+        },
+        {
+          "name": "Boll Development",
+          "days": 45,
+          "soil_moisture_target": 65,
+          "n_demand": "MEDIUM",
+          "irrigation_freq_days": 5
+        },
+        {
+          "name": "Boll Opening",
+          "days": 40,
+          "soil_moisture_target": 40,
+          "n_demand": "NONE",
+          "irrigation_freq_days": 0
+        }
+      ],
+      "critical_temp_min_c": 15,
+      "critical_temp_max_c": 42,
+      "optimal_soil_ph": [
+        6.0,
+        8.0
+      ]
+    },
+    "ginger": {
+      "crop_name": "Ginger",
+      "n": {
+        "min": 60.0,
+        "max": 96.8,
+        "optimal": 73.9
+      },
+      "p": {
+        "min": 40.6,
+        "max": 58.2,
+        "optimal": 48.7
+      },
+      "k": {
+        "min": 64.9,
+        "max": 98.1,
+        "optimal": 83.8
+      },
+      "ph_min": 5.6,
+      "ph_max": 6.5,
+      "ph_optimal": 6.1,
+      "temp_min": 20.9,
+      "temp_max": 29.2,
+      "temp_optimal": 25.1,
+      "humidity_min": 76.3,
+      "humidity_max": 89.4,
+      "rainfall_min": 338.5,
+      "rainfall_max": 3461.9,
+      "rainfall_optimal": 1761.9,
+      "suitable_soils": [
+        "Laterite",
+        "Loamy",
+        "Alluvial",
+        "Red"
+      ],
+      "suitable_seasons": [
+        "Kharif"
+      ],
+      "prominent_districts": [
+        "Udupi",
+        "Chikkamagaluru",
+        "Shivamogga",
+        "Hassan",
+        "Kodagu"
+      ],
+      "name": "Ginger",
+      "total_duration_days": 110,
+      "water_requirement_mm": 500,
+      "stages": [
+        {
+          "name": "Seedling",
+          "days": 20,
+          "soil_moisture_target": 65,
+          "n_demand": "LOW",
+          "irrigation_freq_days": 3
+        },
+        {
+          "name": "Vegetative",
+          "days": 35,
+          "soil_moisture_target": 70,
+          "n_demand": "HIGH",
+          "irrigation_freq_days": 4
+        },
+        {
+          "name": "Flowering",
+          "days": 30,
+          "soil_moisture_target": 75,
+          "n_demand": "MEDIUM",
+          "irrigation_freq_days": 3
+        },
+        {
+          "name": "Maturity",
+          "days": 25,
+          "soil_moisture_target": 45,
+          "n_demand": "LOW",
+          "irrigation_freq_days": 6
+        }
+      ],
+      "critical_temp_min_c": 20.9,
+      "critical_temp_max_c": 29.2,
+      "optimal_soil_ph": [
+        5.6,
+        6.5
+      ]
+    },
+    "grapes": {
+      "crop_name": "Grapes",
+      "n": {
+        "min": 41.6,
+        "max": 78.7,
+        "optimal": 59.8
+      },
+      "p": {
+        "min": 31.6,
+        "max": 58.2,
+        "optimal": 45.4
+      },
+      "k": {
+        "min": 62.5,
+        "max": 116.1,
+        "optimal": 89.4
+      },
+      "ph_min": 6.6,
+      "ph_max": 7.9,
+      "ph_optimal": 7.2,
+      "temp_min": 16.0,
+      "temp_max": 34.0,
+      "temp_optimal": 24.7,
+      "humidity_min": 51.5,
+      "humidity_max": 74.0,
+      "rainfall_min": 317.1,
+      "rainfall_max": 589.0,
+      "rainfall_optimal": 452.0,
+      "suitable_soils": [
+        "Black",
+        "Loamy"
+      ],
+      "suitable_seasons": [
+        "Rabi"
+      ],
+      "prominent_districts": [
+        "Vijayapura",
+        "Bagalkote",
+        "Belagavi",
+        "Kalaburagi"
+      ],
+      "name": "Grapes",
+      "total_duration_days": 110,
+      "water_requirement_mm": 500,
+      "stages": [
+        {
+          "name": "Seedling",
+          "days": 20,
+          "soil_moisture_target": 65,
+          "n_demand": "LOW",
+          "irrigation_freq_days": 3
+        },
+        {
+          "name": "Vegetative",
+          "days": 35,
+          "soil_moisture_target": 70,
+          "n_demand": "HIGH",
+          "irrigation_freq_days": 4
+        },
+        {
+          "name": "Flowering",
+          "days": 30,
+          "soil_moisture_target": 75,
+          "n_demand": "MEDIUM",
+          "irrigation_freq_days": 3
+        },
+        {
+          "name": "Maturity",
+          "days": 25,
+          "soil_moisture_target": 45,
+          "n_demand": "LOW",
+          "irrigation_freq_days": 6
+        }
+      ],
+      "critical_temp_min_c": 16.0,
+      "critical_temp_max_c": 34.0,
+      "optimal_soil_ph": [
+        6.6,
+        7.9
+      ]
+    },
+    "groundnut": {
+      "crop_name": "Groundnut",
+      "n": {
+        "min": 15.5,
+        "max": 24.4,
+        "optimal": 19.6
+      },
+      "p": {
+        "min": 40.9,
+        "max": 59.2,
+        "optimal": 49.8
+      },
+      "k": {
+        "min": 60.9,
+        "max": 79.2,
+        "optimal": 70.0
+      },
+      "ph_min": 6.0,
+      "ph_max": 7.0,
+      "ph_optimal": 6.5,
+      "temp_min": 25.3,
+      "temp_max": 33.9,
+      "temp_optimal": 29.0,
+      "humidity_min": 46.0,
+      "humidity_max": 68.9,
+      "rainfall_min": 129.9,
+      "rainfall_max": 1467.4,
+      "rainfall_optimal": 388.6,
+      "suitable_soils": [
+        "Red",
+        "Black",
+        "Sandy"
+      ],
+      "suitable_seasons": [
+        "Kharif",
+        "Rabi"
+      ],
+      "prominent_districts": [
+        "Bagalkote",
+        "Vijayapura",
+        "Mandya",
+        "Ballari",
+        "Raichur"
+      ],
+      "name": "Groundnut",
+      "total_duration_days": 110,
+      "water_requirement_mm": 500,
+      "stages": [
+        {
+          "name": "Seedling",
+          "days": 20,
+          "soil_moisture_target": 65,
+          "n_demand": "LOW",
+          "irrigation_freq_days": 3
+        },
+        {
+          "name": "Vegetative",
+          "days": 35,
+          "soil_moisture_target": 70,
+          "n_demand": "HIGH",
+          "irrigation_freq_days": 4
+        },
+        {
+          "name": "Flowering",
+          "days": 30,
+          "soil_moisture_target": 75,
+          "n_demand": "MEDIUM",
+          "irrigation_freq_days": 3
+        },
+        {
+          "name": "Maturity",
+          "days": 25,
+          "soil_moisture_target": 45,
+          "n_demand": "LOW",
+          "irrigation_freq_days": 6
+        }
+      ],
+      "critical_temp_min_c": 25.3,
+      "critical_temp_max_c": 33.9,
+      "optimal_soil_ph": [
+        6.0,
+        7.0
+      ]
+    },
+    "guava": {
+      "crop_name": "Guava",
+      "n": {
+        "min": 40.0,
+        "max": 77.1,
+        "optimal": 52.1
+      },
+      "p": {
+        "min": 20.7,
+        "max": 39.4,
+        "optimal": 29.8
+      },
+      "k": {
+        "min": 41.0,
+        "max": 76.4,
+        "optimal": 53.8
+      },
+      "ph_min": 5.3,
+      "ph_max": 7.0,
+      "ph_optimal": 6.5,
+      "temp_min": 20.7,
+      "temp_max": 31.1,
+      "temp_optimal": 25.8,
+      "humidity_min": 50.9,
+      "humidity_max": 76.9,
+      "rainfall_min": 74.0,
+      "rainfall_max": 1265.4,
+      "rainfall_optimal": 304.5,
+      "suitable_soils": [
+        "Red",
+        "Loamy",
+        "Sandy",
+        "Black"
+      ],
+      "suitable_seasons": [
+        "Rabi",
+        "Zaid",
+        "Kharif"
+      ],
+      "prominent_districts": [
+        "Tumakuru",
+        "Bagalkote",
+        "Ramanagara",
+        "Kolar",
+        "Mysuru"
+      ],
+      "name": "Guava",
+      "total_duration_days": 110,
+      "water_requirement_mm": 500,
+      "stages": [
+        {
+          "name": "Seedling",
+          "days": 20,
+          "soil_moisture_target": 65,
+          "n_demand": "LOW",
+          "irrigation_freq_days": 3
+        },
+        {
+          "name": "Vegetative",
+          "days": 35,
+          "soil_moisture_target": 70,
+          "n_demand": "HIGH",
+          "irrigation_freq_days": 4
+        },
+        {
+          "name": "Flowering",
+          "days": 30,
+          "soil_moisture_target": 75,
+          "n_demand": "MEDIUM",
+          "irrigation_freq_days": 3
+        },
+        {
+          "name": "Maturity",
+          "days": 25,
+          "soil_moisture_target": 45,
+          "n_demand": "LOW",
+          "irrigation_freq_days": 6
+        }
+      ],
+      "critical_temp_min_c": 20.7,
+      "critical_temp_max_c": 31.1,
+      "optimal_soil_ph": [
+        5.3,
+        7.0
+      ]
+    },
+    "horsegram": {
+      "crop_name": "Horsegram",
+      "n": {
+        "min": 15.5,
+        "max": 24.2,
+        "optimal": 19.6
+      },
+      "p": {
+        "min": 20.1,
+        "max": 38.9,
+        "optimal": 29.0
+      },
+      "k": {
+        "min": 21.2,
+        "max": 35.4,
+        "optimal": 27.8
+      },
+      "ph_min": 5.6,
+      "ph_max": 6.9,
+      "ph_optimal": 6.2,
+      "temp_min": 20.6,
+      "temp_max": 32.6,
+      "temp_optimal": 24.6,
+      "humidity_min": 39.2,
+      "humidity_max": 59.2,
+      "rainfall_min": 118.2,
+      "rainfall_max": 301.2,
+      "rainfall_optimal": 194.0,
+      "suitable_soils": [
+        "Red",
+        "Loamy",
+        "Sandy"
+      ],
+      "suitable_seasons": [
+        "Rabi"
+      ],
+      "prominent_districts": [
+        "Tumakuru",
+        "Chitradurga",
+        "Kolar",
+        "Ramanagara",
+        "Mysuru"
+      ],
+      "name": "Horsegram",
+      "total_duration_days": 110,
+      "water_requirement_mm": 500,
+      "stages": [
+        {
+          "name": "Seedling",
+          "days": 20,
+          "soil_moisture_target": 65,
+          "n_demand": "LOW",
+          "irrigation_freq_days": 3
+        },
+        {
+          "name": "Vegetative",
+          "days": 35,
+          "soil_moisture_target": 70,
+          "n_demand": "HIGH",
+          "irrigation_freq_days": 4
+        },
+        {
+          "name": "Flowering",
+          "days": 30,
+          "soil_moisture_target": 75,
+          "n_demand": "MEDIUM",
+          "irrigation_freq_days": 3
+        },
+        {
+          "name": "Maturity",
+          "days": 25,
+          "soil_moisture_target": 45,
+          "n_demand": "LOW",
+          "irrigation_freq_days": 6
+        }
+      ],
+      "critical_temp_min_c": 20.6,
+      "critical_temp_max_c": 32.6,
+      "optimal_soil_ph": [
+        5.6,
+        6.9
+      ]
+    },
+    "jowar": {
+      "crop_name": "Jowar",
+      "n": {
+        "min": 40.0,
+        "max": 77.4,
+        "optimal": 54.3
+      },
+      "p": {
+        "min": 20.1,
+        "max": 39.5,
+        "optimal": 29.9
+      },
+      "k": {
+        "min": 22.4,
+        "max": 40.0,
+        "optimal": 33.2
+      },
+      "ph_min": 5.6,
+      "ph_max": 7.4,
+      "ph_optimal": 6.5,
+      "temp_min": 25.2,
+      "temp_max": 33.9,
+      "temp_optimal": 28.4,
+      "humidity_min": 36.0,
+      "humidity_max": 65.0,
+      "rainfall_min": 126.1,
+      "rainfall_max": 688.3,
+      "rainfall_optimal": 353.5,
+      "suitable_soils": [
+        "Black",
+        "Red",
+        "Loamy"
+      ],
+      "suitable_seasons": [
+        "Rabi",
+        "Kharif"
+      ],
+      "prominent_districts": [
+        "Chikkamagaluru",
+        "Dharwad",
+        "Kalaburagi",
+        "Gadag",
+        "Bagalkote"
+      ],
+      "name": "Jowar",
+      "total_duration_days": 110,
+      "water_requirement_mm": 500,
+      "stages": [
+        {
+          "name": "Seedling",
+          "days": 20,
+          "soil_moisture_target": 65,
+          "n_demand": "LOW",
+          "irrigation_freq_days": 3
+        },
+        {
+          "name": "Vegetative",
+          "days": 35,
+          "soil_moisture_target": 70,
+          "n_demand": "HIGH",
+          "irrigation_freq_days": 4
+        },
+        {
+          "name": "Flowering",
+          "days": 30,
+          "soil_moisture_target": 75,
+          "n_demand": "MEDIUM",
+          "irrigation_freq_days": 3
+        },
+        {
+          "name": "Maturity",
+          "days": 25,
+          "soil_moisture_target": 45,
+          "n_demand": "LOW",
+          "irrigation_freq_days": 6
+        }
+      ],
+      "critical_temp_min_c": 25.2,
+      "critical_temp_max_c": 33.9,
+      "optimal_soil_ph": [
+        5.6,
+        7.4
+      ]
+    },
+    "kidneybeans": {
+      "crop_name": "Kidneybeans",
+      "n": {
+        "min": 21.9,
+        "max": 40.0,
+        "optimal": 32.0
+      },
+      "p": {
+        "min": 40.4,
+        "max": 56.0,
+        "optimal": 46.4
+      },
+      "k": {
+        "min": 30.6,
+        "max": 49.3,
+        "optimal": 39.7
+      },
+      "ph_min": 6.0,
+      "ph_max": 7.4,
+      "ph_optimal": 6.5,
+      "temp_min": 20.5,
+      "temp_max": 24.0,
+      "temp_optimal": 23.2,
+      "humidity_min": 51.5,
+      "humidity_max": 69.4,
+      "rainfall_min": 374.9,
+      "rainfall_max": 2812.2,
+      "rainfall_optimal": 1411.6,
+      "suitable_soils": [
+        "Loamy",
+        "Laterite",
+        "Red",
+        "Alluvial",
+        "Black"
+      ],
+      "suitable_seasons": [
+        "Kharif"
+      ],
+      "prominent_districts": [
+        "Chikkamagaluru",
+        "Belagavi",
+        "Dharwad",
+        "Uttara Kannada",
+        "Shivamogga"
+      ],
+      "name": "Kidneybeans",
+      "total_duration_days": 110,
+      "water_requirement_mm": 500,
+      "stages": [
+        {
+          "name": "Seedling",
+          "days": 20,
+          "soil_moisture_target": 65,
+          "n_demand": "LOW",
+          "irrigation_freq_days": 3
+        },
+        {
+          "name": "Vegetative",
+          "days": 35,
+          "soil_moisture_target": 70,
+          "n_demand": "HIGH",
+          "irrigation_freq_days": 4
+        },
+        {
+          "name": "Flowering",
+          "days": 30,
+          "soil_moisture_target": 75,
+          "n_demand": "MEDIUM",
+          "irrigation_freq_days": 3
+        },
+        {
+          "name": "Maturity",
+          "days": 25,
+          "soil_moisture_target": 45,
+          "n_demand": "LOW",
+          "irrigation_freq_days": 6
+        }
+      ],
+      "critical_temp_min_c": 20.5,
+      "critical_temp_max_c": 24.0,
+      "optimal_soil_ph": [
+        6.0,
+        7.4
+      ]
+    },
+    "maize": {
+      "crop_name": "Maize",
+      "n": {
+        "min": 80.0,
+        "max": 117.5,
+        "optimal": 95.9
+      },
+      "p": {
+        "min": 40.2,
+        "max": 58.0,
+        "optimal": 46.0
+      },
+      "k": {
+        "min": 40.9,
+        "max": 60.0,
+        "optimal": 50.3
+      },
+      "ph_min": 5.6,
+      "ph_max": 7.4,
+      "ph_optimal": 6.5,
+      "temp_min": 19.0,
+      "temp_max": 30.9,
+      "temp_optimal": 24.8,
+      "humidity_min": 51.2,
+      "humidity_max": 78.8,
+      "rainfall_min": 131.7,
+      "rainfall_max": 1623.9,
+      "rainfall_optimal": 476.1,
+      "suitable_soils": [
+        "Loamy",
+        "Red",
+        "Black"
+      ],
+      "suitable_seasons": [
+        "Rabi",
+        "Kharif"
+      ],
+      "prominent_districts": [
+        "Chitradurga",
+        "Dharwad",
+        "Mandya",
+        "Chikkamagaluru",
+        "Bagalkote"
+      ],
+      "name": "Maize / Corn",
+      "scientific_name": "Zea mays",
+      "total_duration_days": 100,
+      "water_requirement_mm": 500,
+      "stages": [
+        {
+          "name": "Germination",
+          "days": 8,
+          "soil_moisture_target": 70,
+          "n_demand": "LOW",
+          "irrigation_freq_days": 2
+        },
+        {
+          "name": "Vegetative",
+          "days": 30,
+          "soil_moisture_target": 65,
+          "n_demand": "HIGH",
+          "irrigation_freq_days": 4
+        },
+        {
+          "name": "Tasseling",
+          "days": 12,
+          "soil_moisture_target": 75,
+          "n_demand": "HIGH",
+          "irrigation_freq_days": 3
+        },
+        {
+          "name": "Silking",
+          "days": 10,
+          "soil_moisture_target": 80,
+          "n_demand": "MEDIUM",
+          "irrigation_freq_days": 3
+        },
+        {
+          "name": "Grain Filling",
+          "days": 25,
+          "soil_moisture_target": 65,
+          "n_demand": "LOW",
+          "irrigation_freq_days": 5
+        },
+        {
+          "name": "Maturity",
+          "days": 15,
+          "soil_moisture_target": 40,
+          "n_demand": "NONE",
+          "irrigation_freq_days": 0
+        }
+      ],
+      "critical_temp_min_c": 10,
+      "critical_temp_max_c": 38,
+      "optimal_soil_ph": [
+        5.8,
+        7.0
+      ]
+    },
+    "mango": {
+      "crop_name": "Mango",
+      "n": {
+        "min": 62.2,
+        "max": 115.4,
+        "optimal": 85.2
+      },
+      "p": {
+        "min": 20.7,
+        "max": 39.6,
+        "optimal": 30.2
+      },
+      "k": {
+        "min": 62.4,
+        "max": 116.7,
+        "optimal": 85.2
+      },
+      "ph_min": 5.6,
+      "ph_max": 7.4,
+      "ph_optimal": 6.5,
+      "temp_min": 24.2,
+      "temp_max": 33.6,
+      "temp_optimal": 27.7,
+      "humidity_min": 40.8,
+      "humidity_max": 60.0,
+      "rainfall_min": 68.2,
+      "rainfall_max": 464.5,
+      "rainfall_optimal": 243.5,
+      "suitable_soils": [
+        "Red",
+        "Loamy",
+        "Sandy",
+        "Black"
+      ],
+      "suitable_seasons": [
+        "Zaid",
+        "Rabi",
+        "Kharif"
+      ],
+      "prominent_districts": [
+        "Ramanagara",
+        "Dharwad",
+        "Chikkaballapura",
+        "Vijayapura",
+        "Tumakuru"
+      ],
+      "name": "Mango",
+      "total_duration_days": 110,
+      "water_requirement_mm": 500,
+      "stages": [
+        {
+          "name": "Seedling",
+          "days": 20,
+          "soil_moisture_target": 65,
+          "n_demand": "LOW",
+          "irrigation_freq_days": 3
+        },
+        {
+          "name": "Vegetative",
+          "days": 35,
+          "soil_moisture_target": 70,
+          "n_demand": "HIGH",
+          "irrigation_freq_days": 4
+        },
+        {
+          "name": "Flowering",
+          "days": 30,
+          "soil_moisture_target": 75,
+          "n_demand": "MEDIUM",
+          "irrigation_freq_days": 3
+        },
+        {
+          "name": "Maturity",
+          "days": 25,
+          "soil_moisture_target": 45,
+          "n_demand": "LOW",
+          "irrigation_freq_days": 6
+        }
+      ],
+      "critical_temp_min_c": 24.2,
+      "critical_temp_max_c": 33.6,
+      "optimal_soil_ph": [
+        5.6,
+        7.4
+      ]
+    },
+    "mothbeans": {
+      "crop_name": "Mothbeans",
+      "n": {
+        "min": 15.4,
+        "max": 24.4,
+        "optimal": 19.9
+      },
+      "p": {
+        "min": 20.6,
+        "max": 34.2,
+        "optimal": 28.0
+      },
+      "k": {
+        "min": 16.3,
+        "max": 29.3,
+        "optimal": 23.9
+      },
+      "ph_min": 6.5,
+      "ph_max": 7.9,
+      "ph_optimal": 6.9,
+      "temp_min": 28.3,
+      "temp_max": 35.2,
+      "temp_optimal": 31.5,
+      "humidity_min": 46.4,
+      "humidity_max": 59.6,
+      "rainfall_min": 336.2,
+      "rainfall_max": 576.1,
+      "rainfall_optimal": 447.9,
+      "suitable_soils": [
+        "Red",
+        "Black",
+        "Sandy"
+      ],
+      "suitable_seasons": [
+        "Kharif"
+      ],
+      "prominent_districts": [
+        "Ballari",
+        "Kalaburagi",
+        "Yadgir",
+        "Vijayapura",
+        "Raichur"
+      ],
+      "name": "Mothbeans",
+      "total_duration_days": 110,
+      "water_requirement_mm": 500,
+      "stages": [
+        {
+          "name": "Seedling",
+          "days": 20,
+          "soil_moisture_target": 65,
+          "n_demand": "LOW",
+          "irrigation_freq_days": 3
+        },
+        {
+          "name": "Vegetative",
+          "days": 35,
+          "soil_moisture_target": 70,
+          "n_demand": "HIGH",
+          "irrigation_freq_days": 4
+        },
+        {
+          "name": "Flowering",
+          "days": 30,
+          "soil_moisture_target": 75,
+          "n_demand": "MEDIUM",
+          "irrigation_freq_days": 3
+        },
+        {
+          "name": "Maturity",
+          "days": 25,
+          "soil_moisture_target": 45,
+          "n_demand": "LOW",
+          "irrigation_freq_days": 6
+        }
+      ],
+      "critical_temp_min_c": 28.3,
+      "critical_temp_max_c": 35.2,
+      "optimal_soil_ph": [
+        6.5,
+        7.9
+      ]
+    },
+    "mulberry": {
+      "crop_name": "Mulberry",
+      "n": {
+        "min": 102.0,
+        "max": 147.6,
+        "optimal": 122.4
+      },
+      "p": {
+        "min": 40.3,
+        "max": 58.0,
+        "optimal": 46.8
+      },
+      "k": {
+        "min": 61.9,
+        "max": 98.2,
+        "optimal": 80.2
+      },
+      "ph_min": 6.2,
+      "ph_max": 7.1,
+      "ph_optimal": 6.6,
+      "temp_min": 20.3,
+      "temp_max": 29.1,
+      "temp_optimal": 24.0,
+      "humidity_min": 60.7,
+      "humidity_max": 79.3,
+      "rainfall_min": 137.3,
+      "rainfall_max": 457.6,
+      "rainfall_optimal": 297.0,
+      "suitable_soils": [
+        "Red",
+        "Loamy",
+        "Sandy"
+      ],
+      "suitable_seasons": [
+        "Kharif",
+        "Rabi"
+      ],
+      "prominent_districts": [
+        "Mandya",
+        "Tumakuru",
+        "Ramanagara",
+        "Kolar",
+        "Chikkaballapura"
+      ],
+      "name": "Mulberry",
+      "total_duration_days": 110,
+      "water_requirement_mm": 500,
+      "stages": [
+        {
+          "name": "Seedling",
+          "days": 20,
+          "soil_moisture_target": 65,
+          "n_demand": "LOW",
+          "irrigation_freq_days": 3
+        },
+        {
+          "name": "Vegetative",
+          "days": 35,
+          "soil_moisture_target": 70,
+          "n_demand": "HIGH",
+          "irrigation_freq_days": 4
+        },
+        {
+          "name": "Flowering",
+          "days": 30,
+          "soil_moisture_target": 75,
+          "n_demand": "MEDIUM",
+          "irrigation_freq_days": 3
+        },
+        {
+          "name": "Maturity",
+          "days": 25,
+          "soil_moisture_target": 45,
+          "n_demand": "LOW",
+          "irrigation_freq_days": 6
+        }
+      ],
+      "critical_temp_min_c": 20.3,
+      "critical_temp_max_c": 29.1,
+      "optimal_soil_ph": [
+        6.2,
+        7.1
+      ]
+    },
+    "mungbean": {
+      "crop_name": "Mungbean",
+      "n": {
+        "min": 15.7,
+        "max": 24.8,
+        "optimal": 20.2
+      },
+      "p": {
+        "min": 33.7,
+        "max": 49.4,
+        "optimal": 43.3
+      },
+      "k": {
+        "min": 30.6,
+        "max": 48.6,
+        "optimal": 37.4
+      },
+      "ph_min": 6.2,
+      "ph_max": 7.1,
+      "ph_optimal": 6.6,
+      "temp_min": 25.6,
+      "temp_max": 33.9,
+      "temp_optimal": 29.6,
+      "humidity_min": 60.6,
+      "humidity_max": 75.2,
+      "rainfall_min": 317.7,
+      "rainfall_max": 1552.0,
+      "rainfall_optimal": 578.3,
+      "suitable_soils": [
+        "Black",
+        "Red",
+        "Sandy"
+      ],
+      "suitable_seasons": [
+        "Kharif"
+      ],
+      "prominent_districts": [
+        "Raichur",
+        "Tumakuru",
+        "Koppala",
+        "Yadgir",
+        "Kalaburagi"
+      ],
+      "name": "Mungbean",
+      "total_duration_days": 110,
+      "water_requirement_mm": 500,
+      "stages": [
+        {
+          "name": "Seedling",
+          "days": 20,
+          "soil_moisture_target": 65,
+          "n_demand": "LOW",
+          "irrigation_freq_days": 3
+        },
+        {
+          "name": "Vegetative",
+          "days": 35,
+          "soil_moisture_target": 70,
+          "n_demand": "HIGH",
+          "irrigation_freq_days": 4
+        },
+        {
+          "name": "Flowering",
+          "days": 30,
+          "soil_moisture_target": 75,
+          "n_demand": "MEDIUM",
+          "irrigation_freq_days": 3
+        },
+        {
+          "name": "Maturity",
+          "days": 25,
+          "soil_moisture_target": 45,
+          "n_demand": "LOW",
+          "irrigation_freq_days": 6
+        }
+      ],
+      "critical_temp_min_c": 25.6,
+      "critical_temp_max_c": 33.9,
+      "optimal_soil_ph": [
+        6.2,
+        7.1
+      ]
+    },
+    "muskmelon": {
+      "crop_name": "Muskmelon",
+      "n": {
+        "min": 60.8,
+        "max": 96.3,
+        "optimal": 73.3
+      },
+      "p": {
+        "min": 40.8,
+        "max": 58.8,
+        "optimal": 48.3
+      },
+      "k": {
+        "min": 60.5,
+        "max": 96.8,
+        "optimal": 73.2
+      },
+      "ph_min": 6.0,
+      "ph_max": 7.0,
+      "ph_optimal": 6.5,
+      "temp_min": 28.1,
+      "temp_max": 37.5,
+      "temp_optimal": 32.8,
+      "humidity_min": 35.4,
+      "humidity_max": 49.9,
+      "rainfall_min": 59.1,
+      "rainfall_max": 221.8,
+      "rainfall_optimal": 116.6,
+      "suitable_soils": [
+        "Red",
+        "Black",
+        "Sandy",
+        "Loamy"
+      ],
+      "suitable_seasons": [
+        "Zaid"
+      ],
+      "prominent_districts": [
+        "Ballari",
+        "Vijayapura",
+        "Bagalkote",
+        "Raichur",
+        "Mysuru"
+      ],
+      "name": "Muskmelon",
+      "total_duration_days": 110,
+      "water_requirement_mm": 500,
+      "stages": [
+        {
+          "name": "Seedling",
+          "days": 20,
+          "soil_moisture_target": 65,
+          "n_demand": "LOW",
+          "irrigation_freq_days": 3
+        },
+        {
+          "name": "Vegetative",
+          "days": 35,
+          "soil_moisture_target": 70,
+          "n_demand": "HIGH",
+          "irrigation_freq_days": 4
+        },
+        {
+          "name": "Flowering",
+          "days": 30,
+          "soil_moisture_target": 75,
+          "n_demand": "MEDIUM",
+          "irrigation_freq_days": 3
+        },
+        {
+          "name": "Maturity",
+          "days": 25,
+          "soil_moisture_target": 45,
+          "n_demand": "LOW",
+          "irrigation_freq_days": 6
+        }
+      ],
+      "critical_temp_min_c": 28.1,
+      "critical_temp_max_c": 37.5,
+      "optimal_soil_ph": [
+        6.0,
+        7.0
+      ]
+    },
+    "onion": {
+      "crop_name": "Onion",
+      "n": {
+        "min": 61.0,
+        "max": 94.1,
+        "optimal": 73.7
+      },
+      "p": {
+        "min": 40.6,
+        "max": 58.5,
+        "optimal": 48.2
+      },
+      "k": {
+        "min": 50.0,
+        "max": 77.5,
+        "optimal": 59.4
+      },
+      "ph_min": 6.1,
+      "ph_max": 7.0,
+      "ph_optimal": 6.5,
+      "temp_min": 18.5,
+      "temp_max": 27.8,
+      "temp_optimal": 24.1,
+      "humidity_min": 43.1,
+      "humidity_max": 65.0,
+      "rainfall_min": 131.9,
+      "rainfall_max": 1388.9,
+      "rainfall_optimal": 373.8,
+      "suitable_soils": [
+        "Red",
+        "Black",
+        "Loamy"
+      ],
+      "suitable_seasons": [
+        "Kharif",
+        "Rabi"
+      ],
+      "prominent_districts": [
+        "Haveri",
+        "Mysuru",
+        "Vijayapura",
+        "Gadag",
+        "Bagalkote"
+      ],
+      "name": "Onion",
+      "total_duration_days": 110,
+      "water_requirement_mm": 500,
+      "stages": [
+        {
+          "name": "Seedling",
+          "days": 20,
+          "soil_moisture_target": 65,
+          "n_demand": "LOW",
+          "irrigation_freq_days": 3
+        },
+        {
+          "name": "Vegetative",
+          "days": 35,
+          "soil_moisture_target": 70,
+          "n_demand": "HIGH",
+          "irrigation_freq_days": 4
+        },
+        {
+          "name": "Flowering",
+          "days": 30,
+          "soil_moisture_target": 75,
+          "n_demand": "MEDIUM",
+          "irrigation_freq_days": 3
+        },
+        {
+          "name": "Maturity",
+          "days": 25,
+          "soil_moisture_target": 45,
+          "n_demand": "LOW",
+          "irrigation_freq_days": 6
+        }
+      ],
+      "critical_temp_min_c": 18.5,
+      "critical_temp_max_c": 27.8,
+      "optimal_soil_ph": [
+        6.1,
+        7.0
+      ]
+    },
+    "papaya": {
+      "crop_name": "Papaya",
+      "n": {
+        "min": 105.5,
+        "max": 194.2,
+        "optimal": 151.5
+      },
+      "p": {
+        "min": 40.3,
+        "max": 58.2,
+        "optimal": 46.6
+      },
+      "k": {
+        "min": 104.0,
+        "max": 194.7,
+        "optimal": 150.8
+      },
+      "ph_min": 6.0,
+      "ph_max": 6.9,
+      "ph_optimal": 6.5,
+      "temp_min": 22.6,
+      "temp_max": 34.0,
+      "temp_optimal": 28.0,
+      "humidity_min": 60.0,
+      "humidity_max": 82.6,
+      "rainfall_min": 70.2,
+      "rainfall_max": 490.9,
+      "rainfall_optimal": 276.2,
+      "suitable_soils": [
+        "Red",
+        "Black",
+        "Loamy",
+        "Sandy"
+      ],
+      "suitable_seasons": [
+        "Kharif",
+        "Rabi",
+        "Zaid"
+      ],
+      "prominent_districts": [
+        "Mandya",
+        "Tumakuru",
+        "Mysuru",
+        "Chitradurga",
+        "Raichur"
+      ],
+      "name": "Papaya",
+      "total_duration_days": 110,
+      "water_requirement_mm": 500,
+      "stages": [
+        {
+          "name": "Seedling",
+          "days": 20,
+          "soil_moisture_target": 65,
+          "n_demand": "LOW",
+          "irrigation_freq_days": 3
+        },
+        {
+          "name": "Vegetative",
+          "days": 35,
+          "soil_moisture_target": 70,
+          "n_demand": "HIGH",
+          "irrigation_freq_days": 4
+        },
+        {
+          "name": "Flowering",
+          "days": 30,
+          "soil_moisture_target": 75,
+          "n_demand": "MEDIUM",
+          "irrigation_freq_days": 3
+        },
+        {
+          "name": "Maturity",
+          "days": 25,
+          "soil_moisture_target": 45,
+          "n_demand": "LOW",
+          "irrigation_freq_days": 6
+        }
+      ],
+      "critical_temp_min_c": 22.6,
+      "critical_temp_max_c": 34.0,
+      "optimal_soil_ph": [
+        6.0,
+        6.9
+      ]
+    },
+    "pepper": {
+      "crop_name": "Pepper",
+      "n": {
+        "min": 63.6,
+        "max": 109.7,
+        "optimal": 81.7
+      },
+      "p": {
+        "min": 31.3,
+        "max": 48.7,
+        "optimal": 39.9
+      },
+      "k": {
+        "min": 80.6,
+        "max": 135.1,
+        "optimal": 101.7
+      },
+      "ph_min": 5.1,
+      "ph_max": 6.5,
+      "ph_optimal": 6.0,
+      "temp_min": 21.0,
+      "temp_max": 29.5,
+      "temp_optimal": 25.5,
+      "humidity_min": 75.0,
+      "humidity_max": 90.6,
+      "rainfall_min": 74.8,
+      "rainfall_max": 3208.6,
+      "rainfall_optimal": 833.3,
+      "suitable_soils": [
+        "Laterite",
+        "Alluvial",
+        "Loamy"
+      ],
+      "suitable_seasons": [
+        "Kharif",
+        "Zaid",
+        "Rabi"
+      ],
+      "prominent_districts": [
+        "Chikkamagaluru",
+        "Uttara Kannada",
+        "Shivamogga",
+        "Udupi",
+        "Kodagu"
+      ],
+      "name": "Pepper",
+      "total_duration_days": 110,
+      "water_requirement_mm": 500,
+      "stages": [
+        {
+          "name": "Seedling",
+          "days": 20,
+          "soil_moisture_target": 65,
+          "n_demand": "LOW",
+          "irrigation_freq_days": 3
+        },
+        {
+          "name": "Vegetative",
+          "days": 35,
+          "soil_moisture_target": 70,
+          "n_demand": "HIGH",
+          "irrigation_freq_days": 4
+        },
+        {
+          "name": "Flowering",
+          "days": 30,
+          "soil_moisture_target": 75,
+          "n_demand": "MEDIUM",
+          "irrigation_freq_days": 3
+        },
+        {
+          "name": "Maturity",
+          "days": 25,
+          "soil_moisture_target": 45,
+          "n_demand": "LOW",
+          "irrigation_freq_days": 6
+        }
+      ],
+      "critical_temp_min_c": 21.0,
+      "critical_temp_max_c": 29.5,
+      "optimal_soil_ph": [
+        5.1,
+        6.5
+      ]
+    },
+    "pigeonpeas": {
+      "crop_name": "Pigeonpeas",
+      "n": {
+        "min": 15.6,
+        "max": 24.5,
+        "optimal": 20.1
+      },
+      "p": {
+        "min": 40.6,
+        "max": 58.0,
+        "optimal": 47.6
+      },
+      "k": {
+        "min": 21.4,
+        "max": 39.9,
+        "optimal": 31.8
+      },
+      "ph_min": 6.1,
+      "ph_max": 7.4,
+      "ph_optimal": 6.7,
+      "temp_min": 21.1,
+      "temp_max": 33.6,
+      "temp_optimal": 27.4,
+      "humidity_min": 36.2,
+      "humidity_max": 67.4,
+      "rainfall_min": 128.1,
+      "rainfall_max": 1327.0,
+      "rainfall_optimal": 364.4,
+      "suitable_soils": [
+        "Black",
+        "Red",
+        "Sandy"
+      ],
+      "suitable_seasons": [
+        "Kharif",
+        "Rabi"
+      ],
+      "prominent_districts": [
+        "Bagalkote",
+        "Ballari",
+        "Vijayapura",
+        "Raichur",
+        "Yadgir"
+      ],
+      "name": "Pigeonpeas",
+      "total_duration_days": 110,
+      "water_requirement_mm": 500,
+      "stages": [
+        {
+          "name": "Seedling",
+          "days": 20,
+          "soil_moisture_target": 65,
+          "n_demand": "LOW",
+          "irrigation_freq_days": 3
+        },
+        {
+          "name": "Vegetative",
+          "days": 35,
+          "soil_moisture_target": 70,
+          "n_demand": "HIGH",
+          "irrigation_freq_days": 4
+        },
+        {
+          "name": "Flowering",
+          "days": 30,
+          "soil_moisture_target": 75,
+          "n_demand": "MEDIUM",
+          "irrigation_freq_days": 3
+        },
+        {
+          "name": "Maturity",
+          "days": 25,
+          "soil_moisture_target": 45,
+          "n_demand": "LOW",
+          "irrigation_freq_days": 6
+        }
+      ],
+      "critical_temp_min_c": 21.1,
+      "critical_temp_max_c": 33.6,
+      "optimal_soil_ph": [
+        6.1,
+        7.4
+      ]
+    },
+    "pomegranate": {
+      "crop_name": "Pomegranate",
+      "n": {
+        "min": 31.6,
+        "max": 58.0,
+        "optimal": 44.6
+      },
+      "p": {
+        "min": 21.9,
+        "max": 48.9,
+        "optimal": 35.5
+      },
+      "k": {
+        "min": 42.5,
+        "max": 77.3,
+        "optimal": 60.2
+      },
+      "ph_min": 5.6,
+      "ph_max": 7.4,
+      "ph_optimal": 6.4,
+      "temp_min": 19.1,
+      "temp_max": 36.9,
+      "temp_optimal": 28.0,
+      "humidity_min": 32.5,
+      "humidity_max": 63.6,
+      "rainfall_min": 217.9,
+      "rainfall_max": 486.4,
+      "rainfall_optimal": 348.7,
+      "suitable_soils": [
+        "Black",
+        "Loamy",
+        "Sandy"
+      ],
+      "suitable_seasons": [
+        "Kharif",
+        "Rabi"
+      ],
+      "prominent_districts": [
+        "Bagalkote",
+        "Vijayapura",
+        "Bidar",
+        "Kalaburagi"
+      ],
+      "name": "Pomegranate",
+      "total_duration_days": 110,
+      "water_requirement_mm": 500,
+      "stages": [
+        {
+          "name": "Seedling",
+          "days": 20,
+          "soil_moisture_target": 65,
+          "n_demand": "LOW",
+          "irrigation_freq_days": 3
+        },
+        {
+          "name": "Vegetative",
+          "days": 35,
+          "soil_moisture_target": 70,
+          "n_demand": "HIGH",
+          "irrigation_freq_days": 4
+        },
+        {
+          "name": "Flowering",
+          "days": 30,
+          "soil_moisture_target": 75,
+          "n_demand": "MEDIUM",
+          "irrigation_freq_days": 3
+        },
+        {
+          "name": "Maturity",
+          "days": 25,
+          "soil_moisture_target": 45,
+          "n_demand": "LOW",
+          "irrigation_freq_days": 6
+        }
+      ],
+      "critical_temp_min_c": 19.1,
+      "critical_temp_max_c": 36.9,
+      "optimal_soil_ph": [
+        5.6,
+        7.4
+      ]
+    },
+    "ragi": {
+      "crop_name": "Ragi",
+      "n": {
+        "min": 40.0,
+        "max": 76.9,
+        "optimal": 53.0
+      },
+      "p": {
+        "min": 20.0,
+        "max": 39.2,
+        "optimal": 29.0
+      },
+      "k": {
+        "min": 21.5,
+        "max": 40.0,
+        "optimal": 33.1
+      },
+      "ph_min": 5.2,
+      "ph_max": 7.4,
+      "ph_optimal": 6.3,
+      "temp_min": 20.8,
+      "temp_max": 31.6,
+      "temp_optimal": 25.6,
+      "humidity_min": 46.5,
+      "humidity_max": 71.5,
+      "rainfall_min": 295.3,
+      "rainfall_max": 1864.9,
+      "rainfall_optimal": 680.4,
+      "suitable_soils": [
+        "Red",
+        "Loamy",
+        "Sandy"
+      ],
+      "suitable_seasons": [
+        "Kharif"
+      ],
+      "prominent_districts": [
+        "Bengaluru Rural",
+        "Chikkamagaluru",
+        "Kolar",
+        "Tumakuru",
+        "Chikkaballapura"
+      ],
+      "name": "Ragi",
+      "total_duration_days": 110,
+      "water_requirement_mm": 500,
+      "stages": [
+        {
+          "name": "Seedling",
+          "days": 20,
+          "soil_moisture_target": 65,
+          "n_demand": "LOW",
+          "irrigation_freq_days": 3
+        },
+        {
+          "name": "Vegetative",
+          "days": 35,
+          "soil_moisture_target": 70,
+          "n_demand": "HIGH",
+          "irrigation_freq_days": 4
+        },
+        {
+          "name": "Flowering",
+          "days": 30,
+          "soil_moisture_target": 75,
+          "n_demand": "MEDIUM",
+          "irrigation_freq_days": 3
+        },
+        {
+          "name": "Maturity",
+          "days": 25,
+          "soil_moisture_target": 45,
+          "n_demand": "LOW",
+          "irrigation_freq_days": 6
+        }
+      ],
+      "critical_temp_min_c": 20.8,
+      "critical_temp_max_c": 31.6,
+      "optimal_soil_ph": [
+        5.2,
+        7.4
+      ]
+    },
+    "rice": {
+      "crop_name": "Rice",
+      "n": {
+        "min": 80.0,
+        "max": 117.9,
+        "optimal": 95.3
+      },
+      "p": {
+        "min": 40.3,
+        "max": 58.4,
+        "optimal": 47.2
+      },
+      "k": {
+        "min": 41.0,
+        "max": 60.0,
+        "optimal": 49.4
+      },
+      "ph_min": 5.6,
+      "ph_max": 6.9,
+      "ph_optimal": 6.2,
+      "temp_min": 22.6,
+      "temp_max": 30.8,
+      "temp_optimal": 26.6,
+      "humidity_min": 80.0,
+      "humidity_max": 93.4,
+      "rainfall_min": 323.2,
+      "rainfall_max": 3394.4,
+      "rainfall_optimal": 1388.9,
+      "suitable_soils": [
+        "Laterite",
+        "Red",
+        "Loamy",
+        "Alluvial"
+      ],
+      "suitable_seasons": [
+        "Kharif"
+      ],
+      "prominent_districts": [
+        "Belagavi",
+        "Shivamogga",
+        "Kodagu",
+        "Udupi",
+        "Raichur"
+      ],
+      "name": "Rice",
+      "scientific_name": "Oryza sativa",
+      "total_duration_days": 130,
+      "water_requirement_mm": 1200,
+      "stages": [
+        {
+          "name": "Nursery",
+          "days": 25,
+          "soil_moisture_target": 85,
+          "n_demand": "MEDIUM",
+          "irrigation_freq_days": 1
+        },
+        {
+          "name": "Transplanting",
+          "days": 10,
+          "soil_moisture_target": 90,
+          "n_demand": "HIGH",
+          "irrigation_freq_days": 1
+        },
+        {
+          "name": "Vegetative",
+          "days": 35,
+          "soil_moisture_target": 85,
+          "n_demand": "HIGH",
+          "irrigation_freq_days": 2
+        },
+        {
+          "name": "Reproductive",
+          "days": 30,
+          "soil_moisture_target": 90,
+          "n_demand": "MEDIUM",
+          "irrigation_freq_days": 1
+        },
+        {
+          "name": "Ripening",
+          "days": 30,
+          "soil_moisture_target": 60,
+          "n_demand": "LOW",
+          "irrigation_freq_days": 4
+        }
+      ],
+      "critical_temp_min_c": 15,
+      "critical_temp_max_c": 40,
+      "optimal_soil_ph": [
+        5.5,
+        7.0
+      ]
+    },
+    "sapota": {
+      "crop_name": "Sapota",
+      "n": {
+        "min": 40.0,
+        "max": 76.4,
+        "optimal": 51.8
+      },
+      "p": {
+        "min": 20.6,
+        "max": 39.3,
+        "optimal": 29.8
+      },
+      "k": {
+        "min": 41.0,
+        "max": 76.2,
+        "optimal": 53.2
+      },
+      "ph_min": 6.0,
+      "ph_max": 7.5,
+      "ph_optimal": 6.6,
+      "temp_min": 22.8,
+      "temp_max": 36.3,
+      "temp_optimal": 28.5,
+      "humidity_min": 60.0,
+      "humidity_max": 81.4,
+      "rainfall_min": 72.5,
+      "rainfall_max": 1300.3,
+      "rainfall_optimal": 299.0,
+      "suitable_soils": [
+        "Red",
+        "Loamy",
+        "Sandy",
+        "Black"
+      ],
+      "suitable_seasons": [
+        "Zaid",
+        "Rabi",
+        "Kharif"
+      ],
+      "prominent_districts": [
+        "Chitradurga",
+        "Tumakuru",
+        "Bagalkote",
+        "Ramanagara",
+        "Mysuru"
+      ],
+      "name": "Sapota",
+      "total_duration_days": 110,
+      "water_requirement_mm": 500,
+      "stages": [
+        {
+          "name": "Seedling",
+          "days": 20,
+          "soil_moisture_target": 65,
+          "n_demand": "LOW",
+          "irrigation_freq_days": 3
+        },
+        {
+          "name": "Vegetative",
+          "days": 35,
+          "soil_moisture_target": 70,
+          "n_demand": "HIGH",
+          "irrigation_freq_days": 4
+        },
+        {
+          "name": "Flowering",
+          "days": 30,
+          "soil_moisture_target": 75,
+          "n_demand": "MEDIUM",
+          "irrigation_freq_days": 3
+        },
+        {
+          "name": "Maturity",
+          "days": 25,
+          "soil_moisture_target": 45,
+          "n_demand": "LOW",
+          "irrigation_freq_days": 6
+        }
+      ],
+      "critical_temp_min_c": 22.8,
+      "critical_temp_max_c": 36.3,
+      "optimal_soil_ph": [
+        6.0,
+        7.5
+      ]
+    },
+    "sesame": {
+      "crop_name": "Sesame",
+      "n": {
+        "min": 30.9,
+        "max": 60.0,
+        "optimal": 47.4
+      },
+      "p": {
+        "min": 20.8,
+        "max": 39.4,
+        "optimal": 30.9
+      },
+      "k": {
+        "min": 22.1,
+        "max": 40.0,
+        "optimal": 31.9
+      },
+      "ph_min": 5.6,
+      "ph_max": 7.4,
+      "ph_optimal": 6.6,
+      "temp_min": 25.1,
+      "temp_max": 29.8,
+      "temp_optimal": 27.0,
+      "humidity_min": 32.8,
+      "humidity_max": 57.8,
+      "rainfall_min": 121.8,
+      "rainfall_max": 244.4,
+      "rainfall_optimal": 169.4,
+      "suitable_soils": [
+        "Black",
+        "Red",
+        "Sandy"
+      ],
+      "suitable_seasons": [
+        "Rabi"
+      ],
+      "prominent_districts": [
+        "Kalaburagi",
+        "Raichur",
+        "Yadgir",
+        "Vijayapura",
+        "Chitradurga"
+      ],
+      "name": "Sesame",
+      "total_duration_days": 110,
+      "water_requirement_mm": 500,
+      "stages": [
+        {
+          "name": "Seedling",
+          "days": 20,
+          "soil_moisture_target": 65,
+          "n_demand": "LOW",
+          "irrigation_freq_days": 3
+        },
+        {
+          "name": "Vegetative",
+          "days": 35,
+          "soil_moisture_target": 70,
+          "n_demand": "HIGH",
+          "irrigation_freq_days": 4
+        },
+        {
+          "name": "Flowering",
+          "days": 30,
+          "soil_moisture_target": 75,
+          "n_demand": "MEDIUM",
+          "irrigation_freq_days": 3
+        },
+        {
+          "name": "Maturity",
+          "days": 25,
+          "soil_moisture_target": 45,
+          "n_demand": "LOW",
+          "irrigation_freq_days": 6
+        }
+      ],
+      "critical_temp_min_c": 25.1,
+      "critical_temp_max_c": 29.8,
+      "optimal_soil_ph": [
+        5.6,
+        7.4
+      ]
+    },
+    "sugarcane": {
+      "crop_name": "Sugarcane",
+      "n": {
+        "min": 204.0,
+        "max": 276.5,
+        "optimal": 239.6
+      },
+      "p": {
+        "min": 62.0,
+        "max": 97.9,
+        "optimal": 79.9
+      },
+      "k": {
+        "min": 103.2,
+        "max": 157.8,
+        "optimal": 131.4
+      },
+      "ph_min": 6.0,
+      "ph_max": 7.6,
+      "ph_optimal": 6.7,
+      "temp_min": 24.4,
+      "temp_max": 33.7,
+      "temp_optimal": 28.2,
+      "humidity_min": 60.0,
+      "humidity_max": 80.9,
+      "rainfall_min": 126.2,
+      "rainfall_max": 1850.8,
+      "rainfall_optimal": 412.7,
+      "suitable_soils": [
+        "Red",
+        "Loamy",
+        "Black",
+        "Alluvial"
+      ],
+      "suitable_seasons": [
+        "Kharif",
+        "Rabi"
+      ],
+      "prominent_districts": [
+        "Belagavi",
+        "Raichur",
+        "Davanagere",
+        "Shivamogga",
+        "Bagalkote"
+      ],
+      "name": "Sugarcane",
+      "scientific_name": "Saccharum officinarum",
+      "total_duration_days": 360,
+      "water_requirement_mm": 1800,
+      "stages": [
+        {
+          "name": "Germination",
+          "days": 30,
+          "soil_moisture_target": 75,
+          "n_demand": "LOW",
+          "irrigation_freq_days": 3
+        },
+        {
+          "name": "Tillering",
+          "days": 60,
+          "soil_moisture_target": 70,
+          "n_demand": "HIGH",
+          "irrigation_freq_days": 5
+        },
+        {
+          "name": "Grand Growth",
+          "days": 150,
+          "soil_moisture_target": 65,
+          "n_demand": "HIGH",
+          "irrigation_freq_days": 7
+        },
+        {
+          "name": "Maturity",
+          "days": 120,
+          "soil_moisture_target": 45,
+          "n_demand": "LOW",
+          "irrigation_freq_days": 14
+        }
+      ],
+      "critical_temp_min_c": 20,
+      "critical_temp_max_c": 45,
+      "optimal_soil_ph": [
+        6.0,
+        7.5
+      ]
+    },
+    "sunflower": {
+      "crop_name": "Sunflower",
+      "n": {
+        "min": 60.0,
+        "max": 87.2,
+        "optimal": 71.1
+      },
+      "p": {
+        "min": 40.4,
+        "max": 58.2,
+        "optimal": 47.2
+      },
+      "k": {
+        "min": 40.7,
+        "max": 60.0,
+        "optimal": 52.3
+      },
+      "ph_min": 6.1,
+      "ph_max": 7.4,
+      "ph_optimal": 6.6,
+      "temp_min": 21.1,
+      "temp_max": 30.0,
+      "temp_optimal": 26.1,
+      "humidity_min": 39.6,
+      "humidity_max": 63.9,
+      "rainfall_min": 133.8,
+      "rainfall_max": 583.4,
+      "rainfall_optimal": 348.8,
+      "suitable_soils": [
+        "Red",
+        "Black",
+        "Loamy",
+        "Sandy"
+      ],
+      "suitable_seasons": [
+        "Rabi",
+        "Kharif"
+      ],
+      "prominent_districts": [
+        "Ballari",
+        "Davanagere",
+        "Gadag",
+        "Vijayapura",
+        "Chitradurga"
+      ],
+      "name": "Sunflower",
+      "total_duration_days": 110,
+      "water_requirement_mm": 500,
+      "stages": [
+        {
+          "name": "Seedling",
+          "days": 20,
+          "soil_moisture_target": 65,
+          "n_demand": "LOW",
+          "irrigation_freq_days": 3
+        },
+        {
+          "name": "Vegetative",
+          "days": 35,
+          "soil_moisture_target": 70,
+          "n_demand": "HIGH",
+          "irrigation_freq_days": 4
+        },
+        {
+          "name": "Flowering",
+          "days": 30,
+          "soil_moisture_target": 75,
+          "n_demand": "MEDIUM",
+          "irrigation_freq_days": 3
+        },
+        {
+          "name": "Maturity",
+          "days": 25,
+          "soil_moisture_target": 45,
+          "n_demand": "LOW",
+          "irrigation_freq_days": 6
+        }
+      ],
+      "critical_temp_min_c": 21.1,
+      "critical_temp_max_c": 30.0,
+      "optimal_soil_ph": [
+        6.1,
+        7.4
+      ]
+    },
+    "tobacco": {
+      "crop_name": "Tobacco",
+      "n": {
+        "min": 63.2,
+        "max": 97.6,
+        "optimal": 78.6
+      },
+      "p": {
+        "min": 20.0,
+        "max": 39.2,
+        "optimal": 28.9
+      },
+      "k": {
+        "min": 82.5,
+        "max": 118.5,
+        "optimal": 100.9
+      },
+      "ph_min": 5.6,
+      "ph_max": 6.9,
+      "ph_optimal": 6.3,
+      "temp_min": 20.5,
+      "temp_max": 28.0,
+      "temp_optimal": 23.8,
+      "humidity_min": 50.9,
+      "humidity_max": 73.1,
+      "rainfall_min": 121.8,
+      "rainfall_max": 394.4,
+      "rainfall_optimal": 205.3,
+      "suitable_soils": [
+        "Loamy",
+        "Red",
+        "Laterite",
+        "Alluvial",
+        "Black"
+      ],
+      "suitable_seasons": [
+        "Rabi"
+      ],
+      "prominent_districts": [
+        "Belagavi",
+        "Mysuru",
+        "Davanagere",
+        "Chikkamagaluru",
+        "Mandya"
+      ],
+      "name": "Tobacco",
+      "total_duration_days": 110,
+      "water_requirement_mm": 500,
+      "stages": [
+        {
+          "name": "Seedling",
+          "days": 20,
+          "soil_moisture_target": 65,
+          "n_demand": "LOW",
+          "irrigation_freq_days": 3
+        },
+        {
+          "name": "Vegetative",
+          "days": 35,
+          "soil_moisture_target": 70,
+          "n_demand": "HIGH",
+          "irrigation_freq_days": 4
+        },
+        {
+          "name": "Flowering",
+          "days": 30,
+          "soil_moisture_target": 75,
+          "n_demand": "MEDIUM",
+          "irrigation_freq_days": 3
+        },
+        {
+          "name": "Maturity",
+          "days": 25,
+          "soil_moisture_target": 45,
+          "n_demand": "LOW",
+          "irrigation_freq_days": 6
+        }
+      ],
+      "critical_temp_min_c": 20.5,
+      "critical_temp_max_c": 28.0,
+      "optimal_soil_ph": [
+        5.6,
+        6.9
+      ]
+    },
+    "tomato": {
+      "crop_name": "Tomato",
+      "n": {
+        "min": 81.2,
+        "max": 117.9,
+        "optimal": 99.7
+      },
+      "p": {
+        "min": 40.3,
+        "max": 77.0,
+        "optimal": 53.4
+      },
+      "k": {
+        "min": 62.2,
+        "max": 97.1,
+        "optimal": 77.7
+      },
+      "ph_min": 6.0,
+      "ph_max": 6.9,
+      "ph_optimal": 6.4,
+      "temp_min": 18.7,
+      "temp_max": 26.6,
+      "temp_optimal": 22.8,
+      "humidity_min": 52.8,
+      "humidity_max": 75.0,
+      "rainfall_min": 139.6,
+      "rainfall_max": 480.2,
+      "rainfall_optimal": 305.8,
+      "suitable_soils": [
+        "Red",
+        "Loamy",
+        "Sandy"
+      ],
+      "suitable_seasons": [
+        "Rabi",
+        "Kharif"
+      ],
+      "prominent_districts": [
+        "Bengaluru Rural",
+        "Kolar",
+        "Hassan",
+        "Ramanagara",
+        "Mysuru"
+      ],
+      "name": "Tomato",
+      "scientific_name": "Solanum lycopersicum",
+      "total_duration_days": 90,
+      "water_requirement_mm": 400,
+      "stages": [
+        {
+          "name": "Seedling",
+          "days": 15,
+          "soil_moisture_target": 65,
+          "n_demand": "LOW",
+          "irrigation_freq_days": 2
+        },
+        {
+          "name": "Vegetative",
+          "days": 25,
+          "soil_moisture_target": 70,
+          "n_demand": "HIGH",
+          "irrigation_freq_days": 2
+        },
+        {
+          "name": "Flowering",
+          "days": 20,
+          "soil_moisture_target": 70,
+          "n_demand": "MEDIUM",
+          "irrigation_freq_days": 2
+        },
+        {
+          "name": "Fruiting",
+          "days": 30,
+          "soil_moisture_target": 75,
+          "n_demand": "MEDIUM",
+          "irrigation_freq_days": 3
+        }
+      ],
+      "critical_temp_min_c": 10,
+      "critical_temp_max_c": 38,
+      "optimal_soil_ph": [
+        6.0,
+        7.0
+      ]
+    },
+    "turmeric": {
+      "crop_name": "Turmeric",
+      "n": {
+        "min": 60.0,
+        "max": 97.5,
+        "optimal": 73.2
+      },
+      "p": {
+        "min": 40.7,
+        "max": 58.6,
+        "optimal": 48.4
+      },
+      "k": {
+        "min": 60.0,
+        "max": 95.4,
+        "optimal": 72.4
+      },
+      "ph_min": 5.6,
+      "ph_max": 6.9,
+      "ph_optimal": 6.3,
+      "temp_min": 20.4,
+      "temp_max": 30.1,
+      "temp_optimal": 25.1,
+      "humidity_min": 69.9,
+      "humidity_max": 84.4,
+      "rainfall_min": 300.9,
+      "rainfall_max": 3341.3,
+      "rainfall_optimal": 1302.7,
+      "suitable_soils": [
+        "Laterite",
+        "Loamy",
+        "Red",
+        "Alluvial"
+      ],
+      "suitable_seasons": [
+        "Kharif"
+      ],
+      "prominent_districts": [
+        "Mysuru",
+        "Kodagu",
+        "Shivamogga",
+        "Hassan",
+        "Chikkamagaluru"
+      ],
+      "name": "Turmeric",
+      "total_duration_days": 110,
+      "water_requirement_mm": 500,
+      "stages": [
+        {
+          "name": "Seedling",
+          "days": 20,
+          "soil_moisture_target": 65,
+          "n_demand": "LOW",
+          "irrigation_freq_days": 3
+        },
+        {
+          "name": "Vegetative",
+          "days": 35,
+          "soil_moisture_target": 70,
+          "n_demand": "HIGH",
+          "irrigation_freq_days": 4
+        },
+        {
+          "name": "Flowering",
+          "days": 30,
+          "soil_moisture_target": 75,
+          "n_demand": "MEDIUM",
+          "irrigation_freq_days": 3
+        },
+        {
+          "name": "Maturity",
+          "days": 25,
+          "soil_moisture_target": 45,
+          "n_demand": "LOW",
+          "irrigation_freq_days": 6
+        }
+      ],
+      "critical_temp_min_c": 20.4,
+      "critical_temp_max_c": 30.1,
+      "optimal_soil_ph": [
+        5.6,
+        6.9
+      ]
+    },
+    "watermelon": {
+      "crop_name": "Watermelon",
+      "n": {
+        "min": 61.7,
+        "max": 94.0,
+        "optimal": 73.1
+      },
+      "p": {
+        "min": 40.6,
+        "max": 58.7,
+        "optimal": 48.5
+      },
+      "k": {
+        "min": 60.9,
+        "max": 97.2,
+        "optimal": 74.4
+      },
+      "ph_min": 6.1,
+      "ph_max": 7.0,
+      "ph_optimal": 6.5,
+      "temp_min": 28.1,
+      "temp_max": 37.2,
+      "temp_optimal": 32.4,
+      "humidity_min": 35.6,
+      "humidity_max": 52.5,
+      "rainfall_min": 60.2,
+      "rainfall_max": 204.1,
+      "rainfall_optimal": 117.2,
+      "suitable_soils": [
+        "Red",
+        "Black",
+        "Loamy",
+        "Sandy"
+      ],
+      "suitable_seasons": [
+        "Zaid"
+      ],
+      "prominent_districts": [
+        "Tumakuru",
+        "Vijayapura",
+        "Koppala",
+        "Bagalkote",
+        "Ballari"
+      ],
+      "name": "Watermelon",
+      "total_duration_days": 110,
+      "water_requirement_mm": 500,
+      "stages": [
+        {
+          "name": "Seedling",
+          "days": 20,
+          "soil_moisture_target": 65,
+          "n_demand": "LOW",
+          "irrigation_freq_days": 3
+        },
+        {
+          "name": "Vegetative",
+          "days": 35,
+          "soil_moisture_target": 70,
+          "n_demand": "HIGH",
+          "irrigation_freq_days": 4
+        },
+        {
+          "name": "Flowering",
+          "days": 30,
+          "soil_moisture_target": 75,
+          "n_demand": "MEDIUM",
+          "irrigation_freq_days": 3
+        },
+        {
+          "name": "Maturity",
+          "days": 25,
+          "soil_moisture_target": 45,
+          "n_demand": "LOW",
+          "irrigation_freq_days": 6
+        }
+      ],
+      "critical_temp_min_c": 28.1,
+      "critical_temp_max_c": 37.2,
+      "optimal_soil_ph": [
+        6.1,
+        7.0
+      ]
+    },
+    "wheat": {
+      "name": "Wheat",
+      "scientific_name": "Triticum aestivum",
+      "total_duration_days": 120,
+      "water_requirement_mm": 450,
+      "stages": [
+        {
+          "name": "Germination",
+          "days": 10,
+          "soil_moisture_target": 70,
+          "n_demand": "LOW",
+          "irrigation_freq_days": 2
+        },
+        {
+          "name": "Seedling",
+          "days": 20,
+          "soil_moisture_target": 65,
+          "n_demand": "LOW",
+          "irrigation_freq_days": 3
+        },
+        {
+          "name": "Tillering",
+          "days": 25,
+          "soil_moisture_target": 60,
+          "n_demand": "HIGH",
+          "irrigation_freq_days": 4
+        },
+        {
+          "name": "Jointing",
+          "days": 20,
+          "soil_moisture_target": 65,
+          "n_demand": "HIGH",
+          "irrigation_freq_days": 3
+        },
+        {
+          "name": "Heading",
+          "days": 15,
+          "soil_moisture_target": 70,
+          "n_demand": "MEDIUM",
+          "irrigation_freq_days": 3
+        },
+        {
+          "name": "Grain Filling",
+          "days": 20,
+          "soil_moisture_target": 60,
+          "n_demand": "LOW",
+          "irrigation_freq_days": 5
+        },
+        {
+          "name": "Maturity",
+          "days": 10,
+          "soil_moisture_target": 40,
+          "n_demand": "NONE",
+          "irrigation_freq_days": 0
+        }
+      ],
+      "critical_temp_min_c": 3,
+      "critical_temp_max_c": 35,
+      "optimal_soil_ph": [
+        6.0,
+        7.5
+      ]
+    }
+  }
+}

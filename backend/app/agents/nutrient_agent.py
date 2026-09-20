@@ -16,6 +16,7 @@ Safety Guardrail:
 
 from typing import Dict, Any, List
 from app.agents.base import BaseAgent
+from app.services.dataset_loader import evaluate_ml_failure_risk, get_crop_threshold
 
 
 # Capped maximum safe application rates (kg/ha per application) to ensure safety
@@ -120,6 +121,13 @@ class NutrientAgent(BaseAgent):
             evidence.append(f"Acidic soil (pH {ph}) reduces phosphorus availability via iron/aluminum fixation.")
         elif ph > 7.8:
             evidence.append(f"Alkaline soil (pH {ph}) promotes phosphorus fixation with calcium.")
+
+        # Cross-reference with 543k ML agro-environmental failure models
+        ml_risk = evaluate_ml_failure_risk(nitrogen_ppm=n, soil_ph=ph)
+        if "RULE_ACIDIC_NUTRIENT_LOCKOUT" in ml_risk.get("triggered_rules", []):
+            evidence.append("ML Risk Alert: Soil acidity locks phosphorus uptake (XGBoost failure model).")
+        if "RULE_NITROGEN_DEFICIENCY" in ml_risk.get("triggered_rules", []):
+            evidence.append("ML Risk Alert: Sub-100 ppm Nitrogen identified as key yield limiter (SHAP #4).")
 
         # Severity
         if risk_score >= 80:

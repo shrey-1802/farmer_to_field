@@ -24,11 +24,22 @@ class UserLoginRequest(BaseModel):
     password: str
 
 
-class TokenResponse(BaseModel):
-    access_token: str
-    token_type: str = "bearer"
-    expires_in_minutes: int
-    user: "UserPublic"
+class SendOtpRequest(BaseModel):
+    phone: str = Field(..., description="10-digit Indian phone number (with or without +91)")
+
+
+class VerifyOtpRequest(BaseModel):
+    phone: str = Field(..., description="10-digit Indian phone number")
+    code: str = Field(..., min_length=4, max_length=8, description="6-digit verification code")
+    full_name: Optional[str] = None
+
+
+class OtpResponse(BaseModel):
+    success: bool = True
+    message: str
+    phone: str
+    expires_in_seconds: int = 300
+    demo_code: Optional[str] = None
 
 
 class UserPublic(BaseModel):
@@ -41,6 +52,15 @@ class UserPublic(BaseModel):
     created_at: datetime
 
     model_config = {"from_attributes": True}
+
+
+class TokenResponse(BaseModel):
+    access_token: str
+    token_type: str = "bearer"
+    expires_in_minutes: int
+    user: UserPublic
+    has_farm: bool = False
+    farm_id: Optional[str] = None
 
 
 class UserUpdate(BaseModel):

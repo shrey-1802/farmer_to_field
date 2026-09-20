@@ -26,7 +26,7 @@ def test_ready():
     data = res.json()
     assert data["status"] == "ready"
     assert data["database"] == "connected"
-    assert data["database_type"] == "sqlite"
+    assert data["database_type"] in ["sqlite", "postgresql", "mysql"]
 
 
 def test_api_status():

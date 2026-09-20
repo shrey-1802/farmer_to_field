@@ -1,0 +1,102 @@
+{
+  "_meta": {
+    "source": "Agriculture Intelligence Report (543,210 rows, XGBoost + SHAP Analysis)",
+    "top_features_by_shap_importance": [
+      {
+        "rank": 1,
+        "feature": "soil_moisture_pct",
+        "shap_importance": 0.38,
+        "note": "Below 20% dramatically spikes failure risk (>45%)"
+      },
+      {
+        "rank": 2,
+        "feature": "air_temp_c",
+        "shap_importance": 0.24,
+        "note": "Above 32C causes heat stress compounding with low moisture"
+      },
+      {
+        "rank": 3,
+        "feature": "soil_ph",
+        "shap_importance": 0.16,
+        "note": "pH < 5.5 or > 8.0 causes nutrient lockout"
+      },
+      {
+        "rank": 4,
+        "feature": "nitrogen_ppm",
+        "shap_importance": 0.11,
+        "note": "Primary vegetative growth limiter"
+      },
+      {
+        "rank": 5,
+        "feature": "salinity_ec",
+        "shap_importance": 0.07,
+        "note": "EC > 4.0 dS/m imposes osmotic stress"
+      },
+      {
+        "rank": 6,
+        "feature": "organic_matter_pct",
+        "shap_importance": 0.04,
+        "note": "Buffer against rapid drying"
+      }
+    ],
+    "version": "1.0.0"
+  },
+  "rules": [
+    {
+      "rule_id": "RULE_CRITICAL_DROUGHT",
+      "condition": "soil_moisture_pct < 20.0",
+      "stress_level": "SEVERE",
+      "failure_risk_multiplier": 2.8,
+      "action": "Emergency deep irrigation required immediately. Withhold fertilizer until moisture recovers.",
+      "confidence": 0.95
+    },
+    {
+      "rule_id": "RULE_COMPOUND_HEAT_DROUGHT",
+      "condition": "air_temp_c >= 32.0 and soil_moisture_pct < 25.0",
+      "stress_level": "SEVERE",
+      "failure_risk_multiplier": 3.5,
+      "action": "Immediate misting/drip irrigation; schedule evening watering to reduce evapotranspiration.",
+      "confidence": 0.98
+    },
+    {
+      "rule_id": "RULE_WATERLOGGING",
+      "condition": "soil_moisture_pct > 88.0",
+      "stress_level": "MODERATE",
+      "failure_risk_multiplier": 1.6,
+      "action": "Halt irrigation. Ensure field drainage channels are clear to prevent root rot and anaerobic conditions.",
+      "confidence": 0.9
+    },
+    {
+      "rule_id": "RULE_ACIDIC_NUTRIENT_LOCKOUT",
+      "condition": "soil_ph < 5.5",
+      "stress_level": "MODERATE",
+      "failure_risk_multiplier": 1.5,
+      "action": "Apply agricultural lime (calcium carbonate) or dolomite to raise pH. Soil acidity blocks phosphorus uptake.",
+      "confidence": 0.92
+    },
+    {
+      "rule_id": "RULE_ALKALINE_SALINITY_STRESS",
+      "condition": "soil_ph > 8.0 or salinity_ec > 3.0",
+      "stress_level": "MODERATE",
+      "failure_risk_multiplier": 1.7,
+      "action": "Apply gypsum (calcium sulfate) and flush with clean water to leach salts.",
+      "confidence": 0.89
+    },
+    {
+      "rule_id": "RULE_NITROGEN_DEFICIENCY",
+      "condition": "nitrogen_ppm < 100.0",
+      "stress_level": "MODERATE",
+      "failure_risk_multiplier": 1.4,
+      "action": "Side-dress with urea or ammonium sulfate; split application recommended.",
+      "confidence": 0.91
+    },
+    {
+      "rule_id": "RULE_DISEASE_FAVORABLE_WINDOW",
+      "condition": "humidity_pct > 80.0 and air_temp_c >= 20.0 and air_temp_c <= 30.0",
+      "stress_level": "MODERATE",
+      "failure_risk_multiplier": 1.8,
+      "action": "High humidity and warm temperatures create prime conditions for fungal outbreaks. Apply preventive fungicide.",
+      "confidence": 0.93
+    }
+  ]
+}

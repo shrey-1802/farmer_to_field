@@ -1,0 +1,267 @@
+{
+  "by_soil_and_season": {
+    "Laterite": {
+      "Zaid": [
+        "arecanut",
+        "cashew"
+      ],
+      "Rabi": [
+        "cardamom",
+        "coconut",
+        "coffee",
+        "tobacco"
+      ],
+      "Kharif": [
+        "ginger",
+        "kidneybeans",
+        "pepper",
+        "rice",
+        "turmeric"
+      ]
+    },
+    "Alluvial": {
+      "Zaid": [
+        "arecanut",
+        "cashew"
+      ],
+      "Rabi": [
+        "coconut",
+        "coffee",
+        "tobacco"
+      ],
+      "Kharif": [
+        "ginger",
+        "kidneybeans",
+        "pepper",
+        "rice",
+        "sugarcane",
+        "turmeric"
+      ]
+    },
+    "Loamy": {
+      "Zaid": [
+        "arecanut",
+        "cashew",
+        "mango",
+        "muskmelon",
+        "sapota",
+        "watermelon"
+      ],
+      "Rabi": [
+        "banana",
+        "cardamom",
+        "coconut",
+        "coffee",
+        "grapes",
+        "guava",
+        "horsegram",
+        "jowar",
+        "maize",
+        "sunflower",
+        "tobacco",
+        "tomato"
+      ],
+      "Kharif": [
+        "blackgram",
+        "chilli",
+        "cotton",
+        "ginger",
+        "kidneybeans",
+        "mulberry",
+        "onion",
+        "papaya",
+        "pepper",
+        "pomegranate",
+        "ragi",
+        "rice",
+        "sugarcane",
+        "turmeric"
+      ]
+    },
+    "Red": {
+      "Zaid": [
+        "arecanut",
+        "mango",
+        "muskmelon",
+        "sapota",
+        "watermelon"
+      ],
+      "Kharif": [
+        "bajra",
+        "blackgram",
+        "chilli",
+        "cotton",
+        "ginger",
+        "groundnut",
+        "kidneybeans",
+        "mothbeans",
+        "mulberry",
+        "mungbean",
+        "onion",
+        "papaya",
+        "pigeonpeas",
+        "ragi",
+        "rice",
+        "sugarcane",
+        "turmeric"
+      ],
+      "Rabi": [
+        "banana",
+        "cardamom",
+        "chickpea",
+        "coconut",
+        "coffee",
+        "guava",
+        "horsegram",
+        "jowar",
+        "maize",
+        "sesame",
+        "sunflower",
+        "tobacco",
+        "tomato"
+      ]
+    },
+    "Black": {
+      "Kharif": [
+        "bajra",
+        "blackgram",
+        "chilli",
+        "cotton",
+        "groundnut",
+        "kidneybeans",
+        "mothbeans",
+        "mungbean",
+        "onion",
+        "papaya",
+        "pigeonpeas",
+        "pomegranate",
+        "sugarcane"
+      ],
+      "Rabi": [
+        "banana",
+        "chickpea",
+        "grapes",
+        "guava",
+        "jowar",
+        "maize",
+        "sesame",
+        "sunflower",
+        "tobacco"
+      ],
+      "Zaid": [
+        "mango",
+        "muskmelon",
+        "sapota",
+        "watermelon"
+      ]
+    },
+    "Sandy": {
+      "Kharif": [
+        "bajra",
+        "blackgram",
+        "groundnut",
+        "mothbeans",
+        "mulberry",
+        "mungbean",
+        "papaya",
+        "pigeonpeas",
+        "pomegranate",
+        "ragi"
+      ],
+      "Rabi": [
+        "banana",
+        "guava",
+        "horsegram",
+        "sesame",
+        "sunflower",
+        "tomato"
+      ],
+      "Zaid": [
+        "mango",
+        "muskmelon",
+        "sapota",
+        "watermelon"
+      ]
+    }
+  },
+  "by_season": {
+    "Zaid": [
+      "arecanut",
+      "banana",
+      "cardamom",
+      "cashew",
+      "coconut",
+      "coffee",
+      "guava",
+      "mango",
+      "muskmelon",
+      "papaya",
+      "pepper",
+      "sapota",
+      "watermelon"
+    ],
+    "Rabi": [
+      "arecanut",
+      "banana",
+      "cardamom",
+      "cashew",
+      "chickpea",
+      "chilli",
+      "coconut",
+      "coffee",
+      "grapes",
+      "groundnut",
+      "guava",
+      "horsegram",
+      "jowar",
+      "maize",
+      "mango",
+      "mulberry",
+      "onion",
+      "papaya",
+      "pepper",
+      "pigeonpeas",
+      "pomegranate",
+      "sapota",
+      "sesame",
+      "sugarcane",
+      "sunflower",
+      "tobacco",
+      "tomato"
+    ],
+    "Kharif": [
+      "arecanut",
+      "bajra",
+      "banana",
+      "blackgram",
+      "cardamom",
+      "cashew",
+      "chilli",
+      "coconut",
+      "coffee",
+      "cotton",
+      "ginger",
+      "groundnut",
+      "guava",
+      "jowar",
+      "kidneybeans",
+      "maize",
+      "mango",
+      "mothbeans",
+      "mulberry",
+      "mungbean",
+      "onion",
+      "papaya",
+      "pepper",
+      "pigeonpeas",
+      "pomegranate",
+      "ragi",
+      "rice",
+      "sapota",
+      "sugarcane",
+      "sunflower",
+      "tomato",
+      "turmeric"
+    ]
+  }
+}

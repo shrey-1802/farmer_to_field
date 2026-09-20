@@ -1,0 +1,715 @@
+{
+  "_meta": {
+    "description": "Crop-soil-climate suitability parameters for 22 crops from 99% accuracy Random Forest/XGBoost dataset",
+    "source_notebook": "crop-prediction-99-accuracy (1).ipynb",
+    "total_crops": 22,
+    "model_accuracy": 0.993,
+    "version": "1.0.0"
+  },
+  "crops": {
+    "rice": {
+      "N": [
+        60,
+        100
+      ],
+      "P": [
+        35,
+        60
+      ],
+      "K": [
+        35,
+        45
+      ],
+      "temperature": [
+        20,
+        27
+      ],
+      "humidity": [
+        80,
+        85
+      ],
+      "ph": [
+        5.5,
+        7.0
+      ],
+      "rainfall": [
+        180,
+        300
+      ],
+      "avg_yield_quintal_acre": 22,
+      "market_price_inr_quintal": 2200
+    },
+    "maize": {
+      "N": [
+        60,
+        100
+      ],
+      "P": [
+        35,
+        60
+      ],
+      "K": [
+        15,
+        25
+      ],
+      "temperature": [
+        18,
+        27
+      ],
+      "humidity": [
+        55,
+        75
+      ],
+      "ph": [
+        5.5,
+        7.0
+      ],
+      "rainfall": [
+        60,
+        110
+      ],
+      "avg_yield_quintal_acre": 28,
+      "market_price_inr_quintal": 2050
+    },
+    "chickpea": {
+      "N": [
+        20,
+        60
+      ],
+      "P": [
+        55,
+        80
+      ],
+      "K": [
+        75,
+        85
+      ],
+      "temperature": [
+        17,
+        22
+      ],
+      "humidity": [
+        14,
+        20
+      ],
+      "ph": [
+        6.0,
+        8.5
+      ],
+      "rainfall": [
+        65,
+        95
+      ],
+      "avg_yield_quintal_acre": 12,
+      "market_price_inr_quintal": 5300
+    },
+    "kidneybeans": {
+      "N": [
+        10,
+        40
+      ],
+      "P": [
+        55,
+        80
+      ],
+      "K": [
+        15,
+        25
+      ],
+      "temperature": [
+        15,
+        25
+      ],
+      "humidity": [
+        18,
+        25
+      ],
+      "ph": [
+        5.5,
+        6.0
+      ],
+      "rainfall": [
+        60,
+        150
+      ],
+      "avg_yield_quintal_acre": 10,
+      "market_price_inr_quintal": 7500
+    },
+    "pigeonpeas": {
+      "N": [
+        10,
+        40
+      ],
+      "P": [
+        55,
+        80
+      ],
+      "K": [
+        15,
+        25
+      ],
+      "temperature": [
+        24,
+        38
+      ],
+      "humidity": [
+        30,
+        68
+      ],
+      "ph": [
+        5.0,
+        7.5
+      ],
+      "rainfall": [
+        90,
+        200
+      ],
+      "avg_yield_quintal_acre": 9,
+      "market_price_inr_quintal": 7000
+    },
+    "mothbeans": {
+      "N": [
+        10,
+        40
+      ],
+      "P": [
+        35,
+        60
+      ],
+      "K": [
+        15,
+        25
+      ],
+      "temperature": [
+        24,
+        32
+      ],
+      "humidity": [
+        40,
+        65
+      ],
+      "ph": [
+        4.5,
+        9.5
+      ],
+      "rainfall": [
+        30,
+        75
+      ],
+      "avg_yield_quintal_acre": 7,
+      "market_price_inr_quintal": 6200
+    },
+    "mungbean": {
+      "N": [
+        10,
+        40
+      ],
+      "P": [
+        35,
+        60
+      ],
+      "K": [
+        15,
+        25
+      ],
+      "temperature": [
+        27,
+        30
+      ],
+      "humidity": [
+        80,
+        90
+      ],
+      "ph": [
+        6.2,
+        7.2
+      ],
+      "rainfall": [
+        35,
+        60
+      ],
+      "avg_yield_quintal_acre": 8,
+      "market_price_inr_quintal": 7700
+    },
+    "blackgram": {
+      "N": [
+        20,
+        60
+      ],
+      "P": [
+        55,
+        80
+      ],
+      "K": [
+        15,
+        25
+      ],
+      "temperature": [
+        25,
+        35
+      ],
+      "humidity": [
+        60,
+        70
+      ],
+      "ph": [
+        6.5,
+        7.8
+      ],
+      "rainfall": [
+        60,
+        75
+      ],
+      "avg_yield_quintal_acre": 8,
+      "market_price_inr_quintal": 6600
+    },
+    "lentil": {
+      "N": [
+        10,
+        40
+      ],
+      "P": [
+        55,
+        80
+      ],
+      "K": [
+        15,
+        25
+      ],
+      "temperature": [
+        18,
+        30
+      ],
+      "humidity": [
+        60,
+        70
+      ],
+      "ph": [
+        5.9,
+        7.8
+      ],
+      "rainfall": [
+        35,
+        55
+      ],
+      "avg_yield_quintal_acre": 10,
+      "market_price_inr_quintal": 6000
+    },
+    "pomegranate": {
+      "N": [
+        10,
+        40
+      ],
+      "P": [
+        10,
+        30
+      ],
+      "K": [
+        35,
+        45
+      ],
+      "temperature": [
+        18,
+        25
+      ],
+      "humidity": [
+        85,
+        95
+      ],
+      "ph": [
+        5.5,
+        7.2
+      ],
+      "rainfall": [
+        100,
+        115
+      ],
+      "avg_yield_quintal_acre": 40,
+      "market_price_inr_quintal": 8500
+    },
+    "banana": {
+      "N": [
+        80,
+        120
+      ],
+      "P": [
+        70,
+        95
+      ],
+      "K": [
+        45,
+        55
+      ],
+      "temperature": [
+        25,
+        30
+      ],
+      "humidity": [
+        75,
+        85
+      ],
+      "ph": [
+        5.5,
+        6.5
+      ],
+      "rainfall": [
+        90,
+        120
+      ],
+      "avg_yield_quintal_acre": 150,
+      "market_price_inr_quintal": 2000
+    },
+    "mango": {
+      "N": [
+        10,
+        40
+      ],
+      "P": [
+        15,
+        35
+      ],
+      "K": [
+        25,
+        35
+      ],
+      "temperature": [
+        27,
+        36
+      ],
+      "humidity": [
+        45,
+        55
+      ],
+      "ph": [
+        4.5,
+        7.0
+      ],
+      "rainfall": [
+        90,
+        100
+      ],
+      "avg_yield_quintal_acre": 45,
+      "market_price_inr_quintal": 4500
+    },
+    "grapes": {
+      "N": [
+        10,
+        40
+      ],
+      "P": [
+        120,
+        145
+      ],
+      "K": [
+        195,
+        205
+      ],
+      "temperature": [
+        10,
+        40
+      ],
+      "humidity": [
+        80,
+        85
+      ],
+      "ph": [
+        5.5,
+        6.5
+      ],
+      "rainfall": [
+        65,
+        75
+      ],
+      "avg_yield_quintal_acre": 90,
+      "market_price_inr_quintal": 5500
+    },
+    "watermelon": {
+      "N": [
+        80,
+        120
+      ],
+      "P": [
+        10,
+        30
+      ],
+      "K": [
+        45,
+        55
+      ],
+      "temperature": [
+        24,
+        27
+      ],
+      "humidity": [
+        80,
+        90
+      ],
+      "ph": [
+        6.0,
+        7.0
+      ],
+      "rainfall": [
+        40,
+        60
+      ],
+      "avg_yield_quintal_acre": 120,
+      "market_price_inr_quintal": 1200
+    },
+    "muskmelon": {
+      "N": [
+        80,
+        120
+      ],
+      "P": [
+        10,
+        30
+      ],
+      "K": [
+        45,
+        55
+      ],
+      "temperature": [
+        27,
+        30
+      ],
+      "humidity": [
+        90,
+        95
+      ],
+      "ph": [
+        6.0,
+        6.8
+      ],
+      "rainfall": [
+        20,
+        30
+      ],
+      "avg_yield_quintal_acre": 90,
+      "market_price_inr_quintal": 1800
+    },
+    "apple": {
+      "N": [
+        10,
+        40
+      ],
+      "P": [
+        120,
+        145
+      ],
+      "K": [
+        195,
+        205
+      ],
+      "temperature": [
+        21,
+        24
+      ],
+      "humidity": [
+        90,
+        95
+      ],
+      "ph": [
+        5.5,
+        6.5
+      ],
+      "rainfall": [
+        110,
+        125
+      ],
+      "avg_yield_quintal_acre": 70,
+      "market_price_inr_quintal": 9000
+    },
+    "orange": {
+      "N": [
+        10,
+        40
+      ],
+      "P": [
+        10,
+        30
+      ],
+      "K": [
+        5,
+        15
+      ],
+      "temperature": [
+        10,
+        35
+      ],
+      "humidity": [
+        90,
+        95
+      ],
+      "ph": [
+        6.0,
+        8.0
+      ],
+      "rainfall": [
+        100,
+        120
+      ],
+      "avg_yield_quintal_acre": 50,
+      "market_price_inr_quintal": 4000
+    },
+    "papaya": {
+      "N": [
+        30,
+        70
+      ],
+      "P": [
+        45,
+        70
+      ],
+      "K": [
+        45,
+        55
+      ],
+      "temperature": [
+        23,
+        44
+      ],
+      "humidity": [
+        90,
+        95
+      ],
+      "ph": [
+        6.5,
+        7.0
+      ],
+      "rainfall": [
+        140,
+        250
+      ],
+      "avg_yield_quintal_acre": 180,
+      "market_price_inr_quintal": 2200
+    },
+    "coconut": {
+      "N": [
+        10,
+        40
+      ],
+      "P": [
+        10,
+        30
+      ],
+      "K": [
+        25,
+        35
+      ],
+      "temperature": [
+        25,
+        30
+      ],
+      "humidity": [
+        95,
+        100
+      ],
+      "ph": [
+        5.5,
+        6.5
+      ],
+      "rainfall": [
+        130,
+        230
+      ],
+      "avg_yield_quintal_acre": 60,
+      "market_price_inr_quintal": 3500
+    },
+    "cotton": {
+      "N": [
+        100,
+        140
+      ],
+      "P": [
+        35,
+        60
+      ],
+      "K": [
+        15,
+        25
+      ],
+      "temperature": [
+        22,
+        26
+      ],
+      "humidity": [
+        75,
+        85
+      ],
+      "ph": [
+        6.0,
+        8.0
+      ],
+      "rainfall": [
+        60,
+        100
+      ],
+      "avg_yield_quintal_acre": 14,
+      "market_price_inr_quintal": 7200
+    },
+    "jute": {
+      "N": [
+        60,
+        100
+      ],
+      "P": [
+        35,
+        60
+      ],
+      "K": [
+        35,
+        45
+      ],
+      "temperature": [
+        23,
+        26
+      ],
+      "humidity": [
+        70,
+        90
+      ],
+      "ph": [
+        6.0,
+        7.5
+      ],
+      "rainfall": [
+        150,
+        200
+      ],
+      "avg_yield_quintal_acre": 15,
+      "market_price_inr_quintal": 4800
+    },
+    "coffee": {
+      "N": [
+        80,
+        120
+      ],
+      "P": [
+        15,
+        35
+      ],
+      "K": [
+        25,
+        35
+      ],
+      "temperature": [
+        23,
+        28
+      ],
+      "humidity": [
+        50,
+        70
+      ],
+      "ph": [
+        6.0,
+        7.5
+      ],
+      "rainfall": [
+        115,
+        200
+      ],
+      "avg_yield_quintal_acre": 8,
+      "market_price_inr_quintal": 18000
+    }
+  }
+}

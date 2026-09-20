@@ -14,6 +14,7 @@ Outputs:
 from typing import Dict, Any, List
 from app.agents.base import BaseAgent
 from app.services.crop_service import calculate_irrigation_need
+from app.services.dataset_loader import evaluate_ml_failure_risk
 
 
 class IrrigationAgent(BaseAgent):
@@ -121,6 +122,21 @@ class IrrigationAgent(BaseAgent):
             elif moisture > (target_moisture + 15):
                 risk_score = 70.0
                 risk_type = "WATERLOGGING"
+
+            # Cross-reference with 543k ML agro-environmental failure models
+            ml_risk = evaluate_ml_failure_risk(
+                soil_moisture_pct=moisture,
+                air_temp_c=current_w.get("temperature_c"),
+                humidity_pct=current_w.get("relative_humidity_pct"),
+            )
+            if "RULE_COMPOUND_HEAT_DROUGHT" in ml_risk.get("triggered_rules", []):
+                risk_score = max(risk_score, ml_risk["risk_score"])
+                risk_type = "WATER_STRESS"
+                evidence.append("ML Risk Alert: Compound heat-drought condition active (SHAP #1 + #2 interaction).")
+            elif "RULE_CRITICAL_DROUGHT" in ml_risk.get("triggered_rules", []):
+                risk_score = max(risk_score, ml_risk["risk_score"])
+                risk_type = "WATER_STRESS"
+                evidence.append("ML Risk Alert: Critical soil moisture depletion (<20%).")
 
         # Categorize severity
         if risk_score >= 80:

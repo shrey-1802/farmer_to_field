@@ -37,8 +37,11 @@ def create_farm(
         latitude=payload.latitude,
         longitude=payload.longitude,
         area=payload.area,
-        soil_type=payload.soil_type,
-        irrigation_type=payload.irrigation_type,
+        pincode=payload.pincode,
+        district=payload.district,
+        state=payload.state,
+        soil_type=payload.soil_type or "Loamy",
+        irrigation_type=payload.irrigation_type or "Drip & Sprinkler",
         boundary=payload.boundary,
         status="ACTIVE",
     )

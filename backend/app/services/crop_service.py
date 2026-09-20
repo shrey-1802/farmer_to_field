@@ -9,12 +9,14 @@ Provides:
 """
 
 from typing import Optional
+from app.services.dataset_loader import load_crop_thresholds
 
 
-# ── Crop Registry ─────────────────────────────────────────────────────────────
-# Each crop defines growth stages with: duration_days, soil_moisture_target,
-# NPK_demand, critical_temp_range, irrigation_intensity
-CROP_REGISTRY = {
+# ── Dynamic Crop Registry (Loaded from backend/data/crop_thresholds.json) ─────
+_DATASET_CROPS = load_crop_thresholds().get("crops", {})
+
+# Fallback default registry in case dataset is unavailable
+_FALLBACK_CROP_REGISTRY = {
     "wheat": {
         "name": "Wheat",
         "scientific_name": "Triticum aestivum",
@@ -115,6 +117,53 @@ CROP_REGISTRY = {
     },
 }
 
+def _normalize_crop(crop_dict: dict, crop_id: str = "") -> dict:
+    c = dict(crop_dict)
+    name = c.get("name") or c.get("crop_name") or crop_id.capitalize()
+    c["name"] = name
+    c["scientific_name"] = c.get("scientific_name") or f"{name} spp."
+    c["total_duration_days"] = c.get("total_duration_days", 110)
+    c["water_requirement_mm"] = c.get("water_requirement_mm", 500)
+    if "stages" not in c or not c["stages"]:
+        c["stages"] = [
+            {"name": "Seedling", "days": 20, "soil_moisture_target": 65, "n_demand": "LOW", "irrigation_freq_days": 3},
+            {"name": "Vegetative", "days": 35, "soil_moisture_target": 70, "n_demand": "HIGH", "irrigation_freq_days": 4},
+            {"name": "Flowering", "days": 30, "soil_moisture_target": 75, "n_demand": "MEDIUM", "irrigation_freq_days": 3},
+            {"name": "Maturity", "days": 25, "soil_moisture_target": 45, "n_demand": "LOW", "irrigation_freq_days": 6}
+        ]
+    if "optimal_soil_ph" not in c:
+        if "optimal_soil_ph_min" in c and "optimal_soil_ph_max" in c:
+            c["optimal_soil_ph"] = (c["optimal_soil_ph_min"], c["optimal_soil_ph_max"])
+        elif "ph_min" in c and "ph_max" in c:
+            c["optimal_soil_ph"] = (c["ph_min"], c["ph_max"])
+        else:
+            c["optimal_soil_ph"] = (6.0, 7.5)
+    elif isinstance(c["optimal_soil_ph"], list):
+        c["optimal_soil_ph"] = tuple(c["optimal_soil_ph"])
+        
+    c["critical_temp_min_c"] = c.get("critical_temp_min_c", c.get("temp_min", 10.0))
+    c["critical_temp_max_c"] = c.get("critical_temp_max_c", c.get("temp_max", 40.0))
+    return c
+
+
+# Active merged registry
+CROP_REGISTRY = {
+    **_FALLBACK_CROP_REGISTRY,
+    **{k: _normalize_crop(v, k) for k, v in _DATASET_CROPS.items()}
+}
+
+
+def load_thresholds() -> dict:
+    """Reload and return the active crop thresholds from data/."""
+    global CROP_REGISTRY
+    fresh = load_crop_thresholds().get("crops", {})
+    if fresh:
+        CROP_REGISTRY = {
+            **_FALLBACK_CROP_REGISTRY,
+            **{k: _normalize_crop(v, k) for k, v in fresh.items()}
+        }
+    return CROP_REGISTRY
+
 
 def list_crops() -> list:
     """Return summary list of all crops in registry."""
@@ -158,9 +207,9 @@ def get_growth_stage(crop_id: str, days_since_sowing: int) -> Optional[dict]:
                 "days_in_stage": days_in_stage,
                 "stage_duration_days": stage["days"],
                 "stage_progress_pct": stage_pct,
-                "soil_moisture_target_pct": stage["soil_moisture_target"],
-                "nitrogen_demand": stage["n_demand"],
-                "irrigation_freq_days": stage["irrigation_freq_days"],
+                "soil_moisture_target_pct": stage.get("soil_moisture_target_pct", stage.get("soil_moisture_target", 65)),
+                "nitrogen_demand": stage.get("n_demand", "MEDIUM"),
+                "irrigation_freq_days": stage.get("irrigation_freq_days", 3),
                 "days_since_sowing": days_since_sowing,
                 "crop_id": crop_id,
                 "critical_temp_min_c": crop["critical_temp_min_c"],

@@ -16,10 +16,32 @@ Never claims clinical/agronomic validation.
 from typing import Dict, Any, List, Optional
 import io
 from app.agents.base import BaseAgent
+from app.services.dataset_loader import load_disease_catalog
 
 
-# Pre-calibrated agronomic diagnostic catalog
-DIAGNOSTIC_CATALOG = [
+def _build_diagnostic_catalog() -> list:
+    """Load and normalize disease diagnostic catalog from dataset with fallback."""
+    raw = load_disease_catalog().get("diseases", [])
+    if not raw:
+        return _FALLBACK_DIAGNOSTIC_CATALOG
+    catalog = []
+    for d in raw:
+        pathogen = d.get("pathogen")
+        pred = f"{d['display_name']} ({pathogen})" if pathogen else d["display_name"]
+        catalog.append({
+            "pattern": d.get("pattern", d.get("id", "")),
+            "prediction": pred,
+            "probability": d.get("probability", 0.90),
+            "severity": d.get("severity", "MEDIUM"),
+            "affected_area_pct": d.get("affected_area_pct", 15.0),
+            "treatment": d.get("treatment", "Consult local extension officer."),
+            "favorable_weather": d.get("favorable_weather", "Humid conditions"),
+        })
+    return catalog
+
+
+# Pre-calibrated agronomic diagnostic fallback catalog
+_FALLBACK_DIAGNOSTIC_CATALOG = [
     {
         "pattern": "leaf_blight",
         "prediction": "Northern Corn Leaf Blight (Exserohilum turcicum)",
@@ -57,6 +79,9 @@ DIAGNOSTIC_CATALOG = [
         "favorable_weather": "Optimal vegetative conditions.",
     },
 ]
+
+# Active dynamic catalog from dataset
+DIAGNOSTIC_CATALOG = _build_diagnostic_catalog()
 
 
 class DiseaseAgent(BaseAgent):

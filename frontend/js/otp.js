@@ -65,17 +65,28 @@ class OtpController {
       this.setButtonLoading(submitBtn, true, 'Sending OTP...');
 
       try {
-        // Attempt to call FastAPI backend /auth/send-otp
-        if (APP_CONFIG.ENV === 'production' && !APP_CONFIG.ENABLE_MOCK_FALLBACK) {
-          const res = await fetch(`${APP_CONFIG.API_BASE_URL}/auth/send-otp`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ phone: `+91${phone}` })
-          });
+        // Always call backend send-otp (works on localhost & production)
+        const res = await fetch(`${APP_CONFIG.API_BASE_URL}/auth/send-otp`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ phone: `+91${phone}` })
+        });
 
-          if (!res.ok) {
-            const err = await res.json().catch(() => ({ detail: 'Failed to send OTP' }));
-            throw new Error(err.detail || 'Server error');
+        if (!res.ok) {
+          const err = await res.json().catch(() => ({ detail: 'Failed to send OTP' }));
+          throw new Error(err.detail || 'Server error');
+        }
+
+        const data = await res.json();
+
+        // Show demo OTP hint if backend returns it (dev/demo mode)
+        if (data.demo_code) {
+          console.info(`[DEMO] OTP for ${phone}: ${data.demo_code}`);
+          // Show a subtle hint banner
+          const hintBanner = document.getElementById('demo-otp-hint');
+          if (hintBanner) {
+            hintBanner.textContent = `Demo OTP: ${data.demo_code}`;
+            hintBanner.style.display = 'block';
           }
         }
 
@@ -86,16 +97,17 @@ class OtpController {
         // Redirect to verify-otp.html
         window.location.href = './verify-otp.html';
       } catch (err) {
-        console.warn('API send-otp error, checking mock fallback:', err);
+        console.warn('API send-otp error, using mock fallback:', err);
         if (APP_CONFIG.ENABLE_MOCK_FALLBACK) {
           sessionStorage.setItem('krishi_pending_phone', phone);
+          sessionStorage.setItem('krishi_mock_otp', 'true');
           authManager.currentState = AUTH_STATES.OTP_SENT;
           window.location.href = './verify-otp.html';
         } else {
-          this.showInputError(errorEl, err.message || 'Unable to dispatch OTP. Please check your connection.');
+          this.showInputError(errorEl, err.message || 'Unable to send OTP. Please check your connection.');
         }
       } finally {
-        this.setButtonLoading(submitBtn, false, 'Send OTP');
+        this.setButtonLoading(submitBtn, false, 'Send OTP →');
       }
     });
   }
@@ -200,18 +212,11 @@ class OtpController {
       this.setButtonLoading(verifyBtn, true, 'Verifying...');
 
       try {
-        let token = 'jwt-krishi-' + Math.random().toString(36).substring(2);
-        let farmer = {
-          farmerName: 'Ramesh Patel',
-          mobile: `+91 ${pendingPhone}`,
-          farmName: 'Shanti Agro Farm',
-          acres: 12,
-          primaryCrop: 'cotton',
-          district: 'Rajkot, Gujarat',
-          loginTime: new Date().toISOString()
-        };
+        const isMock = sessionStorage.getItem('krishi_mock_otp') === 'true';
+        let token, farmer, hasFarm = false, farmId = null;
 
-        if (APP_CONFIG.ENV === 'production' && !APP_CONFIG.ENABLE_MOCK_FALLBACK) {
+        if (!isMock) {
+          // Real backend verification
           const res = await fetch(`${APP_CONFIG.API_BASE_URL}/auth/verify-otp`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -224,18 +229,35 @@ class OtpController {
           }
 
           const data = await res.json();
-          token = data.access_token || token;
-          if (data.farmer) farmer = data.farmer;
+          token = data.access_token;
+          farmer = data.user || {};
+          hasFarm = data.has_farm || false;
+          farmId = data.farm_id || null;
+        } else {
+          // Mock fallback (backend offline)
+          token = 'mock-jwt-' + Math.random().toString(36).substring(2);
+          farmer = { full_name: `Farmer ${pendingPhone.slice(-4)}`, phone: `+91${pendingPhone}` };
+          hasFarm = false;
         }
 
-        // Authentication Success: Store credentials and state
+        // Authentication Success: Store credentials
         authManager.setToken(token);
-        authManager.setSession(farmer);
+        authManager.setSession({
+          ...farmer,
+          mobile: `+91 ${pendingPhone}`,
+          farmId,
+          loginTime: new Date().toISOString()
+        });
         authManager.currentState = AUTH_STATES.AUTHENTICATED;
         sessionStorage.removeItem('krishi_pending_phone');
+        sessionStorage.removeItem('krishi_mock_otp');
 
-        // Redirect to dashboard
-        window.location.replace('./dashboard.html');
+        // Route: no farm → onboarding, has farm → dashboard
+        if (!hasFarm) {
+          window.location.replace('./onboarding.html');
+        } else {
+          window.location.replace('./dashboard.html');
+        }
       } catch (err) {
         console.warn('Verification error:', err);
         this.showInputError(errorEl, err.message || 'Invalid or expired OTP. Please try again.');
