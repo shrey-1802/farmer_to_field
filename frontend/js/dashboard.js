@@ -94,6 +94,21 @@ class DashboardController {
 
     const greetingEl = document.getElementById('farmer-greeting-text');
     if (greetingEl) greetingEl.textContent = `${timeGreeting}, ${farmerName}`;
+
+    // Update Subtitle with Real Location & Acres
+    const subtitleEl = document.querySelector('.dashboard-greeting-banner .page-subtitle');
+    if (subtitleEl) {
+      const activeId = localStorage.getItem('krishi_selected_farm') || 'farm-1';
+      let userFarms = [];
+      try {
+        const stored = localStorage.getItem('krishi_user_farms');
+        if (stored) userFarms = JSON.parse(stored);
+      } catch (_) {}
+      const activeFarm = userFarms.find(f => f.id === activeId) || userFarms[0] || {};
+      const acres = activeFarm.totalAcres || session.totalAcres || 12;
+      const loc = activeFarm.location || session.location || 'your farm';
+      subtitleEl.textContent = `Here's what is happening across your ${acres} acres in ${loc} today.`;
+    }
   }
 
   // KPIs (Section 11)
@@ -112,11 +127,41 @@ class DashboardController {
     appState.setPendingActionCount(this.telemetryState.kpis.pendingActions);
   }
 
-  // Zone Cards
+  // Zone Cards with Directional Crop Names
   renderZoneCards() {
+    const activeId = localStorage.getItem('krishi_selected_farm') || 'farm-1';
+    let userFarms = [];
+    try {
+      const stored = localStorage.getItem('krishi_user_farms');
+      if (stored) userFarms = JSON.parse(stored);
+    } catch (_) {}
+    const activeFarm = userFarms.find(f => f.id === activeId) || userFarms[0];
+
+    // If active farm has directional crop mapping, update zone card titles
+    if (activeFarm && activeFarm.crops) {
+      const mapping = [
+        { side: 'North Side', data: activeFarm.crops.north },
+        { side: 'South Side', data: activeFarm.crops.south },
+        { side: 'East Side', data: activeFarm.crops.east },
+        { side: 'West Side', data: activeFarm.crops.west }
+      ];
+
+      mapping.forEach((m, idx) => {
+        if (this.telemetryState.zones[idx] && m.data) {
+          this.telemetryState.zones[idx].name = `${m.side}: ${m.data.crop || 'Crop'}`;
+          if (m.data.acres) this.telemetryState.zones[idx].acres = m.data.acres;
+        }
+      });
+    }
+
     this.telemetryState.zones.forEach((zone, idx) => {
       const card = document.querySelectorAll('.zone-item-card')[idx];
       if (!card) return;
+
+      const nameEl = card.querySelector('.zone-name');
+      if (nameEl && zone.name) {
+        nameEl.textContent = zone.name;
+      }
 
       const metaEl = card.querySelector('.zone-meta');
       const badgeEl = card.querySelector('.badge');

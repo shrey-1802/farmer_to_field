@@ -270,8 +270,8 @@ class OtpController {
         sessionStorage.removeItem('krishi_pending_phone');
         sessionStorage.removeItem('krishi_mock_otp');
 
-        // Always redirect directly to dashboard
-        window.location.replace('./dashboard.html');
+        // Direct user to Onboarding to enter name, location, field size and crop orientation
+        window.location.replace('./onboarding.html');
       } catch (err) {
         console.warn('Verification error:', err);
         this.showInputError(errorEl, err.message || 'Invalid or expired OTP. Please use demo code 123456.');

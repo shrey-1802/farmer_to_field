@@ -3,139 +3,345 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Farmer Onboarding - Setup Your Farm in KrishiNirnay AI">
-  <title>Setup Your Farm — KrishiNirnay AI</title>
+  <meta name="description" content="Farmer Onboarding & Field Setup - KrishiNirnay AI">
+  <title>Setup Your Farm & Fields — KrishiNirnay AI</title>
   <link rel="icon" type="image/svg+xml" href="../assets/icons/sprout.svg">
   <link rel="stylesheet" href="../css/variables.css">
   <link rel="stylesheet" href="../css/reset.css">
   <link rel="stylesheet" href="../css/layout.css">
   <link rel="stylesheet" href="../css/components.css">
   <link rel="stylesheet" href="../css/auth.css">
+  <style>
+    .onboarding-card {
+      max-width: 820px;
+      margin: 2rem auto;
+      background: var(--color-surface, #ffffff);
+      border: 1px solid var(--color-border, rgba(134, 239, 172, 0.4));
+      border-radius: 20px;
+      padding: 2.5rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    }
+    .step-indicator {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .step-pill {
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 100px;
+      background: var(--color-primary-bg, #dcfce7);
+      color: var(--color-primary-700, #15803d);
+    }
+    .form-section-header {
+      border-bottom: 1px solid var(--color-border, #e5e7eb);
+      padding-bottom: 0.5rem;
+      margin: 1.75rem 0 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--color-text-primary, #14532d);
+    }
+    .form-grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+    }
+    .form-grid-4 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 1rem;
+    }
+    .compass-card {
+      background: var(--color-background, #f8fafc);
+      border: 1.5px solid var(--color-border, #e2e8f0);
+      border-radius: 12px;
+      padding: 1rem;
+      transition: all 0.2s ease;
+    }
+    .compass-card:hover {
+      border-color: var(--color-primary-500, #22c55e);
+      background: #ffffff;
+      box-shadow: 0 4px 12px rgba(22, 163, 74, 0.08);
+    }
+    .compass-title {
+      font-size: 0.85rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .compass-north { color: #2563eb; }
+    .compass-south { color: #d97706; }
+    .compass-east { color: #16a34a; }
+    .compass-west { color: #9333ea; }
+    .btn-submit-farm {
+      margin-top: 2rem;
+      padding: 0.9rem;
+      font-size: 1.05rem;
+      font-weight: 700;
+    }
+    @media (max-width: 640px) {
+      .onboarding-card { padding: 1.5rem; margin: 1rem; }
+      .form-grid-2 { grid-template-columns: 1fr; }
+    }
+  </style>
   <script type="module" src="../js/ui.js"></script>
 </head>
 <body class="auth-body">
   <header class="auth-header">
     <div class="auth-brand">
-      <div class="brand-logo" aria-hidden="true">
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M7 20h10"/>
-          <path d="M10 20c0-4.4 3.6-8 8-8v-1a5 5 0 0 0-5-5c-2.4 0-4.5 1.5-5 3.5A5.5 5.5 0 0 0 2 12c0 4.4 3.6 8 8 8Z"/>
-        </svg>
-      </div>
+      <div class="brand-logo" aria-hidden="true">🌱</div>
       <span class="auth-brand-name">KrishiNirnay AI</span>
     </div>
     <div class="auth-header-actions">
-      <button id="theme-toggle-btn" class="icon-button" aria-label="Toggle theme">
-        <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="M4.93 4.93l1.41 1.41"/><path d="M17.66 17.66l1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/>
-        </svg>
-      </button>
+      <button id="theme-toggle-btn" class="icon-button" aria-label="Toggle theme">◐</button>
     </div>
   </header>
 
-  <main class="auth-container">
-    <section class="auth-card-single">
-      <article class="auth-form-card">
-        <div class="form-header">
-          <div class="welcome-chip">🌾 Step 2 of 2: Farm Profile</div>
-          <h1 class="form-title">Tell Us About Your Farm</h1>
-          <p class="form-subtitle">Customize autonomous AI irrigation and disease prediction for your land</p>
+  <main class="auth-container" style="max-width: 900px; padding: 1rem;">
+    <div class="onboarding-card">
+      <div class="step-indicator">
+        <span class="step-pill">✅ Mobile OTP Verified</span>
+        <span class="step-pill" style="background: #16a34a; color: white;">Step 2: Farm & Crop Setup</span>
+      </div>
+
+      <h1 style="font-size: 1.75rem; font-weight: 800; color: #14532d; margin-bottom: 0.25rem;">
+        Welcome to KrishiNirnay AI! 🌾
+      </h1>
+      <p style="color: #4b7a5e; font-size: 0.95rem; margin-bottom: 1.5rem;">
+        Please tell us about you, your land, and the crops grown on each side of your field.
+      </p>
+
+      <form id="onboarding-form">
+        <!-- ── Section 1: Farmer Profile ── -->
+        <div class="form-section-header">
+          <span>👨‍🌾</span> 1. Farmer Profile
+        </div>
+        <div class="form-grid-2">
+          <div class="form-group">
+            <label for="farmer-name" class="form-label">Full Name *</label>
+            <input type="text" id="farmer-name" class="form-input" placeholder="e.g. Shrey Patel" required>
+          </div>
+          <div class="form-group">
+            <label for="farmer-location" class="form-label">Location (District, State) *</label>
+            <input type="text" id="farmer-location" class="form-input" placeholder="e.g. Rajkot, Gujarat" required>
+          </div>
         </div>
 
-        <form id="onboarding-form" class="auth-form">
+        <!-- ── Section 2: Field Details ── -->
+        <div class="form-section-header">
+          <span>📍</span> 2. Primary Field Details
+        </div>
+        <div class="form-grid-2">
           <div class="form-group">
-            <label for="farmer-name" class="form-label">Farmer / Manager Name</label>
-            <input type="text" id="farmer-name" name="farmerName" class="form-input" placeholder="e.g. Ramesh Patel" required>
+            <label for="field-name" class="form-label">Field / Plot Name *</label>
+            <input type="text" id="field-name" class="form-input" placeholder="e.g. North Valley Farm" value="Main Farm Plot" required>
           </div>
-
-          <div class="form-row">
-            <div class="form-group">
-              <label for="farm-name" class="form-label">Farm Name</label>
-              <input type="text" id="farm-name" name="farmName" class="form-input" placeholder="e.g. Shanti Agro Farm" required>
-            </div>
-            <div class="form-group">
-              <label for="farm-area" class="form-label">Total Acres</label>
-              <input type="number" id="farm-area" name="acres" class="form-input" placeholder="e.g. 12" min="1" step="0.5" required>
-            </div>
+          <div class="form-group">
+            <label for="field-size" class="form-label">Total Field Size (in Acres) *</label>
+            <input type="number" id="field-size" class="form-input" placeholder="e.g. 12" min="0.5" step="0.5" value="12" required>
           </div>
+        </div>
+        <div class="form-group">
+          <label for="soil-type" class="form-label">Predominant Soil Type *</label>
+          <select id="soil-type" class="form-select" required>
+            <option value="Deep Black Cotton Soil" selected>Deep Black Cotton Soil (काली मिट्टी)</option>
+            <option value="Alluvial Loam">Alluvial Loam (जलोढ़ दोमट मिट्टी)</option>
+            <option value="Red Sandy Loam">Red Sandy Loam (लाल बलुई मिट्टी)</option>
+            <option value="Clayey Loam">Clayey Loam (चिकनी मिट्टी)</option>
+          </select>
+        </div>
 
-          <div class="form-row">
-            <div class="form-group">
-              <label for="primary-crop" class="form-label">Primary Crop</label>
-              <select id="primary-crop" name="primaryCrop" class="form-select" required>
-                <option value="" disabled selected>Select crop...</option>
-                <option value="cotton">Cotton (कपास)</option>
-                <option value="wheat">Wheat (गेहूं)</option>
-                <option value="rice">Rice / Paddy (धान)</option>
-                <option value="soybean">Soybean (सोयाबीन)</option>
-                <option value="sugarcane">Sugarcane (गन्ना)</option>
-                <option value="groundnut">Groundnut (मूंगफली)</option>
-                <option value="maize">Maize (मक्का)</option>
-                <option value="chilli">Chilli / Pepper (मिर्च)</option>
+        <!-- ── Section 3: Directional Crop Mapping ── -->
+        <div class="form-section-header">
+          <span>🧭</span> 3. Crop Orientation (Which crop on which side?)
+        </div>
+        <p style="font-size: 0.85rem; color: #4b7a5e; margin-bottom: 1rem;">
+          Assign crops to the directional plots/zones of your field for targeted AI irrigation and disease advisory.
+        </p>
+
+        <div class="form-grid-4">
+          <!-- North Plot -->
+          <div class="compass-card">
+            <div class="compass-title compass-north">
+              <span>⬆️</span> North Side
+            </div>
+            <div class="form-group" style="margin-bottom: 0.75rem;">
+              <label class="form-label" style="font-size: 0.75rem;">Crop</label>
+              <select id="crop-north" class="form-select" style="padding: 0.4rem; font-size: 0.85rem;" required>
+                <option value="BT Cotton" selected>Cotton (कपास)</option>
+                <option value="Wheat (GW-496)">Wheat (गेहूं)</option>
+                <option value="Rice / Paddy">Rice (धान)</option>
+                <option value="Groundnut">Groundnut (मूंगफली)</option>
+                <option value="Soybean">Soybean (सोयाबीन)</option>
+                <option value="Sugarcane">Sugarcane (गन्ना)</option>
+                <option value="Maize">Maize (मक्का)</option>
+                <option value="Vegetables / Chilli">Chilli (मिर्च)</option>
+                <option value="Fallow / Open Land">Fallow / Open</option>
               </select>
             </div>
             <div class="form-group">
-              <label for="soil-type" class="form-label">Predominant Soil</label>
-              <select id="soil-type" name="soilType" class="form-select" required>
-                <option value="" disabled selected>Select soil...</option>
-                <option value="black-cotton">Black Cotton Soil (काली मिट्टी)</option>
-                <option value="alluvial">Alluvial Loam (जलोढ़ मिट्टी)</option>
-                <option value="red-sandy">Red Sandy Loam (लाल मिट्टी)</option>
-                <option value="clayey">Clay Loam (चिकनी मिट्टी)</option>
-              </select>
+              <label class="form-label" style="font-size: 0.75rem;">Acres</label>
+              <input type="number" id="acres-north" class="form-input" style="padding: 0.4rem; font-size: 0.85rem;" value="4" min="0.1" step="0.1">
             </div>
           </div>
 
-          <div class="form-group">
-            <label for="state-district" class="form-label">District & State</label>
-            <input type="text" id="state-district" name="district" class="form-input" placeholder="e.g. Rajkot, Gujarat" required>
+          <!-- South Plot -->
+          <div class="compass-card">
+            <div class="compass-title compass-south">
+              <span>⬇️</span> South Side
+            </div>
+            <div class="form-group" style="margin-bottom: 0.75rem;">
+              <label class="form-label" style="font-size: 0.75rem;">Crop</label>
+              <select id="crop-south" class="form-select" style="padding: 0.4rem; font-size: 0.85rem;" required>
+                <option value="Groundnut" selected>Groundnut (मूंगफली)</option>
+                <option value="BT Cotton">Cotton (कपास)</option>
+                <option value="Wheat (GW-496)">Wheat (गेहूं)</option>
+                <option value="Rice / Paddy">Rice (धान)</option>
+                <option value="Soybean">Soybean (सोयाबीन)</option>
+                <option value="Sugarcane">Sugarcane (गन्ना)</option>
+                <option value="Maize">Maize (मक्का)</option>
+                <option value="Vegetables / Chilli">Chilli (मिर्च)</option>
+                <option value="Fallow / Open Land">Fallow / Open</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" style="font-size: 0.75rem;">Acres</label>
+              <input type="number" id="acres-south" class="form-input" style="padding: 0.4rem; font-size: 0.85rem;" value="3" min="0.1" step="0.1">
+            </div>
           </div>
 
-          <button type="submit" id="save-farm-btn" class="btn btn-primary btn-block">
-            <span class="btn-text">Save Farm & Open Dashboard</span>
-            <span class="btn-loader" aria-hidden="true" style="display: none;"></span>
-          </button>
-        </form>
+          <!-- East Plot -->
+          <div class="compass-card">
+            <div class="compass-title compass-east">
+              <span>➡️</span> East Side
+            </div>
+            <div class="form-group" style="margin-bottom: 0.75rem;">
+              <label class="form-label" style="font-size: 0.75rem;">Crop</label>
+              <select id="crop-east" class="form-select" style="padding: 0.4rem; font-size: 0.85rem;" required>
+                <option value="Wheat (GW-496)" selected>Wheat (गेहूं)</option>
+                <option value="BT Cotton">Cotton (कपास)</option>
+                <option value="Rice / Paddy">Rice (धान)</option>
+                <option value="Groundnut">Groundnut (मूंगफली)</option>
+                <option value="Soybean">Soybean (सोयाबीन)</option>
+                <option value="Sugarcane">Sugarcane (गन्ना)</option>
+                <option value="Maize">Maize (मक्का)</option>
+                <option value="Vegetables / Chilli">Chilli (मिर्च)</option>
+                <option value="Fallow / Open Land">Fallow / Open</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" style="font-size: 0.75rem;">Acres</label>
+              <input type="number" id="acres-east" class="form-input" style="padding: 0.4rem; font-size: 0.85rem;" value="3" min="0.1" step="0.1">
+            </div>
+          </div>
 
-        <footer class="form-footer">
-          <button type="button" id="skip-onboarding-btn" class="btn btn-link">
-            Skip for now & use demo farm data
-          </button>
-        </footer>
-      </article>
-    </section>
+          <!-- West Plot -->
+          <div class="compass-card">
+            <div class="compass-title compass-west">
+              <span>⬅️</span> West Side
+            </div>
+            <div class="form-group" style="margin-bottom: 0.75rem;">
+              <label class="form-label" style="font-size: 0.75rem;">Crop</label>
+              <select id="crop-west" class="form-select" style="padding: 0.4rem; font-size: 0.85rem;" required>
+                <option value="Vegetables / Chilli" selected>Chilli / Veg (मिर्च)</option>
+                <option value="BT Cotton">Cotton (कपास)</option>
+                <option value="Wheat (GW-496)">Wheat (गेहूं)</option>
+                <option value="Rice / Paddy">Rice (धान)</option>
+                <option value="Groundnut">Groundnut (मूंगफली)</option>
+                <option value="Soybean">Soybean (सोयाबीन)</option>
+                <option value="Sugarcane">Sugarcane (गन्ना)</option>
+                <option value="Maize">Maize (मक्का)</option>
+                <option value="Fallow / Open Land">Fallow / Open</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" style="font-size: 0.75rem;">Acres</label>
+              <input type="number" id="acres-west" class="form-input" style="padding: 0.4rem; font-size: 0.85rem;" value="2" min="0.1" step="0.1">
+            </div>
+          </div>
+        </div>
+
+        <button type="submit" id="save-farm-btn" class="btn btn-primary btn-block btn-submit-farm">
+          Save Field & Launch My Dashboard →
+        </button>
+      </form>
+    </div>
   </main>
 
-  <footer class="auth-page-footer">
-    <p>&copy; 2026 KrishiNirnay AI — Autonomous Farm-to-Field Advisory</p>
-  </footer>
-
   <script type="module">
-    import themeManager from '../js/theme.js';
+    import authManager from '../js/auth.js';
+
+    // Auto-fill existing phone if stored
+    const pendingPhone = sessionStorage.getItem('krishi_pending_phone') || '';
     
     document.getElementById('onboarding-form').addEventListener('submit', (e) => {
       e.preventDefault();
-      const farmerName = document.getElementById('farmer-name').value;
-      const farmName = document.getElementById('farm-name').value;
-      const crop = document.getElementById('primary-crop').value;
-      
-      localStorage.setItem('krishi_farmer_session', JSON.stringify({
-        farmerName: farmerName || 'Ramesh Patel',
-        farmName: farmName || 'Shanti Agro Farm',
-        crop: crop || 'cotton',
-        loginTime: new Date().toISOString()
-      }));
-      
-      window.location.replace('./dashboard.html');
-    });
 
-    document.getElementById('skip-onboarding-btn').addEventListener('click', () => {
-      localStorage.setItem('krishi_farmer_session', JSON.stringify({
-        farmerName: 'Demo Farmer',
-        farmName: 'KrishiNirnay Model Farm',
-        crop: 'cotton',
+      const farmerName = document.getElementById('farmer-name').value.trim() || 'Farmer';
+      const location = document.getElementById('farmer-location').value.trim() || 'Gujarat, India';
+      const fieldName = document.getElementById('field-name').value.trim() || 'Main Farm Plot';
+      const fieldSize = parseFloat(document.getElementById('field-size').value) || 12;
+      const soilType = document.getElementById('soil-type').value;
+
+      // Directional Crop Mapping
+      const northCrop = document.getElementById('crop-north').value;
+      const northAcres = parseFloat(document.getElementById('acres-north').value) || (fieldSize * 0.3);
+
+      const southCrop = document.getElementById('crop-south').value;
+      const southAcres = parseFloat(document.getElementById('acres-south').value) || (fieldSize * 0.25);
+
+      const eastCrop = document.getElementById('crop-east').value;
+      const eastAcres = parseFloat(document.getElementById('acres-east').value) || (fieldSize * 0.25);
+
+      const westCrop = document.getElementById('crop-west').value;
+      const westAcres = parseFloat(document.getElementById('acres-west').value) || (fieldSize * 0.2);
+
+      const primaryField = {
+        id: 'farm-1',
+        name: fieldName,
+        totalAcres: fieldSize,
+        location: location,
+        soilType: soilType,
+        crops: {
+          north: { side: 'North Plot', crop: northCrop, acres: northAcres },
+          south: { side: 'South Plot', crop: southCrop, acres: southAcres },
+          east: { side: 'East Plot', crop: eastCrop, acres: eastAcres },
+          west: { side: 'West Plot', crop: westCrop, acres: westAcres }
+        }
+      };
+
+      // Store in List of Farmer Fields
+      const farmsList = [primaryField];
+      localStorage.setItem('krishi_user_farms', JSON.stringify(farmsList));
+      localStorage.setItem('krishi_selected_farm', 'farm-1');
+
+      // Update Session
+      const session = {
+        farmerName: farmerName,
+        location: location,
+        primaryCrop: northCrop,
+        farmName: fieldName,
+        totalAcres: fieldSize,
+        mobile: pendingPhone ? `+91 ${pendingPhone}` : '+91 98765 43210',
         loginTime: new Date().toISOString()
-      }));
+      };
+      localStorage.setItem('krishi_farmer_session', JSON.stringify(session));
+
+      // Guarantee token exists
+      if (!authManager.getToken()) {
+        authManager.setToken('krishi-tok-' + Date.now());
+      }
+
+      // Enter dashboard!
       window.location.replace('./dashboard.html');
     });
   </script>

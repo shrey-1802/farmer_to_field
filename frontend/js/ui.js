@@ -131,28 +131,221 @@ class ApplicationShell {
   }
 
   /**
-   * Top Header Farm Selector Synchronization
+   * Top Header Farm Selector Synchronization & Multi-Field Management
    */
   setupFarmSelector() {
     const farmSelect = document.getElementById('farm-select');
     if (!farmSelect) return;
 
-    // Restore saved farm
-    const savedFarm = localStorage.getItem('krishi_selected_farm');
-    if (savedFarm) {
-      farmSelect.value = savedFarm;
-    }
+    const renderFarmOptions = () => {
+      let userFarms = [];
+      try {
+        const stored = localStorage.getItem('krishi_user_farms');
+        if (stored) userFarms = JSON.parse(stored);
+      } catch (_) {}
+
+      if (!userFarms || userFarms.length === 0) {
+        userFarms = [
+          { id: 'farm-1', name: 'Shanti Agro Farm', totalAcres: 12 },
+          { id: 'farm-2', name: 'South Valley Field', totalAcres: 8 }
+        ];
+      }
+
+      farmSelect.innerHTML = '';
+      userFarms.forEach(f => {
+        const opt = document.createElement('option');
+        opt.value = f.id;
+        opt.textContent = `${f.name} (${f.totalAcres} Acres)`;
+        farmSelect.appendChild(opt);
+      });
+
+      // Append '+ Add Another Field' Option
+      const addOpt = document.createElement('option');
+      addOpt.value = '__add_new_field__';
+      addOpt.textContent = '➕ Add Another Field...';
+      addOpt.style.fontWeight = 'bold';
+      addOpt.style.color = '#16a34a';
+      farmSelect.appendChild(addOpt);
+
+      // Restore selected farm or default to first
+      const savedFarm = localStorage.getItem('krishi_selected_farm');
+      if (savedFarm && userFarms.some(f => f.id === savedFarm)) {
+        farmSelect.value = savedFarm;
+      } else if (userFarms[0]) {
+        farmSelect.value = userFarms[0].id;
+        localStorage.setItem('krishi_selected_farm', userFarms[0].id);
+      }
+    };
+
+    renderFarmOptions();
 
     farmSelect.addEventListener('change', (e) => {
-      const newFarm = e.target.value;
-      localStorage.setItem('krishi_selected_farm', newFarm);
-      
-      window.dispatchEvent(new CustomEvent('farmchange', {
-        detail: { farmId: newFarm }
-      }));
-
-      this.showToast(`Switched farm view`, 'info', 2500);
+      const selectedVal = e.target.value;
+      if (selectedVal === '__add_new_field__') {
+        // Reset to previous value and open modal
+        const currentSaved = localStorage.getItem('krishi_selected_farm') || 'farm-1';
+        farmSelect.value = currentSaved;
+        this.openAddFieldModal(renderFarmOptions);
+      } else {
+        localStorage.setItem('krishi_selected_farm', selectedVal);
+        window.dispatchEvent(new CustomEvent('farmchange', {
+          detail: { farmId: selectedVal }
+        }));
+        this.showToast(`Switched farm view`, 'info', 2500);
+      }
     });
+
+    // Add a direct '+ Field' button next to farm selector if wrapper exists
+    const wrapper = farmSelect.closest('.farm-selector-wrapper');
+    if (wrapper && !document.getElementById('header-add-field-btn')) {
+      const addBtn = document.createElement('button');
+      addBtn.type = 'button';
+      addBtn.id = 'header-add-field-btn';
+      addBtn.className = 'btn btn-sm btn-outline';
+      addBtn.style.padding = '3px 8px';
+      addBtn.style.fontSize = '0.75rem';
+      addBtn.style.marginLeft = '6px';
+      addBtn.title = 'Add Another Field';
+      addBtn.innerHTML = '➕ Field';
+      addBtn.addEventListener('click', () => {
+        this.openAddFieldModal(renderFarmOptions);
+      });
+      wrapper.appendChild(addBtn);
+    }
+  }
+
+  /**
+   * Modal Dialog to Add Another Field with Size, Location & Crops per Side
+   */
+  openAddFieldModal(onSuccessCallback) {
+    let modal = document.getElementById('add-field-modal');
+    if (!modal) {
+      modal = document.createElement('div');
+      modal.id = 'add-field-modal';
+      modal.style.position = 'fixed';
+      modal.style.top = '0';
+      modal.style.left = '0';
+      modal.style.width = '100vw';
+      modal.style.height = '100vh';
+      modal.style.backgroundColor = 'rgba(0, 0, 0, 0.6)';
+      modal.style.backdropFilter = 'blur(4px)';
+      modal.style.zIndex = '9999';
+      modal.style.display = 'flex';
+      modal.style.alignItems = 'center';
+      modal.style.justifyContent = 'center';
+      modal.style.padding = '1rem';
+
+      modal.innerHTML = `
+        <div style="background: var(--color-surface, #ffffff); border-radius: 16px; max-width: 600px; width: 100%; max-height: 90vh; overflow-y: auto; padding: 2rem; box-shadow: 0 20px 40px rgba(0,0,0,0.25); border: 1px solid var(--color-border, #e2e8f0);">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
+            <h2 style="font-size: 1.25rem; font-weight: 800; color: #14532d; margin: 0;">➕ Register Another Field / Plot</h2>
+            <button type="button" id="close-add-field-modal" style="background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #64748b;">&times;</button>
+          </div>
+
+          <form id="add-field-form">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+              <div>
+                <label style="display: block; font-size: 0.8rem; font-weight: 700; margin-bottom: 4px;">Field Name *</label>
+                <input type="text" id="new-field-name" required placeholder="e.g. East River Plot" style="width: 100%; padding: 8px 12px; border-radius: 8px; border: 1px solid #cbd5e1; font-size: 0.9rem;">
+              </div>
+              <div>
+                <label style="display: block; font-size: 0.8rem; font-weight: 700; margin-bottom: 4px;">Field Size (Acres) *</label>
+                <input type="number" id="new-field-acres" min="0.5" step="0.5" required placeholder="e.g. 8" style="width: 100%; padding: 8px 12px; border-radius: 8px; border: 1px solid #cbd5e1; font-size: 0.9rem;">
+              </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.25rem;">
+              <div>
+                <label style="display: block; font-size: 0.8rem; font-weight: 700; margin-bottom: 4px;">Location / Village</label>
+                <input type="text" id="new-field-location" placeholder="e.g. Gondal, Gujarat" style="width: 100%; padding: 8px 12px; border-radius: 8px; border: 1px solid #cbd5e1; font-size: 0.9rem;">
+              </div>
+              <div>
+                <label style="display: block; font-size: 0.8rem; font-weight: 700; margin-bottom: 4px;">Soil Type</label>
+                <select id="new-field-soil" style="width: 100%; padding: 8px 12px; border-radius: 8px; border: 1px solid #cbd5e1; font-size: 0.9rem;">
+                  <option value="Deep Black Cotton Soil">Black Cotton Soil (काली मिट्टी)</option>
+                  <option value="Alluvial Loam" selected>Alluvial Loam (जलोढ़ मिट्टी)</option>
+                  <option value="Red Sandy Loam">Red Sandy Loam (लाल मिट्टी)</option>
+                  <option value="Clayey Loam">Clayey Loam (चिकनी मिट्टी)</option>
+                </select>
+              </div>
+            </div>
+
+            <h3 style="font-size: 0.9rem; font-weight: 800; color: #16a34a; text-transform: uppercase; margin-bottom: 0.75rem;">🧭 Which crop on which side?</h3>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 1.5rem;">
+              <div style="background: #f8fafc; padding: 10px; border-radius: 8px; border: 1px solid #e2e8f0;">
+                <label style="font-size: 0.75rem; font-weight: 700; color: #2563eb;">⬆️ North Side Crop</label>
+                <input type="text" id="new-crop-north" placeholder="e.g. Wheat" value="Wheat" style="width: 100%; padding: 6px; border-radius: 6px; border: 1px solid #cbd5e1; margin-top: 4px; font-size: 0.85rem;">
+              </div>
+              <div style="background: #f8fafc; padding: 10px; border-radius: 8px; border: 1px solid #e2e8f0;">
+                <label style="font-size: 0.75rem; font-weight: 700; color: #d97706;">⬇️ South Side Crop</label>
+                <input type="text" id="new-crop-south" placeholder="e.g. Mustard" value="Mustard" style="width: 100%; padding: 6px; border-radius: 6px; border: 1px solid #cbd5e1; margin-top: 4px; font-size: 0.85rem;">
+              </div>
+              <div style="background: #f8fafc; padding: 10px; border-radius: 8px; border: 1px solid #e2e8f0;">
+                <label style="font-size: 0.75rem; font-weight: 700; color: #16a34a;">➡️ East Side Crop</label>
+                <input type="text" id="new-crop-east" placeholder="e.g. Cotton" value="Cotton" style="width: 100%; padding: 6px; border-radius: 6px; border: 1px solid #cbd5e1; margin-top: 4px; font-size: 0.85rem;">
+              </div>
+              <div style="background: #f8fafc; padding: 10px; border-radius: 8px; border: 1px solid #e2e8f0;">
+                <label style="font-size: 0.75rem; font-weight: 700; color: #9333ea;">⬅️ West Side Crop</label>
+                <input type="text" id="new-crop-west" placeholder="e.g. Fallow / Veg" value="Vegetables" style="width: 100%; padding: 6px; border-radius: 6px; border: 1px solid #cbd5e1; margin-top: 4px; font-size: 0.85rem;">
+              </div>
+            </div>
+
+            <div style="display: flex; justify-content: flex-end; gap: 0.75rem;">
+              <button type="button" id="cancel-add-field" class="btn btn-outline btn-sm">Cancel</button>
+              <button type="submit" class="btn btn-primary btn-sm">Save & Switch to This Field</button>
+            </div>
+          </form>
+        </div>
+      `;
+      document.body.appendChild(modal);
+
+      const closeModal = () => { modal.style.display = 'none'; };
+      document.getElementById('close-add-field-modal').addEventListener('click', closeModal);
+      document.getElementById('cancel-add-field').addEventListener('click', closeModal);
+
+      document.getElementById('add-field-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = document.getElementById('new-field-name').value.trim();
+        const acres = parseFloat(document.getElementById('new-field-acres').value) || 5;
+        const loc = document.getElementById('new-field-location').value.trim() || 'Gujarat';
+        const soil = document.getElementById('new-field-soil').value;
+
+        const newId = 'farm-' + Date.now();
+        const newField = {
+          id: newId,
+          name: name,
+          totalAcres: acres,
+          location: loc,
+          soilType: soil,
+          crops: {
+            north: { side: 'North Side', crop: document.getElementById('new-crop-north').value },
+            south: { side: 'South Side', crop: document.getElementById('new-crop-south').value },
+            east: { side: 'East Side', crop: document.getElementById('new-crop-east').value },
+            west: { side: 'West Side', crop: document.getElementById('new-crop-west').value }
+          }
+        };
+
+        let userFarms = [];
+        try {
+          const stored = localStorage.getItem('krishi_user_farms');
+          if (stored) userFarms = JSON.parse(stored);
+        } catch (_) {}
+
+        userFarms.push(newField);
+        localStorage.setItem('krishi_user_farms', JSON.stringify(userFarms));
+        localStorage.setItem('krishi_selected_farm', newId);
+
+        closeModal();
+        if (onSuccessCallback) onSuccessCallback();
+
+        window.dispatchEvent(new CustomEvent('farmchange', {
+          detail: { farmId: newId }
+        }));
+        this.showToast(`Registered new field: ${name} (${acres} Acres)!`, 'success', 4000);
+      });
+    }
+
+    modal.style.display = 'flex';
   }
 
   /**
